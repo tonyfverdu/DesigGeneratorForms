@@ -32,7 +32,7 @@ function TheContext({ children }) {
 
   const [number, setNumber] = useState(0)
   const pruebaNumberElement = {
-    elementID: "ID_0004",
+    elementID: "ID_0002",
     labelElement: "Soy un componente Number: ",
     required: true,
     disabled: false,
@@ -44,7 +44,7 @@ function TheContext({ children }) {
 
   const [date, setDate] = useState(currentDate().Date_DD_MM_YY)
   const pruebaDateElement = {
-    elementID: "ID_0005",
+    elementID: "ID_0003",
     labelElement: "Soy un componente Date: ",
     required: true,
     disabled: false,
@@ -55,24 +55,24 @@ function TheContext({ children }) {
 
   const [phone, setPhone] = useState("")
   const pruebaPhoneElement = {
-    elementID: "ID_0002",
+    elementID: "ID_0004",
     labelElement: "Soy un componente Phone: ",
     required: true,
     disabled: false,
-    response: ["Soy la response"],
-    placeholder: "XX-XXX-XXXX",
+    response: ["92-111-1111"],
+    placeholder: "91-111-1111",
     size: 20,
     setPhone: setPhone
   }
 
   const [email, setEmail] = useState("")
   const pruebaEmailElement = {
-    elementID: "ID_0003",
+    elementID: "ID_0005",
     labelElement: "Soy un componente Email: ",
     required: true,
     disabled: false,
     response: ["usuarioA@dominio.com"],
-    placeholder: "Your email address...",
+    placeholder: "enteryouremail@dominio.com",
     size: 28,
     setEmail: setEmail
   }
@@ -84,8 +84,8 @@ function TheContext({ children }) {
     required: true,
     disabled: false,
     readonly: false,
-    response: [""],
-    placeholder: "escriba un texto multilinea ...",
+    response: ["Bla bla bla bla \n Bla bla"],
+    placeholder: "Escriba un texto multilinea ...",
     row: 2,
     col: 50,
     setAreaText: setAreaText
@@ -129,7 +129,7 @@ function TheContext({ children }) {
     name: "pruebaRB",
     radioButtons: [
       {
-        elementID: "ID_00081",
+        elementID: "ID_00010.1",
         labelElement: "Soy un componente RadioButton",
         name: "pruebaRB",
         required: true,
@@ -139,7 +139,7 @@ function TheContext({ children }) {
         setRadioButton: setRadioButton
       },
       {
-        elementID: "ID_00082",
+        elementID: "ID_00010.2",
         labelElement: "Soy un componente RadioButton",
         name: "pruebaRB",
         required: true,
@@ -149,7 +149,7 @@ function TheContext({ children }) {
         setRadioButton: setRadioButton
       },
       {
-        elementID: "ID_00083",
+        elementID: "ID_00010.3",
         labelElement: "Soy un componente RadioButton",
         name: "pruebaRB",
         required: true,

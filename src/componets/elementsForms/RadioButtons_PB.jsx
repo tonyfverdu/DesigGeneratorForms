@@ -1,11 +1,12 @@
-import React from 'react'
+import React, {useState} from 'react'
 import RadioButtonElem_PB from './RadioButtonElem_PB'
 import '../../sass/componentSass/elementsForms/RadioButtons_PB.scss'
 
 
 
 function RadioButtons_PB({ elementID, legend, name, radioButtons }) {
-  const numberRadioButtons = radioButtons.length;
+  // const numberRadioButtons = radioButtons.length;
+  const [arrayRB, setArrayRB] = useState(radioButtons)
 
   return (
     <div className="contRadioButtons container-fluid form-check p-1">
@@ -13,9 +14,9 @@ function RadioButtons_PB({ elementID, legend, name, radioButtons }) {
         <legend className="text-black">{legend}</legend>
         <ul className="list-group list-group-flush contUL">
           {
-            radioButtons.map((radio, index) => {
+            arrayRB.map(radio => {
               return (
-                <li key={index} className="list-group-item" >
+                <li key={radio.elementID} className="list-group-item" >
                   <RadioButtonElem_PB
                     elementID={radio.elementID}
                     labelElement={radio.labelElement}

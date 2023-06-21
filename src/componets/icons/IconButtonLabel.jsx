@@ -29,13 +29,13 @@ function IconButtonLabel() {
     blockOrigen: "The first Block",
     orderInBlock: "0",
     position: { row: 0, col: 0 },
-    dimensions: { width: 3, height: "2.4rem" },
+    dimensions: { width: 2, height: "2.4rem" },
     labelElement: "",
     required: true,
     disabled: false,
     response: ["Ich war im Vergangenheit ein Label"],
     placeholder: "Jetzt bin ich wieder ein Label",
-    size: 15,
+    size: 10,
     valueComponent: "Ich bin ein Label",
     setComponent: theContext.setLabel
   }
