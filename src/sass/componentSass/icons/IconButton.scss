@@ -1,0 +1,22 @@
+@use '../../myvariables' as v;
+@use '../../layouts' as l;
+@use '../../neumorphismus' as n;
+
+
+.iconButton {
+  @include l.layoutFlexboxRowCenter;
+  @include n.teclaNeumorphismus1;
+  border-radius: 6px;
+  width: 2rem;
+  height: 2rem;
+  margin:0% auto;
+  padding: 0%;
+  transition: all ease 0.35s;
+
+  &:hover,&:focus {
+    cursor: pointer;
+    @include n.teclaNeumorphismus2Hover;
+    transform: scale(0.92);
+    border-radius: 6px;
+  }
+}

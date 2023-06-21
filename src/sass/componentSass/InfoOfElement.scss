@@ -1,0 +1,88 @@
+@use '../myvariables' as v;
+@use '../layouts' as l;
+@use '../designElement' as d;
+
+.contInfoOfElement {
+  background-color: transparent;
+
+  &>.infoComponent {
+    @include l.layoutFlexboxColumCenter;
+    width: 96%;
+    margin: 1%;
+
+    &>.contHeaderTitle {
+      @include d.desigHeader (transparent);
+      @include l.layoutFlexboxColumCenter;
+      margin: 1% 0%;
+      margin-bottom: 3%;
+
+      &>.title {
+        @include d.desig_H_element2 (v.$colorHell, 1rem);
+      }
+
+      &>.subtitle {
+        @include d.desig_H_element2 (v.$backgroundColorIniT4, 0.6rem);
+      }
+    }
+
+    &>.contInfoForm {
+      @include l.layoutFlexboxColumCenter;
+      background-color: v.$backgroundColorIniWhiteT;
+    }
+  }
+
+  &>.contOfData {
+    @include l.layoutFlexboxColumCenter;
+    width: 96%;
+    justify-content: center;
+    align-items: center;
+    margin: 1%;
+
+    &>.contComponent {
+      background-color: v.$backgroundColorIniWhiteT;
+
+    }
+    &>.contInfoForm {
+      background-color: v.$backgroundColorIniWhiteT;
+    }
+  }
+}
+
+.contTitles {
+  &>.titles {
+    @include d.desig_H_element2 (v.$colorNavy, 0.68rem)
+  }
+}
+
+.Fields {
+  @include l.layoutFlexboxRowCenter;
+  justify-content: flex-start;
+  margin: 0%;
+  padding: 0%;
+
+  &>.Field {
+    @include d.configurationLabel (v.$colorTextIni, 0.64rem);
+    margin: 0%;
+    padding: 0%;
+    background-color: v.$backgroundColorIniWhite;
+  }
+
+  &>.valueSpan {
+    @include d.configurationText1 (v.$colorTextIni, 0.6rem);
+    margin: 0%;
+    padding: 0%;
+    margin-left: 2%;
+  }
+}
+
+.titlePosDim {
+  @include d.desig_H_element2 (v.$colorTextIni, 0.64rem);
+  margin-right: 1%;
+}
+.subTitlePosDim {
+  @include d.configurationText2 (v.$colorTextIni, 0.6rem);
+}
+.valuePosDim {
+  @include d.configurationText1 (v.$colorTextIni, 0.6rem);
+  margin-right: 3%;
+}

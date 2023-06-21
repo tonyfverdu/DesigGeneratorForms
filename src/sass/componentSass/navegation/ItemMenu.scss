@@ -1,0 +1,97 @@
+@use '../../layouts' as l;
+@use '../../myvariables' as v;
+@use '../../designElement' as d;
+
+
+.activeClassMenu {
+  @include l.layoutFlexboxRowCenter;
+  width: 5.6rem;
+  height: 3rem;
+  padding: 0.5%;
+  margin: 0% 5%;
+  margin-bottom: 1rem;
+  box-shadow: v.$boxShadow9;
+  background-color: v.$colorGreenHellT2;
+  border: 1px solid v.$colorGreen;
+  border-radius: 6px 3px 0px 0px;
+  text-decoration: none;
+  transition: all ease 0.35s;
+
+
+  &>.textItem {
+    @include l.layoutFlexboxRowCenter;
+    height: auto;
+    @include d.configurationText1 (v.$colorHell, 0.68rem);
+    transform: scale(1.1) translateY(-18px);
+    padding: 0% auto;
+    margin: 0%;
+    font-weight: 700;
+    transition: all linear 0.35s;
+  }
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    bottom: 0%;
+    height: 89px;
+    font-weight: bold;
+    animation: moveUpGreen 0.35s linear forwards;
+
+    &>.textItem {
+      @include d.configurationText2 (v.$colorHell, 0.7rem);
+      font-weight: bold;
+    }
+  }
+}
+
+.inactiveClassMenu {
+  @include l.layoutFlexboxRowCenter;
+  width: 4.2rem;
+  height: 4rem;
+  padding: 1% auto;
+  margin: 0% 2%;
+  box-shadow: v.$boxShadow7;
+  background-color: v.$colorRedNeuT;
+  border: 1px solid v.$colorRedNeuT;
+  border-radius: 6px 3px 0px 0px;
+  text-decoration: none;
+  transition: all linear 0.35s;
+
+  &>.textItem {
+    @include l.layoutFlexboxRowCenter;
+    @include d.configurationText1 (v.$colorHell, 0.65rem);
+    transform: scale(1) translateY(-8px);
+    padding: 0% auto;
+    margin: 0% auto;
+    margin-top: 12%;
+    font-weight: 500;
+    transition: all linear 0.35s;
+  }
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    animation: moveUpRed 0.35s linear forwards;
+
+    &>.textItem {
+      @include d.configurationText2 (v.$colorHell, 0.8rem);
+      font-weight: bold;
+    }
+  }
+}
+
+@keyframes moveUpGreen {
+  to {
+    box-shadow: v.$boxShadow10;
+    background-color: v.$colorGreenHellT;
+    transform: translateY(-0.65rem);
+  }
+}
+
+@keyframes moveUpRed {
+  to {
+    box-shadow: v.$boxShadow11;
+    background-color: v.$colorRedNeuT;
+    transform: translateY(-0.1rem);
+  }
+}

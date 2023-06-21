@@ -1,0 +1,38 @@
+@use '../myvariables' as v;
+@use '../layouts' as l;
+@use '../designElement' as d;
+
+
+.contRow {
+  @include l.layoutFlexboxRowCenter;
+  justify-content: flex-start;
+  height: 0.5rem;
+
+  &>.circle {
+    @include l.layoutFlexboxRowCenter;
+    justify-content: center;
+    align-items: center;
+    width: 1.2rem;
+    height: 1.2rem;
+    background-color: v.$backgroundColorHellGrayT3;
+    border: 2px solid v.$backgroundColorHellGray2;
+    border-radius: 50%;
+    transition: all ease 0.35s;
+
+    &:hover,
+    &:focus {
+      cursor: pointer;
+      transform: scale(0.85);
+      background-color: v.$backgroundColorHellGrayT;
+      border: 2px solid v.$colorRedNeu;
+      color: v.$colorRedNeu;
+    }
+  }
+
+  &>.contLine {
+    @include l.layoutFlexboxRowCenter;
+    height: 0.2rem;
+    background-color: v.$backgroundColorDunkelGray4;
+    color: v.$backgroundColorDunkelGray4;
+  }
+}

@@ -1,0 +1,65 @@
+.contAreaTextElement {
+  min-width: fit-content;
+  height: auto;
+  padding: 1%;
+  margin: 0%;
+  border: 1px solid black;
+}
+.contAreaTextElement > .labelOfForm {
+  position: relative;
+  text-align: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: rgb(9, 9, 9);
+  margin: 0% 2%;
+  padding: 1%;
+  text-align: right;
+  width: auto;
+  min-width: fit-content;
+  height: 2rem;
+  padding: 0.3%;
+  margin: 0.5% 0%;
+  margin-right: 1%;
+}
+.contAreaTextElement > .contAreaText, .contAreaTextElement > .areaTextNotActiv, .contAreaTextElement > .areaTextActiv {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  position: relative;
+  text-align: justify;
+  font-size: 0.6rem;
+  font-weight: 400;
+  color: rgb(39, 39, 39);
+  margin: 0% auto;
+  width: auto;
+  min-width: fit-content;
+  min-height: auto;
+  padding: 0.3%;
+  padding-left: 1%;
+  margin: 0.5% 0%;
+  resize: none;
+  text-align: left;
+  border-radius: 3px;
+  border: 1px solid rgb(63, 63, 63);
+}
+.contAreaTextElement > .areaTextActiv {
+  transition: all ease 0.35s;
+}
+.contAreaTextElement > .areaTextActiv:hover, .contAreaTextElement > .areaTextActiv:focus {
+  cursor: pointer;
+  border: 1px solid rgb(103, 247, 7);
+  box-shadow: 0px 1px 1px 1px rgb(184, 255, 134), inset 0px 0px 0px 1px #03fb03, 1px 1px 3px 4px #99f0b6;
+}
+.contAreaTextElement > .areaTextNotActiv {
+  color: rgb(66, 66, 71);
+  font-weight: 600;
+  background-color: rgba(167, 166, 166, 0.6);
+  border: none;
+}
+
+/*# sourceMappingURL=AreaTextElem_PB.css.map */
