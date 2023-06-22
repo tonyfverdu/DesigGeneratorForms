@@ -1,14 +1,17 @@
 .contLabelElement_PB {
-  min-width: fit-content;
   height: 2.4rem;
-  padding: 1%;
-  margin: 0%;
-  border: 1px solid black;
+  transition: all ease 0.2s;
+}
+.contLabelElement_PB:hover, .contLabelElement_PB:focus {
+  cursor: pointer;
+  outline: 2px ridge rgb(252, 248, 2);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 .contLabelElement_PB > .labelElement {
   position: relative;
   text-align: center;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 700;
   color: rgb(9, 9, 9);
   margin: 0% 2%;
@@ -16,11 +19,9 @@
   width: auto;
   min-width: fit-content;
   height: 2rem;
-  padding: 0.3%;
-  padding-left: 1%;
-  margin: 0.5% 0%;
-  padding-right: 0.3rem;
-  text-align: right;
+  padding: 0.1%;
+  margin: 0%;
+  text-align: center;
 }
 
 /*# sourceMappingURL=LabelElem_PB.css.map */

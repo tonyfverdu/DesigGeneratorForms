@@ -4,22 +4,26 @@
 
 
 .contAreaTextElement {
-  min-width: fit-content;
   height: auto;
-  padding: 1%;
-  margin: 0%;
+  transition: all ease 0.20s;
 
-  border: 1px solid black;
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    outline: 2px ridge v.$colorHell2;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
 
   &>.labelOfForm {
-    @include d.configurationLabel (v.$colorTextIni, 0.7rem);
-    text-align: right;
-    width: auto;
-    min-width: fit-content;
+    @include d.configurationLabel (v.$colorTextIni, 0.65rem);
+    text-align: left;
+    width: fit-content;
+    min-width: auto;
     height: 2rem;
-    padding: 0.3%;
-    margin: 0.5% 0%;
-    margin-right: 1%;
+    padding: 0.1%;
+    margin: 0%;
+    margin-right: 2%;
   }
 
   &>.contAreaText {
@@ -27,12 +31,11 @@
     justify-content: flex-start;
     align-items: flex-start;
     @include d.configurationText1 (v.$backgroundColorDunkelGray5, 0.6rem);
-    width: auto;
+    width: cal(fit-content + 1%);
     min-width: fit-content;
     min-height:auto;
     padding: 0.3%;
-    padding-left: 1%;
-    margin: 0.5% 0%;
+    margin: 0%;
     resize: none;
     text-align: left;
     border-radius: 3px;

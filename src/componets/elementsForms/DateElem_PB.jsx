@@ -24,10 +24,11 @@ function DateElem_PB({ elementID, labelElement, required, disabled, response, pl
 
 
   return (
-    <div className="contDateElement container-fluid d-flex flex-row justify-content-start align-items-center p-1">
-      <label htmlFor={elementID} className="labelOfForm d-flex flex-row justify-content-end align-items-center label-default form-label">{labelElement}</label>
-      <input id={elementID} type="date" className="contInputDate form-control text-center" required={required} disabled={disabled} placeholder={placeholder}
-        value={valueOfDate} onChange={(ev) => handleChange(ev)} />
+    <div className="contDateElement form-group container-fluid d-flex flex-row justify-content-start align-items-center m-0 p-1
+    border border-1 border-secondary">
+      <label htmlFor={elementID} className="form-label labelOfForm d-flex flex-row justify-content-end align-items-center">{labelElement}</label>
+      <input id={elementID} type="date" className="contInputDate form-control text-center rounded-0" required={required} 
+      disabled={disabled} placeholder={placeholder} value={valueOfDate} onChange={(ev) => handleChange(ev)} />
     </div>
   )
 }

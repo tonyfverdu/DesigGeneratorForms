@@ -4,39 +4,40 @@
 
 
 .contCheckboxElement {
-  @include l.layoutFlexboxRowCenter;
-  width: auto;
-  min-width: fit-content;
   height: 2.4rem;
-  padding: 1%;
-  margin: 0%;
+  transition: all ease 0.20s;
 
-  border: 1px solid black;
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    outline: 2px ridge v.$colorHell2;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
 
   &>.labelOfForm {
-    @include d.configurationLabel (v.$colorTextIni, 0.7rem);
-    text-align:left;
-    width: auto;
-    min-width: fit-content;
-    height: 1rem;
-    padding: 0.3%;
-    margin: 0.5% 0%;
-    margin-left: 1%;
+    @include d.configurationLabel (v.$colorTextIni, 0.65rem);
+    text-align: left;
+    width: fit-content;
+    min-width: auto;
+    height: 2rem;
+    padding: 0.1%;
+    margin: 0%;
+    margin-left: 2%;
   }
 
   &>.contCheckbox {
     @include d.configurationText1 (v.$backgroundColorDunkelGray5, 0.6rem);
-    width: 1.4rem;
-    height: 1.4rem;
-    padding: 0.3%;
-    margin: 0.5% 0%;
+    padding: 0.5rem;
+    margin: 0% 1%;
     border-radius: 3px;
     border: 1px solid v.$backgroundColorDunkelGray4;
-    transition: all ease 0.35s;
+    transition: all ease 0.20s;
 
     &:hover,
     &:focus {
       cursor: pointer;
+      max-height: 2rem;
       border: 1px solid v.$colorHell4White;
       box-shadow: v.$boxShadow16;
     }

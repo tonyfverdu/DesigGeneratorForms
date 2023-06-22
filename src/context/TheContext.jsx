@@ -59,9 +59,9 @@ function TheContext({ children }) {
     labelElement: "Soy un componente Phone: ",
     required: true,
     disabled: false,
-    response: ["92-111-1111"],
-    placeholder: "91-111-1111",
-    size: 20,
+    response: ["92-1111-1111"],
+    placeholder: "91-1111-1111",
+    size: 15,
     setPhone: setPhone
   }
 
@@ -73,20 +73,20 @@ function TheContext({ children }) {
     disabled: false,
     response: ["usuarioA@dominio.com"],
     placeholder: "enteryouremail@dominio.com",
-    size: 28,
+    size: 25,
     setEmail: setEmail
   }
 
   const [areaText, setAreaText] = useState("")
   const pruebaAreaTextElement = {
     elementID: "ID_0006",
-    labelElement: "Soy un componente Area Text: ",
+    labelElement: "Soy un componente Areatext: ",
     required: true,
     disabled: false,
     readonly: false,
     response: ["Bla bla bla bla \n Bla bla"],
     placeholder: "Escriba un texto multilinea ...",
-    row: 2,
+    row: 5,
     col: 50,
     setAreaText: setAreaText
   }
@@ -125,8 +125,15 @@ function TheContext({ children }) {
   }
   const pruebaRadioButtons = {
     elementID: "ID_0010",
+    labelElement: "",
+    required: true,
+    disabled: false,
+    response: [false.toString()],
+    placeholder: false.toString(),
+
     legend: "Choose a option",
     name: "pruebaRB",
+    setComponent: "",
     radioButtons: [
       {
         elementID: "ID_00010.1",
@@ -161,26 +168,42 @@ function TheContext({ children }) {
     ]
   }
 
-
   const objComponentIni = {
     elementID: "",
     type: "",
     blockOrigen: "",
-    orderIntroBlock: "0",
+    orderInBlock: "0",
     position: { row: 1, col: 1 },
     dimensions: { width: 0, height: "2.4rem" },
     labelElement: "",
     required: true,
     disabled: false,
+    checked: undefined,
     response: [""],
     placeholder: "",
     size: 1,
+    row:0, 
+    cols:0,
+    optionsValues: [""],
+    legend: "",
+    name: "",
     valueComponent: "",
-    setComponent: ""
+    setComponent: "",
+    radioButtons: [
+      {
+        elementID: "",
+        labelElement: "",
+        name: "",
+        required: true,
+        disabled: false,
+        checked: false,
+        response: [false],
+        setRadioButton: null
+      }
+    ]
   }
   const [objComponent, setObjComponent] = useState(objComponentIni)  //  Objeto Component del formulario seleccionado
  
-
 
   const exportData = {
     element, setElement,

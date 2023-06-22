@@ -18,13 +18,14 @@ function SelectElement_PB({ elementID, labelElement, required, disabled = false,
   }
 
   return (
-    <div className="contSelectElement form-floating container-fluid d-flex flex-row justify-content-start align-items-center p-1">
-      <label htmlFor={elementID} className="labelOfForm form-label d-flex flex-row justify-content-end align-items-center">{labelElement}</label>
-      <select id={elementID} className={`form-select-sm contSelect ${disabled ? "selectActiv" : "selectNotActiv"} p-1 bg-white border border-dark `}
+    <div className="contSelectElement form-floating form-group container-fluid d-flex flex-row justify-content-start align-items-center m-0 p-1
+    border border-1 border-secondary">
+      <label htmlFor={elementID} className="form-label labelOfForm d-flex flex-row justify-content-end align-items-center">{labelElement}</label>
+      <select id={elementID} className={`form-select-sm contSelect rounded-0 ${disabled ? "selectNotActiv border border-dark": "selectActiv"} bg-white `}
         size="1" required={required} disabled={disabled} aria-label=".form-select-sm" value={valueOfSelect} onChange={(ev) => handleOnChange(ev)} >
         <option value="" className="fw-bold text-secondary fs-6">Select option</option>
         {
-          optionsValues.map((element, index) => <option key={index} value={element} className="fw-normal text-dark fs-6">{element}</option>)
+          optionsValues.map((element, index) => <option key={index} value={element} className="fw-normal text-dark">{element}</option>)
         }
       </select>
     </div>

@@ -6,7 +6,7 @@
 .contRow {
   @include l.layoutFlexboxRowCenter;
   justify-content: flex-start;
-  height: 0.5rem;
+  height: 0.3rem;
 
   &>.circle {
     @include l.layoutFlexboxRowCenter;
@@ -15,16 +15,16 @@
     width: 1.2rem;
     height: 1.2rem;
     background-color: v.$backgroundColorHellGrayT3;
-    border: 2px solid v.$backgroundColorHellGray2;
+    border: 1px solid v.$backgroundColorHellGray2;
     border-radius: 50%;
-    transition: all ease 0.35s;
+    transition: all ease 0.20s;
 
     &:hover,
     &:focus {
       cursor: pointer;
       transform: scale(0.85);
       background-color: v.$backgroundColorHellGrayT;
-      border: 2px solid v.$colorRedNeu;
+      border: 1px solid v.$colorRedNeu;
       color: v.$colorRedNeu;
     }
   }
@@ -34,5 +34,32 @@
     height: 0.2rem;
     background-color: v.$backgroundColorDunkelGray4;
     color: v.$backgroundColorDunkelGray4;
+  }
+}
+
+.contCol {
+  // @include l.layoutFlexboxColumCenter;
+  // justify-content: flex-start;
+  height: 0.3rem;
+
+  &>.circle {
+    @include l.layoutFlexboxRowCenter;
+    justify-content: center;
+    align-items: center;
+    width: 0.6rem;
+    height: 0.6rem;
+    background-color: v.$backgroundColorHellGrayT3;
+    border: 1px solid v.$backgroundColorHellGray2;
+    border-radius: 50%;
+    transition: all ease 0.20s;
+
+    &:hover,
+    &:focus {
+      cursor: pointer;
+      transform: scale(0.85);
+      background-color: v.$backgroundColorHellGrayT;
+      border: 1px solid v.$colorRedNeu;
+      color: v.$colorRedNeu;
+    }
   }
 }

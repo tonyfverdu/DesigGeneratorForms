@@ -1,22 +1,19 @@
-import React, {useState} from 'react'
+import React from 'react'
 import RadioButtonElem_PB from './RadioButtonElem_PB'
 import '../../sass/componentSass/elementsForms/RadioButtons_PB.scss'
 
 
-
 function RadioButtons_PB({ elementID, legend, name, radioButtons }) {
-  // const numberRadioButtons = radioButtons.length;
-  const [arrayRB, setArrayRB] = useState(radioButtons)
-
   return (
-    <div className="contRadioButtons container-fluid form-check p-1">
-      <fieldset className="d-flex">
-        <legend className="text-black">{legend}</legend>
-        <ul className="list-group list-group-flush contUL">
+    <div className="contRadioButtons form-group d-flex flex-column justify-content-start align-items-start m-0 p-1
+    border border-1 border-secondary form-floating" id={elementID}>
+      <fieldset className="d-flex flex-column justify-content-start align-items-start ">
+        <legend className="text-black p-1">{legend}</legend>
+        <ul className="list-group list-group-flush contUL p-0 m-0">
           {
-            arrayRB.map(radio => {
+            radioButtons.map(radio => {
               return (
-                <li key={radio.elementID} className="list-group-item" >
+                <li key={radio.elementID} className="list-group-item m-0 px-1" >
                   <RadioButtonElem_PB
                     elementID={radio.elementID}
                     labelElement={radio.labelElement}

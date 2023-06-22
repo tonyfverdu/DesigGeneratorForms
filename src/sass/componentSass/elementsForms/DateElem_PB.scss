@@ -4,38 +4,42 @@
 
 
 .contDateElement {
-  min-width: fit-content;
   height: 2.4rem;
-  padding: 1%;
-  margin: 0%;
+  transition: all ease 0.20s;
 
-  border: 1px solid black;
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    outline: 2px ridge v.$colorHell2;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
 
   &>.labelOfForm {
-    @include d.configurationLabel (v.$colorTextIni, 0.7rem);
+    @include d.configurationLabel (v.$colorTextIni, 0.65rem);
     text-align: right;
     width: auto;
     min-width: fit-content;
     height: 2rem;
-    padding: 0.3%;
-    margin: 0.5% 0%;
+    padding: 0.1%;
+    margin: 0%;
     margin-right: 2%;
   }
 
   &>.contInputDate {
     @include d.configurationText1 (v.$backgroundColorDunkelGray5, 0.6rem);
     width: auto;
-    min-width: fit-content;
+    text-align: center;
     height: 2rem;
-    padding: 0.3%;
-    padding-left: 1%;
-    margin: 0.5% 0%;
+    padding: 0.1%;
+    margin: 0%;
     border-radius: 3px;
     border: 1px solid v.$backgroundColorDunkelGray4;
-    transition: all ease 0.35s;
+    transition: all ease 0.20s;
 
     &:hover,
     &:focus {
+      cursor: pointer;
       max-height: 2rem;
       border: 1px solid v.$colorHell4White;
       box-shadow: v.$boxShadow16;

@@ -19,12 +19,13 @@ function CheckboxElem_PB({ elementID, labelElement, required, disabled = false, 
   }
 
   return (
-    <div className="contCheckboxElement form-check p-1">
+    <div className="contCheckboxElement form-check form-group container-fluid d-flex flex-row justify-content-start align-items-center m-0 p-1
+    border border-1 border-secondary">
       {/* <fieldset> */}
       {/* <legend>Choose your monster's features:</legend> */}
-      <input id={elementID} type="checkbox" className="form-check-input contCheckbox p-1" required={required} disabled={disabled}
+      <input id={elementID} type="checkbox" className="form-check-input contCheckbox rounded-0" required={required} disabled={disabled}
         checked={valueOfCheckbox} onChange={(ev) => handleChange(ev)} />
-      <label className="form-check-label labelOfForm" htmlFor={elementID}>
+      <label className="form-check-label labelOfForm d-flex flex-row justify-content-end align-items-center" htmlFor={elementID}>
         {labelElement}
       </label>
       {/* </fieldset> */}

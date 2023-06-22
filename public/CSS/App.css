@@ -138,9 +138,41 @@
 }
 
 .containerMain {
-  width: 100vw;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  align-items: flex-start;
   height: auto;
   min-height: 100vh;
+  background: transparent;
+}
+.containerMain > .contColumLeft {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  justify-content: flex-start;
+  width: 28%;
+}
+.containerMain > .contColumRight {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  justify-content: flex-start;
+  width: 72%;
+}
+
+.containerLayout {
+  width: 100%;
+  height: auto;
   background: transparent;
 }
 

@@ -1,14 +1,17 @@
 .contTextElement {
-  min-width: fit-content;
   height: 2.4rem;
-  padding: 1%;
-  margin: 0%;
-  border: 1px solid black;
+  transition: all ease 0.2s;
+}
+.contTextElement:hover, .contTextElement:focus {
+  cursor: pointer;
+  outline: 2px ridge rgb(252, 248, 2);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 .contTextElement > .labelOfForm {
   position: relative;
   text-align: center;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 700;
   color: rgb(9, 9, 9);
   margin: 0% 2%;
@@ -17,8 +20,8 @@
   width: auto;
   min-width: fit-content;
   height: 2rem;
-  padding: 0.3%;
-  margin: 0.5% 0%;
+  padding: 0.1%;
+  margin: 0%;
   margin-right: 2%;
 }
 .contTextElement > .contInputText {
@@ -28,16 +31,14 @@
   font-weight: 400;
   color: rgb(39, 39, 39);
   margin: 0% auto;
-  width: auto;
-  min-width: fit-content;
   text-align: left;
   height: 2rem;
-  padding: 0.3%;
+  padding: 0.1%;
   padding-left: 1%;
-  margin: 0.5% 0%;
+  margin: 0%;
   border-radius: 3px;
   border: 1px solid rgb(63, 63, 63);
-  transition: all ease 0.35s;
+  transition: all ease 0.2s;
 }
 .contTextElement > .contInputText:hover, .contTextElement > .contInputText:focus {
   cursor: pointer;

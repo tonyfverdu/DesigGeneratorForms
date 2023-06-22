@@ -99,9 +99,29 @@
 }
 
 .containerMain {
-  width: 100vw;
+  @include l.layoutFlexboxRowCenter;
+  align-items: flex-start;
   height: auto;
   min-height: 100vh;
+  background: transparent;
+
+  &>.contColumLeft {
+    @include l.layoutFlexboxColumCenter;
+    justify-content: flex-start;
+    width: 28%;
+  }
+
+  &>.contColumRight {
+    @include l.layoutFlexboxColumCenter;
+    justify-content: flex-start;
+    width: 72%;
+  }
+}
+
+.containerLayout {
+  width: 100%;
+  height: auto;
+  // min-height: 100vh;
   background: transparent;
 }
 

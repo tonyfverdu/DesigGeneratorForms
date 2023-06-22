@@ -14,15 +14,14 @@ function IconButtonRadioButton() {
     orderInBlock: "10",
     position: { row: 2, col: 9 },
     dimensions: { width: 3, height: "2.4rem" },
-    labelElement: "Soy un componente RadioButton",
+    labelElement: "Soy un componente grupo de  RadioButton",
     required: true,
     disabled: false,
-
     response: [false.toString()],
     placeholder: false.toString(),
-
     legend: "Choose a option",
     name: "pruebaRB",
+    setComponent: theContext.setRadioButton,
     radioButtons: [
       {
         elementID: "ID_00010.1",
@@ -54,10 +53,9 @@ function IconButtonRadioButton() {
         response: [false],
         setRadioButton: theContext.setRadioButton
       }
-    ],
-    valueComponent: undefined,
-    setComponent: theContext.setRadioButton
+    ]
   }
+
 
   function handleButton() {
     theContext.setElement("radioButtons")

@@ -24,7 +24,7 @@ function IconsElem() {
   }, [elementIcons])
 
   return (
-    <div className="contIcons container col-12 d-flex">
+    <div className="contIcons col-12 p-1">
       <IconButtonLabel />
       <IconButtonText />
       <IconButtonNumber />

@@ -1,0 +1,19 @@
+.contIconsEditDelete {
+  width: 1.6rem;
+  height: 2.4rem;
+  margin: 0%;
+  padding: 0%;
+}
+
+.contIcon {
+  padding: 1%;
+  transition: all ease 0.2s;
+}
+.contIcon:hover, .contIcon:focus {
+  cursor: pointer;
+  transform: scale(1.2) translateY(-6px);
+  border-radius: 50%;
+  background-color: rgb(39, 39, 39);
+}
+
+/*# sourceMappingURL=IconEditDelete.css.map */

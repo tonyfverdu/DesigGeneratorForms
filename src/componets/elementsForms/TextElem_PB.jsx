@@ -18,7 +18,8 @@ function TextElem_PB({ elementID, labelElement, required, disabled = false, resp
   }
 
   return (
-    <div className="contTextElement form-group container-fluid d-flex flex-row justify-content-start align-items-center p-1">  
+    <div className="contTextElement form-group container-fluid d-flex flex-row justify-content-start align-items-center m-0 p-1
+    border border-1 border-secondary">
       <label htmlFor={elementID} className="form-label labelOfForm d-flex flex-row justify-content-end align-items-center">
         {labelElement}
       </label>

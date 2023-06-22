@@ -1,16 +1,9 @@
 /*   ////////////////////////////////////////       */
-.contIcons {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+.contSelectState {
   border-radius: 6px;
   background: linear-gradient(315deg, #cacaca, #f0f0f0);
   box-shadow: -2px -2px 4px #7d7d7d, 2px 2px 4px #ffffff;
   height: 2.4rem;
-  width: auto;
 }
 
-/*# sourceMappingURL=IconsElem.css.map */
+/*# sourceMappingURL=SelectLayoutForm.css.map */
