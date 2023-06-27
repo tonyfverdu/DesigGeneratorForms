@@ -8,7 +8,7 @@ function IconEditDelete() {
   return (
     <div>
       <div className="contIconsEditDelete d-flex justify-content-center align-items-center flex-column m-0 p-0 bg-body border 
-      border-start-0 border-1 border-danger rounded-end" >
+      border-1 border-start-0 border-danger rounded-end" >
         <IconContext.Provider value={{ color: "rgba(251, 182, 53, 0.9)", size: "1.1rem", className: "contIcon" }}>
           <div className="d-flex flex-row justify-content-center align-items-center m-0 p-0">
             <MdModeEdit />
@@ -21,8 +21,6 @@ function IconEditDelete() {
         </IconContext.Provider>
       </div>
     </div>
-
-
   )
 }
 

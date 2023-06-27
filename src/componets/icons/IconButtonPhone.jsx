@@ -7,6 +7,30 @@ import '../../sass/componentSass/icons/IconButton.scss'
 function IconButtonPhone() {
   const theContext = useContext(MyContext)
 
+  function handleButton() {
+    theContext.setElement("phone")
+    theContext.setObjComponentShow({
+      ...theContext.objComponentShow, elementID: "ID_phone_001",
+      type: "phone", placeholder: "91-111-1111", size: 12,
+      dimensions: { width: 3, height: "2.4rem" },
+      labelElement: "Componente Phone: ",
+      valueComponent: theContext.phone,
+      setComponent: theContext.setPhone
+    })
+  }
+
+  return (
+    <div className="col p-0 m-0">
+      <button type="button" className="iconButton" onClick={handleButton}>
+        <MdPhone />
+      </button>
+    </div>
+  )
+}
+
+export default IconButtonPhone;
+
+/*
   const component = {
     elementID: "ID_0005",
     type: "text",
@@ -23,19 +47,4 @@ function IconButtonPhone() {
     valueComponent: "",
     setComponent: theContext.setPhone
   }
-
-  function handleButton() {
-    theContext.setElement("phone")
-    theContext.setObjComponent(component)
-  }
-
-  return (
-    <div className="col p-0 m-0">
-      <button type="button" className="iconButton" onClick={handleButton}>
-        <MdPhone />
-      </button>
-    </div>
-  )
-}
-
-export default IconButtonPhone;
+*/

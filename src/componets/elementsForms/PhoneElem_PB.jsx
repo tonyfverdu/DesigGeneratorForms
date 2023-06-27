@@ -7,8 +7,8 @@ function PhoneElem_PB({ elementID, labelElement, required, disabled = false, res
   const [valueOfPhone, setValueOfPhone] = useState("")
 
   useEffect(() => {
-    setPhone(placeholder)
     setValueOfPhone(placeholder)
+    setPhone(valueOfPhone)
   }, [])
 
   function handleChange(ev) {

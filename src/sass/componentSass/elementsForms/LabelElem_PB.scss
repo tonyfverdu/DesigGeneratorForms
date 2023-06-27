@@ -4,15 +4,44 @@
 
 
 .contLabelElement_PB {
-  // min-width: fit-content;
+  width: auto;
+  min-width: fit-content;
   height: 2.4rem;
   transition: all ease 0.20s;
 
-  &:hover, &:focus {
+  &>.bubble {
+    position: relative;
+    display: none;
+    top: 180%;
+    left: -3.6rem;
+    width: 15rem;
+    height: 3rem;
+    border-radius: 9px;
+    background-color: v.$backgroundColorIniWhite;
+    border: 1px solid v.$backgroundColorHellGrayT;
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: -18%;
+      left: 12%;
+      border-bottom: 10px solid blue;
+      border-bottom-color: inherit;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+    }
+  }
+
+  &:hover,
+  &:focus {
     cursor: pointer;
     outline: 2px ridge v.$colorHell2;
     outline-offset: 3px;
     border-radius: 2px;
+
+    .bubble {
+      @include l.layoutFlexboxRowCenter;
+    }
   }
 
   &>.labelElement {
@@ -21,7 +50,7 @@
     min-width: fit-content;
     height: 2rem;
     padding: 0.1%;
-    margin: 0%;
+    margin: 0% auto;
     text-align: center;
   }
 }

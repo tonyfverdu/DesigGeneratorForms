@@ -11,7 +11,6 @@ function AreaTextElem_PB({ elementID, labelElement, required, disabled = false, 
     setAreaText(valueOfAreaText)
   }, [])
 
-
   function handleChange(ev) {
     ev.preventDefault();
     setValueOfAreaText(ev.target.value);
@@ -21,9 +20,11 @@ function AreaTextElem_PB({ elementID, labelElement, required, disabled = false, 
   return (
     <div className="contAreaTextElement form-group container-fluid d-flex flex-column justify-content-start align-items-start m-0 p-1
     border border-1 border-secondary form-floating">
-      <label htmlFor={elementID} className="form-check-label labelOfForm d-flex flex-row justify-content-end align-items-center">{labelElement}</label>
+      <label htmlFor={elementID} className="form-check-label labelOfForm d-flex flex-row justify-content-end align-items-center">
+        {labelElement}
+      </label>
       <textarea id={elementID}
-        className={`form-control p-0 ${disabled ? "areaTextNotActiv" : "areaTextActiv"}`} required={required} disabled={disabled} 
+        className={`form-control p-0 ${disabled ? "areaTextNotActiv" : "areaTextActiv"}`} required={required} disabled={disabled}
         autoComplete="off" readOnly={readonly} placeholder={placeholder}
         rows={row} cols={cols} value={valueOfAreaText} onChange={(ev) => handleChange(ev)}></textarea>
     </div>

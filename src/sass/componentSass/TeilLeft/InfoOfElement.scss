@@ -1,50 +1,22 @@
-@use '../myvariables' as v;
-@use '../layouts' as l;
-@use '../designElement' as d;
+@use '../../myvariables' as v;
+@use '../../layouts' as l;
+@use '../../designElement' as d;
+
 
 .contInfoOfElement {
-  background-color: transparent;
-
   &>.infoComponent {
-    @include l.layoutFlexboxColumCenter;
-    margin: 0% auto;
-
     &>.contHeaderTitle {
       @include d.desigHeader (transparent);
-      @include l.layoutFlexboxColumCenter;
-      margin: 1% 0%;
-      margin-bottom: 3%;
 
       &>.title {
         @include d.desig_H_element2 (v.$colorHell, 1rem);
-        margin: 0%;
-        padding: 0%;
       }
 
       &>.subtitle {
         @include d.desig_H_element2 (v.$backgroundColorIniT4, 0.6rem);
-        margin: 0%;
-        padding: 0%;
       }
     }
 
-    &>.contInfoForm {
-      @include l.layoutFlexboxColumCenter;
-      margin: 0% auto;
-      background-color: v.$backgroundColorIniWhiteT;
-    }
-  }
-
-  &>.contOfData {
-    @include l.layoutFlexboxColumCenter;
-    justify-content: center;
-    align-items: center;
-    margin: 0% auto;
-
-    &>.contComponent {
-      background-color: v.$backgroundColorIniWhiteT;
-
-    }
     &>.contInfoForm {
       background-color: v.$backgroundColorIniWhiteT;
     }
@@ -83,7 +55,7 @@
   &Horizontal {
     @extend .Fields;
     @include l.layoutFlexboxRowCenter;
-    align-items:center;
+    align-items: center;
     justify-content: flex-start;
 
     &>.valueSpan {
@@ -100,10 +72,62 @@
   margin: 0%;
   margin-right: 1%;
 }
+
 .subTitlePosDim {
   @include d.configurationText2 (v.$colorTextIni, 0.6rem);
 }
+
 .valuePosDim {
   @include d.configurationText1 (v.$colorTextIni, 0.6rem);
   margin-right: 3%;
+}
+
+//////////////////////////////
+.select {
+  width:auto;
+  min-width: fit-content;
+  height: 1.4rem;
+  @include d.configurationText1 (v.$colorTextIni, 0.55rem);
+  margin: 0%;
+  padding:0%;
+}
+
+.contInputText {
+  @include d.configurationText1 (v.$backgroundColorDunkelGray5, 0.6rem);
+  text-align: left;
+  height: 1.2rem;
+  padding: 0.1%;
+  padding-left: 1%;
+  margin: 0%;
+  border-radius: 3px;
+  border: 1px solid v.$backgroundColorDunkelGray4;
+  transition: all ease 0.20s;
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    max-height: 2rem;
+    border: 1px solid v.$colorHell4White;
+    box-shadow: v.$boxShadow16;
+  }
+}
+
+.contInputNumber {
+  @include d.configurationText1 (v.$backgroundColorDunkelGray5, 0.7rem);
+  width: auto;
+  text-align: center;
+  height: 1.2rem;
+  padding: 0.1%;
+  margin: 0%;
+  border-radius: 3px;
+  border: 1px solid v.$backgroundColorDunkelGray4;
+  transition: all ease 0.20s;
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    max-height: 2rem;
+    border: 1px solid v.$colorHell4White;
+    box-shadow: v.$boxShadow16;
+  }
 }

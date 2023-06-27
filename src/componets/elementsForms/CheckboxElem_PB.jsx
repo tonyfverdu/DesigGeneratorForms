@@ -11,24 +11,23 @@ function CheckboxElem_PB({ elementID, labelElement, required, disabled = false, 
     setCheckbox(checked)
   }, [])
 
+  useEffect(() => {
+    setCheckbox(valueOfCheckbox);
+  }, [valueOfCheckbox])
+
   function handleChange(ev) {
-    // ev.preventDefault();
+    ev.preventDefault();
     setValueOfCheckbox(ev.target.checked);
-    setCheckbox(ev.target.checked);
-    
   }
 
   return (
     <div className="contCheckboxElement form-check form-group container-fluid d-flex flex-row justify-content-start align-items-center m-0 p-1
     border border-1 border-secondary">
-      {/* <fieldset> */}
-      {/* <legend>Choose your monster's features:</legend> */}
       <input id={elementID} type="checkbox" className="form-check-input contCheckbox rounded-0" required={required} disabled={disabled}
         checked={valueOfCheckbox} onChange={(ev) => handleChange(ev)} />
       <label className="form-check-label labelOfForm d-flex flex-row justify-content-end align-items-center" htmlFor={elementID}>
         {labelElement}
       </label>
-      {/* </fieldset> */}
     </div>
   )
 }

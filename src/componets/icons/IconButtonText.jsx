@@ -1,14 +1,37 @@
-import {useContext} from 'react'
+import { useContext } from 'react'
 import { MyContext } from '../../context/TheContext'
 import { MdTextFields } from 'react-icons/md';
 import '../../sass/componentSass/icons/IconButton.scss'
 
+
 function IconButtonText() {
   const theContext = useContext(MyContext)
 
+  function handleButton() {
+    theContext.setElement("text")
+    theContext.setObjComponentShow({
+      ...theContext.objComponentShow, elementID: "ID_text_001",
+      type: "text", placeholder: "Valor Componente Text", size: 25,
+      dimensions: { width: 4, height: "2.4rem" },
+      labelElement: "Componente Text: ",
+      valueComponent: theContext.text,
+      setComponent: theContext.setText
+    })
+  }
+
+  return (
+    <div className="col p-0 m-0">
+      <button type="button" className="iconButton" onClick={handleButton}>
+        <MdTextFields />
+      </button>
+    </div>
+  )
+}
+
+export default IconButtonText;
+
+/*
   const component = {
-    elementID: "ID_0001",
-    type: "text",
     blockOrigen: "The first Block",
     orderInBlock: "1",
     position: { row: 0, col: 3 },
@@ -22,19 +45,4 @@ function IconButtonText() {
     valueComponent: "",
     setComponent: theContext.setText
   }
-
-  function handleButton() {
-    theContext.setElement("text")
-    theContext.setObjComponent(component)
-  }
-
-  return (
-    <div className="col p-0 m-0">
-      <button type="button" className="iconButton" onClick={handleButton}>
-        <MdTextFields />
-      </button>
-    </div>
-  )
-}
-
-export default IconButtonText;
+*/

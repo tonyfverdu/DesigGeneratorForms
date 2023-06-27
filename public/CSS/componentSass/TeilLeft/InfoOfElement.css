@@ -1,15 +1,3 @@
-.contInfoOfElement {
-  background-color: transparent;
-}
-.contInfoOfElement > .infoComponent {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin: 0% auto;
-}
 .contInfoOfElement > .infoComponent > .contHeaderTitle {
   position: relative;
   display: flex;
@@ -20,14 +8,6 @@
   margin: 0% auto;
   padding: 2% auto;
   background-color: transparent;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin: 1% 0%;
-  margin-bottom: 3%;
 }
 .contInfoOfElement > .infoComponent > .contHeaderTitle > .title {
   color: rgb(246, 240, 240);
@@ -36,8 +16,6 @@
   font-weight: bold;
   margin: 1% auto;
   text-shadow: -4px -3px 4px rgba(0, 0, 0, 0.39), 2px 3px 4px rgba(0, 0, 0, 0.3);
-  margin: 0%;
-  padding: 0%;
 }
 .contInfoOfElement > .infoComponent > .contHeaderTitle > .subtitle {
   color: rgba(250, 250, 250, 0.9);
@@ -46,34 +24,8 @@
   font-weight: bold;
   margin: 1% auto;
   text-shadow: -4px -3px 4px rgba(0, 0, 0, 0.39), 2px 3px 4px rgba(0, 0, 0, 0.3);
-  margin: 0%;
-  padding: 0%;
 }
 .contInfoOfElement > .infoComponent > .contInfoForm {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin: 0% auto;
-  background-color: rgba(242, 242, 242, 0.6);
-}
-.contInfoOfElement > .contOfData {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  margin: 0% auto;
-}
-.contInfoOfElement > .contOfData > .contComponent {
-  background-color: rgba(242, 242, 242, 0.6);
-}
-.contInfoOfElement > .contOfData > .contInfoForm {
   background-color: rgba(242, 242, 242, 0.6);
 }
 
@@ -166,6 +118,66 @@
   color: rgb(9, 9, 9);
   margin: 0% auto;
   margin-right: 3%;
+}
+
+.select {
+  width: auto;
+  min-width: fit-content;
+  height: 1.4rem;
+  position: relative;
+  text-align: justify;
+  font-size: 0.55rem;
+  font-weight: 400;
+  color: rgb(9, 9, 9);
+  margin: 0% auto;
+  margin: 0%;
+  padding: 0%;
+}
+
+.contInputText {
+  position: relative;
+  text-align: justify;
+  font-size: 0.6rem;
+  font-weight: 400;
+  color: rgb(39, 39, 39);
+  margin: 0% auto;
+  text-align: left;
+  height: 1.2rem;
+  padding: 0.1%;
+  padding-left: 1%;
+  margin: 0%;
+  border-radius: 3px;
+  border: 1px solid rgb(63, 63, 63);
+  transition: all ease 0.2s;
+}
+.contInputText:hover, .contInputText:focus {
+  cursor: pointer;
+  max-height: 2rem;
+  border: 1px solid rgb(103, 247, 7);
+  box-shadow: 0px 1px 1px 1px rgb(184, 255, 134), inset 0px 0px 0px 1px #03fb03, 1px 1px 3px 4px #99f0b6;
+}
+
+.contInputNumber {
+  position: relative;
+  text-align: justify;
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: rgb(39, 39, 39);
+  margin: 0% auto;
+  width: auto;
+  text-align: center;
+  height: 1.2rem;
+  padding: 0.1%;
+  margin: 0%;
+  border-radius: 3px;
+  border: 1px solid rgb(63, 63, 63);
+  transition: all ease 0.2s;
+}
+.contInputNumber:hover, .contInputNumber:focus {
+  cursor: pointer;
+  max-height: 2rem;
+  border: 1px solid rgb(103, 247, 7);
+  box-shadow: 0px 1px 1px 1px rgb(184, 255, 134), inset 0px 0px 0px 1px #03fb03, 1px 1px 3px 4px #99f0b6;
 }
 
 /*# sourceMappingURL=InfoOfElement.css.map */

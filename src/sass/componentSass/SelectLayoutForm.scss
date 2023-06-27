@@ -1,9 +1,0 @@
-@use '../myvariables' as v;
-@use '../layouts' as l;
-@use '../designElement' as d;
-@use '../neumorphismus' as n;
-
-.contSelectState {
-  @include n.neuMorphismus4;
-  height: 2.4rem;
-}

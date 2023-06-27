@@ -5,9 +5,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 .containerMenu {
-  @include l.layoutFlexboxRowCenter;
-  justify-content: flex-start;
-  align-items: flex-end;
   width: 100vw;
   height: 8.8vh;
   margin: 0% auto;

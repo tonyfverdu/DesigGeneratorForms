@@ -2,13 +2,13 @@ import { useState, useEffect } from "react";
 import '../../sass/componentSass/elementsForms/SelectElem_PB.scss'
 
 
-function SelectElement_PB({ elementID, labelElement, required, disabled = false, response, optionsValues, setSelect }) {
+function SelectElement_PB({ elementID, labelElement, required, disabled = false, response, placeholder, optionsValues, setSelect }) {
   const [responseSelect, setResponseSelect] = useState(response[0])
-  const [valueOfSelect, setValueOfSelect] = useState(response[0])
+  const [valueOfSelect, setValueOfSelect] = useState("")
 
   useEffect(() => {
+    setValueOfSelect(placeholder)
     setSelect(response[0])
-    setValueOfSelect(response[0])
   }, [])
 
   function handleOnChange(ev) {
@@ -33,7 +33,3 @@ function SelectElement_PB({ elementID, labelElement, required, disabled = false,
 }
 
 export default SelectElement_PB;
-
-/*
-rounded-0
-*/

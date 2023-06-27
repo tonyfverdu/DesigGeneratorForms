@@ -1,15 +1,26 @@
 import { useState, createContext } from 'react'
+import RowIni from '../componets/TeilRight/RowIni.jsx'
 import currentDate from '../functions/currentDate.js'
 
 export const MyContext = createContext(null)
 
 
 function TheContext({ children }) {
-  const [element, setElement] = useState("")  // Nombre del elemento seleccionado
+  const [toogleReadLeft, setToogleReadLeft] = useState(false)
+  const [toogleCreateLeft, setToogleCreateLeft] = useState(false)
+  const [toogleModifyLeft, setToogleModifyLeft] = useState(false)
+  const [optionStateLeft, setOptionStateLeft] = useState("read")
+
+  const [numRow, setNumRow] = useState(0)
+  const [numCol, setNumCol] = useState(1)
+
+  const [arrayOfRows, setArrayOfRows] = useState([<RowIni />])
 
   const [label, setLabel] = useState("")
   const pruebaLabelElement = {
     elementID: "ID_0000",
+    orderInBlock: 1,
+    position: { rowElem: 0, colElem: 0 },
     required: true,
     disabled: false,
     response: ["Soy la response of Label"],
@@ -123,6 +134,7 @@ function TheContext({ children }) {
     response: [false],
     setRadioButton: setRadioButton
   }
+  const [radioButtons, setRadioButtons] = useState(false)
   const pruebaRadioButtons = {
     elementID: "ID_0010",
     labelElement: "",
@@ -168,13 +180,18 @@ function TheContext({ children }) {
     ]
   }
 
+  //  0.-  Name - type of the selected Component
+  const [element, setElement] = useState("")
+
+  //  ****    Component objects
+  //  1.-  Component ini (Master Component) 
   const objComponentIni = {
     elementID: "",
     type: "",
     blockOrigen: "",
-    orderInBlock: "0",
-    position: { row: 1, col: 1 },
-    dimensions: { width: 0, height: "2.4rem" },
+    orderInBlock: "",
+    position: { rowElem: 0, colElem: 0 },
+    dimensions: { width: 1, height: "2.4rem" },
     labelElement: "",
     required: true,
     disabled: false,
@@ -182,8 +199,53 @@ function TheContext({ children }) {
     response: [""],
     placeholder: "",
     size: 1,
-    row:0, 
-    cols:0,
+    optionsValues: [""],
+    legend: "",
+    name: "nameProb",
+    valueComponent: "",
+    setComponent: "",
+    radioButtons: [
+      {
+        elementID: "",
+        labelElement: "",
+        name: "",
+        required: true,
+        disabled: false,
+        checked: false,
+        response: [false],
+        setRadioButton: ""
+      }
+    ]
+  }
+  //  2.-  Component in the state "read"
+  const [componentRead, setComponentRead] = useState(objComponentIni)
+
+  //  3.-  Component in the state "create"
+  const [componentCreate, setComponentCreate] = useState({})
+
+  //  4.-  Component in the state "modify"
+  const [componentModify, setComponentModify] = useState({})
+
+  //  5.-  Component Show in Info-Box
+  const [objComponentShow, setObjComponentShow] = useState(componentRead)  //  <==  "Component Object" select in button-elements
+
+  //  6.- Component Master ini
+  const masterComponentIni = {
+    elementID: "id_Master",
+    type: "master",
+    blockOrigen: undefined,
+    orderInBlock: undefined,
+    position: { row: undefined, col: undefined },
+    dimensions: { width: 1, height: "2.4rem" },
+    labelElement: "",
+    required: true,
+    disabled: false,
+    checked: undefined,
+    response: [""],
+    placeholder: "Master",
+    size: 0,
+    row: 0,
+    cols: 0,
     optionsValues: [""],
     legend: "",
     name: "",
@@ -202,10 +264,41 @@ function TheContext({ children }) {
       }
     ]
   }
-  const [objComponent, setObjComponent] = useState(objComponentIni)  //  Objeto Component del formulario seleccionado
- 
 
+  //  Block objects
+  const objBlockIni = {
+    titleOfBlock: "First block",
+    idOfBlock: "block_00_Form_001",
+    displayOrderOfBlock: 1,
+    numberOfBlockInForm: 1,
+
+    components: [
+      objComponentIni
+    ]
+  }
+  //  1.-  Block Read
+  const [blockRead, setBlockRead] = useState(objBlockIni)
+
+  //  2.-  Block Create
+  const [blockCreate, setBlockCreate] = useState({})
+
+  //  3.-  Block Modify
+  const [blockModify, setBlockModify] = useState({})
+
+
+  //  State Variables from Context
   const exportData = {
+    toogleReadLeft, setToogleReadLeft, toogleCreateLeft, setToogleCreateLeft, toogleModifyLeft, setToogleModifyLeft,
+    optionStateLeft, setOptionStateLeft,
+
+    masterComponentIni,
+
+    objComponentShow, setObjComponentShow,
+    componentRead, setComponentRead, componentCreate, setComponentCreate, componentModify, setComponentModify,
+
+    blockRead, setBlockRead, blockCreate, setBlockCreate, blockModify, setBlockModify,
+
+    numRow, setNumRow, numCol, setNumCol, arrayOfRows, setArrayOfRows,
     element, setElement,
     label, setLabel, pruebaLabelElement,
     text, setText, pruebaTextElement,
@@ -216,9 +309,7 @@ function TheContext({ children }) {
     areaText, setAreaText, pruebaAreaTextElement,
     select, setSelect, pruebaSelectElement,
     checkbox, setCheckbox, pruebaCheckboxElement,
-    radioButton, setRadioButton, pruebaRadioButtonElement, pruebaRadioButtons,
-
-    objComponent, setObjComponent
+    radioButton, setRadioButton, radioButtons, setRadioButtons,
   }
 
 

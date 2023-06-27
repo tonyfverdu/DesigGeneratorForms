@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import '../../sass/componentSass/elementsForms/NumberElem_PB.scss'
 
+
 function NumberElem_PB({ elementID, labelElement, required, disabled = false, response, placeholder, size, setNumber }) {
   const [responseNumber, setResponseNumber] = useState(response[0])
   const [valueOfNumber, setValueOfNumber] = useState(0)

@@ -7,26 +7,12 @@ import '../../sass/componentSass/icons/IconButton.scss'
 function IconButtonLabel() {
   const theContext = useContext(MyContext)
 
-  const component = {
-    elementID: "ID_0000",
-    type: "label",
-    blockOrigen: "The first Block",
-    orderInBlock: "0",
-    position: { row: 0, col: 0 },
-    dimensions: { width: 2, height: "2.4rem" },
-    labelElement: "",
-    required: true,
-    disabled: false,
-    response: ["Ich war im Vergangenheit ein Label"],
-    placeholder: "Soy un componente Label",
-    size: 10,
-    valueComponent: "Soy un componente Label",
-    setComponent: ""
-  }
-
   function handleButton() {
     theContext.setElement("label")
-    theContext.setObjComponent(component)
+    theContext.setObjComponentShow({
+      ...theContext.objComponentShow, elementID: "ID_label_001",
+      type: "label", placeholder: "Soy un componente Label", size: 10, dimensions: { width: 6, height: "2.4rem" }
+    })
   }
 
   return (

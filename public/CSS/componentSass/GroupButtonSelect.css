@@ -1,9 +1,9 @@
 /*   ////////////////////////////////////////       */
-.contSelectState {
+.contGrpBtnSelect {
   border-radius: 6px;
   background: linear-gradient(315deg, #cacaca, #f0f0f0);
   box-shadow: -2px -2px 4px #7d7d7d, 2px 2px 4px #ffffff;
-  height: 2.4rem;
+  width: auto;
 }
 
-/*# sourceMappingURL=SelectLayoutForm.css.map */
+/*# sourceMappingURL=GroupButtonSelect.css.map */

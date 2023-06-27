@@ -7,6 +7,63 @@ import '../../sass/componentSass/icons/IconButton.scss'
 function IconButtonRadioButton() {
   const theContext = useContext(MyContext)
 
+  function handleButton() {
+    theContext.setElement("radioButtons")
+    theContext.setObjComponentShow({
+      ...theContext.objComponentShow, elementID: "ID_text_001",
+      type: "radioButtons", placeholder: "false", size: 25,
+      dimensions: { width: 3, height: "2.4rem" },
+      labelElement: "Radio Buttons Group: ",
+      legend:"Radio Buttons Group: ",
+      valueComponent: theContext.radioButtons,
+      setComponent: theContext.setRadioButtons,
+      radioButtons: [
+        {
+          elementID: "ID_00010.1",
+          labelElement: "RadioButton 1",
+          name: "pruebaRB",
+          required: true,
+          disabled: false,
+          checked: false,
+          response: [false],
+          setRadioButton: theContext.setRadioButton
+        },
+        {
+          elementID: "ID_00010.2",
+          labelElement: "RadioButton 2",
+          name: "pruebaRB",
+          required: true,
+          disabled: false,
+          checked: false,
+          response: [false],
+          setRadioButton: theContext.setRadioButton
+        },
+        {
+          elementID: "ID_00010.3",
+          labelElement: "RadioButton 3",
+          name: "pruebaRB",
+          required: true,
+          disabled: false,
+          checked: false,
+          response: [false],
+          setRadioButton: theContext.setRadioButton
+        }
+      ]
+    })
+  }
+
+  return (
+    <div className="col p-0 m-0">
+      <button type="button" className="iconButton" onClick={handleButton}>
+        <MdRadioButtonChecked />
+      </button>
+    </div>
+  )
+}
+
+export default IconButtonRadioButton;
+
+/*
   const component = {
     elementID: "ID_0010",
     type: "radioButtons",
@@ -55,21 +112,5 @@ function IconButtonRadioButton() {
       }
     ]
   }
-
-
-  function handleButton() {
-    theContext.setElement("radioButtons")
-    theContext.setObjComponent(component)
-  }
-
-  return (
-    <div className="col p-0 m-0">
-      <button type="button" className="iconButton" onClick={handleButton}>
-        <MdRadioButtonChecked />
-      </button>
-    </div>
-  )
-}
-
-export default IconButtonRadioButton;
+*/
 

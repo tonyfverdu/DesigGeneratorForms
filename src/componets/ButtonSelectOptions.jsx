@@ -1,15 +1,22 @@
-import React from 'react'
+import { useContext } from 'react'
+import { MyContext } from '../context/TheContext'
 
 
 function ButtonSelectOptions({ typeButton, role, arialLabelA, arialLabelB, options, colors }) {
+  const theContext = useContext(MyContext)
+
   return (
     <div className="col d-flex justify-content-end py-1" >
       <div className="btn-toolbar" role="toolbar" aria-label={arialLabelA}>
         <div className="btn-group-sm" role={role} aria-label={arialLabelB}>
           {
             options.map((opt, index) => {
+              //  gbtn1_0 ==> read, gbtn1_1 ==> create, gbtn1_2 ==> modify
               return (
-                <button key={index} type={typeButton} className={`btn ${colors[index]} text-white-emphasis fw-bold mx-1`}>{opt}</button>
+                <button key={index} type={typeButton} className={`btn ${colors[index]} text-white-emphasis fw-bold mx-1`}
+                  disabled={theContext.optionStateLeft === "read" ? true : false} >
+                  {opt}
+                </button>
               )
             })
           }

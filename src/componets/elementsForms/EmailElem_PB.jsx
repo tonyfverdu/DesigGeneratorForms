@@ -8,7 +8,7 @@ function EmailElem_PB({ elementID, labelElement, required, disabled = false, res
 
   useEffect(() => {
     setEmail(placeholder)
-    setValueOfEmail(placeholder)
+    setValueOfEmail(valueOfEmail)
   }, [])
 
   function handleChange(ev) {

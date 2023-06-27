@@ -7,8 +7,8 @@ function TextElem_PB({ elementID, labelElement, required, disabled = false, resp
   const [valueOfText, setValueOfText] = useState("")
 
   useEffect(() => {
-    setText(placeholder)
     setValueOfText(placeholder)
+    setText(valueOfText)
   }, [])
 
   function handleChange(ev) {

@@ -1,0 +1,18 @@
+@use '../../myvariables' as v;
+@use '../../layouts' as l;
+@use '../../designElement' as d;
+
+
+.buttonNewElement {
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 50%;
+  transition: all ease 0.20s;
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    background-color: v.$backgroundColorHellGray;
+    transform: scale(0.92);
+  }
+}

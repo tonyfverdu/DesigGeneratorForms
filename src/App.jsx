@@ -1,107 +1,90 @@
-import React, { useState, useContext } from 'react'
+import { useState, useContext } from 'react'
 import { MyContext } from './context/TheContext'
 import { Routes, Route, Link } from 'react-router-dom'
-import { BsUbuntu, BsXSquareFill } from 'react-icons/bs'
-import currentDate from './functions/currentDate'
-import Home from './componets/pages/Home'
+import { BsXSquareFill } from 'react-icons/bs'
+import currentDate from './functions/currentDate.js'
+import HeaderComponent from './componets/others/HeaderComponent.jsx'
 
-// import {
-//   createBrowserRouter,
-//   createRoutesFromElements,
-//   Route,
-//   RouterProvider
-// } from "react-router-dom";
-import HeaderComponent from './componets/others/HeaderComponent'
+//  Constans
+import { TITLES_OF_APP, GROUP_BUTTONS_SELECT_LEFT } from './constants/contants.js'
+
+//  Pages
+import Home from './componets/pages/Home.jsx'
 import Nav from './componets/navegation/Nav.jsx'
-import './sass/App.scss'
 
 //  Iconos
 import IconsElem from './componets/icons/IconsElem'
-import IconEditDelete from './componets/icons/IconEditDelete'
 
-import SelectLayoutForm from './componets/SelectLayoutForm'
-import NewRow from './componets/NewRow'
-import NewCol from './componets/NewCol.jsx'
+import SelectLayoutForm from './componets/TeilRight/SelectLayoutForm'
+import NewRow from './componets/TeilRight/NewRow.jsx'
 
-import LabelElem_PB from './componets/elementsForms/LabelElem_PB'
-import TextElem_PB from './componets/elementsForms/TextElem_PB'
-import PhoneElem_PB from './componets/elementsForms/PhoneElem_PB'
-import EmailElem_PB from './componets/elementsForms/EmailElem_PB'
-import NumberElem_PB from './componets/elementsForms/NumberElem_PB'
-import DateElem_PB from './componets/elementsForms/DateElem_PB'
-import AreaTextElem_PB from './componets/elementsForms/AreaTextElem_PB'
-import SelectElement_PB from './componets/elementsForms/SelectElem_PB'
-import CheckboxElem_PB from './componets/elementsForms/CheckboxElem_PB'
-import RadioButtonElem_PB from './componets/elementsForms/RadioButtonElem_PB'
-import RadioButtons_PB from './componets/elementsForms/RadioButtons_PB'
+import ComponentsList from './Data/ComponentsList'
+import CompMaster from './Data/CompMaster'
 
 import GroupButtonsSelect from './componets/GroupButtonsSelect'
 import ButtonSelectOptions from './componets/ButtonSelectOptions'
-import InfoOfElement from './componets/InfoOfElement'
+import InfoOfElement from './componets/TeilLeft/InfoOfElement'
 
 
+//  Left Teil
 
-function Index() {
-  return <h2>Dynamic Form</h2>;
-}
+//  Right Teil
+import HeaderTitleRight from './componets/TeilRight/HeaderTitleRight'
 
-function About() {
-  return <h2>Sample Dynamic Form App v1.1</h2>;
-}
+// function Index() {
+//   return <h2>Dynamic Form</h2>;
+// }
 
+// function About() {
+//   return <h2>Sample Dynamic Form App v1.1</h2>;
+// }
+import './sass/App.scss'
 
 
 function App() {
   const theContext = useContext(MyContext);
-
-  const title = 'Dynamic Forms Generator in React and Bootstrap'
-  const titleMemoListHeader = 'Custom Forms Dynamic Creator'
-  const subtitleMemoListHeader = 'App (Bootstrap - Sass -JS - React)'
-  const titleSite = 'Custom Forms Dynamic Creator'
-  const titleSelectState = "Layout Form Status"
   const [toggleHeader, setToggleHeader] = useState(true)
 
-  function handleonClickExit() {
-    setToggleHeader(!toggleHeader)
+  function handleSelectButton(ev) {
+    console.log("estado parte izquierda:  ", theContext.optionStateLeft)
   }
 
-
   return (
-    <div className="contCentral ">
-      <div className='containerApp'>
-        <button className="contIconExit rounded" aria-label="Close" onClick={() => handleonClickExit()} >
+    <div className="contCentral">
+      <div className="containerApp d-flex flex-column justify-content-center align-items-center mx-auto">
+        <button className="contIconExit rounded" aria-label="Close" onClick={() => setToggleHeader(!toggleHeader)} >
           <BsXSquareFill />
         </button>
       </div>
 
       {toggleHeader &&
         <>
-          <div className="containerLogos">
+          <div className="containerLogos d-flex flex-row justify-content-between align-items-center">
             <figure className="figure">
-              <img className="imageLogo" src={`./src/assets/logos/sass.svg`} alt='Sass' />
+              <img className="imageLogo" src={`./src/assets/logos/sass.svg`} alt='Logo Sass' />
             </figure>
             <figure className="figure">
-              <img className="imageLogo" src={`./src/assets/logos/Bootstrap-5-1.svg`} alt='Bootstrap 5.3' />
+              <img className="imageLogo" src={`./src/assets/logos/Bootstrap-5-1.svg`} alt='Logo Bootstrap 5.3' />
             </figure>
             <figure className="figure">
-              <img className="imageLogo" src={`./src/assets/logos/javascriptES6.svg`} alt='Javascript E6' />
+              <img className="imageLogo" src={`./src/assets/logos/javascriptES6.svg`} alt='Logo Javascript E6' />
             </figure>
             <figure className="figure">
-              <img className="imageLogo" src={`./src/assets/logos/react.svg`} alt='React' />
+              <img className="imageLogo" src={`./src/assets/logos/react.svg`} alt='Logo React' />
             </figure>
           </div>
-          <div className="header-Principal">
-            <h2>{title}</h2>
+          <div className="header-Principal container-fluid d-flex flex-row justify-content-start align-items-center overflow-hidden mx-auto mb-0 pt-4 bg-dark">
+            <h2 className="container mx-auto p-0">{TITLES_OF_APP.MAIN_TITLE_APP}</h2>
           </div>
           <HeaderComponent
-            title={titleMemoListHeader}
-            subtitle={subtitleMemoListHeader}
+            title={TITLES_OF_APP.TITLE_MEMO_LIST_HEADER}
+            subtitle={TITLES_OF_APP.SUBTITLE_MEMO_LIST_HEADER}
           />
         </>
       }
 
       <Nav
-        titleSite={titleSite}
+        titleSite={TITLES_OF_APP.TITLE_OF_SITE}
       />
       {/* <nav className="containerNav">
         <Routes>
@@ -125,28 +108,50 @@ function App() {
           />
         </Routes>
       </nav> */}
-      <main className="containerMain container-fluid d-flex">
-        <section className="contColumLeft container-fluid mb-1 mt-2 me-2 p-2 bg-body">
-          <div className="row container mb-1">
-            <GroupButtonsSelect
-              preId={"gbtn1"}
-              role={"groupTop"}
-              arialLabel={"Radio toggle button group top"}
-              typeButton={"radio"}
-              nameInput={"btnradio1"}
-              options={["Read", "Delete", "Create", "Modify"]}
-              colors={["dark", "danger", "secondary", "success"]}
-              sizeLetter={"0.9rem"}
-            />
-          </div>
-          <div className="row container d-flex justify-content-center mb-2">
-            <div className="col d-flex justify-content-between gx-1 p-1">
-              <IconsElem />
+      <main className="containerMain container-fluid d-flex justify-content-center align-items-start m-1 p-0">
+
+        {/* ****     Links Teil: Processing Read - Create - Modify Form   **** */}
+        <section className="w-25 container d-flex flex-column justify-content-center align-items-center mb-0 mt-1 mx-0 p-1 bg-body border border danger">
+
+          {/* ****     1.-  Menu Left:  Read - Create - Modify Form - Block or Component    **** */}
+          <div className="row container my-1 mx-auto px-2">
+            <div className="col-6 mx-auto mt-1 p-0">
+              <GroupButtonsSelect
+                preId={GROUP_BUTTONS_SELECT_LEFT.preId}
+                role={GROUP_BUTTONS_SELECT_LEFT.role}
+                arialLabel={GROUP_BUTTONS_SELECT_LEFT.arialLabel}
+                typeButton={GROUP_BUTTONS_SELECT_LEFT.typeButton}
+                nameInput={GROUP_BUTTONS_SELECT_LEFT.nameInput}
+                options={GROUP_BUTTONS_SELECT_LEFT.options}
+                colors={GROUP_BUTTONS_SELECT_LEFT.colors}
+                sizeLetter={GROUP_BUTTONS_SELECT_LEFT.sizeLetter}
+                height={GROUP_BUTTONS_SELECT_LEFT.height}
+              />
+            </div>
+            <div className="d-grid gap-0 col-4 mt-1 mx-auto p-0">
+              <button className="btn btn-sm btn-outline-secondary fw-bold fs-6" type="button" value="selectButton"
+                onClick={(ev) => handleSelectButton(ev)}>
+                Select <span className="text-danger fw-bolder fs-6">{theContext.optionSelectLeft}</span>
+              </button>
             </div>
           </div>
+
+          {/* ****     2.-  Menu Left:  Icons - Components    **** */}
+          {
+            theContext.optionStateLeft === 'create' &&
+            <div className="row p-1">
+              <IconsElem
+                height={"0.81"}
+              />
+            </div>
+          }
+
+          {/* ****     3.-  Info of Form - Block - Elements (read only in "Read" state and "componets of forms" in "create" and "modify" state)   **** */}
           <div className="row container d-flex justify-content-center mb-1" >
             <InfoOfElement />
           </div>
+
+          {/* ****     4.-  Group buttons of "Delete", "Save" and "Submit" dates of Form., Blocks and Componets   **** */}
           <div className="row container d-flex justify-content-center mb-0 me-2" >
             <ButtonSelectOptions
               typeButton={"button"}
@@ -154,219 +159,27 @@ function App() {
               arialLabelA={"Toolbar with button groups dow"}
               arialLabelB={"First group"}
               options={["Delete", "Save", "Submit"]}
-              colors={["btn-outline-danger", "btn-outline-secondary", " btn-outline-success"]}
+              colors={["btn-outline-danger", "btn-outline-warning", " btn-outline-success"]}
             />
           </div>
         </section>
 
-        <section className="contColumRight container mb-1 mt-2 me-2 p-2 bg-body">
-          <div className="row container-fluid" >
-            <div className="contSelectState col-7 d-flex justify-content-between">
-              <SelectLayoutForm
-                titleSelectState={titleSelectState}
-              />
-              <GroupButtonsSelect
-                preId={"gbtn2"}
-                role={"groupRight"}
-                arialLabel={"Radio toggle button group right"}
-                typeButton={"radio"}
-                nameInput={"btnRadio2"}
-                options={["Read only", "Delete Form", "New Form", "Modify Form"]}
-                colors={["dark", "danger", "secondary", "success"]}
-                sizeLetter={"0.65rem"}
-              />
-            </div>
-            <div className="col-5">
-              <IconsElem />
-            </div>
+        {/* ****     Recths Teil: Processing Form layout and components    **** */}
+        <section className="contColumRight w-75 container d-flex flex-column justify-content-center align-items-center mb-0 mt-1 mx-1 ms-4 p-1 bg-body">
+          {/* ****      Form Processing Menu      **** */}
+          <div className="row container-fluid contTopRight" >
+            <HeaderTitleRight
+              titleSelectState={TITLES_OF_APP.TITLE_SELECT_STATE}
+              titleCreateComponent={TITLES_OF_APP.TITLE_CREATE_COMPONENT}
+            />
           </div>
-          <div className="row container ">
-            <div className="col">
-              <div className="containerLayout container mt-1 p-1 bg-body bg-gradiente border border-light rounded user-select-none">
-                <div className="row my-2">
-                  <NewRow />
-                </div>
-                <div className="row p-0 mt-1 bg-light">
-                  <div className="col-2 d-flex flex-row justify-content-center align-items-center m-0 p-0">
-                    <NewCol />
-                    <LabelElem_PB
-                      elementID={theContext.pruebaLabelElement.elementID}
-                      required={theContext.pruebaLabelElement.required}
-                      disabled={theContext.pruebaLabelElement.disabled}
-                      response={theContext.pruebaLabelElement.response}
-                      placeholder={theContext.pruebaLabelElement.placeholder}
-                      size={theContext.pruebaLabelElement.size}
-                    />
-                    <IconEditDelete />
-                  </div>
-                  <div className="col-4 d-flex flex-row justify-content-center align-items-center m-0 p-0">
-                    <NewCol />
-                    <TextElem_PB
-                      elementID={theContext.pruebaTextElement.elementID}
-                      labelElement={theContext.pruebaTextElement.labelElement}
-                      required={theContext.pruebaTextElement.required}
-                      disabled={theContext.pruebaTextElement.disabled}
-                      response={theContext.pruebaTextElement.response}
-                      placeholder={theContext.pruebaTextElement.placeholder}
-                      size={theContext.pruebaTextElement.size}
-                      setText={theContext.pruebaTextElement.setText}
-                    />
-                    <IconEditDelete />
-                  </div>
-                  <div className="col d-flex flex-row justify-content-center align-items-center m-0 p-0">
-                    <NewCol />
-                    <NumberElem_PB
-                      elementID={theContext.pruebaNumberElement.elementID}
-                      labelElement={theContext.pruebaNumberElement.labelElement}
-                      required={theContext.pruebaNumberElement.required}
-                      disabled={theContext.pruebaNumberElement.disabled}
-                      response={theContext.pruebaNumberElement.response}
-                      placeholder={theContext.pruebaNumberElement.placeholder}
-                      size={theContext.pruebaNumberElement.size}
-                      setNumber={theContext.pruebaNumberElement.setNumber}
-                    />
-                    <IconEditDelete />
-                  </div>
-                  <div className="col d-flex flex-row justify-content-center align-items-center m-0 p-0">
-                    <NewCol />
-                    <DateElem_PB
-                      elementID={theContext.pruebaDateElement.elementID}
-                      labelElement={theContext.pruebaDateElement.labelElement}
-                      required={theContext.pruebaDateElement.required}
-                      disabled={theContext.pruebaDateElement.disabled}
-                      response={theContext.pruebaDateElement.response}
-                      placeholder={theContext.pruebaDateElement.placeholder}
-                      setDate={theContext.pruebaDateElement.setDate}
-                    />
-                    <IconEditDelete />
-                  </div>
-                </div>
 
-                <div className="row my-2">
-                  <NewRow />
-                </div>
+          {/* ****      Form Layout               **** */}
+          {theContext.arrayOfRows.map((row, index) => <div key={index} className="container-fluid d-flex justify-content-start align-item-center p-0 my-1 bg-light">
+            {row}
+          </div>)}
 
-                <div className="row d-flex flex-row justify-content-start align-items-center m-0 p-0 mt-1 bg-light">
-                  <div className="" style={{"width": "auto"}}>
-                    <NewCol />
-                  </div>
-                  <div className="col-3 d-flex flex-row justify-content-center align-items-center m-0 p-0">
-                    <PhoneElem_PB
-                      elementID={theContext.pruebaPhoneElement.elementID}
-                      labelElement={theContext.pruebaPhoneElement.labelElement}
-                      required={theContext.pruebaPhoneElement.required}
-                      disabled={theContext.pruebaPhoneElement.disabled}
-                      response={theContext.pruebaPhoneElement.response}
-                      placeholder={theContext.pruebaPhoneElement.placeholder}
-                      size={theContext.pruebaPhoneElement.size}
-                      setPhone={theContext.pruebaPhoneElement.setPhone}
-                    />
-                    <IconEditDelete />
-                  </div>
-                  <div className="" style={{"width": "auto"}}>
-                    <NewCol />
-                  </div>
-                  <div className="col-4 d-flex flex-row justify-content-center align-items-center m-0 p-0">
-                    <EmailElem_PB
-                      elementID={theContext.pruebaEmailElement.elementID}
-                      labelElement={theContext.pruebaEmailElement.labelElement}
-                      required={theContext.pruebaEmailElement.required}
-                      disabled={theContext.pruebaEmailElement.disabled}
-                      response={theContext.pruebaEmailElement.response}
-                      placeholder={theContext.pruebaEmailElement.placeholder}
-                      size={theContext.pruebaEmailElement.size}
-                      setEmail={theContext.pruebaEmailElement.setEmail}
-                    />
-                    <IconEditDelete />
-                  </div>
-                  <div className="" style={{"width": "auto"}}>
-                    <NewCol />
-                  </div>
-                </div>
-                <div className="row my-2">
-                  <NewRow />
-                </div>
-                <div className="row d-flex align-items-center p-0 mt-1 bg-light">
-                  <div className="col-3 d-flex flex-row justify-content-center align-items-start m-0 p-0">
-                    <NewCol />
-                    <AreaTextElem_PB
-                      elementID={theContext.pruebaAreaTextElement.elementID}
-                      labelElement={theContext.pruebaAreaTextElement.labelElement}
-                      required={theContext.pruebaAreaTextElement.required}
-                      disabled={theContext.pruebaAreaTextElement.disabled}
-                      readonly={theContext.pruebaAreaTextElement.readonly}
-                      response={theContext.pruebaAreaTextElement.response}
-                      placeholder={theContext.pruebaAreaTextElement.placeholder}
-                      row={theContext.pruebaAreaTextElement.row}
-                      col={theContext.pruebaAreaTextElement.col}
-                      setAreaText={theContext.pruebaAreaTextElement.setAreaText}
-                    />
-                    <IconEditDelete />
-                  </div>
-                  <div className="col-3 d-flex flex-row justify-content-center align-items-center m-0 p-0">
-                    <NewCol />
-                    <SelectElement_PB
-                      elementID={theContext.pruebaSelectElement.elementID}
-                      labelElement={theContext.pruebaSelectElement.labelElement}
-                      required={theContext.pruebaSelectElement.required}
-                      disabled={theContext.pruebaSelectElement.disabled}
-                      response={theContext.pruebaSelectElement.response}
-                      optionsValues={theContext.pruebaSelectElement.optionsValues}
-                      setSelect={theContext.pruebaSelectElement.setSelect}
-                    />
-                    <IconEditDelete />
-                  </div>
-                  <div className="col-3 d-flex flex-row justify-content-center align-items-center m-0 p-0">
-                    <NewCol />
-                    <CheckboxElem_PB
-                      elementID={theContext.pruebaCheckboxElement.elementID}
-                      labelElement={theContext.pruebaCheckboxElement.labelElement}
-                      required={theContext.pruebaCheckboxElement.required}
-                      disabled={theContext.pruebaCheckboxElement.disabled}
-                      checked={theContext.pruebaCheckboxElement.checked}
-                      response={theContext.pruebaCheckboxElement.response}
-                      setCheckbox={theContext.pruebaCheckboxElement.setCheckbox}
-                    />
-                    <IconEditDelete />
-                  </div>
-                  <div className="col d-flex flex-row justify-content-center align-items-center m-0 p-0">
-                    <NewCol />
-                    <RadioButtonElem_PB
-                      elementID={theContext.pruebaRadioButtonElement.elementID}
-                      labelElement={theContext.pruebaRadioButtonElement.labelElement}
-                      required={theContext.pruebaRadioButtonElement.required}
-                      disabled={theContext.pruebaRadioButtonElement.disabled}
-                      checked={theContext.pruebaRadioButtonElement.checked}
-                      response={theContext.pruebaRadioButtonElement.response}
-                      setRadioButton={theContext.pruebaRadioButtonElement.setRadioButton}
-                    />
-                    <IconEditDelete />
-                  </div>
-                </div>
-                <div className="row my-2">
-                  <NewRow />
-                </div>
-
-                <div className="row d-flex flex-row align-items-center align-items-start p-0 mt-1 bg-light">
-                  <div className="col-3 d-flex flex-row justify-content-center align-items-start m-0 p-0">
-                    <NewCol />
-                    <RadioButtons_PB
-                      elementID={theContext.pruebaRadioButtons.elementID}
-                      legend={theContext.pruebaRadioButtons.legend}
-                      name={theContext.pruebaRadioButtons.name}
-                      radioButtons={theContext.pruebaRadioButtons.radioButtons}
-                    />
-                    <IconEditDelete />
-                    <NewCol />
-                  </div>
-                </div>
-                <div className="row my-2">
-                  <NewRow />
-                </div>
-
-              </div>
-            </div>
-          </div>
+          {/* <ComponentsList /> */}
         </section>
       </main>
     </div>

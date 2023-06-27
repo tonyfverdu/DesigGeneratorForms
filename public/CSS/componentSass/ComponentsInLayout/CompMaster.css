@@ -1,0 +1,13 @@
+.buttonNewElement {
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 50%;
+  transition: all ease 0.2s;
+}
+.buttonNewElement:hover, .buttonNewElement:focus {
+  cursor: pointer;
+  background-color: rgb(167, 166, 166);
+  transform: scale(0.92);
+}
+
+/*# sourceMappingURL=CompMaster.css.map */

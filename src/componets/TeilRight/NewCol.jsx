@@ -1,5 +1,7 @@
 import React from 'react'
-import Column from './Column'
+import Column from './Column';
+import '../../sass/componentSass/TeilRight/NewCol.scss';
+
 
 function NewCol() {
   return (

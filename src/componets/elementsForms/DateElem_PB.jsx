@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import '../../sass/componentSass/elementsForms/DateElem_PB.scss'
 import currentDate from '../../functions/currentDate'
 import changeFormatDate from '../../functions/changeFormatDate'
+import '../../sass/componentSass/elementsForms/DateElem_PB.scss'
 
 
 function DateElem_PB({ elementID, labelElement, required, disabled, response, placeholder, setDate }) {
@@ -21,7 +21,6 @@ function DateElem_PB({ elementID, labelElement, required, disabled, response, pl
     setValueOfDate(ev.target.value)
     setDate(valueOfDate);
   }
-
 
   return (
     <div className="contDateElement form-group container-fluid d-flex flex-row justify-content-start align-items-center m-0 p-1

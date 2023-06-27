@@ -1,0 +1,8 @@
+@use '../layouts' as l;
+@use '../neumorphismus' as n;
+
+
+.contGrpBtnSelect{
+  @include n.neuMorphismus4;
+  width: auto;
+}

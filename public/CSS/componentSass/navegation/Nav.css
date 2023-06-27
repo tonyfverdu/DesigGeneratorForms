@@ -1,12 +1,4 @@
 .containerMenu {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  justify-content: flex-start;
-  align-items: flex-end;
   width: 100vw;
   height: 8.8vh;
   margin: 0% auto;
