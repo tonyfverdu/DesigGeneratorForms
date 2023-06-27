@@ -16,7 +16,6 @@ import RadioButtons_PB from '../elementsForms/RadioButtons_PB.jsx'
 
 function ShowElements() {
   const theContext = useContext(MyContext);
-  const [elementShow, setElementShow] = useState(theContext.objComponentShow);
 
   switch (theContext.element) {
     case "label":

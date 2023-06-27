@@ -1,15 +1,13 @@
 import { useState, useContext } from 'react'
 import { MyContext } from '../../context/TheContext.jsx'
 import NewCol from './NewCol.jsx'
-import MasterElem_PB from '../elementsForms/MasterElem_PB .jsx'
+import MasterElem_PB from '../elementsForms/MasterElem_PB.jsx'
 import IconEditDelete from '../icons/IconEditDelete.jsx'
 import '../../sass/componentSass/TeilRight/NewCol.scss'
 
 
-
 function Column() {
   const theContext = useContext(MyContext)
-  const [newCol, setNewCol] = useState(true)
   const [toogleColBefore, setToogleColBefore] = useState(false)
   const [toogleColAfter, setToogleColAfter] = useState(false)
 
@@ -39,6 +37,7 @@ function Column() {
         <MasterElem_PB
           elementID={theContext.masterComponentIni.elementID}
           placeholder={theContext.masterComponentIni.placeholder}
+          width={theContext.masterComponentIni.dimensions.width}
         />
         <IconEditDelete />
       </div>
@@ -59,12 +58,6 @@ function Column() {
 }
 
 export default Column;
-
-/*
-onClick={() => addNewCol("before")}
-*/
-
-
 
 
 /*

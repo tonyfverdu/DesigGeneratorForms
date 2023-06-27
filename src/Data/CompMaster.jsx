@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react'
 import { MyContext } from '../context/TheContext';
-import MasterElem_PB from '../componets/elementsForms/MasterElem_PB ';
+import MasterElem_PB from '../componets/elementsForms/MasterElem_PB';
 import IconEditDelete from '../componets/icons/IconEditDelete';
 import Column from '../componets/TeilRight/Column';
 

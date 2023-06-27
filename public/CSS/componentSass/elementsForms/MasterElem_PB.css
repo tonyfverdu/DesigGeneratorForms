@@ -26,6 +26,7 @@
 .contMasterElement_PB > .buttonMasterElem:hover, .contMasterElement_PB > .buttonMasterElem:focus {
   cursor: pointer;
   background-color: rgb(167, 166, 166);
+  color: rgb(250, 29, 29);
 }
 
 /*# sourceMappingURL=MasterElem_PB.css.map */

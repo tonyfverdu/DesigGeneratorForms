@@ -25,9 +25,11 @@
     text-align: center;
     transition: all ease 0.20s;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       cursor: pointer;
       background-color: v.$backgroundColorHellGray;
+      color: v.$colorRedNeu;
     }
   }
 }

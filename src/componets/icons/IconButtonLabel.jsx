@@ -13,6 +13,11 @@ function IconButtonLabel() {
       ...theContext.objComponentShow, elementID: "ID_label_001",
       type: "label", placeholder: "Soy un componente Label", size: 10, dimensions: { width: 6, height: "2.4rem" }
     })
+
+    theContext.setComponentModify({
+      ...theContext.objComponentShow, elementID: "ID_label_001",
+      type: "label", placeholder: "Soy un componente Label", size: 10, dimensions: { width: 6, height: "2.4rem" }
+    })
   }
 
   return (
