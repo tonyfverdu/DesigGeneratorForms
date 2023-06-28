@@ -236,7 +236,7 @@ function TheContext({ children }) {
     blockOrigen: undefined,
     orderInBlock: undefined,
     position: { row: undefined, col: undefined },
-    dimensions: { width: 1, height: "2.4rem" },
+    dimensions: { width: 3, height: "2.4rem" },
     labelElement: "",
     required: true,
     disabled: false,

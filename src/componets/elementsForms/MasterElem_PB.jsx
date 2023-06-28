@@ -21,8 +21,8 @@ function MasterElem_PB({ elementID, placeholder, width }) {
 
 
   return (
-    <div className="form-group container-fluid d-flex flex-row justify-content-start align-items-start m-0 p-0"
-      onClick={(ev) => handleBtnMaster(ev)}>
+    <div className="container-fluid d-flex flex-row justify-content-start align-items-start m-0 p-0"
+      onClick={(ev) => handleBtnMaster(ev)} >
       {
         toogleActiv ?
           <ShowElements />
@@ -36,7 +36,7 @@ function MasterElem_PB({ elementID, placeholder, width }) {
             </label>
           </div>
       }
-    </div>
+    </div >
   )
 }
 
