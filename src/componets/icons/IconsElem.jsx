@@ -16,17 +16,16 @@ import IconButtonIcons from './IconButtonIcons'
 import '../../sass/componentSass/icons/IconsElem.scss'
 
 
-function IconsElem({height}) {
+function IconsElem({ height }) {
   const [elementIcons, setElementIcons] = useState("")
   const theContext = useContext(MyContext)
 
   useEffect(() => {
     theContext.setElement(elementIcons)
-    // console.log("theContext.element: ", theContext.element)
   }, [elementIcons])
 
   return (
-    <div className="contIcons col p-2" style={{transform: `scale(${height})`}}>
+    <div className="contIcons col p-2" style={{ transform: `scale(${height})` }}>
       <IconButtonLabel />
       <IconButtonText />
       <IconButtonNumber />

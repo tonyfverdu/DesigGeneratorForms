@@ -9,7 +9,7 @@ function RadioButtons_PB({ elementID, legend, required, disabled = false, name, 
 
   useEffect(() => {
     setValueOfRadioButtons(placeholder)
-    setRadioButtons(valueOfRadioButtons)
+    // setRadioButtons(valueOfRadioButtons)
   }, [])
 
   function handleChange(ev) {

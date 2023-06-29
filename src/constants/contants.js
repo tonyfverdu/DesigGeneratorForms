@@ -3,14 +3,19 @@ export const TITLES_OF_APP = {
   TITLE_MEMO_LIST_HEADER: "Custom Forms Dynamic Creator",
   SUBTITLE_MEMO_LIST_HEADER: "App (Bootstrap - Sass -JS - React)",
   TITLE_OF_SITE: "Custom Forms Dynamic Creator",
-  TITLE_SELECT_STATE: "Layout Form Status",
-  TITLE_CREATE_COMPONENT: "Component Form Creation"
+  TITLE_TYPE_DESIGNER: "Designer",
+  TITLE_SELECT_STATE: "Layout Status: ",
+  TITLE_DESIGNER_FBC: {
+    form: "Forms",
+    block: "Blocks",
+    component: "Components"
+  }
 }
 
 // Use in the Component "InfoOfElement.jsx"
 export const TITLES_RCM_LEFT = {
-  TITLE_OF_SECTION: "Form Component Design",
-  SUBTITLE_OF_SECTION: "Component Variables Info",
+  TITLE_OF_SECTION: "Form Designer",
+  SUBTITLE_OF_SECTION: "Form - Blocks- Components Variables Info",
 
   //  General Form Data
   FORM_TITLE: "Form: ",
@@ -52,7 +57,7 @@ export const TITLES_RCM_LEFT = {
 //       dimension: { width: theContext.objComponent.dimensions.width, height: theContext.objComponent.dimensions.height }
 
 export const GROUP_BUTTONS_SELECT_LEFT = {
-  preId: "gbtn1",
+  preId: "actionSelect_",
   role: "groupTop",
   arialLabel: "Radio toggle button group top",
   typeButton: "radio",
@@ -60,7 +65,8 @@ export const GROUP_BUTTONS_SELECT_LEFT = {
   options: ["Read", "Create", "Modify"],
   colors: ["dark", "success", "primary"],
   sizeLetter: "0.9rem",
-  height: "2rem"
+  height: "2rem",
+  groupButton: "select_left"
 }
 
 export const ELEMENT_TYPE = {

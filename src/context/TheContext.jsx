@@ -9,12 +9,26 @@ function TheContext({ children }) {
   const [toogleReadLeft, setToogleReadLeft] = useState(false)
   const [toogleCreateLeft, setToogleCreateLeft] = useState(false)
   const [toogleModifyLeft, setToogleModifyLeft] = useState(false)
-  const [optionStateLeft, setOptionStateLeft] = useState("read")
+  const [optionState, setOptionState] = useState("read")
+  const [optionDesigner, setOptionDesigner] = useState("form")
+  const [optionLayout, setOptionLayout] = useState("read")
 
   const [numRow, setNumRow] = useState(0)
   const [numCol, setNumCol] = useState(1)
 
   const [arrayOfRows, setArrayOfRows] = useState([<RowIni />])
+
+  const [arrayRows, setArrayRows] = useState([0])
+  const [arrayColumns, setArrayColumns] = useState([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}])
+
+  const theLayoutBlock = useState({
+    block: "",
+    layout: {
+      rowLayout: arrayRows,
+      colLayout: arrayColumns
+    }
+  })
+  const [layoutBlock, setLayoutBlock] = useState([""][""])
 
   const [label, setLabel] = useState("")
   const pruebaLabelElement = {
@@ -145,7 +159,7 @@ function TheContext({ children }) {
 
     legend: "Choose a option",
     name: "pruebaRB",
-    setComponent: "",
+    setComponent: setRadioButtons,
     radioButtons: [
       {
         elementID: "ID_00010.1",
@@ -181,7 +195,7 @@ function TheContext({ children }) {
   }
 
   //  0.-  Name - type of the selected Component
-  const [element, setElement] = useState("")
+  const [element, setElement] = useState("master")
 
   //  ****    Component objects
   //  1.-  Component ini (Master Component) 
@@ -217,35 +231,21 @@ function TheContext({ children }) {
       }
     ]
   }
-  //  2.-  Component in the state "read"
-  const [componentRead, setComponentRead] = useState(objComponentIni)
-
-  //  3.-  Component in the state "create"
-  const [componentCreate, setComponentCreate] = useState({})
-
-  //  4.-  Component in the state "modify"
-  const [componentModify, setComponentModify] = useState({})
-
-  //  5.-  Component Show in Info-Box
-  const [objComponentShow, setObjComponentShow] = useState(componentRead)  //  <==  "Component Object" select in button-elements
-
-  //  6.- Component Master ini
+  //  2.- Component Master ini
   const masterComponentIni = {
     elementID: "id_Master",
     type: "master",
     blockOrigen: undefined,
     orderInBlock: undefined,
     position: { row: undefined, col: undefined },
-    dimensions: { width: 3, height: "2.4rem" },
-    labelElement: "",
+    dimensions: { width: 1, height: "2.4rem" },
+    labelElement: "Master Component",
     required: true,
     disabled: false,
     checked: undefined,
     response: [""],
-    placeholder: "Master",
+    placeholder: "Master Component",
     size: 0,
-    row: 0,
-    cols: 0,
     optionsValues: [""],
     legend: "",
     name: "",
@@ -264,6 +264,21 @@ function TheContext({ children }) {
       }
     ]
   }
+  //  3.-  Component in the state "read"
+  const [componentRead, setComponentRead] = useState(objComponentIni)
+
+  //  4.-  Component in the state "create"
+  const [componentCreate, setComponentCreate] = useState({})
+
+  //  5.-  Component in the state "modify"
+  const [componentModify, setComponentModify] = useState({})
+
+  //  6.-  Component Show in Info-Box  <==  "Component Object" select in Info Component
+  const [objComponentShow, setObjComponentShow] = useState(masterComponentIni)
+
+  //  7.-  Component Show in Layout <==  "Component Object" in Form Layout
+  const [objComponentLayout, setObjComponentLayout] = useState(masterComponentIni)
+
 
   //  Block objects
   const objBlockIni = {
@@ -289,16 +304,20 @@ function TheContext({ children }) {
   //  State Variables from Context
   const exportData = {
     toogleReadLeft, setToogleReadLeft, toogleCreateLeft, setToogleCreateLeft, toogleModifyLeft, setToogleModifyLeft,
-    optionStateLeft, setOptionStateLeft,
+    optionState, setOptionState, optionDesigner, setOptionDesigner, optionLayout, setOptionLayout,
 
     masterComponentIni,
 
-    objComponentShow, setObjComponentShow,
+    objComponentShow, setObjComponentShow, objComponentLayout, setObjComponentLayout,
     componentRead, setComponentRead, componentCreate, setComponentCreate, componentModify, setComponentModify,
 
     blockRead, setBlockRead, blockCreate, setBlockCreate, blockModify, setBlockModify,
 
-    numRow, setNumRow, numCol, setNumCol, arrayOfRows, setArrayOfRows,
+    numRow, setNumRow, numCol, setNumCol, arrayOfRows, setArrayOfRows, 
+    arrayRows, setArrayRows, arrayColumns, setArrayColumns,
+    layoutBlock, setLayoutBlock,
+    theLayoutBlock,
+
     element, setElement,
     label, setLabel, pruebaLabelElement,
     text, setText, pruebaTextElement,
@@ -309,7 +328,7 @@ function TheContext({ children }) {
     areaText, setAreaText, pruebaAreaTextElement,
     select, setSelect, pruebaSelectElement,
     checkbox, setCheckbox, pruebaCheckboxElement,
-    radioButton, setRadioButton, radioButtons, setRadioButtons,
+    radioButton, setRadioButton, radioButtons, setRadioButtons, pruebaRadioButtonElement, pruebaRadioButtons
   }
 
 

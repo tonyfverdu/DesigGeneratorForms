@@ -1,6 +1,7 @@
-import { useState, useContext } from 'react'
+import { useContext } from 'react'
 import { MyContext } from '../../context/TheContext.jsx'
 
+import MasterElem_PB from '../elementsForms/MasterElem_PB.jsx'
 import LabelElem_PB from '../elementsForms/LabelElem_PB.jsx'
 import TextElem_PB from '../elementsForms/TextElem_PB.jsx'
 import PhoneElem_PB from '../elementsForms/PhoneElem_PB.jsx'
@@ -18,6 +19,14 @@ function ShowElements() {
   const theContext = useContext(MyContext);
 
   switch (theContext.element) {
+    case "master":
+      return (
+        <MasterElem_PB
+          elementID={theContext.objComponentShow.elementID}
+          placeholder={theContext.objComponentShow.placeholder}
+          width={theContext.objComponentShow.dimensions.width}
+        />
+      )
     case "label":
       return (
         <LabelElem_PB

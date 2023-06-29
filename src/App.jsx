@@ -16,7 +16,6 @@ import Nav from './componets/navegation/Nav.jsx'
 import IconsElem from './componets/icons/IconsElem'
 
 import SelectLayoutForm from './componets/TeilRight/SelectLayoutForm'
-import NewRow from './componets/TeilRight/NewRow.jsx'
 
 import ComponentsList from './Data/ComponentsList'
 import CompMaster from './Data/CompMaster'
@@ -46,7 +45,8 @@ function App() {
   const [toggleHeader, setToggleHeader] = useState(true)
 
   function handleSelectButton(ev) {
-    console.log("estado parte izquierda:  ", theContext.optionStateLeft)
+    console.log("Seleccion de estado.  ev.target", ev.target)
+    console.log("estado parte izquierda:  ", theContext.optionState)
   }
 
   return (
@@ -111,11 +111,11 @@ function App() {
       <main className="containerMain container-fluid d-flex justify-content-center align-items-start m-1 p-0">
 
         {/* ****     Links Teil: Processing Read - Create - Modify Form   **** */}
-        <section className="w-25 container d-flex flex-column justify-content-center align-items-center mb-0 mt-1 mx-0 p-1 bg-body border border danger">
+        <section className="w-25 container d-flex flex-column justify-content-center align-items-center mb-0 mt-1 mx-0 p-1 bg-body">
 
           {/* ****     1.-  Menu Left:  Read - Create - Modify Form - Block or Component    **** */}
-          <div className="row container my-1 mx-auto px-2">
-            <div className="col-6 mx-auto mt-1 p-0">
+          <div className="row d-flex flex-row justify-content-start align-items-center m-0 p-1">
+            <div className="col d-flex flex-row justify-content-end align-items-center m-0 p-1">
               <GroupButtonsSelect
                 preId={GROUP_BUTTONS_SELECT_LEFT.preId}
                 role={GROUP_BUTTONS_SELECT_LEFT.role}
@@ -126,28 +126,30 @@ function App() {
                 colors={GROUP_BUTTONS_SELECT_LEFT.colors}
                 sizeLetter={GROUP_BUTTONS_SELECT_LEFT.sizeLetter}
                 height={GROUP_BUTTONS_SELECT_LEFT.height}
+                groupButton={GROUP_BUTTONS_SELECT_LEFT.groupButton}
               />
             </div>
-            <div className="d-grid gap-0 col-4 mt-1 mx-auto p-0">
+            {/* <div className="d-grid gap-0 col-4 mt-1 mx-auto p-0">
               <button className="btn btn-sm btn-outline-secondary fw-bold fs-6" type="button" value="selectButton"
                 onClick={(ev) => handleSelectButton(ev)}>
                 Select <span className="text-danger fw-bolder fs-6">{theContext.optionSelectLeft}</span>
               </button>
-            </div>
+            </div> */}
           </div>
 
           {/* ****     2.-  Menu Left:  Icons - Components    **** */}
           {
-            theContext.optionStateLeft === 'create' &&
+            theContext.optionState !== 'read' &&
             <div className="row p-1">
               <IconsElem
                 height={"0.81"}
+              // situation={"componentInfo"}
               />
             </div>
           }
 
           {/* ****     3.-  Info of Form - Block - Elements (read only in "Read" state and "componets of forms" in "create" and "modify" state)   **** */}
-          <div className="row container d-flex justify-content-center mb-1" >
+          <div className="row container-fluid d-flex justify-content-center mb-1" >
             <InfoOfElement />
           </div>
 
@@ -164,20 +166,33 @@ function App() {
           </div>
         </section>
 
+
+
         {/* ****     Recths Teil: Processing Form layout and components    **** */}
         <section className="contColumRight w-75 container d-flex flex-column justify-content-center align-items-center mb-0 mt-1 mx-1 ms-4 p-1 bg-body">
           {/* ****      Form Processing Menu      **** */}
           <div className="row container-fluid contTopRight" >
             <HeaderTitleRight
+              titleOfDesigner={TITLES_OF_APP.TITLE_TYPE_DESIGNER}
               titleSelectState={TITLES_OF_APP.TITLE_SELECT_STATE}
-              titleCreateComponent={TITLES_OF_APP.TITLE_CREATE_COMPONENT}
+              titleCreate={TITLES_OF_APP.TITLE_DESIGNER_FBC}
             />
           </div>
 
           {/* ****      Form Layout               **** */}
-          {theContext.arrayOfRows.map((row, index) => <div key={index} className="container-fluid d-flex justify-content-start align-item-center p-0 my-1 bg-light">
-            {row}
-          </div>)}
+          {
+            theContext.optionDesigner === "component" ?
+              theContext.arrayOfRows.map((row, index) => {
+                return <div key={index} className="row container-fluid d-flex flex-row justify-content-start align-item-center p-1 py-2 my-1 bg-light 
+                border border-secondary border-end-0 border-start-0">
+                  {row}
+                </div>
+              })
+              :
+              <>
+                <p className="text-dark display-4 fw-bold p-6 mt-2 me-2">Aqui viene el layout de:  <span className="text-danger fw-bolder display-2">{theContext.optionDesigner}</span></p>
+              </>
+          }
 
           {/* <ComponentsList /> */}
         </section>

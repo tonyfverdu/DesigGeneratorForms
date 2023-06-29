@@ -1,9 +1,8 @@
-import { useState, useContext, useRef } from 'react'
+import { useState, useContext, useRef, Fragment } from 'react'
 import { MyContext } from '../../context/TheContext.jsx'
-import NewCol from './NewCol.jsx'
 import MasterElem_PB from '../elementsForms/MasterElem_PB.jsx'
 import IconEditDelete from '../icons/IconEditDelete.jsx'
-import '../../sass/componentSass/TeilRight/NewCol.scss'
+import '../../sass/componentSass/TeilRight/Column.scss'
 
 
 function Column() {
@@ -21,10 +20,10 @@ function Column() {
   }
 
   return (
-    <div className="container-fluid d-flex flex-row justify-content-center align-items-start p-0 m-0">
+    <Fragment ref={refElementDiv} className="container-fluid d-flex flex-row justify-content-center align-items-start p-0 m-0">
       {
         toogleColBefore &&
-        <NewCol />
+        <Column />
       }
       <button type="button" className="buttonNewElement d-flex flex-row justify-content-center align-items-center mx-1 p-0"
         onClick={() => addNewCol("before")}>
@@ -34,7 +33,7 @@ function Column() {
           }
         </span>
       </button>
-      <div ref={refElementDiv} className="col d-flex flex-row justify-content-center align-items-start m-0 p-0">
+      <div className="col d-flex flex-row justify-content-center align-items-start m-0 p-0">
         <MasterElem_PB
           elementID={theContext.masterComponentIni.elementID}
           placeholder={theContext.masterComponentIni.placeholder}
@@ -43,7 +42,8 @@ function Column() {
         <IconEditDelete
           refElementDiv={refElementDiv}
         />
-
+      </div>
+      <>
         <button type="button" className="buttonNewElement d-flex flex-row justify-content-center align-items-center ms-1 p-0"
           onClick={() => addNewCol("after")}>
           <span className="text-dark fw-normal p-1 m-0">
@@ -54,23 +54,11 @@ function Column() {
         </button>
         {
           toogleColAfter &&
-          <NewCol />
+          <Column />
         }
-      </div>
-    </div>
+      </>
+    </Fragment>
   )
 }
 
 export default Column;
-
-
-/*
-  // <div className="d-flex flex-row justify-content-center align-items-center p-1">
-      {/* <div className="contCol m-0 me-1 p-0">
-        <button className="circle d-flex flex-row justify-content-center align-items-center p-0 fw-normal" value={newCol} onClick={(ev) => !setNewCol(!newCol)}>
-          {
-            !newCol ? "+" : "-"
-          }
-        </button>
-      </div> * / 
-*/

@@ -3,6 +3,7 @@ import { MyContext } from '../../context/TheContext.jsx'
 import ShowElements from './ShowElements.jsx';
 import { TITLES_RCM_LEFT } from '../../constants/contants.js';  //  Constants of Form
 import '../../sass/componentSass/TeilLeft/InfoOfElement.scss'
+import SelectElement_PB from '../elementsForms/SelectElem_PB.jsx';
 
 
 function InfoOfElement() {
@@ -12,15 +13,37 @@ function InfoOfElement() {
   const [tooModify, setTooModify] = useState(false)
   const [tooCreate, setTooCreate] = useState(false)
 
+  const [selectComponent, setSelectComponent] = useState("")
+
   useEffect(() => {
     setTooRead(theContext.toogleReadLeft)
     setTooModify(theContext.toogleCreateLeft)
     setTooCreate(theContext.toogleModifyLeft)
+
+    switch (theContext.optionState) {
+      case "read":
+        theContext.setObjComponentShow(theContext.componentRead)
+        break;
+      case "create":
+        theContext.setObjComponentShow(theContext.componentCreate)
+        break;
+      case "modify":
+        theContext.setObjComponentShow(theContext.componentModify)
+        break;
+      default:
+        break;
+    }
   }, [theContext.toogleReadLeft, theContext.toogleCreateLeft, theContext.toogleModifyLeft])
+
+  function handleOnChange(ev) {
+    ev.preventDefault();
+    setSelectComponent(ev.target.value)
+    theContext.setElement(selectComponent)
+  }
 
 
   return (
-    <div className="contInfoOfElement container-fluid">
+    <div className="contInfoOfElement container-fluid d-flex flex-column justify-content-center align-items-center m-0 mx-auto p-0">
       <div className="infoComponent container-fluid d-flex flex-column justify-content-center align-items-center mx-auto bg-secondary" >
         <header className="contHeaderTitle d-flex flex-column justify-content-center align-items-center mx-auto mt-1 mb-2">
           <h4 className={"title m-0 p-0"}>
@@ -104,6 +127,12 @@ function InfoOfElement() {
             <h6 className="titles text-start">Component info</h6>
           </header>
           <div className="row gap-0 mb-1 mx-auto">
+
+{/* //    *******************************************************************************************************************************  //
+          Esto no funciona, pensar como segun la opcion seleccionada en el select se dibuja o selecciona para dibujar el 
+          componente seleccionado.  Hay que mirar y hacer pruebas, un "select", las opciones del "nombre" del componente, 
+          al seleccionar uno inmediatamente debe mostrar arriba el componente seleccionado, los datos del componente no cambian 
+
             <div className="FieldsHorizontal col mt-1 ms-1 p-1 bg-body">
               <span className="Field">{TITLES_RCM_LEFT.COMPONENT_TITLE}</span>
               {
@@ -113,8 +142,8 @@ function InfoOfElement() {
                   <>
                     <select id="idSelectComponent"
                       className="select form-select form-select-sm border mx-1 border-secondary" aria-label=".form-select-sm"
-                      required="true" size="1" defaultValue="Select">
-                      <option >Select</option>
+                      required="true" size="1" defaultValue="Select" value={selectComponent} onChange={(ev) => handleOnChange(ev)}>
+                      <option value="label">Select</option>
                       <option value="label">Label</option>
                       <option value="text">Text</option>
                       <option value="phone">Phone</option>
@@ -132,6 +161,8 @@ function InfoOfElement() {
                   </>
               }
             </div>
+//    *******************************************************************************************************************************  // */}
+
             <div className="FieldsHorizontal col mt-1 mx-0 p-1 bg-body">
               <span className="Field">{TITLES_RCM_LEFT.COMPONENT_ID}</span>
               {
@@ -175,7 +206,7 @@ function InfoOfElement() {
                   <span className="valueSpan">{theContext.objComponentShow.required.toString()}</span>
                   :
                   <select className="select form-select form-select-sm ms-0 px-5" aria-label=".form-select-sm" required="true" size="1"
-                    defaultValue="true" disabled="false">
+                    defaultValue="true">
                     <option disabled>Select</option>
                     <option value="true">True</option>
                     <option value="false">False</option>
@@ -189,7 +220,7 @@ function InfoOfElement() {
                   <span className="valueSpan">{theContext.objComponentShow.disabled.toString()}</span>
                   :
                   <select className="select form-select form-select-sm ms-0 px-5" aria-label=".form-select-sm" required="true" size="1"
-                    defaultValue="false" disabled="false">
+                    defaultValue="false" >
                     <option disabled>Select</option>
                     <option value="true">True</option>
                     <option value="false">False</option>
@@ -235,8 +266,8 @@ function InfoOfElement() {
                     <div className="d-flex flex-row justify-content-center align-items-center m-0">
                       <input type="text" className="contInputText form-control mx-1 rounded-0" autoComplete="off" required="true"
                         placeholder={"Value..."} size={20} />
-                      <button type="button" className="btn btn-sm btn-success fw-bold mx-auto" 
-                      style={{ width: "1.9rem", height: "1.3rem", fontSize: "0.55rem" }}>Add</button>
+                      <button type="button" className="btn btn-sm btn-success fw-bold mx-auto"
+                        style={{ width: "1.9rem", height: "1.3rem", fontSize: "0.55rem" }}>Add</button>
                     </div>
               }
             </div>
@@ -288,10 +319,11 @@ function InfoOfElement() {
                   }
                   <span className="subTitlePosDim">{TITLES_RCM_LEFT.COMPONENT_DIMENSION_HEIGHT}</span>
                   {
-                    tooRead ?
-                      <span className="valuePosDim">{theContext.objComponentShow.dimensions.height}</span>
-                      :
-                      <span className="valuePosDim">{theContext.objComponentShow.dimensions.height}</span>
+                    <span className="valuePosDim">{theContext.objComponentShow.dimensions.height}</span>
+                    // tooRead ?
+                    //   <span className="valuePosDim">{theContext.objComponentShow.dimensions.height}</span>
+                    //   :
+                    //   <span className="valuePosDim">{theContext.objComponentShow.dimensions.height}</span>
                   }
                 </div>
               </div>

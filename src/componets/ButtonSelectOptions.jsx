@@ -14,7 +14,7 @@ function ButtonSelectOptions({ typeButton, role, arialLabelA, arialLabelB, optio
               //  gbtn1_0 ==> read, gbtn1_1 ==> create, gbtn1_2 ==> modify
               return (
                 <button key={index} type={typeButton} className={`btn ${colors[index]} text-white-emphasis fw-bold mx-1`}
-                  disabled={theContext.optionStateLeft === "read" ? true : false} >
+                  disabled={theContext.optionState === "read" ? true : false} >
                   {opt}
                 </button>
               )

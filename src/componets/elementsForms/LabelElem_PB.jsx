@@ -21,39 +21,41 @@ function LabelElem_PB({ elementID, orderInBlock, required, disabled, response, p
     console.log("*********************************************")
     //  Change OBJComponent
 
-    const newObjComponentLabel = {
-      elementID: elementID,
-      type: "label",
-      blockOrigen: "Prueba de origen",
-      orderInBlock: OrderRef.current.textContent,
-      position: { rowElem: ColXRef.current.textContent, colElem: RowYRef.current.textContent },
-      dimensions: { width: width, height: "2.4rem" },
-      labelElement: "",
-      required: required,
-      disabled: disabled,
-      checked: undefined,
-      response: response,
-      placeholder: placeholder,
-      size: size,
-      optionsValues: [""],
-      legend: "",
-      name: "",
-      valueComponent: "",
-      setComponent: "",
-      radioButtons: [
-        {
-          elementID: "",
-          labelElement: "",
-          name: "",
-          required: true,
-          disabled: false,
-          checked: false,
-          response: [false],
-          setRadioButton: null
-        }
-      ]
-    }
-    theContext.setObjComponent(newObjComponentLabel)
+    // const newObjComponentLabel = {
+    //   elementID: elementID,
+    //   type: "label",
+    //   blockOrigen: "Prueba de origen",
+    //   orderInBlock: OrderRef.current.textContent,
+    //   position: { rowElem: ColXRef.current.textContent, colElem: RowYRef.current.textContent },
+    //   dimensions: { width: width, height: "2.4rem" },
+    //   labelElement: "",
+    //   required: required,
+    //   disabled: disabled,
+    //   checked: undefined,
+    //   response: response,
+    //   placeholder: placeholder,
+    //   size: size,
+    //   optionsValues: [""],
+    //   legend: "",
+    //   name: "",
+    //   valueComponent: "",
+    //   setComponent: "",
+    //   radioButtons: [
+    //     {
+    //       elementID: "",
+    //       labelElement: "",
+    //       name: "",
+    //       required: true,
+    //       disabled: false,
+    //       checked: false,
+    //       response: [false],
+    //       setRadioButton: null
+    //     }
+    //   ]
+    // }
+    theContext.setObjComponentShow({
+      ...theContext.objComponentShow, type: "label"
+    })
   }
 
   return (

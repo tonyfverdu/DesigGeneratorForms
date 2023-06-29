@@ -20,7 +20,7 @@ function IconEditDelete({refElementDiv}) {
           </div>
         </IconContext.Provider>
         <IconContext.Provider value={{ color: "rgba(250, 29, 29, 0.9)", size: "1.1rem", className: "contIcon" }}>
-          <div className="d-flex flex-row justify-content-center align-items-center m-0 p-0 border border-danger"
+          <div className="d-flex flex-row justify-content-center align-items-center m-0 p-0"
             onClick={deleteComponent}>
             <MdDeleteForever />
           </div>
