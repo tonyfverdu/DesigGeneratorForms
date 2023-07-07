@@ -1,5 +1,5 @@
 function changeFormatDate(parDateYYYYMMDD) {
-  const dateChangeFormat = {
+  let dateChangeFormat = {
     year: "",
     month: "",
     day: "",

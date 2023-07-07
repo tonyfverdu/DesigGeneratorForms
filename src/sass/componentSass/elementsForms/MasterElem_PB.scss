@@ -16,7 +16,7 @@
   }
 
   &>.buttonMasterElem {
-    @include d.configurationText1 (v.$colorTextIni, 0.55rem);
+    @include d.configurationText1 (v.$colorElementIni, 0.55rem);
     width: auto;
     height: 2.4rem;
     margin: 0%;

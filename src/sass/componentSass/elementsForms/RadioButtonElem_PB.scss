@@ -16,7 +16,7 @@
   }
 
   &>.labelOfForm {
-    @include d.configurationLabel (v.$colorTextIni, 0.55rem);
+    @include d.configurationLabel (v.$colorElementIni, 0.55rem);
     text-align: left;
     width: fit-content;
     min-width: auto;

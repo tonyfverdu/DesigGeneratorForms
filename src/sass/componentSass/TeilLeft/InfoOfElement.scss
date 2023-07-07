@@ -3,102 +3,25 @@
 @use '../../designElement' as d;
 
 
-.contInfoOfElement {
-  &>.infoComponent {
-    &>.contHeaderTitle {
-      @include d.desigHeader (transparent);
-
-      &>.title {
-        @include d.desig_H_element2 (v.$colorHell, 1rem);
-      }
-
-      &>.subtitle {
-        @include d.desig_H_element2 (v.$backgroundColorIniT4, 0.6rem);
-      }
-    }
-
-    &>.contInfoForm {
-      background-color: v.$backgroundColorIniWhiteT;
-    }
-  }
-}
-
-.contTitles {
-  &>.titles {
-    @include d.desig_H_element2 (v.$colorNavy, 0.68rem)
-  }
-}
-
-.Fields {
-  @include l.layoutFlexboxColumCenter;
-  align-items: flex-start;
-  min-width: auto;
-  justify-content: flex-start;
-  margin: 0%;
-  padding: 1%;
-
-  &>.Field {
-    @include d.configurationLabel (v.$colorTextIni, 0.64rem);
-    max-width: auto;
-    margin: 0%;
-    padding: 0%;
-    background-color: v.$backgroundColorIniWhite;
-  }
-
-  &>.valueSpan {
-    @include d.configurationText1 (v.$colorTextIni, 0.6rem);
-    min-width: auto;
-    margin: 0%;
-    padding: 0%;
-  }
-
-  &Horizontal {
-    @extend .Fields;
-    @include l.layoutFlexboxRowCenter;
-    align-items: center;
-    justify-content: flex-start;
-
-    &>.valueSpan {
-      margin-left: 2%;
-    }
-
-
-  }
-}
-
-
 .titlePosDim {
-  @include d.desig_H_element2 (v.$colorTextIni, 0.64rem);
+  @include d.desig_H_element2 (v.$colorElementIni, 0.64rem);
   margin: 0%;
   margin-right: 1%;
 }
 
 .subTitlePosDim {
-  @include d.configurationText2 (v.$colorTextIni, 0.6rem);
+  @include d.configurationText2 (v.$colorElementIni, 0.6rem);
 }
 
 .valuePosDim {
-  @include d.configurationText1 (v.$colorTextIni, 0.6rem);
+  @include d.configurationText1 (v.$colorElementIni, 0.6rem);
   margin-right: 3%;
 }
 
 //////////////////////////////
-.select {
-  width:auto;
-  min-width: fit-content;
-  height: 1.4rem;
-  @include d.configurationText1 (v.$colorTextIni, 0.55rem);
-  margin: 0%;
-  padding:0%;
-}
 
 .contInputText {
   @include d.configurationText1 (v.$backgroundColorDunkelGray5, 0.6rem);
-  text-align: left;
-  height: 1.2rem;
-  padding: 0.1%;
-  padding-left: 1%;
-  margin: 0%;
   border-radius: 3px;
   border: 1px solid v.$backgroundColorDunkelGray4;
   transition: all ease 0.20s;
@@ -114,9 +37,9 @@
 
 .contInputNumber {
   @include d.configurationText1 (v.$backgroundColorDunkelGray5, 0.7rem);
-  width: auto;
+  width: 2rem;
   text-align: center;
-  height: 1.2rem;
+  height: 1.4rem;
   padding: 0.1%;
   margin: 0%;
   border-radius: 3px;

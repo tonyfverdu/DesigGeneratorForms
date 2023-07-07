@@ -1,4 +1,5 @@
 .contNumberElement {
+  width: max-content;
   height: 2.4rem;
   transition: all ease 0.2s;
 }
@@ -10,41 +11,44 @@
 }
 .contNumberElement > .labelOfForm {
   position: relative;
-  text-align: center;
-  font-size: 0.65rem;
-  font-weight: 700;
-  color: rgb(9, 9, 9);
-  margin: 0% 2%;
-  padding: 1%;
-  text-align: right;
   width: auto;
   min-width: fit-content;
-  height: 2rem;
+  height: auto;
+  margin: 0% auto;
   padding: 0.1%;
-  margin: 0%;
-  margin-right: 2%;
+  font-weight: 700;
+  text-align: right;
 }
-.contNumberElement > .contInputNumber {
+.contNumberElement > .contInputNumber, .contNumberElement > .numberNotActiv, .contNumberElement > .numberActiv {
   position: relative;
   text-align: justify;
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   font-weight: 400;
   color: rgb(39, 39, 39);
   margin: 0% auto;
-  width: auto;
-  text-align: center;
-  height: 2rem;
+  width: cal(fit-content1%);
+  min-width: fit-content;
   padding: 0.1%;
+  padding-left: 1%;
   margin: 0%;
+  text-align: left;
   border-radius: 3px;
   border: 1px solid rgb(63, 63, 63);
+}
+.contNumberElement > .numberActiv {
   transition: all ease 0.2s;
 }
-.contNumberElement > .contInputNumber:hover, .contNumberElement > .contInputNumber:focus {
+.contNumberElement > .numberActiv:hover, .contNumberElement > .numberActiv:focus {
   cursor: pointer;
   max-height: 2rem;
   border: 1px solid rgb(103, 247, 7);
   box-shadow: 0px 1px 1px 1px rgb(184, 255, 134), inset 0px 0px 0px 1px #03fb03, 1px 1px 3px 4px #99f0b6;
+}
+.contNumberElement > .numberNotActiv {
+  color: rgb(66, 66, 71);
+  font-weight: 600;
+  background-color: rgba(167, 166, 166, 0.6);
+  border: none;
 }
 
 /*# sourceMappingURL=NumberElem_PB.css.map */

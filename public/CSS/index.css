@@ -1,5 +1,85 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,400&display=swap");
 /*   ////////////////////////////////////////       */
+.indigo {
+  color: #6610f2;
+}
+
+.purple {
+  color: #6f42c1;
+}
+
+.pink {
+  color: #d63384;
+}
+
+.red {
+  color: #dc3545;
+}
+
+.orange {
+  color: #fd7e14;
+}
+
+.yellow {
+  color: #fd7e14;
+}
+
+.green {
+  color: #198754;
+}
+
+.teal {
+  color: #20c997;
+}
+
+.cyan {
+  color: #0dcaf0;
+}
+
+.graycolor100 {
+  background-color: #f8f9fa;
+}
+
+.graycolor200 {
+  background-color: #e9ecef;
+}
+
+.graycolor300 {
+  background-color: #dee2e6;
+}
+
+.graycolor400 {
+  background-color: #ced4da;
+}
+
+.graycolor500 {
+  background-color: #adb5bd;
+}
+
+.graycolor600 {
+  background-color: #6c757d;
+}
+
+.graycolor700 {
+  background-color: #495057;
+}
+
+.graycolor800 {
+  background-color: #343a40;
+}
+
+.graycolor900 {
+  background-color: #212529;
+}
+
+.blueGradientColorDunkel {
+  background: linear-gradient(to top, rgb(15, 15, 228) 3%, rgb(3, 3, 204) 10%, rgb(1, 1, 151) 20%, rgb(1, 1, 63) 30%, rgb(0, 0, 0));
+}
+
+.blueGradientColorHell {
+  background: linear-gradient(to bottom, rgb(161, 245, 253) 3%, rgb(127, 192, 198) 10%, rgb(58, 133, 143) 20%, rgb(46, 89, 94) 30%, rgb(176, 248, 251));
+}
+
 *,
 *:before,
 *:after {

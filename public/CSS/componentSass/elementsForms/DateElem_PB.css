@@ -10,19 +10,13 @@
 }
 .contDateElement > .labelOfForm {
   position: relative;
-  text-align: center;
-  font-size: 0.65rem;
-  font-weight: 700;
-  color: rgb(9, 9, 9);
-  margin: 0% 2%;
-  padding: 1%;
-  text-align: right;
   width: auto;
   min-width: fit-content;
-  height: 2rem;
+  height: auto;
+  margin: 0% auto;
   padding: 0.1%;
-  margin: 0%;
-  margin-right: 2%;
+  font-weight: 700;
+  text-align: right;
 }
 .contDateElement > .contInputDate {
   position: relative;

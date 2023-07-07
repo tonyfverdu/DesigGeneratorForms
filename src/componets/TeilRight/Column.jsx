@@ -3,6 +3,7 @@ import { MyContext } from '../../context/TheContext.jsx'
 import MasterElem_PB from '../elementsForms/MasterElem_PB.jsx'
 import IconEditDelete from '../icons/IconEditDelete.jsx'
 import '../../sass/componentSass/TeilRight/Column.scss'
+import { useEffect } from 'react'
 
 
 function Column() {
@@ -10,6 +11,13 @@ function Column() {
   const [toogleColBefore, setToogleColBefore] = useState(false)
   const [toogleColAfter, setToogleColAfter] = useState(false)
   const refElementDiv = useRef(null)
+
+  useEffect(()=>{
+    if(!toogleColBefore && toogleColAfter) {
+      theContext.setArrayColumns([...theContext.arrayColumns, theContext.arrayColumns.length])
+    } 
+    console.log("arrayColumns:  ", theContext.arrayColumns)
+  }, [toogleColBefore, toogleColAfter])
 
   function addNewCol(parAfterBefore) {
     if (parAfterBefore === "after") {
@@ -38,6 +46,7 @@ function Column() {
           elementID={theContext.masterComponentIni.elementID}
           placeholder={theContext.masterComponentIni.placeholder}
           width={theContext.masterComponentIni.dimensions.width}
+          disabled={false}
         />
         <IconEditDelete
           refElementDiv={refElementDiv}

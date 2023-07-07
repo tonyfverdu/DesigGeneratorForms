@@ -81,11 +81,11 @@
 }
 
 //  BUTTONS  ////////////////////////////////
-@mixin buttonTypeNeuMorphismus ($colorText, $sizeText) {
+@mixin buttonTypeNeuMorphismus ($colorElement, $sizeText) {
   display: block;
   margin: 0% auto;
   padding: 4% 9%;
-  color: $colorText;
+  color: $colorElement;
   text-align: center;
   text-decoration: none;
   text-shadow: v.$textShadowTitleHeader1Hoover;
@@ -97,11 +97,11 @@
   box-shadow: -3px -3px 7px #949494,
     2px 2px 4px #ffffff;
 }
-@mixin buttonTypeNeuMorphismus2 ($colorText) {
+@mixin buttonTypeNeuMorphismus2 ($colorElement) {
   display: block;
   margin: 0% auto;
   padding: 4% 9%;
-  color: $colorText;
+  color: $colorElement;
   text-align: center;
   text-decoration: none;
   text-shadow: v.$textShadowTitleHeader1Hoover;
@@ -113,13 +113,13 @@
     2px 2px 4px #ffffff;
 }
 
-@mixin buttonTypeNeuMorphismus3 ($colorText) {
+@mixin buttonTypeNeuMorphismus3 ($colorElement) {
   width: 3rem;
   height: 3rem;
   display: block;
   margin: 0%;
   padding: 1%;
-  color: $colorText;
+  color: $colorElementIni;
   text-align: center;
   text-decoration: none;
   text-shadow: v.$textShadowTitleHeader1Hoover;

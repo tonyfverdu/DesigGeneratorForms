@@ -8,43 +8,76 @@
   outline-offset: 3px;
   border-radius: 2px;
 }
+.contPhoneElement:hover .bubble, .contPhoneElement:focus .bubble {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
 .contPhoneElement > .labelOfForm {
   position: relative;
-  text-align: center;
-  font-size: 0.65rem;
-  font-weight: 700;
-  color: rgb(9, 9, 9);
-  margin: 0% 2%;
-  padding: 1%;
-  text-align: right;
   width: auto;
   min-width: fit-content;
-  height: 2rem;
+  height: auto;
+  margin: 0% auto;
   padding: 0.1%;
-  margin: 0%;
-  margin-right: 2%;
+  font-weight: 700;
+  text-align: right;
 }
-.contPhoneElement > .contInputPhone {
+.contPhoneElement > .contInputPhone, .contPhoneElement > .phoneNotActiv, .contPhoneElement > .phoneActiv {
   position: relative;
   text-align: justify;
   font-size: 0.6rem;
   font-weight: 400;
   color: rgb(39, 39, 39);
   margin: 0% auto;
-  text-align: left;
+  width: cal(fit-content1%);
+  min-width: fit-content;
   height: 2rem;
+  min-height: auto;
   padding: 0.1%;
-  padding-left: 1%;
+  padding-left: 2%;
   margin: 0%;
+  text-align: left;
   border-radius: 3px;
   border: 1px solid rgb(63, 63, 63);
+}
+.contPhoneElement > .phoneActiv {
   transition: all ease 0.2s;
 }
-.contPhoneElement > .contInputPhone:hover, .contPhoneElement > .contInputPhone:focus {
+.contPhoneElement > .phoneActiv:hover, .contPhoneElement > .phoneActiv:focus {
   cursor: pointer;
   max-height: 2rem;
   border: 1px solid rgb(103, 247, 7);
   box-shadow: 0px 1px 1px 1px rgb(184, 255, 134), inset 0px 0px 0px 1px #03fb03, 1px 1px 3px 4px #99f0b6;
+}
+.contPhoneElement > .phoneNotActiv {
+  color: rgb(66, 66, 71);
+  font-weight: 600;
+  background-color: rgba(167, 166, 166, 0.6);
+  border: none;
+}
+.contPhoneElement > .bubble {
+  position: absolute;
+  display: none;
+  z-index: 100;
+  top: 156%;
+  left: -3.6rem;
+  border-radius: 9px;
+  background-color: rgb(253, 253, 253);
+  border: 1px solid rgba(167, 166, 166, 0.6);
+}
+.contPhoneElement > .bubble:after {
+  content: "";
+  position: absolute;
+  top: -36%;
+  left: 5%;
+  border-bottom: 10px solid blue;
+  border-bottom-color: inherit;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
 }
 
 /*# sourceMappingURL=PhoneElem_PB.css.map */

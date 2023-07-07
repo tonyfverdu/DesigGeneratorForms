@@ -13,28 +13,39 @@
     outline: 2px ridge v.$colorHell2;
     outline-offset: 3px;
     border-radius: 2px;
+
+    .bubble {
+      @include l.layoutFlexboxRowCenter;
+    }
   }
 
   &>.labelOfForm {
-    @include d.configurationLabel (v.$colorTextIni, 0.65rem);
-    text-align: right;
+    position: relative;
     width: auto;
     min-width: fit-content;
-    height: 2rem;
+    height: auto;
+    margin: 0% auto;
     padding: 0.1%;
-    margin: 0%;
-    margin-right: 2%;
+    font-weight: 700;
+    text-align: right;
   }
 
   &>.contInputPhone {
     @include d.configurationText1 (v.$backgroundColorDunkelGray5, 0.6rem);
-    text-align: left;
+    width: cal(fit-content + 1%);
+    min-width: fit-content;
     height: 2rem;
+    min-height: auto;
     padding: 0.1%;
-    padding-left: 1%;
+    padding-left: 2%;
     margin: 0%;
+    text-align: left;
     border-radius: 3px;
     border: 1px solid v.$backgroundColorDunkelGray4;
+  }
+
+  &>.phoneActiv {
+    @extend .contInputPhone;
     transition: all ease 0.20s;
 
     &:hover,
@@ -43,6 +54,37 @@
       max-height: 2rem;
       border: 1px solid v.$colorHell4White;
       box-shadow: v.$boxShadow16;
+    }
+  }
+
+  &>.phoneNotActiv {
+    @extend .contInputPhone;
+    color: v.$backgroundColorDunkelGray;
+    font-weight: 600;
+    background-color: v.$backgroundColorHellGrayT;
+    border: none;
+  }
+
+  &>.bubble {
+    position: absolute;
+    display: none;
+    z-index: 100;
+    top: 156%;
+    left: -3.6rem;
+    border-radius: 9px;
+    background-color: v.$backgroundColorIniWhite;
+    border: 1px solid v.$backgroundColorHellGrayT;
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: -36%;
+      left: 5%;
+      ;
+      border-bottom: 10px solid blue;
+      border-bottom-color: inherit;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
     }
   }
 }

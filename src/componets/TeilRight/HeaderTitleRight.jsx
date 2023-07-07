@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { MyContext } from '../../context/TheContext';
+import SelectForm from './SelectForm.jsx';
 import SelectLayoutForm from './SelectLayoutForm';
 import GroupButtonsSelect from '../GroupButtonsSelect';
 import IconsElem from '../icons/IconsElem';
@@ -51,19 +52,38 @@ function HeaderTitleRight({ titleOfDesigner, titleSelectState, titleCreate }) {
           />
         </div>
       </div>
+      
       <div className="col-7 d-flex justify-content-end align-items-center">
         <div className="d-flex flex-column justify-content-between align-items-center">
-          {theContext.optionDesigner === "component" ?
-            <>
-              <SelectLayoutForm
-                titleSelectState={component}
-              />
-              <IconsElem
-                height={"1"}
-              />
-            </>
-            :
-            <></>
+          {
+            theContext.optionDesigner === "form" ?
+              <>
+                <SelectLayoutForm
+                  titleSelectState={form}
+                />
+                <SelectForm
+                  height={"1"}
+                />
+              </>
+              :
+              theContext.optionDesigner === "block" ?
+                <>
+                <SelectLayoutForm
+                  titleSelectState={block}
+                />
+                </>
+                :
+                theContext.optionDesigner === "component" ?
+                  <>
+                    <SelectLayoutForm
+                      titleSelectState={component}
+                    />
+                    <IconsElem
+                      height={"1"}
+                    />
+                  </>
+                  :
+                  <></>
           }
         </div>
       </div>

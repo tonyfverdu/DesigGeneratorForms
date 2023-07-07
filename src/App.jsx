@@ -28,7 +28,10 @@ import InfoOfElement from './componets/TeilLeft/InfoOfElement'
 //  Left Teil
 
 //  Right Teil
-import HeaderTitleRight from './componets/TeilRight/HeaderTitleRight'
+import HeaderTitleRight from './componets/TeilRight/HeaderTitleRight.jsx'
+import SelectForm from './componets/TeilRight/SelectForm.jsx'
+import PrintFormInfo from './componets/managementJSON/PrintFormInfo.jsx'
+import FromJSONToForm from './componets/managementJSON/FromJSONToForm.jsx'
 
 // function Index() {
 //   return <h2>Dynamic Form</h2>;
@@ -169,18 +172,21 @@ function App() {
 
 
         {/* ****     Recths Teil: Processing Form layout and components    **** */}
-        <section className="contColumRight w-75 container d-flex flex-column justify-content-center align-items-center mb-0 mt-1 mx-1 ms-4 p-1 bg-body">
+        <section className="contColumRight w-75 container d-flex flex-column justify-content-center align-items-center 
+        mb-0 mt-1 mx-1 ms-4 p-1 bg-body">
           {/* ****      Form Processing Menu      **** */}
           <div className="row container-fluid contTopRight" >
-            <HeaderTitleRight
-              titleOfDesigner={TITLES_OF_APP.TITLE_TYPE_DESIGNER}
-              titleSelectState={TITLES_OF_APP.TITLE_SELECT_STATE}
-              titleCreate={TITLES_OF_APP.TITLE_DESIGNER_FBC}
-            />
+            <div className="col" >
+              <HeaderTitleRight
+                titleOfDesigner={TITLES_OF_APP.TITLE_TYPE_DESIGNER}
+                titleSelectState={TITLES_OF_APP.TITLE_SELECT_STATE}
+                titleCreate={TITLES_OF_APP.TITLE_DESIGNER_FBC}
+              />
+            </div>
           </div>
 
           {/* ****      Form Layout               **** */}
-          {
+          {/* {
             theContext.optionDesigner === "component" ?
               theContext.arrayOfRows.map((row, index) => {
                 return <div key={index} className="row container-fluid d-flex flex-row justify-content-start align-item-center p-1 py-2 my-1 bg-light 
@@ -192,9 +198,14 @@ function App() {
               <>
                 <p className="text-dark display-4 fw-bold p-6 mt-2 me-2">Aqui viene el layout de:  <span className="text-danger fw-bolder display-2">{theContext.optionDesigner}</span></p>
               </>
-          }
+          } */}
 
           {/* <ComponentsList /> */}
+
+          {/* //  Ejemplo de Formulario Completo para pruebas:  <PrintFormInfo /> */}
+          <PrintFormInfo />
+
+          {/* <FromJSONToForm /> */}
         </section>
       </main>
     </div>

@@ -3,7 +3,7 @@ import { MyContext } from '../../context/TheContext.jsx'
 import ShowElements from '../TeilLeft/ShowElements.jsx'
 import '../../sass/componentSass/elementsForms/MasterElem_PB.scss'
 
-function MasterElem_PB({ elementID, placeholder, width }) {
+function MasterElem_PB({ elementID, placeholder, width, disabled=false }) {
   const [toogleActiv, setToogleActiv] = useState(false)
 
   const refElement = useRef(null)
@@ -31,7 +31,7 @@ function MasterElem_PB({ elementID, placeholder, width }) {
         border border-1 border-secondary"  >
             <label ref={refElement} id={elementID}
               className="buttonMasterElem d-flex flex-row justify-content-start align-items-center m-0 p-1"
-              required="true" disabled="false" value={placeholder} data-row="0" data-col="0" data-width={width}>
+              required disabled={disabled} value={placeholder} data-row="0" data-col="0" data-width={width}>
               {placeholder}
             </label>
           </div>

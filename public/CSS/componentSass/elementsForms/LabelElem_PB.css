@@ -1,13 +1,13 @@
 .contLabelElement_PB {
   width: auto;
-  min-width: fit-content;
+  min-width: cal(max-content0.1%);
   height: 2.4rem;
   transition: all ease 0.2s;
 }
 .contLabelElement_PB > .bubble {
   position: relative;
   display: none;
-  top: 180%;
+  top: 156%;
   left: -3.6rem;
   width: 15rem;
   height: 3rem;
@@ -18,8 +18,8 @@
 .contLabelElement_PB > .bubble:after {
   content: "";
   position: absolute;
-  top: -18%;
-  left: 12%;
+  top: -36%;
+  left: 5%;
   border-bottom: 10px solid blue;
   border-bottom-color: inherit;
   border-left: 10px solid transparent;
@@ -27,9 +27,6 @@
 }
 .contLabelElement_PB:hover, .contLabelElement_PB:focus {
   cursor: pointer;
-  outline: 2px ridge rgb(252, 248, 2);
-  outline-offset: 3px;
-  border-radius: 2px;
 }
 .contLabelElement_PB:hover .bubble, .contLabelElement_PB:focus .bubble {
   position: relative;
@@ -38,20 +35,18 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  width: cal(fit-content0.5%);
+  height: auto;
+  z-index: 100;
 }
 .contLabelElement_PB > .labelElement {
   position: relative;
-  text-align: center;
-  font-size: 0.65rem;
-  font-weight: 700;
-  color: rgb(9, 9, 9);
-  margin: 0% 2%;
-  padding: 1%;
   width: auto;
   min-width: fit-content;
-  height: 2rem;
-  padding: 0.1%;
+  height: auto;
   margin: 0% auto;
+  padding: 0.1%;
+  font-weight: 700;
   text-align: center;
 }
 

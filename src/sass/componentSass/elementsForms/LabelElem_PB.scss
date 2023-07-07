@@ -4,15 +4,15 @@
 
 
 .contLabelElement_PB {
-  width: auto;
-  min-width: fit-content;
+  width:auto;
+  min-width: cal(max-content + 0.1%);
   height: 2.4rem;
   transition: all ease 0.20s;
 
   &>.bubble {
     position: relative;
     display: none;
-    top: 180%;
+    top: 156%;
     left: -3.6rem;
     width: 15rem;
     height: 3rem;
@@ -23,8 +23,8 @@
     &:after {
       content: "";
       position: absolute;
-      top: -18%;
-      left: 12%;
+      top: -36%;
+      left: 5%;
       border-bottom: 10px solid blue;
       border-bottom-color: inherit;
       border-left: 10px solid transparent;
@@ -35,22 +35,23 @@
   &:hover,
   &:focus {
     cursor: pointer;
-    outline: 2px ridge v.$colorHell2;
-    outline-offset: 3px;
-    border-radius: 2px;
 
     .bubble {
       @include l.layoutFlexboxRowCenter;
+      width: cal(fit-content + 0.5%);
+      height: auto;
+      z-index: 100;
     }
   }
 
   &>.labelElement {
-    @include d.configurationLabel (v.$colorTextIni, 0.65rem);
+    position: relative;
     width: auto;
     min-width: fit-content;
-    height: 2rem;
-    padding: 0.1%;
+    height: auto;
     margin: 0% auto;
+    padding: 0.1%;
+    font-weight: 700;
     text-align: center;
   }
 }

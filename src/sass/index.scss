@@ -5,6 +5,89 @@
 @use './glassMorphismus' as g;
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,400&display=swap');
 
+//  Colour palette
+.indigo {
+  color: #6610f2;
+}
+
+.purple {
+  color: #6f42c1;
+}
+
+.pink {
+  color: #d63384;
+}
+
+.red {
+  color: #dc3545;
+}
+
+.orange {
+  color: #fd7e14;
+}
+
+.yellow {
+  color: #fd7e14;
+}
+
+.green {
+  color: #198754;
+}
+
+.teal {
+  color: #20c997;
+}
+
+.cyan {
+  color: #0dcaf0;
+}
+
+
+//  Grey colour palette
+.graycolor100 {
+  background-color: #f8f9fa;
+}
+
+.graycolor200 {
+  background-color: #e9ecef;
+}
+
+.graycolor300 {
+  background-color: #dee2e6;
+}
+
+.graycolor400 {
+  background-color: #ced4da;
+}
+
+.graycolor500 {
+  background-color: #adb5bd;
+}
+
+.graycolor600 {
+  background-color: #6c757d;
+}
+
+.graycolor700 {
+  background-color: #495057;
+}
+
+.graycolor800 {
+  background-color: #343a40;
+}
+
+.graycolor900 {
+  background-color: #212529;
+}
+
+.blueGradientColorDunkel {
+  background: v.$gradientSliceBluedark;
+}
+
+.blueGradientColorHell {
+  background: v.$gradientSliceBluedark2;
+}
+
 *,
 *:before,
 *:after {

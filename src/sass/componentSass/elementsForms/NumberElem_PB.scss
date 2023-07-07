@@ -4,6 +4,7 @@
 
 
 .contNumberElement {
+  width: max-content;
   height: 2.4rem;
   transition: all ease 0.20s;
 
@@ -13,28 +14,37 @@
     outline: 2px ridge v.$colorHell2;
     outline-offset: 3px;
     border-radius: 2px;
+
+    // .bubble {
+    //   @include l.layoutFlexboxRowCenter;
+    // }
   }
 
   &>.labelOfForm {
-    @include d.configurationLabel (v.$colorTextIni, 0.65rem);
-    text-align: right;
+    position: relative;
     width: auto;
     min-width: fit-content;
-    height: 2rem;
+    height: auto;
+    margin: 0% auto;
     padding: 0.1%;
-    margin: 0%;
-    margin-right: 2%;
+    font-weight: 700;
+    text-align: right;
   }
 
   &>.contInputNumber {
-    @include d.configurationText1 (v.$backgroundColorDunkelGray5, 0.7rem);
-    width: auto;
-    text-align: center;
-    height: 2rem;
+    @include d.configurationText1 (v.$backgroundColorDunkelGray5, 0.6rem);
+    width: cal(fit-content + 1%);
+    min-width: fit-content;
     padding: 0.1%;
+    padding-left: 1%;
     margin: 0%;
+    text-align: left;
     border-radius: 3px;
     border: 1px solid v.$backgroundColorDunkelGray4;
+  }
+
+  &>.numberActiv {
+    @extend .contInputNumber;
     transition: all ease 0.20s;
 
     &:hover,
@@ -45,4 +55,35 @@
       box-shadow: v.$boxShadow16;
     }
   }
+
+  &>.numberNotActiv {
+    @extend .contInputNumber;
+    color: v.$backgroundColorDunkelGray;
+    font-weight: 600;
+    background-color: v.$backgroundColorHellGrayT;
+    border: none;
+  }
+
+  // &>.bubble {
+  //   position: absolute;
+  //   display: none;
+  //   width: 20rem;
+  //   height: auto;
+  //   top: 180%;
+  //   left: -3.6rem;
+  //   border-radius: 9px;
+  //   background-color: v.$backgroundColorIniWhite;
+  //   border: 1px solid v.$backgroundColorHellGrayT;
+
+  //   &:after {
+  //     content: "";
+  //     position: absolute;
+  //     top: -25%;
+  //     left: 12%;
+  //     border-bottom: 10px solid blue;
+  //     border-bottom-color: inherit;
+  //     border-left: 10px solid transparent;
+  //     border-right: 10px solid transparent;
+  //   }
+  // }
 }

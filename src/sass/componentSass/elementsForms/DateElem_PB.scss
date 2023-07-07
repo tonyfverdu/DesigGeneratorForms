@@ -16,14 +16,14 @@
   }
 
   &>.labelOfForm {
-    @include d.configurationLabel (v.$colorTextIni, 0.65rem);
-    text-align: right;
+    position: relative;
     width: auto;
     min-width: fit-content;
-    height: 2rem;
+    height: auto;
+    margin: 0% auto;
     padding: 0.1%;
-    margin: 0%;
-    margin-right: 2%;
+    font-weight: 700;
+    text-align: right;
   }
 
   &>.contInputDate {

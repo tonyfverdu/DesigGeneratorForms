@@ -18,18 +18,24 @@ export const TITLES_RCM_LEFT = {
   SUBTITLE_OF_SECTION: "Form - Blocks- Components Variables Info",
 
   //  General Form Data
-  FORM_TITLE: "Form: ",
+  FORM_TITLE: "Title: ",
   FORM_ID_TITLE: "Code: ",
-  TITLE_FORM_READONLY: "Read only?: ",
-  VALUE_FORM_READONLY: false,
+  FORM_TYPE: "Type: ",
+  FORM_VERSION: "Version: ",
+  FORM_DATE_CREATION: "Creation: ",
+  FORM_DESCRIPTION: "Description: ",
+  FORM_READONLY: "Read only?: ",
+  FORM_BLOCKS: "Blocks: ",
 
 
   //  General Block Data
   BLOCK_TITLE: "Block: ",
-  BLOCK_ID_TITLE: "Code",
-  VALUE_BLOCK_ID: "block_01_Form_00035",
-  TITLE_DISPLAY_ORDER: "Display Order: ",
-  TITLE_BLOCK_NUMBER: " of  ",
+  BLOCK_ID_TITLE: "Code: ",
+  BLOCK_LABEL: "Label: ",
+  BLOCK_DESCRIPTION: "Description: ",
+  BLOCK_ORDER_DISPLAY: "Order: ",
+  BLOCK_COMPONENTS: "Components: ",
+
 
   //  General Component Data
   COMPONENT_TITLE: "Ask: ",
@@ -42,7 +48,7 @@ export const TITLES_RCM_LEFT = {
   COMPONENT_PLACEHOLDER: "Default: ",
   COMPONENT_VALUE: "Value: ",
   COMPONENT_SIZE: "Size: ",
-  COMPONENT_POSITION: "Position",
+  COMPONENT_POSITION: "Position: ",
   COMPONENT_POSITION_ROW: "Row: ",
   COMPONENT_POSITION_COLUMN: "Column: ",
   COMPONENT_DIMENSION: "Dimension: ",
@@ -69,6 +75,8 @@ export const GROUP_BUTTONS_SELECT_LEFT = {
   groupButton: "select_left"
 }
 
+
+// Dictionary - WorterBuch
 export const ELEMENT_TYPE = {
   PRINT: 'print',
   TEXT: 'text',
@@ -79,6 +87,10 @@ export const ELEMENT_TYPE = {
   SIMPLE_SELECT: 'simple-select'
 }
 
+//  CONSTANT DATA
+
+
+//  Lernen
 export const ACTIONS = {
   DRAG_END: 'DRAG_END',
   OPTION_DRAG_END: 'OPTION_DRAG_END',

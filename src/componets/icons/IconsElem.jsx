@@ -17,9 +17,9 @@ import '../../sass/componentSass/icons/IconsElem.scss'
 
 
 function IconsElem({ height }) {
-  const [elementIcons, setElementIcons] = useState("")
   const theContext = useContext(MyContext)
-
+  const [elementIcons, setElementIcons] = useState("")
+  
   useEffect(() => {
     theContext.setElement(elementIcons)
   }, [elementIcons])

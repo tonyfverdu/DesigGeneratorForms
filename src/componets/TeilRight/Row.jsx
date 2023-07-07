@@ -23,7 +23,7 @@ function Row() {
       setContRow(theContext.arrayOfRows.length)
       theContext.setNumRow(theContext.contRow)
     } else {
-      theContext.setArrayOfRows(theContext.arrayOfRows.filter((row, index) => index < contRow))
+      theContext.setArrayOfRows(theContext.arrayOfRows.filter((row, index) => index !== contRow))
       setContRow(theContext.arrayOfRows.length)
       theContext.setNumRow(theContext.contRow)
     }

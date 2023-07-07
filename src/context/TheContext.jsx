@@ -4,6 +4,10 @@ import currentDate from '../functions/currentDate.js'
 
 export const MyContext = createContext(null)
 
+//  Importing initial data from the form template and examples of Forms
+import formJSON_plantilla from '../Data/JSONFormPlantillaObj.js'
+import form_survey_disease_001 from '../Data/JSONFormDataObj_01.js'
+
 
 function TheContext({ children }) {
   const [toogleReadLeft, setToogleReadLeft] = useState(false)
@@ -13,22 +17,38 @@ function TheContext({ children }) {
   const [optionDesigner, setOptionDesigner] = useState("form")
   const [optionLayout, setOptionLayout] = useState("read")
 
+  const [JSONEingabenForm, setJSONEingabenForm] = useState("")   //  <== Eingaben ( vor String JSON zur JSON-Formulardaten)
+  const [JSONAusgabenForm, setJSONAusgabenForm] = useState("")   //  <== Ausgaben (vor JSON-Formulardaten zur String JSON)
+  const [toggleJSONEingaben, setToggleJSONEingaben] = useState(false)
+
+  //  Funtions of select Forms, Blocks and Components
+  // IV.-  Dieses Funktion hat keine machen
+  function handleSubmitFormIni(ev) {
+    ev.preventDefault();
+  }
+
+  const [valueOfForm, setValueOfForm] = useState("")
+
+  // V.-  Dieses Funktion hat keine machen
+  function handleButtonSubmitFormDyn(ev) {
+    ev.preventDefault()
+    setToggleJSONEingaben(!toggleJSONEingaben)
+
+    console.log("Vamos a ver, el Formulario seleccionado es:  ", valueOfForm)
+  }
+
   const [numRow, setNumRow] = useState(0)
   const [numCol, setNumCol] = useState(1)
 
   const [arrayOfRows, setArrayOfRows] = useState([<RowIni />])
 
   const [arrayRows, setArrayRows] = useState([0])
-  const [arrayColumns, setArrayColumns] = useState([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}])
+  const [arrayColumns, setArrayColumns] = useState([0])
 
-  const theLayoutBlock = useState({
+  const [theLayoutBlock, setTheLayoutBlock] = useState({
     block: "",
-    layout: {
-      rowLayout: arrayRows,
-      colLayout: arrayColumns
-    }
+    layout: [arrayRows][arrayColumns]
   })
-  const [layoutBlock, setLayoutBlock] = useState([""][""])
 
   const [label, setLabel] = useState("")
   const pruebaLabelElement = {
@@ -194,6 +214,10 @@ function TheContext({ children }) {
     ]
   }
 
+  const [table, setTable] = useState(null)
+
+  const [icon, setIcon] = useState(null)
+
   //  0.-  Name - type of the selected Component
   const [element, setElement] = useState("master")
 
@@ -234,23 +258,38 @@ function TheContext({ children }) {
   //  2.- Component Master ini
   const masterComponentIni = {
     elementID: "id_Master",
-    type: "master",
+    titleElement: "Master Component",
+    typeElement: "master",
     blockOrigen: undefined,
     orderInBlock: undefined,
-    position: { row: undefined, col: undefined },
-    dimensions: { width: 1, height: "2.4rem" },
     labelElement: "Master Component",
     required: true,
     disabled: false,
-    checked: undefined,
     response: [""],
     placeholder: "Master Component",
     size: 0,
-    optionsValues: [""],
-    legend: "",
+    position: { rowElem: 0, colElem: 0},
+    dimensions: { width: 1, height: "2.4rem" },
+    valueComponent: undefined,
+    setComponent: undefined,
     name: "",
-    valueComponent: "",
-    setComponent: "",
+    borderElement: true,
+    colorElement: "black",
+    fontSizeElement: "0.6rem",
+
+    //  Element Select
+    optionsValues: [],
+
+    //  Element Area Text 
+    readonly: false,
+    row: 0,
+    col: 0,
+
+    //  Element Checkbox
+    checked: false,
+    
+    //  Element Radio Buttons
+    legend: "",
     radioButtons: [
       {
         elementID: "",
@@ -262,8 +301,17 @@ function TheContext({ children }) {
         response: [false],
         setRadioButton: null
       }
-    ]
+    ],
+
+    //  Element Table
+
+    //  Element Icon Image
+    widthImage: 0,
+    srcURLIcon: "", 
+    nameImage: ""
   }
+
+
   //  3.-  Component in the state "read"
   const [componentRead, setComponentRead] = useState(objComponentIni)
 
@@ -300,11 +348,32 @@ function TheContext({ children }) {
   //  3.-  Block Modify
   const [blockModify, setBlockModify] = useState({})
 
+  //  View, add and delete vaccines
+  const [toogleViewVaccines, setViewVaccines] = useState(false)
+  const [toogleAddRowVaccines, setToogleAddRowVaccines] = useState(false)
+
+
+  /////////////////////////////////////////////////////////////////////////////////////////////
+
+  //    ***************************     FORM OBJECT   *****************************************
+  const [formObject, setFormObject] = useState(form_survey_disease_001)
+
+   /////////////////////////////////////////////////////////////////////////////////////////////
 
   //  State Variables from Context
   const exportData = {
+    formObject, setFormObject,
+
     toogleReadLeft, setToogleReadLeft, toogleCreateLeft, setToogleCreateLeft, toogleModifyLeft, setToogleModifyLeft,
     optionState, setOptionState, optionDesigner, setOptionDesigner, optionLayout, setOptionLayout,
+
+    JSONEingabenForm, setJSONEingabenForm,
+    JSONAusgabenForm, setJSONAusgabenForm,
+    toggleJSONEingaben, setToggleJSONEingaben,
+
+    handleSubmitFormIni,
+    valueOfForm, setValueOfForm,
+    handleButtonSubmitFormDyn,
 
     masterComponentIni,
 
@@ -313,10 +382,9 @@ function TheContext({ children }) {
 
     blockRead, setBlockRead, blockCreate, setBlockCreate, blockModify, setBlockModify,
 
-    numRow, setNumRow, numCol, setNumCol, arrayOfRows, setArrayOfRows, 
+    numRow, setNumRow, numCol, setNumCol, arrayOfRows, setArrayOfRows,
     arrayRows, setArrayRows, arrayColumns, setArrayColumns,
-    layoutBlock, setLayoutBlock,
-    theLayoutBlock,
+    theLayoutBlock, setTheLayoutBlock,
 
     element, setElement,
     label, setLabel, pruebaLabelElement,
@@ -328,7 +396,12 @@ function TheContext({ children }) {
     areaText, setAreaText, pruebaAreaTextElement,
     select, setSelect, pruebaSelectElement,
     checkbox, setCheckbox, pruebaCheckboxElement,
-    radioButton, setRadioButton, radioButtons, setRadioButtons, pruebaRadioButtonElement, pruebaRadioButtons
+    radioButton, setRadioButton, radioButtons, setRadioButtons, pruebaRadioButtonElement, pruebaRadioButtons,
+    table, setTable,
+
+    toogleViewVaccines, setViewVaccines, toogleAddRowVaccines, setToogleAddRowVaccines,
+
+    icon, setIcon
   }
 
 

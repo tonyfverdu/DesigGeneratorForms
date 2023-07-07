@@ -1,23 +1,30 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext, useRef } from 'react'
+import { MyContext } from '../../context/TheContext.jsx'
 import '../../sass/componentSass/elementsForms/CheckboxElem_PB.scss'
 
 
 function CheckboxElem_PB({ elementID, labelElement, required, disabled = false, checked = false, response, setCheckbox }) {
+  const theContext = useContext(MyContext)
   const [responseCheckbox, setResponseCheckbox] = useState(response[0])
   const [valueOfCheckbox, setValueOfCheckbox] = useState(checked)
+  const elementRef = useRef(null)
+  const OrderRef = useRef(null)
+  const RowYRef = useRef(null)
+  const ColXRef = useRef(null)
 
   useEffect(() => {
     setValueOfCheckbox(checked)
-    setCheckbox(checked)
+    setCheckbox(valueOfCheckbox)
   }, [])
 
-  useEffect(() => {
-    setCheckbox(valueOfCheckbox);
-  }, [valueOfCheckbox])
+  // useEffect(() => {
+  //   setCheckbox(valueOfCheckbox);
+  // }, [valueOfCheckbox])
 
   function handleChange(ev) {
     ev.preventDefault();
     setValueOfCheckbox(ev.target.checked);
+    setCheckbox(valueOfCheckbox);
   }
 
   return (

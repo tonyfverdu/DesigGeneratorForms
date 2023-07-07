@@ -1,38 +1,35 @@
 .contAreaTextElement {
   height: auto;
+  min-height: fit-content;
   transition: all ease 0.2s;
 }
 .contAreaTextElement:hover, .contAreaTextElement:focus {
   cursor: pointer;
+  height: auto;
+  min-height: fit-content;
   outline: 2px ridge rgb(252, 248, 2);
   outline-offset: 3px;
   border-radius: 2px;
 }
-.contAreaTextElement > .labelOfForm {
-  position: relative;
-  text-align: center;
-  font-size: 0.65rem;
-  font-weight: 700;
-  color: rgb(9, 9, 9);
-  margin: 0% 2%;
-  padding: 1%;
-  text-align: left;
-  width: fit-content;
-  min-width: auto;
-  height: 2rem;
-  padding: 0.1%;
-  margin: 0%;
-  margin-right: 2%;
-}
-.contAreaTextElement > .contAreaText, .contAreaTextElement > .areaTextNotActiv, .contAreaTextElement > .areaTextActiv {
+.contAreaTextElement:hover .bubble, .contAreaTextElement:focus .bubble {
   position: relative;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   width: 100%;
-  justify-content: flex-start;
-  align-items: flex-start;
+}
+.contAreaTextElement > .labelOfForm {
+  position: relative;
+  width: auto;
+  min-width: fit-content;
+  height: auto;
+  margin: 0%;
+  padding: 0.1%;
+  font-weight: 700;
+  text-align: left;
+}
+.contAreaTextElement > .contAreaText, .contAreaTextElement > .areaTextNotActiv, .contAreaTextElement > .areaTextActiv {
   position: relative;
   text-align: justify;
   font-size: 0.6rem;
@@ -41,8 +38,8 @@
   margin: 0% auto;
   width: cal(fit-content1%);
   min-width: fit-content;
-  min-height: auto;
-  padding: 0.3%;
+  padding: 0.1%;
+  padding-left: 2%;
   margin: 0%;
   resize: none;
   text-align: left;
@@ -50,10 +47,11 @@
   border: 1px solid rgb(63, 63, 63);
 }
 .contAreaTextElement > .areaTextActiv {
-  transition: all ease 0.35s;
+  transition: all ease 0.2s;
 }
 .contAreaTextElement > .areaTextActiv:hover, .contAreaTextElement > .areaTextActiv:focus {
   cursor: pointer;
+  max-height: 2rem;
   border: 1px solid rgb(103, 247, 7);
   box-shadow: 0px 1px 1px 1px rgb(184, 255, 134), inset 0px 0px 0px 1px #03fb03, 1px 1px 3px 4px #99f0b6;
 }
@@ -62,6 +60,26 @@
   font-weight: 600;
   background-color: rgba(167, 166, 166, 0.6);
   border: none;
+}
+.contAreaTextElement > .bubble {
+  position: absolute;
+  display: none;
+  z-index: 100;
+  top: 156%;
+  left: -3.6rem;
+  border-radius: 9px;
+  background-color: rgb(253, 253, 253);
+  border: 1px solid rgba(167, 166, 166, 0.6);
+}
+.contAreaTextElement > .bubble:after {
+  content: "";
+  position: absolute;
+  top: -36%;
+  left: 5%;
+  border-bottom: 10px solid blue;
+  border-bottom-color: inherit;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
 }
 
 /*# sourceMappingURL=AreaTextElem_PB.css.map */

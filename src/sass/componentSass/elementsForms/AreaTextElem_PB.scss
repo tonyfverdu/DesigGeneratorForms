@@ -5,60 +5,89 @@
 
 .contAreaTextElement {
   height: auto;
+  min-height: fit-content;
   transition: all ease 0.20s;
 
   &:hover,
   &:focus {
     cursor: pointer;
+    height: auto;
+    min-height: fit-content;
     outline: 2px ridge v.$colorHell2;
     outline-offset: 3px;
     border-radius: 2px;
+
+    .bubble {
+      @include l.layoutFlexboxRowCenter;
+    }
   }
 
   &>.labelOfForm {
-    @include d.configurationLabel (v.$colorTextIni, 0.65rem);
-    text-align: left;
-    width: fit-content;
-    min-width: auto;
-    height: 2rem;
-    padding: 0.1%;
+    position: relative;
+    width: auto;
+    min-width: fit-content;
+    height: auto;
     margin: 0%;
-    margin-right: 2%;
+    padding: 0.1%;
+    font-weight: 700;
+    text-align: left;
   }
 
   &>.contAreaText {
-    @include l.layoutFlexboxRowCenter;
-    justify-content: flex-start;
-    align-items: flex-start;
     @include d.configurationText1 (v.$backgroundColorDunkelGray5, 0.6rem);
     width: cal(fit-content + 1%);
     min-width: fit-content;
-    min-height:auto;
-    padding: 0.3%;
+    padding: 0.1%;
+    padding-left: 2%;
     margin: 0%;
     resize: none;
     text-align: left;
     border-radius: 3px;
     border: 1px solid v.$backgroundColorDunkelGray4;
-  
+
   }
 
   &>.areaTextActiv {
     @extend .contAreaText;
-    transition: all ease 0.35s;
+    transition: all ease 0.20s;
 
     &:hover,
     &:focus {
       cursor: pointer;
+      max-height: 2rem;
       border: 1px solid v.$colorHell4White;
       box-shadow: v.$boxShadow16;
     }
   }
+
   &>.areaTextNotActiv {
     @extend .contAreaText;
     color: v.$backgroundColorDunkelGray;
     font-weight: 600;
     background-color: v.$backgroundColorHellGrayT;
     border: none;
+  }
+
+  &>.bubble {
+    position: absolute;
+    display: none;
+    z-index: 100;
+    top: 156%;
+    left: -3.6rem;
+    border-radius: 9px;
+    background-color: v.$backgroundColorIniWhite;
+    border: 1px solid v.$backgroundColorHellGrayT;
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: -36%;
+      left: 5%;
+      ;
+      border-bottom: 10px solid blue;
+      border-bottom-color: inherit;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+    }
   }
 }

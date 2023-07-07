@@ -13,6 +13,7 @@ import SelectElement_PB from '../elementsForms/SelectElem_PB.jsx'
 import CheckboxElem_PB from '../elementsForms/CheckboxElem_PB.jsx'
 // import RadioButtonElem_PB from '../elementsForms/RadioButtonElem_PB.jsx'
 import RadioButtons_PB from '../elementsForms/RadioButtons_PB.jsx'
+import IconoElem_PB from '../elementsForms/IconoElem_PB.jsx'
 
 
 function ShowElements() {
@@ -25,6 +26,7 @@ function ShowElements() {
           elementID={theContext.objComponentShow.elementID}
           placeholder={theContext.objComponentShow.placeholder}
           width={theContext.objComponentShow.dimensions.width}
+          disabled={false}
         />
       )
     case "label":
@@ -32,24 +34,32 @@ function ShowElements() {
         <LabelElem_PB
           elementID={theContext.objComponentShow.elementID}
           orderInBlock={theContext.objComponentShow.orderInBlock}
-          position={theContext.objComponentShow.position}
           required={theContext.objComponentShow.required}
           disabled={theContext.objComponentShow.disabled}
           response={theContext.objComponentShow.response}
           placeholder={theContext.objComponentShow.placeholder}
           size={theContext.objComponentShow.size}
+          position={theContext.objComponentShow.position}
+          borderElement={theContext.objComponentShow.borderElement}
+          colorElement={theContext.objComponentShow.colorElement}
+          fontSizeElement={theContext.objComponentShow.fontSizeElement}
         />
       )
     case "text":
       return (
         <TextElem_PB
           elementID={theContext.objComponentShow.elementID}
+          orderInBlock={theContext.objComponentShow.orderInBlock}
           labelElement={theContext.objComponentShow.labelElement}
           required={theContext.objComponentShow.required}
           disabled={theContext.objComponentShow.disabled}
           response={theContext.objComponentShow.response}
           placeholder={theContext.objComponentShow.placeholder}
           size={theContext.objComponentShow.size}
+          position={theContext.objComponentShow.position}
+          borderElement={theContext.objComponentShow.borderElement}
+          colorElement={theContext.objComponentShow.colorElement}
+          fontSizeElement={theContext.objComponentShow.fontSizeElement}
           setText={theContext.objComponentShow.setComponent}
         />
       )
@@ -57,12 +67,17 @@ function ShowElements() {
       return (
         <NumberElem_PB
           elementID={theContext.objComponentShow.elementID}
+          orderInBlock={theContext.objComponentShow.orderInBlock}
           labelElement={theContext.objComponentShow.labelElement}
           required={theContext.objComponentShow.required}
           disabled={theContext.objComponentShow.disabled}
           response={theContext.objComponentShow.response}
           placeholder={theContext.objComponentShow.placeholder}
           size={theContext.objComponentShow.size}
+          position={theContext.objComponentShow.position}
+          borderElement={theContext.objComponentShow.borderElement}
+          colorElement={theContext.objComponentShow.colorElement}
+          fontSizeElement={theContext.objComponentShow.fontSizeElement}
           setNumber={theContext.objComponentShow.setComponent}
         />
       )
@@ -70,11 +85,17 @@ function ShowElements() {
       return (
         <DateElem_PB
           elementID={theContext.objComponentShow.elementID}
+          orderInBlock={theContext.objComponentShow.orderInBlock}
           labelElement={theContext.objComponentShow.labelElement}
           required={theContext.objComponentShow.required}
           disabled={theContext.objComponentShow.disabled}
           response={theContext.objComponentShow.response}
           placeholder={theContext.objComponentShow.placeholder}
+          size={theContext.objComponentShow.size}
+          position={theContext.objComponentShow.position}
+          borderElement={theContext.objComponentShow.borderElement}
+          colorElement={theContext.objComponentShow.colorElement}
+          fontSizeElement={theContext.objComponentShow.fontSizeElement}
           setDate={theContext.objComponentShow.setComponent}
         />
       )
@@ -82,12 +103,17 @@ function ShowElements() {
       return (
         <PhoneElem_PB
           elementID={theContext.objComponentShow.elementID}
+          orderInBlock={theContext.objComponentShow.orderInBlock}
           labelElement={theContext.objComponentShow.labelElement}
           required={theContext.objComponentShow.required}
           disabled={theContext.objComponentShow.disabled}
           response={theContext.objComponentShow.response}
           placeholder={theContext.objComponentShow.placeholder}
           size={theContext.objComponentShow.size}
+          position={theContext.objComponentShow.position}
+          borderElement={theContext.objComponentShow.borderElement}
+          colorElement={theContext.objComponentShow.colorElement}
+          fontSizeElement={theContext.objComponentShow.fontSizeElement}
           setPhone={theContext.objComponentShow.setComponent}
         />
       )
@@ -95,12 +121,17 @@ function ShowElements() {
       return (
         <EmailElem_PB
           elementID={theContext.objComponentShow.elementID}
+          orderInBlock={theContext.objComponentShow.orderInBlock}
           labelElement={theContext.objComponentShow.labelElement}
           required={theContext.objComponentShow.required}
           disabled={theContext.objComponentShow.disabled}
           response={theContext.objComponentShow.response}
           placeholder={theContext.objComponentShow.placeholder}
           size={theContext.objComponentShow.size}
+          position={theContext.objComponentShow.position}
+          borderElement={theContext.objComponentShow.borderElement}
+          colorElement={theContext.objComponentShow.colorElement}
+          fontSizeElement={theContext.objComponentShow.fontSizeElement}
           setEmail={theContext.objComponentShow.setComponent}
         />
       )
@@ -108,6 +139,7 @@ function ShowElements() {
       return (
         <AreaTextElem_PB
           elementID={theContext.objComponentShow.elementID}
+          orderInBlock={theContext.objComponentShow.orderInBlock}
           labelElement={theContext.objComponentShow.labelElement}
           required={theContext.objComponentShow.required}
           disabled={theContext.objComponentShow.disabled}
@@ -116,6 +148,10 @@ function ShowElements() {
           placeholder={theContext.objComponentShow.placeholder}
           row={theContext.objComponentShow.row}
           col={theContext.objComponentShow.col}
+          position={theContext.objComponentShow.position}
+          borderElement={theContext.objComponentShow.borderElement}
+          colorElement={theContext.objComponentShow.colorElement}
+          fontSizeElement={theContext.objComponentShow.fontSizeElement}
           setAreaText={theContext.objComponentShow.setComponent}
         />
       )
@@ -123,11 +159,17 @@ function ShowElements() {
       return (
         <SelectElement_PB
           elementID={theContext.objComponentShow.elementID}
+          orderInBlock={theContext.objComponentShow.orderInBlock}
           labelElement={theContext.objComponentShow.labelElement}
           required={theContext.objComponentShow.required}
           disabled={theContext.objComponentShow.disabled}
           response={theContext.objComponentShow.response}
           placeholder={theContext.objComponentShow.placeholder}
+          size={theContext.objComponentShow.size}
+          position={theContext.objComponentShow.position}
+          borderElement={theContext.objComponentShow.borderElement}
+          colorElement={theContext.objComponentShow.colorElement}
+          fontSizeElement={theContext.objComponentShow.fontSizeElement}
           optionsValues={theContext.objComponentShow.optionsValues}
           setSelect={theContext.objComponentShow.setComponent}
         />
@@ -136,11 +178,16 @@ function ShowElements() {
       return (
         <CheckboxElem_PB
           elementID={theContext.objComponentShow.elementID}
+          orderInBlock={theContext.objComponentShow.orderInBlock}
           labelElement={theContext.objComponentShow.labelElement}
           required={theContext.objComponentShow.required}
           disabled={theContext.objComponentShow.disabled}
           checked={theContext.objComponentShow.checked}
           response={theContext.objComponentShow.response}
+          position={theContext.objComponentShow.position}
+          borderElement={theContext.objComponentShow.borderElement}
+          colorElement={theContext.objComponentShow.colorElement}
+          fontSizeElement={theContext.objComponentShow.fontSizeElement}
           setCheckbox={theContext.objComponentShow.setComponent}
         />
       )
@@ -148,6 +195,7 @@ function ShowElements() {
       return (
         <RadioButtons_PB
           elementID={theContext.objComponentShow.elementID}
+          orderInBlock={theContext.objComponentShow.orderInBlock}
           legend={theContext.objComponentShow.legend}
           required={theContext.objComponentShow.required}
           disabled={theContext.objComponentShow.disabled}
@@ -155,7 +203,24 @@ function ShowElements() {
           radioButtons={theContext.objComponentShow.radioButtons}
           response={theContext.objComponentShow.response}
           placeholder={theContext.objComponentShow.placeholder}
+          position={theContext.objComponentShow.position}
           setRadioButtons={theContext.objComponentShow.setComponent}
+        />
+      )
+    case "icon":
+      return (
+        <IconoElem_PB
+          elementID={theContext.objComponentShow.elementID}
+          orderInBlock={theContext.objComponentShow.orderInBlock}
+          required={theContext.objComponentShow.required}
+          disabled={theContext.objComponentShow.disabled}
+          name={theContext.objComponentShow.name}
+          widthImage={theContext.objComponentShow.widthImage}
+          position={theContext.objComponentShow.position}
+          borderElement={theContext.objComponentShow.borderElement}
+          srcURLIcon={theContext.objComponentShow.srcURLIcon}
+          nameImage={theContext.objComponentShow.nameImage}
+          setIcon={theContext.objComponentShow.setComponent}
         />
       )
     default:
