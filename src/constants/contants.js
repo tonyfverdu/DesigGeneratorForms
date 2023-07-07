@@ -60,7 +60,7 @@ export const TITLES_RCM_LEFT = {
 
 //  position: { row: theContext.objComponent.position.rowElem, col: theContext.objComponent.position.colElem },
 
-//       dimension: { width: theContext.objComponent.dimensions.width, height: theContext.objComponent.dimensions.height }
+//       dimension: { width: theContext.objComponent.componentSeldimensionect.width, height: theContext.objComponent.componentSeldimensionect.height }
 
 export const GROUP_BUTTONS_SELECT_LEFT = {
   preId: "actionSelect_",

@@ -10,7 +10,7 @@ function IconButtonPhone() {
   function handleButton() {
     theContext.setElement("phone")
     theContext.setObjComponentShow({
-      ...theContext.objComponentShow, elementID: "ID_phone_001",
+      ...theContext.objComponentShow, id_Element: "ID_phone_001",
       type: "phone", placeholder: "91-111-1111", size: 12,
       dimensions: { width: 3, height: "2.4rem" },
       labelElement: "Componente Phone: ",
@@ -32,7 +32,7 @@ export default IconButtonPhone;
 
 /*
   const component = {
-    elementID: "ID_0005",
+    id_Element: "ID_0005",
     type: "text",
     blockOrigen: "The first Block",
     orderInBlock: "5",

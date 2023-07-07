@@ -11,7 +11,7 @@ function IconButtonLabel() {
     theContext.setElement("label")
 
     theContext.setObjComponentShow({
-      ...theContext.objComponentShow, elementID: "ID_label_001",
+      ...theContext.objComponentShow, id_Element: "ID_label_001",
       type: "label", placeholder: "Soy un componente Label", size: 10
     })
   }

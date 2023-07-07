@@ -127,7 +127,7 @@ function PrintFormInfo() {
               <div className="row p-1 mb-1 gx-1 shadow-sm graycolor500">
                 <div className="col-3">
                   <LabelElem_PB
-                    elementID={"idTitleOfDisease_001"}
+                    id_Element={"idTitleOfDisease_001"}
                     orderInBlock={1}
                     required={true}
                     disabled={false}
@@ -144,7 +144,7 @@ function PrintFormInfo() {
 
                 <div className="col-3 offset-md-6">
                   <TextElem_PB
-                    elementID={"id_IdOfForm"}
+                    id_Element={"id_IdOfForm"}
                     orderInBlock={2}
                     labelElement={"Id: "}
                     required={true}
@@ -168,7 +168,7 @@ function PrintFormInfo() {
                   <div className="row container my-1 align-items-center" >
                     <div className="col-2">
                       <TextElem_PB
-                        elementID={"id_Anyo_Disease"}
+                        id_Element={"id_Anyo_Disease"}
                         orderInBlock={3}
                         labelElement={"Año: "}
                         required={true}
@@ -186,7 +186,7 @@ function PrintFormInfo() {
                     </div>
                     <div className="col-2">
                       <NumberElem_PB
-                        elementID={"id_Week_Disease"}
+                        id_Element={"id_Week_Disease"}
                         orderInBlock={4}
                         labelElement={"Semana: "}
                         required={true}
@@ -204,7 +204,7 @@ function PrintFormInfo() {
                     </div>
                     <div className="col-5 offset-md-3">
                       <DateElem_PB
-                        elementID={"id_Current_date"}
+                        id_Element={"id_Current_date"}
                         orderInBlock={5}
                         labelElement={"Fecha actual: "}
                         required={true}
@@ -225,7 +225,7 @@ function PrintFormInfo() {
                   <div className="row container my-1 align-items-center" >
                     <div className="col-2">
                       <NumberElem_PB
-                        elementID={"id_Number_Disease"}
+                        id_Element={"id_Number_Disease"}
                         orderInBlock={6}
                         labelElement={"N°: "}
                         required={true}
@@ -243,7 +243,7 @@ function PrintFormInfo() {
                     </div>
                     <div className="col-2 offset-md-1">
                       <TextElem_PB
-                        elementID={"id_Id_Disease"}
+                        id_Element={"id_Id_Disease"}
                         orderInBlock={7}
                         labelElement={"Id: "}
                         required={true}
@@ -261,7 +261,7 @@ function PrintFormInfo() {
                     </div>
                     <div className="col-4 offset-md-3">
                       <TextElem_PB
-                        elementID={"id_Id_Disease"}
+                        id_Element={"id_Id_Disease"}
                         orderInBlock={8}
                         labelElement={"Código: "}
                         required={true}
@@ -282,7 +282,7 @@ function PrintFormInfo() {
 
                 <div className="col-1 p-1 offset-md-1">
                   <IconoElem_PB
-                    elementID={"id_ico_document"}
+                    id_Element={"id_ico_document"}
                     orderInBlock={9}
                     required={true}
                     disabled={false}
@@ -296,7 +296,7 @@ function PrintFormInfo() {
                 </div>
                 <div className="col-1 p-1">
                   <IconoElem_PB
-                    elementID={"id_ico_estetoscopio"}
+                    id_Element={"id_ico_estetoscopio"}
                     orderInBlock={10}
                     required={true}
                     disabled={false}
@@ -314,7 +314,7 @@ function PrintFormInfo() {
               <div className="row p-1 mb-1 gx-1 graycolor100 shadow-sm">
                 <div className="col-2 offset-sm-1">
                   <LabelElem_PB
-                    elementID={"id_mandatory_fields"}
+                    id_Element={"id_mandatory_fields"}
                     orderInBlock={11}
                     required={true}
                     disabled={true}
@@ -330,7 +330,7 @@ function PrintFormInfo() {
                 </div>
                 <div className="col-3 d-flex justify-content-end offset-sm-2">
                   <NumberElem_PB
-                    elementID={"id_Fillig_in_Disease"}
+                    id_Element={"id_Fillig_in_Disease"}
                     orderInBlock={12}
                     labelElement={"Porcentaje de cumplimentación: "}
                     required={true}
@@ -370,7 +370,7 @@ function PrintFormInfo() {
                       <div className="row p-1 shadow-sm graycolor500">
                         <div className="col-3">
                           <LabelElem_PB
-                            elementID={"id_Block_001"}
+                            id_Element={"id_Block_001"}
                             orderInBlock={0}
                             required={true}
                             disabled={false}
@@ -389,7 +389,7 @@ function PrintFormInfo() {
                       <div className="row p-1 mb-1 graycolor100 shadow-sm">
                         <div className="col-3">
                           <DateElem_PB
-                            elementID={"id_Fecha_declaracion"}
+                            id_Element={"id_Fecha_declaracion"}
                             orderInBlock={1}
                             labelElement={"Fecha de declaración: "}
                             required={true}
@@ -407,7 +407,7 @@ function PrintFormInfo() {
                         </div>
                         <div className="col-4 offset-sm-3">
                           <TextElem_PB
-                            elementID={"id_elem_municipio"}
+                            id_Element={"id_elem_municipio"}
                             orderInBlock={2}
                             labelElement={"Declarante: "}
                             required={true}
@@ -425,7 +425,7 @@ function PrintFormInfo() {
                         </div>
                         <div className="col-2">
                           <PhoneElem_PB
-                            elementID={"id_elem_phone_declarante"}
+                            id_Element={"id_elem_phone_declarante"}
                             orderInBlock={3}
                             labelElement={"Teléfono: "}
                             required={true}
@@ -446,7 +446,7 @@ function PrintFormInfo() {
                       <div className="row p-1 mb-1 graycolor100 shadow-sm">
                         <div className="col-4">
                           <TextElem_PB
-                            elementID={"id_elem_centroTrabajo"}
+                            id_Element={"id_elem_centroTrabajo"}
                             orderInBlock={4}
                             labelElement={"Centro de Trabajo: "}
                             required={true}
@@ -465,7 +465,7 @@ function PrintFormInfo() {
 
                         <div className="col-4 offset-md-1">
                           <TextElem_PB
-                            elementID={"id_elem_municipio"}
+                            id_Element={"id_elem_municipio"}
                             orderInBlock={5}
                             labelElement={"Municipio: "}
                             required={true}
@@ -484,7 +484,7 @@ function PrintFormInfo() {
 
                         <div className="col-3">
                           <TextElem_PB
-                            elementID={"id_elem_Departamento"}
+                            id_Element={"id_elem_Departamento"}
                             orderInBlock={6}
                             labelElement={"Departamento: "}
                             required={true}
@@ -505,7 +505,7 @@ function PrintFormInfo() {
                       <div className="row p-1 mb-1 graycolor100 shadow-sm">
                         <div className="col-2 offset-md-1">
                           < SelectElement_PB
-                            elementID={"id_elem_encuestaCerrada"}
+                            id_Element={"id_elem_encuestaCerrada"}
                             orderInBlock={7}
                             labelElement={"Encuesta cerrada: "}
                             required={true}
@@ -525,7 +525,7 @@ function PrintFormInfo() {
 
                         <div className="col-3 offset-md-1">
                           < SelectElement_PB
-                            elementID={"id_elem_procDeclaracion"}
+                            id_Element={"id_elem_procDeclaracion"}
                             orderInBlock={8}
                             labelElement={"Procedencia de declaración: "}
                             required={true}
@@ -545,7 +545,7 @@ function PrintFormInfo() {
 
                         <div className="col-2 offset-md-1">
                           <NumberElem_PB
-                            elementID={"id_pto_declaracion"}
+                            id_Element={"id_pto_declaracion"}
                             orderInBlock={9}
                             labelElement={"Punto de declaración: "}
                             required={true}
@@ -582,7 +582,7 @@ function PrintFormInfo() {
                       <div className="row p-1 shadow-sm graycolor500">
                         <div className="col-5">
                           <LabelElem_PB
-                            elementID={"id_Block_002"}
+                            id_Element={"id_Block_002"}
                             orderInBlock={1}
                             required={true}
                             disabled={false}
@@ -601,7 +601,7 @@ function PrintFormInfo() {
                         <div className="col-4">
                           <div className="col">
                             <TextElem_PB
-                              elementID={"id_elem_municipio"}
+                              id_Element={"id_elem_municipio"}
                               orderInBlock={2}
                               labelElement={"Municipio: "}
                               required={true}
@@ -626,7 +626,7 @@ function PrintFormInfo() {
                         <div className="col-4">
                           <div className="col">
                             <TextElem_PB
-                              elementID={"id_elem_departamento"}
+                              id_Element={"id_elem_departamento"}
                               orderInBlock={3}
                               labelElement={"Departamento: "}
                               required={true}
@@ -651,7 +651,7 @@ function PrintFormInfo() {
                         <div className="col-4">
                           <div className="col">
                             <TextElem_PB
-                              elementID={"id_elem_centrosalud"}
+                              id_Element={"id_elem_centrosalud"}
                               orderInBlock={3}
                               labelElement={"Centro: "}
                               required={true}
@@ -693,7 +693,7 @@ function PrintFormInfo() {
                       <div className="row p-1 shadow-sm graycolor500">
                         <div className="col-3">
                           <LabelElem_PB
-                            elementID={"id_Block_003"}
+                            id_Element={"id_Block_003"}
                             orderInBlock={0}
                             required={true}
                             disabled={false}
@@ -712,7 +712,7 @@ function PrintFormInfo() {
                       <div className="row p-1 mb-1 graycolor100 shadow-sm">
                         <div className="col-3">
                           <TextElem_PB
-                            elementID={"id_elem_nombre"}
+                            id_Element={"id_elem_nombre"}
                             orderInBlock={1}
                             labelElement={"Nombre: "}
                             required={true}
@@ -730,7 +730,7 @@ function PrintFormInfo() {
                         </div>
                         <div className="col-3">
                           <TextElem_PB
-                            elementID={"id_elem_primerApellido"}
+                            id_Element={"id_elem_primerApellido"}
                             orderInBlock={2}
                             labelElement={"Primer apellido: "}
                             required={true}
@@ -748,7 +748,7 @@ function PrintFormInfo() {
                         </div>
                         <div className="col-3">
                           <TextElem_PB
-                            elementID={"id_elem_segundoApellido"}
+                            id_Element={"id_elem_segundoApellido"}
                             orderInBlock={3}
                             labelElement={"Segundo apellido: "}
                             required={true}
@@ -766,7 +766,7 @@ function PrintFormInfo() {
                         </div>
                         <div className="col-1 offset-sm-1">
                           < SelectElement_PB
-                            elementID={"id_elem_sexo"}
+                            id_Element={"id_elem_sexo"}
                             orderInBlock={4}
                             labelElement={"Sexo: "}
                             required={true}
@@ -788,7 +788,7 @@ function PrintFormInfo() {
                       <div className="row p-1 mb-1 graycolor100 shadow-sm">
                         <div className="col-3">
                           <DateElem_PB
-                            elementID={"id_Fecha_nacimiento"}
+                            id_Element={"id_Fecha_nacimiento"}
                             orderInBlock={5}
                             labelElement={"Fecha de nacimiento: "}
                             required={true}
@@ -807,7 +807,7 @@ function PrintFormInfo() {
                         <div className="col-2 d-flex flex-row justify-content-start align-items-center ">
                           <div className="col">
                             <NumberElem_PB
-                              elementID={"id_elem_edad"}
+                              id_Element={"id_elem_edad"}
                               orderInBlock={4}
                               labelElement={"Edad: "}
                               required={true}
@@ -825,7 +825,7 @@ function PrintFormInfo() {
                           </div>
                           <div className="col">
                             < SelectElement_PB
-                              elementID={"id_elem_edadMedida"}
+                              id_Element={"id_elem_edadMedida"}
                               orderInBlock={6}
                               labelElement={""}
                               required={true}
@@ -845,7 +845,7 @@ function PrintFormInfo() {
                         </div>
                         <div className="col-2 offset-sm-2">
                           <NumberElem_PB
-                            elementID={"id_elem_sip"}
+                            id_Element={"id_elem_sip"}
                             orderInBlock={7}
                             labelElement={"SIP: "}
                             required={true}
@@ -863,7 +863,7 @@ function PrintFormInfo() {
                         </div>
                         <div className="col-3">
                           <TextElem_PB
-                            elementID={"id_elem_historiaClinica"}
+                            id_Element={"id_elem_historiaClinica"}
                             orderInBlock={8}
                             labelElement={"Historia clínica: "}
                             required={true}
@@ -884,7 +884,7 @@ function PrintFormInfo() {
                       <div className="row p-1 mb-1 graycolor100 shadow-sm">
                         <div className="col-3">
                           <TextElem_PB
-                            elementID={"id_elem_calle"}
+                            id_Element={"id_elem_calle"}
                             orderInBlock={9}
                             labelElement={"Calle: "}
                             required={true}
@@ -902,7 +902,7 @@ function PrintFormInfo() {
                         </div>
                         <div className="col-1">
                           <NumberElem_PB
-                            elementID={"id_Number_numCalle"}
+                            id_Element={"id_Number_numCalle"}
                             orderInBlock={10}
                             labelElement={"N°: "}
                             required={true}
@@ -920,7 +920,7 @@ function PrintFormInfo() {
                         </div>
                         <div className="col-3">
                           <TextElem_PB
-                            elementID={"id_elem_municipio"}
+                            id_Element={"id_elem_municipio"}
                             orderInBlock={11}
                             labelElement={"Municipio: "}
                             required={true}
@@ -938,7 +938,7 @@ function PrintFormInfo() {
                         </div>
                         <div className="col-1">
                           <NumberElem_PB
-                            elementID={"id_elem_cp"}
+                            id_Element={"id_elem_cp"}
                             orderInBlock={4}
                             labelElement={"CP: "}
                             required={true}
@@ -956,7 +956,7 @@ function PrintFormInfo() {
                         </div>
                         <div className="col-2">
                           <TextElem_PB
-                            elementID={"id_elem_provincia"}
+                            id_Element={"id_elem_provincia"}
                             orderInBlock={12}
                             labelElement={"Provincia: "}
                             required={true}
@@ -974,7 +974,7 @@ function PrintFormInfo() {
                         </div>
                         <div className="col-2">
                           <TextElem_PB
-                            elementID={"id_elem_pais"}
+                            id_Element={"id_elem_pais"}
                             orderInBlock={13}
                             labelElement={"País: "}
                             required={true}
@@ -995,7 +995,7 @@ function PrintFormInfo() {
                       <div className="row p-1 mb-1 graycolor100 shadow-sm">
                         <div className="col-4">
                           <TextElem_PB
-                            elementID={"id_elem_phones"}
+                            id_Element={"id_elem_phones"}
                             orderInBlock={14}
                             labelElement={"Teléfonos: "}
                             required={true}
@@ -1013,7 +1013,7 @@ function PrintFormInfo() {
                         </div>
                         <div className="col-4 offset-sm-1">
                           <EmailElem_PB
-                            elementID={"id_elem_emails"}
+                            id_Element={"id_elem_emails"}
                             orderInBlock={15}
                             labelElement={"Email: "}
                             required={false}
@@ -1049,7 +1049,7 @@ function PrintFormInfo() {
                       <div className="row p-1 shadow-sm graycolor500 ">
                         <div className="col-3">
                           <LabelElem_PB
-                            elementID={"id_Block_004"}
+                            id_Element={"id_Block_004"}
                             orderInBlock={1}
                             required={true}
                             disabled={false}
@@ -1068,7 +1068,7 @@ function PrintFormInfo() {
                       <div className="row p-1 mb-1 graycolor100 shadow-sm">
                         <div className="col-6">
                           <TextElem_PB
-                            elementID={"id_elem_centroasig"}
+                            id_Element={"id_elem_centroasig"}
                             orderInBlock={2}
                             labelElement={"Centro asignado: "}
                             required={true}
@@ -1086,7 +1086,7 @@ function PrintFormInfo() {
                         </div>
                         <div className="col-5 offset-md-1">
                           <TextElem_PB
-                            elementID={"id_elem_profasig"}
+                            id_Element={"id_elem_profasig"}
                             orderInBlock={3}
                             labelElement={"Profesional asignado: "}
                             required={true}
@@ -1123,7 +1123,7 @@ function PrintFormInfo() {
                       <div className="row p-1 shadow-sm graycolor500 ">
                         <div className="col-3">
                           <LabelElem_PB
-                            elementID={"id_Block_005"}
+                            id_Element={"id_Block_005"}
                             orderInBlock={1}
                             required={true}
                             disabled={false}
@@ -1142,7 +1142,7 @@ function PrintFormInfo() {
                       <div className="row p-1 mb-1 graycolor100 shadow-sm">
                         <div className="col-3">
                           <LabelElem_PB
-                            elementID={"id_Block_005"}
+                            id_Element={"id_Block_005"}
                             orderInBlock={1}
                             required={true}
                             disabled={false}
@@ -1162,7 +1162,7 @@ function PrintFormInfo() {
                         <div className="col-10 offset-md-1">
                           {/* //  Table */}
                           <TableElem_PB
-                            elementID={`id_TableElement`}
+                            id_Element={`id_TableElement`}
                             orderInBlock={2}
                             required={true}
                             disabled={false}
@@ -1181,7 +1181,7 @@ function PrintFormInfo() {
                       <div className="row p-1 mb-1 graycolor100 shadow-sm">
                         <div className="col-3">
                           <LabelElem_PB
-                            elementID={"id_Block_aislamiento"}
+                            id_Element={"id_Block_aislamiento"}
                             orderInBlock={3}
                             required={true}
                             disabled={false}
@@ -1197,7 +1197,7 @@ function PrintFormInfo() {
                         </div>
                         <div className="col-3 offset-md-2">
                           < SelectElement_PB
-                            elementID={"id_elem_herida"}
+                            id_Element={"id_elem_herida"}
                             orderInBlock={4}
                             labelElement={"Herida: "}
                             required={true}
@@ -1216,7 +1216,7 @@ function PrintFormInfo() {
                         </div>
                         <div className="col-3">
                           < SelectElement_PB
-                            elementID={"id_elem_heces"}
+                            id_Element={"id_elem_heces"}
                             orderInBlock={5}
                             labelElement={"Heces: "}
                             required={true}
@@ -1253,7 +1253,7 @@ function PrintFormInfo() {
                       <div className="row p-1 shadow-sm graycolor500 ">
                         <div className="col-3">
                           <LabelElem_PB
-                            elementID={"id_Block_006"}
+                            id_Element={"id_Block_006"}
                             orderInBlock={1}
                             required={true}
                             disabled={false}
@@ -1272,7 +1272,7 @@ function PrintFormInfo() {
                       <div className="row p-1 mb-1 graycolor100 shadow-sm">
                         <div className="col-2 offset-md-1">
                           < SelectElement_PB
-                            elementID={"id_elem_caso"}
+                            id_Element={"id_elem_caso"}
                             orderInBlock={1}
                             labelElement={"Caso: "}
                             required={true}
@@ -1291,7 +1291,7 @@ function PrintFormInfo() {
                         </div>
                         <div className="col-2">
                           < SelectElement_PB
-                            elementID={"id_elem_tipoCaso"}
+                            id_Element={"id_elem_tipoCaso"}
                             orderInBlock={1}
                             labelElement={"Tipo de Caso(*): "}
                             required={true}
@@ -1312,7 +1312,7 @@ function PrintFormInfo() {
                           {
                             !isImport ?
                               < SelectElement_PB
-                                elementID={"id_elem_pais"}
+                                id_Element={"id_elem_pais"}
                                 orderInBlock={2}
                                 labelElement={"País: "}
                                 required={true}
@@ -1330,7 +1330,7 @@ function PrintFormInfo() {
                               />
                               :
                               < SelectElement_PB
-                                elementID={"id_elem_comunidad"}
+                                id_Element={"id_elem_comunidad"}
                                 orderInBlock={2}
                                 labelElement={"Comunidad Autonoma: "}
                                 required={true}
@@ -1350,7 +1350,7 @@ function PrintFormInfo() {
                         </div>
                         <div className="col-2 offset-md-1">
                           < SelectElement_PB
-                            elementID={"id_elem_clasificacionCaso"}
+                            id_Element={"id_elem_clasificacionCaso"}
                             orderInBlock={3}
                             labelElement={"Clasificación de Caso(*): "}
                             required={true}
@@ -1387,7 +1387,7 @@ function PrintFormInfo() {
                       <div className="row p-1 shadow-sm graycolor500 ">
                         <div className="col-3">
                           <LabelElem_PB
-                            elementID={"id_Block_007"}
+                            id_Element={"id_Block_007"}
                             orderInBlock={1}
                             required={true}
                             disabled={false}
@@ -1406,7 +1406,7 @@ function PrintFormInfo() {
                       <div className="row p-1 mb-1 graycolor100 shadow-sm">
                         <div className="col-2">
                           < SelectElement_PB
-                            elementID={"id_elem_caso"}
+                            id_Element={"id_elem_caso"}
                             orderInBlock={2}
                             labelElement={"Caso: "}
                             required={true}
@@ -1426,7 +1426,7 @@ function PrintFormInfo() {
                         </div>
                         <div className="col-2">
                           < SelectElement_PB
-                            elementID={"id_elem_recibioVacuna"}
+                            id_Element={"id_elem_recibioVacuna"}
                             orderInBlock={3}
                             labelElement={"Ha recibido vacuna?: "}
                             required={true}
@@ -1445,7 +1445,7 @@ function PrintFormInfo() {
                         </div>
                         <div className="col-3">
                           <DateElem_PB
-                            elementID={"id_Fecha_fechaVacunacion"}
+                            id_Element={"id_Fecha_fechaVacunacion"}
                             orderInBlock={4}
                             labelElement={"Fecha de vacunación: "}
                             required={true}
@@ -1463,7 +1463,7 @@ function PrintFormInfo() {
                         </div>
                         <div className="col-2">
                           <NumberElem_PB
-                            elementID={"id_num_dosis"}
+                            id_Element={"id_num_dosis"}
                             orderInBlock={5}
                             labelElement={"N° Dosis: "}
                             required={true}
@@ -1481,7 +1481,7 @@ function PrintFormInfo() {
                         </div>
                         <div className="col-2">
                           < SelectElement_PB
-                            elementID={"id_elem_presDocVacunacion"}
+                            id_Element={"id_elem_presDocVacunacion"}
                             orderInBlock={6}
                             labelElement={"Presenta documento de vacunación: "}
                             required={true}
@@ -1503,7 +1503,7 @@ function PrintFormInfo() {
                       <div className="row p-1 mb-1 graycolor100 shadow-sm">
                         <div className="col-10 offset-md-1">
                           <TableCustom
-                            elementID={`id_TableElement`}
+                            id_Element={`id_TableElement`}
                             orderInBlock={2}
                             required={true}
                             disabled={false}
@@ -1534,7 +1534,7 @@ function PrintFormInfo() {
                           <div className="row p-1 mb-1 graycolor100 shadow-sm">
                             <div className="col-2 offset-md-1">
                               <DateElem_PB
-                                elementID={"id_Fecha_administrada"}
+                                id_Element={"id_Fecha_administrada"}
                                 orderInBlock={13}
                                 labelElement={""}
                                 required={true}
@@ -1552,7 +1552,7 @@ function PrintFormInfo() {
                             </div>
                             <div className="col-2">
                               <SelectElement_PB
-                                elementID={"id_selectVacuna"}
+                                id_Element={"id_selectVacuna"}
                                 orderInBlock={4}
                                 labelElement={""}
                                 required={true}
@@ -1571,7 +1571,7 @@ function PrintFormInfo() {
                             </div>
                             <div className="col-1">
                               <NumberElem_PB
-                                elementID={"id_Number_numberDosis"}
+                                id_Element={"id_Number_numberDosis"}
                                 orderInBlock={15}
                                 labelElement={""}
                                 required={true}
@@ -1589,7 +1589,7 @@ function PrintFormInfo() {
                             </div>
                             <div className="col-1">
                               <TextElem_PB
-                                elementID={"id_elem_lote"}
+                                id_Element={"id_elem_lote"}
                                 orderInBlock={1}
                                 labelElement={""}
                                 required={true}
@@ -1607,7 +1607,7 @@ function PrintFormInfo() {
                             </div>
                             <div className="col-2">
                               <DateElem_PB
-                                elementID={"id_Fecha_caducidad"}
+                                id_Element={"id_Fecha_caducidad"}
                                 orderInBlock={13}
                                 labelElement={""}
                                 required={true}
@@ -1625,7 +1625,7 @@ function PrintFormInfo() {
                             </div>
                             <div className="col-1">
                               <SelectElement_PB
-                                elementID={"id_selectLaboratorio"}
+                                id_Element={"id_selectLaboratorio"}
                                 orderInBlock={4}
                                 labelElement={""}
                                 required={true}
@@ -1644,7 +1644,7 @@ function PrintFormInfo() {
                             </div>
                             <div className="col-2">
                               <TextElem_PB
-                                elementID={"id_elem_centro"}
+                                id_Element={"id_elem_centro"}
                                 orderInBlock={1}
                                 labelElement={""}
                                 required={true}
@@ -1692,7 +1692,7 @@ function PrintFormInfo() {
                       <div className="row p-1 mb-1 graycolor100 shadow-sm">
                         <div className="col-2">
                           < SelectElement_PB
-                            elementID={"id_elem_vacunaContrastada"}
+                            id_Element={"id_elem_vacunaContrastada"}
                             orderInBlock={4}
                             labelElement={"Vacuna contrastada: "}
                             required={true}
@@ -1711,7 +1711,7 @@ function PrintFormInfo() {
                         </div>
                         <div className="col-2">
                           < SelectElement_PB
-                            elementID={"id_elem_vacunado"}
+                            id_Element={"id_elem_vacunado"}
                             orderInBlock={4}
                             labelElement={"Vacunado?: "}
                             required={true}
@@ -1730,7 +1730,7 @@ function PrintFormInfo() {
                         </div>
                         <div className="col-3 offset-md-1">
                           <DateElem_PB
-                            elementID={"id_Fecha_inicCaducidad"}
+                            id_Element={"id_Fecha_inicCaducidad"}
                             orderInBlock={13}
                             labelElement={"Fecha de inicio de Caducidad: "}
                             required={true}
@@ -1751,7 +1751,7 @@ function PrintFormInfo() {
                       <div className="row p-1 mb-1 graycolor100 shadow-sm">
                         <div className="col-4">
                           <DateElem_PB
-                            elementID={"id_Fecha_inicSintomas"}
+                            id_Element={"id_Fecha_inicSintomas"}
                             orderInBlock={13}
                             labelElement={"Fecha de inicio de los primeros sintomas: "}
                             required={true}
@@ -1769,7 +1769,7 @@ function PrintFormInfo() {
                         </div>
                         <div className="col-3">
                           <DateElem_PB
-                            elementID={"id_Fecha_diagnostico"}
+                            id_Element={"id_Fecha_diagnostico"}
                             orderInBlock={14}
                             labelElement={"Fecha de diagnostico: "}
                             required={true}
@@ -1787,7 +1787,7 @@ function PrintFormInfo() {
                         </div>
                         <div className="col-2 offset-md-1">
                           <NumberElem_PB
-                            elementID={"id_Number_AnyoEPI"}
+                            id_Element={"id_Number_AnyoEPI"}
                             orderInBlock={15}
                             labelElement={"Año EPI: "}
                             required={true}
@@ -1805,7 +1805,7 @@ function PrintFormInfo() {
                         </div>
                         <div className="col-2">
                           <NumberElem_PB
-                            elementID={"id_Number_semanaEPI"}
+                            id_Element={"id_Number_semanaEPI"}
                             orderInBlock={16}
                             labelElement={"Semana EPI: "}
                             required={true}
@@ -1826,7 +1826,7 @@ function PrintFormInfo() {
                       <div className="row p-1 mb-1 graycolor100 shadow-sm">
                         <div className="col-10 offset-md-1">
                           <AreaTextElem_PB
-                            elementID={"id_observaciones"}
+                            id_Element={"id_observaciones"}
                             orderInBlock={17}
                             labelElement={"Observaciones: "}
                             required={true}

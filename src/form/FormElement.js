@@ -31,8 +31,8 @@ export const SimpleSelectElement = (props) => {
 
   return(
     <div className="form-group">
-      <label htmlFor={element.elementId}>{element.displayName}</label>
-      <select className="form-control" id={element.elementId} value={get(valueMap, element.elementId)} disabled={element.readOnly} onChange={handleChange}>
+      <label htmlFor={element.id_Element}>{element.displayName}</label>
+      <select className="form-control" id={element.id_Element} value={get(valueMap, element.id_Element)} disabled={element.readOnly} onChange={handleChange}>
         {getOptionList(formElementValues)}
       </select>
     </div>
@@ -43,8 +43,8 @@ export const PasswordElement = (props) => {
   const {valueMap, element, handleChange} = props;
   return(
     <div className="form-group">
-      <label htmlFor={element.elementId}>{element.displayName}</label>
-      <input type="password" className="form-control" id={element.elementId} defaultValue={get(valueMap, element.elementId)} placeholder="Password" onChange={handleChange} disabled={element.readOnly} />
+      <label htmlFor={element.id_Element}>{element.displayName}</label>
+      <input type="password" className="form-control" id={element.id_Element} defaultValue={get(valueMap, element.id_Element)} placeholder="Password" onChange={handleChange} disabled={element.readOnly} />
     </div>
   )
 }
@@ -55,7 +55,7 @@ export const CheckboxElement = (props) => {
     return (
       <div className="form-check">
         <label className="form-check-label">
-          <input type="checkbox" defaultChecked={get(valueMap, element.elementId)} onChange={handleChange} disabled={element.readOnly} className="form-check-input"/> <span>{element.displayName}</span>
+          <input type="checkbox" defaultChecked={get(valueMap, element.id_Element)} onChange={handleChange} disabled={element.readOnly} className="form-check-input"/> <span>{element.displayName}</span>
         </label>
       </div>
   )
@@ -78,8 +78,8 @@ export const TextElement = (props) => {
 
   return(
     <div className="form-group">
-      <label htmlFor={element.elementId}>{element.displayName}</label>
-      <input type="text" className="form-control" autoComplete="off" name={element.elementId} id={element.elementId} onChange={handleChange} defaultValue={get(valueMap, element.elementId)} disabled={element.readOnly}  required=""/>
+      <label htmlFor={element.id_Element}>{element.displayName}</label>
+      <input type="text" className="form-control" autoComplete="off" name={element.id_Element} id={element.id_Element} onChange={handleChange} defaultValue={get(valueMap, element.id_Element)} disabled={element.readOnly}  required=""/>
         <div className="invalid-feedback">Please enter your username or email</div>
     </div>
   )
@@ -91,8 +91,8 @@ export const TextAreaElement = (props) => {
 
   return(
     <div className="form-group">
-      <label htmlFor={element.elementId}>{element.displayName}</label>
-      <textarea className="form-control" id={element.elementId} defaultValue={get(valueMap, element.elementId)} disabled={element.readOnly} onChange={handleChange} rows="3"></textarea>
+      <label htmlFor={element.id_Element}>{element.displayName}</label>
+      <textarea className="form-control" id={element.id_Element} defaultValue={get(valueMap, element.id_Element)} disabled={element.readOnly} onChange={handleChange} rows="3"></textarea>
     </div>
   )
 }
@@ -102,7 +102,7 @@ export const RadioElement = (props) => {
 
   const {valueMap, element, handleChange} = props;
   const {formElementValues} = element;
-  const currentValue = get(valueMap, element.elementId);
+  const currentValue = get(valueMap, element.id_Element);
   const list = formElementValues && formElementValues.length ? map(formElementValues, (item) => <RadioOption key={item.elementvalueId} item={item}  currentValue={currentValue} handleChange={handleChange} readOnly={element.readOnly} />) : null;
 
   return(

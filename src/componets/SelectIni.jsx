@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import '../sass/componentSass/elementsForms/SelectElem_PB.scss'
 
 
-function SelectIni({ elementID, labelElement, required, disabled = false, placeholder, optionsValues, colorSelect, fontSizeSelect, setSelect }) {
+function SelectIni({ id_Element, labelElement, required, disabled = false, placeholder, optionsValues, colorSelect, fontSizeSelect, setSelect }) {
   const [valueSelect, setValueSelect] = useState("");
 
   useEffect(() => {
@@ -29,7 +29,7 @@ function SelectIni({ elementID, labelElement, required, disabled = false, placeh
       <label className="form-label labelOfForm mx-auto pt-2" style={{ color: colorSelect, fontSize: fontSizeSelect }}>
         {labelElement}
       </label>
-      <select id={elementID} size="1" required={required} disabled={disabled} aria-label=".form-select-sm"
+      <select id={id_Element} size="1" required={required} disabled={disabled} aria-label=".form-select-sm"
         className={`form-select-sm contSelect rounded-0 ${disabled ? "selectNotActiv" : "selectActiv border border-secondary"} bg-white `}
         value={valueSelect} autoFocus onChange={(ev) => handleOnChange(ev)} >
         {

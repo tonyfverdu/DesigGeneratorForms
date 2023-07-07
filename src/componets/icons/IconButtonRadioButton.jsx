@@ -10,7 +10,7 @@ function IconButtonRadioButton() {
   function handleButton() {
     theContext.setElement("radioButtons")
     theContext.setObjComponentShow({
-      ...theContext.objComponentShow, elementID: "ID_text_001",
+      ...theContext.objComponentShow, id_Element: "ID_text_001",
       type: "radioButtons", placeholder: "false", size: 25,
       dimensions: { width: 3, height: "2.4rem" },
       labelElement: "Radio Buttons Group: ",
@@ -19,7 +19,7 @@ function IconButtonRadioButton() {
       setComponent: theContext.setRadioButtons,
       radioButtons: [
         {
-          elementID: "ID_00010.1",
+          id_Element: "ID_00010.1",
           labelElement: "RadioButton 1",
           name: "pruebaRB",
           required: true,
@@ -29,7 +29,7 @@ function IconButtonRadioButton() {
           setRadioButton: theContext.setRadioButton
         },
         {
-          elementID: "ID_00010.2",
+          id_Element: "ID_00010.2",
           labelElement: "RadioButton 2",
           name: "pruebaRB",
           required: true,
@@ -39,7 +39,7 @@ function IconButtonRadioButton() {
           setRadioButton: theContext.setRadioButton
         },
         {
-          elementID: "ID_00010.3",
+          id_Element: "ID_00010.3",
           labelElement: "RadioButton 3",
           name: "pruebaRB",
           required: true,
@@ -65,7 +65,7 @@ export default IconButtonRadioButton;
 
 /*
   const component = {
-    elementID: "ID_0010",
+    id_Element: "ID_0010",
     type: "radioButtons",
     blockOrigen: "The first Block",
     orderInBlock: "10",
@@ -81,7 +81,7 @@ export default IconButtonRadioButton;
     setComponent: theContext.setRadioButton,
     radioButtons: [
       {
-        elementID: "ID_00010.1",
+        id_Element: "ID_00010.1",
         labelElement: "Soy un componente RadioButton",
         name: "pruebaRB",
         required: true,
@@ -91,7 +91,7 @@ export default IconButtonRadioButton;
         setRadioButton: theContext.setRadioButton
       },
       {
-        elementID: "ID_00010.2",
+        id_Element: "ID_00010.2",
         labelElement: "Soy un componente RadioButton",
         name: "pruebaRB",
         required: true,
@@ -101,7 +101,7 @@ export default IconButtonRadioButton;
         setRadioButton: theContext.setRadioButton
       },
       {
-        elementID: "ID_00010.3",
+        id_Element: "ID_00010.3",
         labelElement: "Soy un componente RadioButton",
         name: "pruebaRB",
         required: true,

@@ -10,7 +10,7 @@ function IconButtonCheckbox() {
   function handleButton() {
     theContext.setElement("checkbox")
     theContext.setObjComponentShow({
-      ...theContext.objComponentShow, elementID: "ID_checkbox_001",
+      ...theContext.objComponentShow, id_Element: "ID_checkbox_001",
       type: "text", placeholder: false.toString(), size: 25,
       dimensions: { width: 3, height: "2.4rem" },
       labelElement: " Componente Checkbox",
@@ -33,7 +33,7 @@ export default IconButtonCheckbox;
 
 /*
 const component = {
-    elementID: "ID_0009",
+    id_Element: "ID_0009",
     type: "checkbox",
     blockOrigen: "The first Block",
     orderInBlock: "9",

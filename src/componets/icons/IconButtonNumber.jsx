@@ -10,7 +10,7 @@ function IconButtonNumber() {
   function handleButton() {
     theContext.setElement("number")
     theContext.setObjComponentShow({
-      ...theContext.objComponentShow, elementID: "ID_number_001",
+      ...theContext.objComponentShow, id_Element: "ID_number_001",
       type: "number", placeholder: 0, size: 3,
       dimensions: { width: 3, height: "2.4rem" },
       labelElement: "Componente Number: ",
@@ -32,7 +32,7 @@ export default IconButtonNumber;
 
 /*
   const component = {
-    elementID: "ID_0002",
+    id_Element: "ID_0002",
     type: "number",
     blockOrigen: "The first Block",
     orderInBlock: "2",

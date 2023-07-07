@@ -10,7 +10,7 @@ function IconButtonDate() {
   function handleButton() {
     theContext.setElement("date")
     theContext.setObjComponentShow({
-      ...theContext.objComponentShow, elementID: "ID_date_001",
+      ...theContext.objComponentShow, id_Element: "ID_date_001",
       type: "date", placeholder: "01/01/2023", size: 20,
       dimensions: { width: 3, height: "2.4rem" },
       labelElement: "Componente Date: ",
@@ -32,7 +32,7 @@ export default IconButtonDate;
 
 /*
   const component = {
-    elementID: "ID_0003",
+    id_Element: "ID_0003",
     type: "date",
     blockOrigen: "The first Block",
     orderInBlock: "3",

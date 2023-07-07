@@ -10,7 +10,7 @@ function IconButtonText() {
   function handleButton() {
     theContext.setElement("text")
     theContext.setObjComponentShow({
-      ...theContext.objComponentShow, elementID: "ID_text_001",
+      ...theContext.objComponentShow, id_Element: "ID_text_001",
       type: "text", placeholder: "Valor Componente Text", size: 25,
       dimensions: { width: 4, height: "2.4rem" },
       labelElement: "Componente Text: ",

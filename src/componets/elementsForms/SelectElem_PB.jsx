@@ -3,7 +3,7 @@ import { MyContext } from '../../context/TheContext.jsx'
 import '../../sass/componentSass/elementsForms/SelectElem_PB.scss'
 
 
-function SelectElement_PB({ elementID, orderInBlock, labelElement, required, disabled = false, response, placeholder, size, position,
+function SelectElement_PB({ id_Element, orderInBlock, labelElement, required, disabled = false, response, placeholder, size, position,
   borderElement, colorElement, fontSizeElement, optionsValues, setSelect }) {
   const theContext = useContext(MyContext)
   const [responseSelect, setResponseSelect] = useState(response[0])
@@ -43,12 +43,12 @@ function SelectElement_PB({ elementID, orderInBlock, labelElement, required, dis
 
       style={{ color: colorElement, fontSize: fontSizeElement }} >
 
-      <label htmlFor={elementID} className="form-label labelOfForm d-flex flex-row justify-content-end align-items-center me-2"
+      <label htmlFor={id_Element} className="form-label labelOfForm d-flex flex-row justify-content-end align-items-center me-2"
         style={{ color: colorElement, fontSize: fontSizeElement }}>
         {labelElement}
       </label>
 
-      <select id={elementID} size={size} required={required} disabled={disabled} aria-label=".form-select-sm"
+      <select id={id_Element} size={size} required={required} disabled={disabled} aria-label=".form-select-sm"
         className={`form-select-sm contSelect rounded-0 ${disabled ? "selectNotActiv" : "selectActiv border border-secondary"} bg-white`}
         value={valueOfSelect} onChange={(ev) => handleOnChange(ev)} >
         <option value="" className="fw-bold text-secondary fs-6">Select</option>

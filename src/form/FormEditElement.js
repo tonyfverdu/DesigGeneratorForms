@@ -20,7 +20,7 @@ function FormEditElement(props) {
 
   const handleKeyPress =(e) =>{
     if (e.key === 'Enter') {
-      onAddOption(element.elementId, textInput.current.value);
+      onAddOption(element.id_Element, textInput.current.value);
       textInput.current.value = '';
     }
   }
@@ -30,12 +30,12 @@ function FormEditElement(props) {
       <div className="card-header">
         Featured
         <div className="float-right">
-          <span className="ml-auto px-2" onClick={()=>onToggle(element.elementId)}><i className="far fa-edit" style={{cursor:'pointer'}}></i></span>
+          <span className="ml-auto px-2" onClick={()=>onToggle(element.id_Element)}><i className="far fa-edit" style={{cursor:'pointer'}}></i></span>
           <span className="ml-auto px-2" onClick={onRemElement}><i className="fas fa-trash" style={{cursor:'pointer'}}></i></span>
         </div>
       </div>
       <div className="card-body">
-        {!editMode[element.elementId] ? <FormElementComponent element={element} /> :
+        {!editMode[element.id_Element] ? <FormElementComponent element={element} /> :
         <div className="row">
           <div className="col-md-8">
             <form>
@@ -52,7 +52,7 @@ function FormEditElement(props) {
               {element.type === ELEMENT_TYPE.SIMPLE_SELECT || element.type === ELEMENT_TYPE.RADIO ?
               <React.Fragment>
                 <div className="form-group">
-                  <FormBuilderOptions formElementValues={element.formElementValues} type={element.elementId} onDragEnd={onDragEnd}  />
+                  <FormBuilderOptions formElementValues={element.formElementValues} type={element.id_Element} onDragEnd={onDragEnd}  />
                 </div>
                 <div className="form-group">
                   <input type="text" ref={textInput} className="form-control" id="inputName" placeholder="Enter name" onKeyPress={handleKeyPress}   />

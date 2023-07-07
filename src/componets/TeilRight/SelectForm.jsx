@@ -14,7 +14,7 @@ export default function SelectForm({height}) {
       onSubmit={(ev) => theContext.handleSubmitFormIni(ev)}>
       <div className="col-7 p-1">
         <SelectIni
-          elementID={"idFormSelectIni"}
+          id_Element={"idFormSelectIni"}
           labelElement={"View JSON"}
           required={true}
           disabled={false}

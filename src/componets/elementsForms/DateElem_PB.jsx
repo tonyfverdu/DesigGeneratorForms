@@ -5,7 +5,7 @@ import changeFormatDate from '../../functions/changeFormatDate'
 import '../../sass/componentSass/elementsForms/DateElem_PB.scss'
 
 
-function DateElem_PB({ elementID, orderInBlock, labelElement, required, disabled = false, response, placeholder, size, position,
+function DateElem_PB({ id_Element, orderInBlock, labelElement, required, disabled = false, response, placeholder, size, position,
   borderElement, colorElement, fontSizeElement, setDate }) {
   const theContext = useContext(MyContext)
   const [responseDate, setResponseDate] = useState(response[0])
@@ -17,8 +17,8 @@ function DateElem_PB({ elementID, orderInBlock, labelElement, required, disabled
 
   useEffect(() => {
     // console.log('Heute is:  ', currentDate().Date_DD_MM_YY, " und die Uhr ist:  ", currentDate().Time_HH_MM_SS)
-    setDate(placeholder)
     setValueOfDate(placeholder)
+    setDate(valueOfDate)
   }, [])
 
   function handleChange(ev) {
@@ -45,12 +45,12 @@ function DateElem_PB({ elementID, orderInBlock, labelElement, required, disabled
     </div>`}
       title={`Order: ${orderInBlock}       Position: X = ${position.colElem}  Y = ${position.rowElem}`} >
 
-      <label htmlFor={elementID} className="form-label labelOfForm d-flex flex-row justify-content-end align-items-center me-1"
+      <label htmlFor={id_Element} className="form-label labelOfForm d-flex flex-row justify-content-end align-items-center me-1"
         style={{ color: colorElement, fontSize: fontSizeElement }} >
         {labelElement}
       </label>
 
-      <input id={elementID} type="date" className={`contInputDate form-control text-center rounded-0 ${disabled ? "NotActiv" : "Activ"}`}
+      <input id={id_Element} type="date" className={`contInputDate form-control text-center rounded-0 ${disabled ? "NotActiv" : "Activ"}`}
         required={required} disabled={disabled} placeholder={placeholder} size={size} value={valueOfDate} onChange={(ev) => handleChange(ev)} />
     </div>
   )

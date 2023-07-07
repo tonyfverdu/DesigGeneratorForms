@@ -10,7 +10,7 @@ function IconButtonIcons() {
   function handleButton() {
     theContext.setElement("icon")
     theContext.setObjComponentShow({
-      ...theContext.objComponentShow, elementID: "ID_icon_001",
+      ...theContext.objComponentShow, id_Element: "ID_icon_001",
       type: "icon", srcURLIcon: "../src/assets/iconImages/", nameImage: "iconImage", widthImage: 25,
       dimensions: { width: 4, height: "2.4rem" },
       labelElement: "",

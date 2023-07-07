@@ -57,7 +57,7 @@ const formJSON_plantilla = {
           "legend": "",
           "radioButtons": [
             {
-              "elementID": "",
+              "id_Element": "",
               "labelElement": "",
               "name": "",
               "required": true,

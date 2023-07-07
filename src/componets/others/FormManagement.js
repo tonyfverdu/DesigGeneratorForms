@@ -14,7 +14,7 @@ function ListElements(props){
 
   return flow(orderBy('displayOrder','asc'), map((element) => {
     return (
-      <FormElementComponent key={element.elementId}
+      <FormElementComponent key={element.id_Element}
                             formElements={formElements}
                             element={element}
                             setValue={setValue}

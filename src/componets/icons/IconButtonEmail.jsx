@@ -10,7 +10,7 @@ function IconButtonEmail() {
   function handleButton() {
     theContext.setElement("email")
     theContext.setObjComponentShow({
-      ...theContext.objComponentShow, elementID: "ID_email_001",
+      ...theContext.objComponentShow, id_Element: "ID_email_001",
       type: "email", placeholder: "enteryouremail@dom.com", size: 28,
       dimensions: { width: 4, height: "2.4rem" },
       labelElement: "Componente Email: ",
@@ -32,7 +32,7 @@ export default IconButtonEmail;
 
 /*
   const component = {
-    elementID: "ID_0006",
+    id_Element: "ID_0006",
     type: "email",
     blockOrigen: "The first Block",
     orderInBlock: "6",

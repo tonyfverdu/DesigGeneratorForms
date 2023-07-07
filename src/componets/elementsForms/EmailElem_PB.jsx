@@ -3,7 +3,7 @@ import { MyContext } from '../../context/TheContext.jsx'
 import '../../sass/componentSass/elementsForms/EmailElem_PB.scss'
 
 
-function EmailElem_PB({ elementID, orderInBlock, labelElement, required, disabled = false, response, placeholder, size, position,
+function EmailElem_PB({ id_Element, orderInBlock, labelElement, required, disabled = false, response, placeholder, size, position,
   borderElement, colorElement, fontSizeElement, setEmail }) {
   const theContext = useContext(MyContext)
   const [responseEmail, setResponseEmail] = useState(response[0])
@@ -41,12 +41,12 @@ function EmailElem_PB({ elementID, orderInBlock, labelElement, required, disable
     </div>`}
       title={`Order: ${orderInBlock}       Position: X = ${position.colElem}  Y = ${position.rowElem}`} >
 
-      <label htmlFor={elementID} className="form-label labelOfForm d-flex flex-row justify-content-end align-items-center me-2"
+      <label htmlFor={id_Element} className="form-label labelOfForm d-flex flex-row justify-content-end align-items-center me-2"
         style={{ color: colorElement, fontSize: fontSizeElement }}>
         {labelElement}
       </label>
 
-      <input id={elementID} type="email" className={`contInputEmail form-control rounded-0 ${disabled ? "emailNotActiv" : "emailActiv"}`}
+      <input id={id_Element} type="email" className={`contInputEmail form-control rounded-0 ${disabled ? "emailNotActiv" : "emailActiv"}`}
         autoComplete="off" required={required}
         disabled={disabled} placeholder={placeholder} size={size} value={valueOfEmail} onChange={(ev) => handleChange(ev)} />
 

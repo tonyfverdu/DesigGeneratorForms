@@ -3,7 +3,7 @@ import { MyContext } from '../../context/TheContext.jsx'
 import '../../sass/componentSass/elementsForms/LabelElem_PB.scss'
 
 
-function LabelElem_PB({ elementID, orderInBlock, required, disabled, response, placeholder, size, position,
+function LabelElem_PB({ id_Element, orderInBlock, required, disabled, response, placeholder, size, position,
   width, borderElement, colorElement, fontSizeElement }) {
   const theContext = useContext(MyContext)
   const [responseLabel, setResponseLabel] = useState(response[0])
@@ -29,7 +29,7 @@ function LabelElem_PB({ elementID, orderInBlock, required, disabled, response, p
 
       <div ref={elementRef} className="contLabelElement_PB d-flex flex-row justify-content-center align-items-center m-0 p-1" >
 
-        <label id={elementID} className="form-label labelOfForm d-flex flex-row justify-content-end align-items-center fw-bold me-2"
+        <label id={id_Element} className="form-label labelOfForm d-flex flex-row justify-content-end align-items-center fw-bold me-2"
           style={{ color: colorElement, fontSize: fontSizeElement}} required={required} disabled={disabled} placeholder={placeholder} size={size} >
           {placeholder}
         </label>
@@ -73,7 +73,7 @@ export default LabelElem_PB;
 
 /*
   const objComponentIni = {  //  Object of Component - element
-    elementID: "",
+    id_Element: "",
     type: "",
     blockOrigen: "",
     orderInBlock: "0",
@@ -95,7 +95,7 @@ export default LabelElem_PB;
     setComponent: "",
     radioButtons: [
       {
-        elementID: "",
+        id_Element: "",
         labelElement: "",
         name: "",
         required: true,

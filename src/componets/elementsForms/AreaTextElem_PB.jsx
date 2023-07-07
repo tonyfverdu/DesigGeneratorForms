@@ -3,7 +3,7 @@ import { MyContext } from '../../context/TheContext.jsx'
 import '../../sass/componentSass/elementsForms/AreaTextElem_PB.scss'
 
 
-function AreaTextElem_PB({ elementID, orderInBlock, labelElement, required, disabled = false, readonly, response, placeholder, row, cols,
+function AreaTextElem_PB({ id_Element, orderInBlock, labelElement, required, disabled = false, readonly, response, placeholder, row, cols,
   position, borderElement, colorElement, fontSizeElement, setAreaText }) {
   const theContext = useContext(MyContext)
   const [responseAreaText, setResponseAreaText] = useState(response[0])
@@ -42,12 +42,12 @@ function AreaTextElem_PB({ elementID, orderInBlock, labelElement, required, disa
       </div>`}
       title={`Order: ${orderInBlock}       Position: X = ${position.colElem}  Y = ${position.rowElem}`} >
 
-      <label htmlFor={elementID} className="form-check-label labelOfForm d-flex flex-row justify-content-start align-items-center mb-1"
+      <label htmlFor={id_Element} className="form-check-label labelOfForm d-flex flex-row justify-content-start align-items-center mb-1"
         style={{ color: colorElement, fontSize: fontSizeElement }}>
         {labelElement}
       </label>
 
-      <textarea id={elementID}
+      <textarea id={id_Element}
         className={`contAreaText form-control ${disabled ? "areaTextNotActiv" : "areaTextActiv"}`} required={required} autoComplete="off"
         readOnly={readonly} placeholder={placeholder} rows={row} cols={cols} value={valueOfAreaText}
         onChange={(ev) => handleChange(ev)}></textarea>

@@ -20,7 +20,7 @@ const FormElementComponent = (props) => {
   const handleChange = (event) => {
     const {element, setValue} = props;
     const value = getCurrentValue(event);
-    setValue(element.elementId, value);
+    setValue(element.id_Element, value);
   }
 
   const getCurrentValue = (event) =>{

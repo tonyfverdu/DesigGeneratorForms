@@ -3,7 +3,7 @@ import { MyContext } from '../../context/TheContext.jsx'
 import '../../sass/componentSass/elementsForms/PhoneElem_PB.scss'
 
 
-function PhoneElem_PB({ elementID, orderInBlock, labelElement, required, disabled = false, response, placeholder, size, position,
+function PhoneElem_PB({ id_Element, orderInBlock, labelElement, required, disabled = false, response, placeholder, size, position,
   borderElement, colorElement, fontSizeElement, setPhone }) {
   const theContext = useContext(MyContext)
   const [responsePhone, setResponsePhone] = useState(response[0])
@@ -41,12 +41,12 @@ function PhoneElem_PB({ elementID, orderInBlock, labelElement, required, disable
     </div>`}
       title={`Order: ${orderInBlock}       Position: X = ${position.colElem}  Y = ${position.rowElem}`} >
 
-      <label htmlFor={elementID} className="form-label labelOfForm d-flex flex-row justify-content-end align-items-center me-2"
+      <label htmlFor={id_Element} className="form-label labelOfForm d-flex flex-row justify-content-end align-items-center me-2"
         style={{ color: colorElement, fontSize: fontSizeElement }}>
         {labelElement}
       </label>
 
-      <input id={elementID} type="tel" className={`contInputPhone form-control rounded-0 ${disabled ? "phoneNotActiv" : "phoneActiv"}`}
+      <input id={id_Element} type="tel" className={`contInputPhone form-control rounded-0 ${disabled ? "phoneNotActiv" : "phoneActiv"}`}
         autoComplete="off" required={required} disabled={disabled} pattern="[0-9]{2}-[0-9]{4}-[0-9]{4}" placeholder={placeholder} size={size}
         maxLength="12" list="defaultPhones" value={valueOfPhone} onChange={(ev) => handleChange(ev)} />
       <datalist id="defaultPhones">

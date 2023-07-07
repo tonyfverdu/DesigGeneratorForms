@@ -8,7 +8,7 @@ import SelectElement_PB from './SelectElem_PB.jsx'
 import currentDate from '../../functions/currentDate.js'
 
 
-function TableElem_PB({ elementID, orderInBlock, required, disabled = false, position,
+function TableElem_PB({ id_Element, orderInBlock, required, disabled = false, position,
   borderTable, colorTable, fontSizeTableHead, titlesHeadsTable, tableData, fontSizeBodyTable, setTable }) {
   const theContext = useContext(MyContext)
   const [farbeTable, setFarbeTable] = useState("table-success")
@@ -42,7 +42,7 @@ function TableElem_PB({ elementID, orderInBlock, required, disabled = false, pos
   }, [])
 
   return (
-    < table id={elementID} className="table table-sm table-borderless table-striped table-hover table-responsive" required={required}
+    < table id={id_Element} className="table table-sm table-borderless table-striped table-hover table-responsive" required={required}
     >
 
       <thead className={farbeTable} >
@@ -65,7 +65,7 @@ function TableElem_PB({ elementID, orderInBlock, required, disabled = false, pos
                 </th>
                 <td>
                   < SelectElement_PB
-                    elementID={`id_${toxina.resultadoAnalisis}`}
+                    id_Element={`id_${toxina.resultadoAnalisis}`}
                     orderInBlock={1}
                     labelElement={""}
                     required={true}
@@ -84,7 +84,7 @@ function TableElem_PB({ elementID, orderInBlock, required, disabled = false, pos
                 </td>
                 <td className="text-center">
                   <TextElem_PB
-                    elementID={`id_${toxina.tipoToxinaIdent}`}
+                    id_Element={`id_${toxina.tipoToxinaIdent}`}
                     orderInBlock={1}
                     labelElement={""}
                     required={true}
@@ -102,7 +102,7 @@ function TableElem_PB({ elementID, orderInBlock, required, disabled = false, pos
                 </td>
                 <td className="text-center">
                   <DateElem_PB
-                    elementID={`id_${toxina.fechaAnalisis}`}
+                    id_Element={`id_${toxina.fechaAnalisis}`}
                     orderInBlock={5}
                     labelElement={""}
                     required={true}

@@ -3,7 +3,7 @@ import { MyContext } from '../../context/TheContext.jsx'
 import '../../sass/componentSass/elementsForms/NumberElem_PB.scss'
 
 
-function NumberElem_PB({ elementID, orderInBlock, labelElement, required, disabled = false, response, placeholder, size, position,
+function NumberElem_PB({ id_Element, orderInBlock, labelElement, required, disabled = false, response, placeholder, size, position,
   borderElement, colorElement, fontSizeElement, setNumber }) {
   const theContext = useContext(MyContext)
   const [responseNumber, setResponseNumber] = useState(response[0])
@@ -24,6 +24,20 @@ function NumberElem_PB({ elementID, orderInBlock, labelElement, required, disabl
     setNumber(valueOfNumber);
   }
 
+  // function handleClickDataShow(ev) {
+  //   console.log(ev.target)
+  //   console.log('useRef:  ', elementRef.current)
+  //   console.log("*********************************************")
+  //   console.log("Orden: ", OrderRef.current.textContent)
+  //   console.log("X: ", ColXRef.current.textContent)
+  //   console.log("Y: ", RowYRef.current.textContent)
+  //   console.log("*********************************************")
+
+  //   theContext.setObjComponentShow({
+  //     ...theContext.objComponentShow, type: "text"
+  //   })
+  // }
+
   return (
     <div ref={elementRef} className={`contNumberElement form-group container-fluid d-flex flex-row justify-content-start align-items-center m-0 p-1
     ${borderElement ? "border-1 border-secondary" : "border-0"}`}
@@ -40,12 +54,12 @@ function NumberElem_PB({ elementID, orderInBlock, labelElement, required, disabl
       </div>`}
       title={`Order: ${orderInBlock}       Position: X = ${position.colElem}  Y = ${position.rowElem}`} >
 
-      <label htmlFor={elementID} className="form-label labelOfForm d-flex flex-row justify-content-end align-items-center me-1"
+      <label htmlFor={id_Element} className="form-label labelOfForm d-flex flex-row justify-content-end align-items-center me-1"
         style={{ color: colorElement, fontSize: fontSizeElement }} >
         {labelElement}
       </label>
 
-      <input id={elementID} type="number" className={`contInputNumber form-control rounded-0 ${disabled ? "numberNotActiv" : "numberActiv"}`}
+      <input id={id_Element} type="number" className={`contInputNumber form-control rounded-0 ${disabled ? "numberNotActiv" : "numberActiv"}`}
         required={required} disabled={disabled} placeholder={placeholder} size={size} min="0" max={Math.pow(10, size) - 1}
         value={valueOfNumber} onChange={(ev) => handleChange(ev)} />
 

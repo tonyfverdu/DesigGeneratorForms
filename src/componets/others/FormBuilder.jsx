@@ -20,9 +20,9 @@ function FormBuilder({ items, onRemElement, onChangeValue, onDragEnd, editMode, 
   const hasItems = (items) => items && items.length;
 
   const currentItem = ([index, item]) => (
-    <DraggableItem key={item.elementId} draggableId={item.elementId} index={parseInt(index)}>
-      <FormEditElement key={item.elementId} element={item} onRemElement={() => onRemElement(item.elementId)}
-        onChange={onChangeValue(item.elementId)} onDragEnd={onDragEnd} editMode={editMode}
+    <DraggableItem key={item.id_Element} draggableId={item.id_Element} index={parseInt(index)}>
+      <FormEditElement key={item.id_Element} element={item} onRemElement={() => onRemElement(item.id_Element)}
+        onChange={onChangeValue(item.id_Element)} onDragEnd={onDragEnd} editMode={editMode}
         onToggle={onToggle} onAddOption={onAddOption} />
     </DraggableItem>)
 
@@ -47,7 +47,7 @@ function Form(props) {
 
 function init() {
   const getElement = element => ({ ...element, readOnly: true })
-  const getEditMode = (result, element) => { result[element.elementId] = false; return result; }
+  const getEditMode = (result, element) => { result[element.id_Element] = false; return result; }
   return {
     items: map(getElement)(form.formElements),
     editMode: reduce(getEditMode, {})(form.formElements)
@@ -59,8 +59,8 @@ function FormBuilder() {
   const [state, dispatch] = useReducer(formBuilder, init());
 
   const onAddElement = (elementType) => dispatch({ type: ACTIONS.ADD_ELEMENT, elementType })
-  const onRemElement = (elementId) => dispatch({ type: ACTIONS.REM_ELEMENT, elementId })
-  const onChangeValue = (elementId) => (key) => (value) => { dispatch({ type: ACTIONS.CHANGE_VALUE, key, value, elementId }) }
+  const onRemElement = (id_Element) => dispatch({ type: ACTIONS.REM_ELEMENT, id_Element })
+  const onChangeValue = (id_Element) => (key) => (value) => { dispatch({ type: ACTIONS.CHANGE_VALUE, key, value, id_Element }) }
 
   const onDragEnd = (result) => {
     if (result.type === TYPES.MAIN) {
@@ -71,8 +71,8 @@ function FormBuilder() {
     }
   }
 
-  const onToggle = (elementId) => dispatch({ type: ACTIONS.CHANGE_EDIT_MODE, elementId })
-  const onAddOption = (elementId, value) => dispatch({ type: ACTIONS.ADD_OPTION, elementId, value })
+  const onToggle = (id_Element) => dispatch({ type: ACTIONS.CHANGE_EDIT_MODE, id_Element })
+  const onAddOption = (id_Element, value) => dispatch({ type: ACTIONS.ADD_OPTION, id_Element, value })
 
   return (
     <div className="container">

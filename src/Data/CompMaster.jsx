@@ -7,7 +7,7 @@ import Column from '../componets/TeilRight/Column';
 import '../sass/componentSass/ComponentsInLayout/CompMaster.scss'
 
 const elementNull = {
-  elementID: "id_1000",
+  id_Element: "id_1000",
   type: "master",
   blockOrigen: undefined,
   orderInBlock: undefined,
@@ -29,7 +29,7 @@ const elementNull = {
   setComponent: "",
   radioButtons: [
     {
-      elementID: "",
+      id_Element: "",
       labelElement: "",
       name: "",
       required: true,
@@ -52,13 +52,13 @@ function CompMaster() {
         {
           toogleColBefore && <Column />
         }
-        <div className={`col-${theContext.objComponent.dimensions.width} d-flex flex-row justify-content-start align-items-center my-1 p-0`}>
+        <div className={`col-${theContext.objComponent.dimension.width} d-flex flex-row justify-content-start align-items-center my-1 p-0`}>
           <button type="button" className="buttonNewElement d-flex flex-row justify-content-center align-items-center me-1 p-0"
             onClick={() => setToogleColBefore(!toogleColBefore)}>
             <span className="text-dark fw-normal p-0 m-0">+</span>
           </button>
           <MasterElem_PB
-            elementID={elementNull.elementID}
+            id_Element={elementNull.id_Element}
             required={elementNull.required}
             disabled={elementNull.disabled}
             placeholder={elementNull.placeholder}

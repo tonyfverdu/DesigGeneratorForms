@@ -10,7 +10,7 @@ function IconButtonTextArea() {
   function handleButton() {
     theContext.setElement("textArea")
     theContext.setObjComponentShow({
-      ...theContext.objComponentShow, elementID: "ID_textArea_001",
+      ...theContext.objComponentShow, id_Element: "ID_textArea_001",
       type: "textArea", placeholder: "Escriba un texto multilinea ...", size: 30,
       dimensions: { width: 3, height: "2.4rem" },
       labelElement: "Componente Area Text: ",
@@ -34,7 +34,7 @@ export default IconButtonTextArea;
 
 /*
   const component = {
-    elementID: "ID_0007",
+    id_Element: "ID_0007",
     type: "textArea",
     blockOrigen: "The first Block",
     orderInBlock: "7",

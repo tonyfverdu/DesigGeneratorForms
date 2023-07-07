@@ -15,7 +15,7 @@ function IconButtonSelect() {
   function handleButton() {
     theContext.setElement("select")
     theContext.setObjComponentShow({
-      ...theContext.objComponentShow, elementID: "ID_text_001",
+      ...theContext.objComponentShow, id_Element: "ID_text_001",
       type: "select", placeholder: "Valor 1", size: 1,
       dimensions: { width: 3, height: "2.4rem" },
       labelElement: "Componente Select: ",
@@ -38,7 +38,7 @@ export default IconButtonSelect;
 
 /*
   const component = {
-    elementID: "ID_0008",
+    id_Element: "ID_0008",
     type: "select",
     blockOrigen: "The first Block",
     orderInBlock: "8",

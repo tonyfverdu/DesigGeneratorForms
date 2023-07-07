@@ -1,3 +1,5 @@
+import currentDate from "../functions/currentDate.js";
+
 const form_survey_disease_001 = {
   "id_Form": "form_survey_disease_001",
   "title_Form": "Varicella Disease Survey",
@@ -61,7 +63,7 @@ const form_survey_disease_001 = {
           "legend": "",
           "radioButtons": [
             {
-              "elementID": "",
+              "id_Element": "",
               "labelElement": "",
               "name": "",
               "required": true,
@@ -88,7 +90,7 @@ const form_survey_disease_001 = {
           "required": true,
           "disabled": false,
           "response": [""],
-          "placeholder": "",
+          "placeholder": "Type Id of Form ...",
           "checked": null,
           "size": 15,
           "position": {
@@ -109,7 +111,7 @@ const form_survey_disease_001 = {
           "setComponent": null,
           "radioButtons": [
             {
-              "elementID": "",
+              "id_Element": "",
               "labelElement": "",
               "name": "",
               "required": true,
@@ -130,13 +132,13 @@ const form_survey_disease_001 = {
         {
           "id_Element": "comp_FSD001_0003",
           "title_Element": "Year",
-          "type_Element": "text",
+          "type_Element": "number",
           "orderInBlock": 2,
           "label_Element": "Año: ",
           "required": true,
           "disabled": false,
-          "response": ["2020"],
-          "placeholder": "2023",
+          "response": [2020],
+          "placeholder": 2023,
           "checked": null,
           "size": 5,
           "position": {
@@ -175,7 +177,7 @@ const form_survey_disease_001 = {
           "legend": "",
           "radioButtons": [
             {
-              "elementID": "",
+              "id_Element": "",
               "labelElement": "",
               "name": "",
               "required": true,
@@ -192,7 +194,139 @@ const form_survey_disease_001 = {
           "srcURLIcon": "",
           "nameImage": "",
           "widthImage": 0
-        }
+        },
+        {
+          "id_Element": "comp_FSD001_0004",
+          "title_Element": "Week",
+          "type_Element": "number",
+          "orderInBlock": 3,
+          "label_Element": "Semana: ",
+          "required": true,
+          "disabled": false,
+          "response": [15],
+          "placeholder": 0,
+          "checked": null,
+          "size": 3,
+          "position": {
+            "rowElem": 1,
+            "colElem": 4
+          },
+          "dimension": {
+            "width": 3,
+            "height": "2.4rem"
+          },
+          "borderElement":true,
+          "colorElement":"rgb(9, 9, 9)",
+          "fontSizeElement":"0.6rem",
+          "optionsValues": [],
+          "legend": "",
+          "name": "",
+          "value_Elem": "",
+          "setComponent": null,
+          "name": undefined,
+          "borderElement": false,
+          "colorElement": "rgb(9, 9, 9)",
+          "fontSizeElement": "0.8rem",
+
+          //  Area Text
+          "readonly": false,
+          "row": 0,
+          "col": 0,
+
+          //  Select
+          "optionValues": [],
+
+          //  Checkbox
+          "checked": false,
+
+          //  Radio Buttons
+          "legend": "",
+          "radioButtons": [
+            {
+              "id_Element": "",
+              "labelElement": "",
+              "name": "",
+              "required": true,
+              "disabled": false,
+              "checked": false,
+              "response": [
+                false
+              ],
+              "setRadioButton": null
+            }
+          ],
+
+          //  Icons - Images
+          "srcURLIcon": "",
+          "nameImage": "",
+          "widthImage": 0
+        },
+        {
+          "id_Element": "comp_FSD001_0005",
+          "title_Element": "Current Date",
+          "type_Element": "date",
+          "orderInBlock": 4,
+          "label_Element": "Fecha actual: ",
+          "required": true,
+          "disabled": false,
+          "response": [currentDate().Date_DD_MM_YY],
+          "placeholder": currentDate().Date_DD_MM_YY,
+          "checked": null,
+          "size": 20,
+          "position": {
+            "rowElem": 1,
+            "colElem": 8
+          },
+          "dimension": {
+            "width": 3,
+            "height": "2.4rem"
+          },
+          "borderElement":true,
+          "colorElement":"rgb(9, 9, 9)",
+          "fontSizeElement":"0.6rem",
+          "optionsValues": [],
+          "legend": "",
+          "name": "",
+          "value_Elem": "",
+          "setComponent": null,
+          "name": undefined,
+          "borderElement": false,
+          "colorElement": "rgb(9, 9, 9)",
+          "fontSizeElement": "0.8rem",
+
+          //  Area Text
+          "readonly": false,
+          "row": 0,
+          "col": 0,
+
+          //  Select
+          "optionValues": [],
+
+          //  Checkbox
+          "checked": false,
+
+          //  Radio Buttons
+          "legend": "",
+          "radioButtons": [
+            {
+              "id_Element": "",
+              "labelElement": "",
+              "name": "",
+              "required": true,
+              "disabled": false,
+              "checked": false,
+              "response": [
+                false
+              ],
+              "setRadioButton": null
+            }
+          ],
+
+          //  Icons - Images
+          "srcURLIcon": "",
+          "nameImage": "",
+          "widthImage": 0
+        },
       ]
     },
     {

@@ -2,7 +2,7 @@ import { useState, useEffect, useContext, useRef } from 'react'
 import { MyContext } from '../../context/TheContext.jsx'
 
 
-function IconoElem_PB({ elementID, orderInBlock, required, disabled = false, widthImage, position,
+function IconoElem_PB({ id_Element, orderInBlock, required, disabled = false, widthImage, position,
   borderElement, srcURLIcon, nameImage, setIcon }) {
   const theContext = useContext(MyContext)
   const [valueOfIcon, setValueOfIcon] = useState("")
@@ -48,7 +48,7 @@ function IconoElem_PB({ elementID, orderInBlock, required, disabled = false, wid
       title={`Order: ${orderInBlock}       Position: X = ${position.colElem}  Y = ${position.rowElem}`}
       onClick={(ev => handleClickDataShow(ev))}>
 
-      <img id={elementID} src={`${srcURLIcon}${nameImage}.svg`} class="img-thumbnail rounded-circle mx-auto d-block" required={required}
+      <img id={id_Element} src={`${srcURLIcon}${nameImage}.svg`} class="img-thumbnail rounded-circle mx-auto d-block" required={required}
         disabled={disabled} alt={`Icon image:  ${nameImage}`} />
 
     </div>

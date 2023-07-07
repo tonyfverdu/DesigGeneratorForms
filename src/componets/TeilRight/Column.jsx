@@ -43,9 +43,9 @@ function Column() {
       </button>
       <div className="col d-flex flex-row justify-content-center align-items-start m-0 p-0">
         <MasterElem_PB
-          elementID={theContext.masterComponentIni.elementID}
+          id_Element={theContext.masterComponentIni.id_Element}
           placeholder={theContext.masterComponentIni.placeholder}
-          width={theContext.masterComponentIni.dimensions.width}
+          width={theContext.masterComponentIni.componentSeldimensionect.width}
           disabled={false}
         />
         <IconEditDelete

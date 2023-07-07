@@ -288,8 +288,8 @@ function InfoOfElement() {
                     Select
                   </option>
                   {
-                    Array.isArray(blockSelect.components) && 
-                      blockSelect.components.map(component => <option key={component.id_Element} value={component.title_Element} className="fw-normal text-dark">{component.title_Element}</option>)
+                    Array.isArray(blockSelect.components) &&
+                    blockSelect.components.map(component => <option key={component.id_Element} value={component.title_Element} className="fw-normal text-dark">{component.title_Element}</option>)
                     //  blockSelect
                     // optionsValues.map((element, index) => <option key={index} value={element} className="fw-normal text-dark">{element}</option>)
                     // <>
@@ -336,7 +336,10 @@ function InfoOfElement() {
       <div className="container-fluid bg-secondary d-flex flex-column justify-content-center align-items-center py-2 px-3 mx-auto my-1">
         <div className="row container-fluid d-flex justify-content-center align-items-center gap-0 my-1 bg-body mx-auto">
           <div className="col container-fluid bg-body mx-1 p-2">
-            <ShowElements />
+            <ShowElements
+              typeElement={componentSelect.type_Element}
+              componentSelect={componentSelect}
+            />
           </div>
         </div>
       </div>
@@ -347,7 +350,7 @@ function InfoOfElement() {
           <header className="container d-flex flex-row justify-content-start align-items-center mx-auto p-0">
             <h6 className="text-start fw-bold ms-1 mt-1"
               style={{ color: "navy", fontSize: "0.68rem", textShadow: "-4px -3px 4px rgba(0, 0, 0, 0.39), 2px 3px 4px rgba(0, 0, 0, 0.3)" }}>
-              Component info
+              Component info:  <span className="pe-2 text-danger" style={{ fontSize: "0.7rem" }}>{componentSelect.title_Element}</span>
             </h6>
           </header>
 
@@ -362,7 +365,7 @@ function InfoOfElement() {
               <span className="ms-1 fw-bold" style={{ fontSize: "0.6rem" }}>{TITLES_RCM_LEFT.COMPONENT_TITLE}</span>
               {
                 tooRead ?
-                  <span className="ms-1 fw-bold" style={{ fontSize: "0.6rem" }}>{theContext.objComponentShow.type}</span>
+                  <span className="ms-1 fw-bold" style={{ fontSize: "0.6rem" }}>{componentSelect.title_Element}</span>
                   :
                   <>
                     <select id="idSelectComponent"
@@ -395,7 +398,7 @@ function InfoOfElement() {
               <span className="ms-1 fw-bold" style={{ fontSize: "0.6rem" }}>{TITLES_RCM_LEFT.COMPONENT_ID}</span>
               {
                 tooRead ?
-                  <span className="ms-1 fw-bold" style={{ fontSize: "0.6rem" }} >{theContext.objComponentShow.elementID}</span>
+                  <span className="ms-1 fw-bold" style={{ fontSize: "0.6rem" }} >{componentSelect.id_Element}</span>
                   :
                   <input type="text" className="contInputText form-control mx-1 p-1 rounded-0 text-start" autoComplete="off" required="true"
                     placeholder={"Type Id..."} size={10} />
@@ -405,7 +408,7 @@ function InfoOfElement() {
               <span className="ms-1 fw-bold" style={{ fontSize: "0.6rem" }}>{TITLES_RCM_LEFT.COMPONENT_DISPLAY_ORDER}</span>
               {
                 tooRead ?
-                  <span className="ms-1 fw-bold" style={{ fontSize: "0.6rem" }}>{theContext.objComponentShow.orderInBlock}</span>
+                  <span className="ms-1 fw-bold" style={{ fontSize: "0.6rem" }}>{componentSelect.orderInBlock}</span>
                   :
                   <input type="number" className="contInputNumber form-control mx-1 rounded-0 text-center" required="true"
                     placeholder="0" min="0" max={Math.pow(10, parseInt(3, 10)) - 1} />
@@ -418,7 +421,7 @@ function InfoOfElement() {
             <div className="container col d-flex justify-content-start align-items-center gap-1 mt-1 ms-1 p-1 bg-body">
               {
                 tooRead ?
-                  <span className="ms-1 fw-bold" style={{ fontSize: "0.6rem" }}>{theContext.objComponentShow.labelElement}</span>
+                  <span className="ms-1 fw-bold" style={{ fontSize: "0.6rem" }}>{componentSelect.label_Element}</span>
                   :
                   <input type="text" className="contInputText form-control mx-1 p-1 rounded-0 text-start" autoComplete="off" required="true"
                     placeholder={"Type label..."} size={30} />
@@ -431,7 +434,7 @@ function InfoOfElement() {
               <span className="col-5 mb-1 ms-1 fw-bold" style={{ fontSize: "0.6rem" }}>{TITLES_RCM_LEFT.COMPONENT_REQUIRED_ASK}</span>
               {
                 tooRead ?
-                  <span className="ms-1 px-0 fw-bold" style={{ fontSize: "0.6rem" }} >{theContext.objComponentShow.required.toString()}</span>
+                  <span className="ms-1 px-0 fw-bold" style={{ fontSize: "0.6rem" }} >{componentSelect.required + ""}</span>
                   :
                   <select className="form-select form-select-sm fw-bold p-1 border border-secondary" aria-label=".form-select-sm"
                     required="true" size="1" defaultValue="Select"
@@ -446,7 +449,7 @@ function InfoOfElement() {
               <span className="col-5 mb-1 ms-1 fw-bold" style={{ fontSize: "0.6rem" }}>{TITLES_RCM_LEFT.COMPONENT_DISABLED_ASK}</span>
               {
                 tooRead ?
-                  <span className="ms-1 px-0 fw-bold" style={{ fontSize: "0.6rem" }} >{theContext.objComponentShow.disabled.toString()}</span>
+                  <span className="ms-1 px-0 fw-bold" style={{ fontSize: "0.6rem" }} >{componentSelect.disabled + ""}</span>
                   :
                   <select className="form-select form-select-sm fw-bold p-1 border border-secondary" aria-label=".form-select-sm"
                     required="true" size="1" defaultValue="select"
@@ -464,7 +467,7 @@ function InfoOfElement() {
               <span className="ms-1 fw-bold" style={{ fontSize: "0.6rem" }}>{TITLES_RCM_LEFT.COMPONENT_PLACEHOLDER}</span>
               {
                 tooRead ?
-                  <span className="ms-1 px-1 fw-bold" style={{ fontSize: "0.6rem" }} >{theContext.objComponentShow.placeholder}</span>
+                  <span className="ms-1 px-1 fw-bold" style={{ fontSize: "0.6rem" }} >{componentSelect.placeholder}</span>
                   :
                   theContext.objComponentShow.type !== "select" ?
                     <input type="text" className="contInputText form-control mx-1 rounded-0 text-start" autoComplete="off" required="true"
@@ -482,7 +485,7 @@ function InfoOfElement() {
               <span className="ms-1 fw-bold" style={{ fontSize: "0.6rem" }}>{TITLES_RCM_LEFT.COMPONENT_SIZE}</span>
               {
                 tooRead ?
-                  <span className="ms-1 fw-bold" style={{ fontSize: "0.6rem" }}>{theContext.objComponentShow.size}</span>
+                  <span className="ms-1 fw-bold" style={{ fontSize: "0.6rem" }}>{componentSelect.size}</span>
                   :
                   <input type="number" className="contInputNumber form-control mx-1 rounded-0" required="true"
                     placeholder="0" min="0" max={Math.pow(10, parseInt(3, 10)) - 1} style={{ height: "1.7rem" }} />
@@ -492,7 +495,7 @@ function InfoOfElement() {
 
           {/* //  Row conditionals to type of component:  areaText, select, Checkbox */}
           {
-            (selectComponent.type === "textArea" || selectComponent.type === "select" || selectComponent.type === "checkbox") &&
+            (componentSelect.type_Element === "textArea" || componentSelect.type_Element === "select" || componentSelect.type_Element === "checkbox") &&
             <p> Hola pepsicola</p>
           }
 
@@ -504,7 +507,7 @@ function InfoOfElement() {
                   <span className="fw-bold mx-1" style={{ fontSize: "0.65rem" }} >{TITLES_RCM_LEFT.COMPONENT_POSITION_ROW}</span>
                   {
                     tooRead ?
-                      <span className="ms-1 fw-normal" style={{ fontSize: "0.65rem" }} >{theContext.objComponentShow.position.rowElem}</span>
+                      <span className="ms-1 fw-normal" style={{ fontSize: "0.65rem" }} >{componentSelect.position === undefined ? 0 : componentSelect.position.rowElem}</span>
                       :
                       <input type="number" className="contInputNumber form-control ms-1 rounded-0" required="true"
                         placeholder="0" min="0" max={Math.pow(10, parseInt(2, 10)) - 1} />
@@ -512,7 +515,7 @@ function InfoOfElement() {
                   <span className="fw-bold mx-1" style={{ fontSize: "0.65rem" }} >{TITLES_RCM_LEFT.COMPONENT_POSITION_COLUMN}</span>
                   {
                     tooRead ?
-                      <span className="ms-1 fw-normal" style={{ fontSize: "0.65rem" }} >{theContext.objComponentShow.position.colElem}</span>
+                      <span className="ms-1 fw-normal" style={{ fontSize: "0.65rem" }} >{componentSelect.position === undefined ? 0 : componentSelect.position.rowElem}</span>
                       :
                       <input type="number" className="contInputNumber form-control ms-1 rounded-0" required="true"
                         placeholder="0" min="0" max={12} />
@@ -525,18 +528,18 @@ function InfoOfElement() {
                   <span className="fw-bold mx-1" style={{ fontSize: "0.65rem" }} >{TITLES_RCM_LEFT.COMPONENT_DIMENSION_WIDTH}</span>
                   {
                     tooRead ?
-                      <span className="ms-1 fw-normal" style={{ fontSize: "0.65rem" }} >{theContext.objComponentShow.dimensions.width}</span>
+                      <span className="ms-1 fw-normal" style={{ fontSize: "0.65rem" }} >{componentSelect.dimension === undefined ? "2.4rem" : componentSelect.dimension.width}</span>
                       :
                       <input type="number" className="contInputNumber form-control ms-1 rounded-0" required="true"
                         placeholder="0" min="0" max={12} />
                   }
                   <span className="fw-bold ms-1" style={{ fontSize: "0.65rem" }}>{TITLES_RCM_LEFT.COMPONENT_DIMENSION_HEIGHT}</span>
                   {
-                    <span className="ms-1 fw-normal" style={{ fontSize: "0.65rem" }} >{theContext.objComponentShow.dimensions.height}</span>
+                    <span className="ms-1 fw-normal" style={{ fontSize: "0.65rem" }} >{componentSelect.dimension === undefined ? "2.4rem" : componentSelect.dimension.height}</span>
                     // tooRead ?
-                    //   <span className="valuePosDim">{theContext.objComponentShow.dimensions.height}</span>
+                    //   <span className="valuePosDim">{componentSelect.dimension.height}</span>
                     //   :
-                    //   <span className="valuePosDim">{theContext.objComponentShow.dimensions.height}</span>
+                    //   <span className="valuePosDim">{componentSelect.dimension.height}</span>
                   }
                 </div>
               </div>
@@ -552,12 +555,12 @@ export default InfoOfElement;
 
 /*
   const objComponentIni = {
-    elementID: "",
+    id_Element: "",
     type: "",
     blockOrigen: "",
     orderInBlock: "",
     position: { rowElem: 0, colElem: 0 },
-    dimensions: { width: 1, height: "2.4rem" },
+    component.dimension: { width: 1, height: "2.4rem" },
     labelElement: "",
     required: true,
     disabled: false,
@@ -572,7 +575,7 @@ export default InfoOfElement;
     setComponent: "",
     radioButtons: [
       {
-        elementID: "",
+        id_Element: "",
         labelElement: "",
         name: "",
         required: true,

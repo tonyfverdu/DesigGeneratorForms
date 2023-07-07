@@ -5,18 +5,18 @@ import filter from "lodash/fp/filter"
 import curry from "lodash/fp/curry"
 import cond from "lodash/fp/cond"
 
-const isEqualElementId = (elementId, item) => item.elementId === elementId
-const isDifferentElementId = (elementId, item) => item.elementId !== elementId
+const isEqualid_Element = (id_Element, item) => item.id_Element === id_Element
+const isDifferentid_Element = (id_Element, item) => item.id_Element !== id_Element
 
-const getElement = (key, value, elementId, item) =>{
-  if(item.elementId === elementId){
+const getElement = (key, value, id_Element, item) =>{
+  if(item.id_Element === id_Element){
     item[key] = value;
   }
   return item;
 }
 
-const getReorder = (elementId, action, item) => {
-    if(item.elementId === elementId){
+const getReorder = (id_Element, action, item) => {
+    if(item.id_Element === id_Element){
       item.formElementValues = reorder(
         item.formElementValues,
         action.result.source.index,
@@ -28,8 +28,8 @@ const getReorder = (elementId, action, item) => {
 
 const curryGetElement = curry(getElement)
 const curryGetReorder = curry(getReorder)
-const curryIsEqualElementId = curry(isEqualElementId)
-const curryIsDifferentElementId = curry(isDifferentElementId)
+const curryIsEqualid_Element = curry(isEqualid_Element)
+const curryIsDifferentid_Element = curry(isDifferentid_Element)
 
 function formBuilder(state, action) {
   switch (action.type) {
@@ -48,16 +48,16 @@ function formBuilder(state, action) {
       if (!action.result.destination) {
         return state;
       }else {
-        const {result: {type: elementId}} = action;
-        const items = fpMap(curryGetReorder(elementId, action))(state.items)
+        const {result: {type: id_Element}} = action;
+        const items = fpMap(curryGetReorder(id_Element, action))(state.items)
         return {...state, items}
       }
     case ACTIONS.CHANGE_VALUE:
-      if (!(action.key  && action.elementId)) {
+      if (!(action.key  && action.id_Element)) {
         return state;
       }else {
-        const {key, value, elementId} = action;
-        const items = fpMap(curryGetElement(key, value, elementId))(state.items)
+        const {key, value, id_Element} = action;
+        const items = fpMap(curryGetElement(key, value, id_Element))(state.items)
         return {...state, items}
       }
     case ACTIONS.ADD_ELEMENT:
@@ -67,18 +67,18 @@ function formBuilder(state, action) {
       }
       return state;
     case ACTIONS.REM_ELEMENT:
-      if(action.elementId) {
-        return {...state, items: filter(curryIsDifferentElementId(action.elementId))(state.items)}
+      if(action.id_Element) {
+        return {...state, items: filter(curryIsDifferentid_Element(action.id_Element))(state.items)}
       }
       return state;
     case ACTIONS.ADD_OPTION:
-      if(action.elementId) {
-        const {elementId, value} = action;
+      if(action.id_Element) {
+        const {id_Element, value} = action;
         const result = Array.from(state.items);
 
         const addOption = cond([
-          [curryIsEqualElementId(elementId), (item)=> ({...item, formElementValues: [...item.formElementValues, createOption(item.formElementValues.length, value)]})],
-          [curryIsDifferentElementId(elementId), (item)=> item]
+          [curryIsEqualid_Element(id_Element), (item)=> ({...item, formElementValues: [...item.formElementValues, createOption(item.formElementValues.length, value)]})],
+          [curryIsDifferentid_Element(id_Element), (item)=> item]
         ])
 
         const items =  fpMap(addOption)(result)
@@ -86,8 +86,8 @@ function formBuilder(state, action) {
       }
       return state;
     case ACTIONS.CHANGE_EDIT_MODE:
-      if(action.elementId) {
-        return {...state, editMode:{...state.editMode, [action.elementId] : !state.editMode[action.elementId]}}
+      if(action.id_Element) {
+        return {...state, editMode:{...state.editMode, [action.id_Element] : !state.editMode[action.id_Element]}}
       }
       return state;
     default:

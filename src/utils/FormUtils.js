@@ -22,14 +22,14 @@ export function createOption(index, value){
 
 export function createElement(index, type){
 
-  const elementId = (new Date().getTime()).toString();
+  const id_Element = (new Date().getTime()).toString();
 
   return(
     {
       "displayName": "",
       "displayOrder": index,
       "required": false,
-      "elementId": elementId,
+      "id_Element": id_Element,
       "type": type,
       "readOnly": false,
       "isHidden": () => (false),

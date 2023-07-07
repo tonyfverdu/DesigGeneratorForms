@@ -5,7 +5,7 @@ import DateElem_PB from './DateElem_PB.jsx'
 import currentDate from '../../functions/currentDate.js'
 
 
-function TableCustom({ elementID, orderInBlock, required, disabled, position, width, borderTable, colorTable, farbeTable,
+function TableCustom({ id_Element, orderInBlock, required, disabled, position, width, borderTable, colorTable, farbeTable,
   fontSizeTableHead, fontSizeBodyTable, titlesHeadsTable, tableData, setTable }) {
   // const datosVacunacion = {
   //   tablaVacunas: {
@@ -91,7 +91,7 @@ function TableCustom({ elementID, orderInBlock, required, disabled, position, wi
       {
         toggleVacunas &&
 
-        < table id={elementID} className="table table-sm table-borderless table-striped table-hover table-responsive" required={required}
+        < table id={id_Element} className="table table-sm table-borderless table-striped table-hover table-responsive" required={required}
         >
           <thead className={farbeTableHead} >
             <tr className="fw-light text-center" style={{ fontSize: fontSizeTableHead }}>
@@ -146,7 +146,7 @@ function TableCustom({ elementID, orderInBlock, required, disabled, position, wi
 
       {/* //  Table */}
       {/* <TableElem_PB
-        elementID={"id_customTable"}
+        id_Element={"id_customTable"}
         orderInBlock={2}
         required={true}
         disabled={false}
@@ -280,7 +280,7 @@ function DatosDeVacunacion({ casoVacunacion, vacunado, fechaVacunacion, numDosis
             elementRequired={true}
             response={"2023-04-01"}
             placeholder={"2023-01-01"}
-            elementID={`id_${fechaVacunacion}`}
+            id_Element={`id_${fechaVacunacion}`}
             valueOfDate={valueOfFechaVacunacion}
             setValueOfDate={setValueOfFechaVacunacion}
           />
@@ -293,7 +293,7 @@ function DatosDeVacunacion({ casoVacunacion, vacunado, fechaVacunacion, numDosis
             response={[1]}
             placeholder={0}
             size={2}
-            elementID={`id_${"NumDosis"}`}
+            id_Element={`id_${"NumDosis"}`}
             valueOfNumber={valueOfNumDosis}
             setValueOfNumber={setValueOfNumDosis}
           />
@@ -369,7 +369,7 @@ function DatosDeVacunacion({ casoVacunacion, vacunado, fechaVacunacion, numDosis
             elementRequired={true}
             response={["01-02-2023"]}
             placeholder={vacunaContrastada.fechaVacunacionContrastada}
-            elementID={`id_${vacunaContrastada.fechaVacunacionContrastada}`}
+            id_Element={`id_${vacunaContrastada.fechaVacunacionContrastada}`}
             valueOfDate={valueOfFechaVacunacionContrastada}
             setValueOfDate={setValueOfFechaVacunacionContrastada}
           />
@@ -383,7 +383,7 @@ function DatosDeVacunacion({ casoVacunacion, vacunado, fechaVacunacion, numDosis
             elementRequired={true}
             response={["01-02-2023"]}
             placeholder={fechaInicSintomas}
-            elementID={`id_${fechaInicSintomas}`}
+            id_Element={`id_${fechaInicSintomas}`}
             valueOfDate={valueOfFechaInicSintomas}
             setValueOfDate={setValueOfFechaInicSintomas}
           />
@@ -394,7 +394,7 @@ function DatosDeVacunacion({ casoVacunacion, vacunado, fechaVacunacion, numDosis
             elementRequired={true}
             response={["01-02-2023"]}
             placeholder={fechaDiagnostico}
-            elementID={`id_${fechaDiagnostico}`}
+            id_Element={`id_${fechaDiagnostico}`}
             valueOfDate={valueOfFechaDiagnostico}
             setValueOfDate={setValueOfFechaDiagnostico}
           />
@@ -406,7 +406,7 @@ function DatosDeVacunacion({ casoVacunacion, vacunado, fechaVacunacion, numDosis
             response={[2017]}
             placeholder={2023}
             size={4}
-            elementID={`id_${anyoEPI}`}
+            id_Element={`id_${anyoEPI}`}
             valueOfNumber={valueOfAnyoEPI}
             setValueOfNumber={setValueOfAnyoEPI}
           />
@@ -418,7 +418,7 @@ function DatosDeVacunacion({ casoVacunacion, vacunado, fechaVacunacion, numDosis
             response={[20]}
             placeholder={15}
             size={2}
-            elementID={`id_${semanaEPI}`}
+            id_Element={`id_${semanaEPI}`}
             valueOfNumber={valueOfSemanaEPI}
             setValueOfNumber={setValueOfSemanaEPI}
           />
@@ -437,7 +437,7 @@ function DatosDeVacunacion({ casoVacunacion, vacunado, fechaVacunacion, numDosis
             row={2}
             cols={18}
             resize={false}
-            elementID={`idAreaText_${labelAndText.observacionesLabel}`}
+            id_Element={`idAreaText_${labelAndText.observacionesLabel}`}
             valueOfAreaText={valueOfObservaciones}
             setValueOfAreaText={setValueOfObservaciones}
           />

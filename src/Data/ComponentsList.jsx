@@ -33,7 +33,7 @@ function ComponentsList() {
             <div className="col-2 d-flex flex-row justify-content-center align-items-center m-0 p-0">
               {/* <Column /> */}
               <LabelElem_PB
-                elementID={theContext.pruebaLabelElement.elementID}
+                id_Element={theContext.pruebaLabelElement.id_Element}
                 orderInBlock={"1"}
                 position={positionElem}
                 required={theContext.pruebaLabelElement.required}
@@ -47,7 +47,7 @@ function ComponentsList() {
             <div className="col-4 d-flex flex-row justify-content-center align-items-center m-0 p-0">
               {/* <Column /> */}
               <TextElem_PB
-                elementID={theContext.pruebaTextElement.elementID}
+                id_Element={theContext.pruebaTextElement.id_Element}
                 labelElement={theContext.pruebaTextElement.labelElement}
                 required={theContext.pruebaTextElement.required}
                 disabled={theContext.pruebaTextElement.disabled}
@@ -61,7 +61,7 @@ function ComponentsList() {
             <div className="col d-flex flex-row justify-content-center align-items-center m-0 p-0">
               {/* <Column /> */}
               <NumberElem_PB
-                elementID={theContext.pruebaNumberElement.elementID}
+                id_Element={theContext.pruebaNumberElement.id_Element}
                 labelElement={theContext.pruebaNumberElement.labelElement}
                 required={theContext.pruebaNumberElement.required}
                 disabled={theContext.pruebaNumberElement.disabled}
@@ -75,7 +75,7 @@ function ComponentsList() {
             <div className="col d-flex flex-row justify-content-center align-items-center m-0 p-0">
               {/* <Column /> */}
               <DateElem_PB
-                elementID={theContext.pruebaDateElement.elementID}
+                id_Element={theContext.pruebaDateElement.id_Element}
                 labelElement={theContext.pruebaDateElement.labelElement}
                 required={theContext.pruebaDateElement.required}
                 disabled={theContext.pruebaDateElement.disabled}
@@ -97,7 +97,7 @@ function ComponentsList() {
             </div>
             <div className="col-3 d-flex flex-row justify-content-center align-items-center m-0 p-0">
               <PhoneElem_PB
-                elementID={theContext.pruebaPhoneElement.elementID}
+                id_Element={theContext.pruebaPhoneElement.id_Element}
                 labelElement={theContext.pruebaPhoneElement.labelElement}
                 required={theContext.pruebaPhoneElement.required}
                 disabled={theContext.pruebaPhoneElement.disabled}
@@ -113,7 +113,7 @@ function ComponentsList() {
             </div>
             <div className="col-4 d-flex flex-row justify-content-center align-items-center m-0 p-0">
               <EmailElem_PB
-                elementID={theContext.pruebaEmailElement.elementID}
+                id_Element={theContext.pruebaEmailElement.id_Element}
                 labelElement={theContext.pruebaEmailElement.labelElement}
                 required={theContext.pruebaEmailElement.required}
                 disabled={theContext.pruebaEmailElement.disabled}
@@ -135,7 +135,7 @@ function ComponentsList() {
             <div className="col-3 d-flex flex-row justify-content-center align-items-start m-0 p-0">
               {/* <Column /> */}
               <AreaTextElem_PB
-                elementID={theContext.pruebaAreaTextElement.elementID}
+                id_Element={theContext.pruebaAreaTextElement.id_Element}
                 labelElement={theContext.pruebaAreaTextElement.labelElement}
                 required={theContext.pruebaAreaTextElement.required}
                 disabled={theContext.pruebaAreaTextElement.disabled}
@@ -151,7 +151,7 @@ function ComponentsList() {
             <div className="col-3 d-flex flex-row justify-content-center align-items-center m-0 p-0">
               {/* <Column /> */}
               <SelectElement_PB
-                elementID={theContext.pruebaSelectElement.elementID}
+                id_Element={theContext.pruebaSelectElement.id_Element}
                 labelElement={theContext.pruebaSelectElement.labelElement}
                 required={theContext.pruebaSelectElement.required}
                 disabled={theContext.pruebaSelectElement.disabled}
@@ -164,7 +164,7 @@ function ComponentsList() {
             <div className="col-3 d-flex flex-row justify-content-center align-items-center m-0 p-0">
               {/* <Column /> */}
               <CheckboxElem_PB
-                elementID={theContext.pruebaCheckboxElement.elementID}
+                id_Element={theContext.pruebaCheckboxElement.id_Element}
                 labelElement={theContext.pruebaCheckboxElement.labelElement}
                 required={theContext.pruebaCheckboxElement.required}
                 disabled={theContext.pruebaCheckboxElement.disabled}
@@ -177,7 +177,7 @@ function ComponentsList() {
             <div className="col d-flex flex-row justify-content-center align-items-center m-0 p-0">
               {/* <Column /> */}
               <RadioButtonElem_PB
-                elementID={theContext.pruebaRadioButtonElement.elementID}
+                id_Element={theContext.pruebaRadioButtonElement.id_Element}
                 labelElement={theContext.pruebaRadioButtonElement.labelElement}
                 required={theContext.pruebaRadioButtonElement.required}
                 disabled={theContext.pruebaRadioButtonElement.disabled}
@@ -196,7 +196,7 @@ function ComponentsList() {
             <div className="col-3 d-flex flex-row justify-content-center align-items-start m-0 p-0">
               {/* <Column /> */}
               <RadioButtons_PB
-                elementID={theContext.pruebaRadioButtons.elementID}
+                id_Element={theContext.pruebaRadioButtons.id_Element}
                 legend={theContext.pruebaRadioButtons.legend}
                 required={true}
                 disabled={false}

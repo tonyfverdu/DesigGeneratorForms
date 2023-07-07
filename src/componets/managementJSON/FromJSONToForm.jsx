@@ -123,7 +123,7 @@ function FromJSONToForm() {
     return (
       <SelectElement
         name={parName}
-        elementID={parId}
+        id_Element={parId}
         textoLabel={parNameElement}
         defaultValue={parDefaultValue}  // defaultValue={parArrayValues[0]}
         disabled={ParRequired}
@@ -142,7 +142,7 @@ function FromJSONToForm() {
         response={ParResponse}
         placeholder={ParPlaceholder}
         size={parSize}
-        elementID={parID}
+        id_Element={parID}
         valueOfText={valueOfText}
         setValueOfText={setValueOfText}
       />
@@ -158,7 +158,7 @@ function FromJSONToForm() {
         response={parResponse}
         placeholder={parDefaultValue}
         size={parSize}
-        elementID={parID}
+        id_Element={parID}
       />
     )
   }

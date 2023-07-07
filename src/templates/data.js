@@ -6,14 +6,14 @@ module.exports = {
       "displayName": "My Dynamic Form",
       "displayOrder": 0,
       "required": false,
-      "elementId": "printElement",
+      "id_Element": "printElement",
       "type": "print",
       "readOnly": false,
     }, {
       "displayName": "First Name",
       "displayOrder": 1,
       "required": false,
-      "elementId": "mainPerson.firstname",
+      "id_Element": "mainPerson.firstname",
       "type": "text",
       "readOnly": false,
       "isHidden": () => (false)
@@ -21,7 +21,7 @@ module.exports = {
       "displayName": "Last Name",
       "displayOrder": 2,
       "required": false,
-      "elementId": "mainPerson.lastname",
+      "id_Element": "mainPerson.lastname",
       "type": "text",
       "readOnly": false,
       "isHidden": ()=>(false)
@@ -29,7 +29,7 @@ module.exports = {
       "displayName": "Company",
       "displayOrder": 3,
       "required": false,
-      "elementId": "mainPerson.standardCompanyname",
+      "id_Element": "mainPerson.standardCompanyname",
       "type": "text",
       "readOnly": false,
       "isHidden": ()=>(false)
@@ -37,7 +37,7 @@ module.exports = {
       "displayName": "Job Title",
       "displayOrder": 4,
       "required": false,
-      "elementId": "mainPerson.jobtitle",
+      "id_Element": "mainPerson.jobtitle",
       "type": "text",
       "readOnly": false,
       "isHidden": ()=>(false)
@@ -45,7 +45,7 @@ module.exports = {
       "displayName": "Gender",
       "displayOrder": 5,
       "required": false,
-      "elementId": "mainPerson.gender",
+      "id_Element": "mainPerson.gender",
       "formElementValues": [{
         "displayName": "Male",
         "displayOrder": 1,
@@ -63,7 +63,7 @@ module.exports = {
       "displayName": "Sales Rep First Name",
       "displayOrder": 6,
       "required": false,
-      "elementId": "salesPersonFirstName",
+      "id_Element": "salesPersonFirstName",
       "type": "text",
       "readOnly": false,
       "isHidden": ()=>(false)
@@ -71,7 +71,7 @@ module.exports = {
       "displayName": "Sales Rep Last Name",
       "displayOrder": 7,
       "required": false,
-      "elementId": "salesPersonLastName",
+      "id_Element": "salesPersonLastName",
       "type": "text",
       "readOnly": false,
       "isHidden": ()=>(false)
@@ -79,7 +79,7 @@ module.exports = {
       "displayName": "Sales Rep Email",
       "displayOrder": 8,
       "required": false,
-      "elementId": "salesPersonEmail",
+      "id_Element": "salesPersonEmail",
       "type": "text",
       "readOnly": false,
       "isHidden": ()=>(false)
@@ -87,7 +87,7 @@ module.exports = {
       "displayName": "Status",
       "displayOrder": 9,
       "required": false,
-      "elementId": "status",
+      "id_Element": "status",
       "formElementValues": [{
         "displayName": "Approved",
         "displayOrder": 1,
@@ -108,7 +108,7 @@ module.exports = {
       "displayName": "Registered?",
       "displayOrder": 10,
       "required": false,
-      "elementId": "registered",
+      "id_Element": "registered",
       "type": "checkbox",
       "readOnly": false,
       "isHidden": false
@@ -116,7 +116,7 @@ module.exports = {
       "displayName": "Comments",
       "displayOrder": 11,
       "required": false,
-      "elementId": "comments",
+      "id_Element": "comments",
       "type": "textarea",
       "readOnly": false,
       "isHidden": ['registered']

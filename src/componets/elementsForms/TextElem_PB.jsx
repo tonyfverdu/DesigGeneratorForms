@@ -3,7 +3,7 @@ import { MyContext } from '../../context/TheContext.jsx'
 import '../../sass/componentSass/elementsForms/TextElem_PB.scss'
 
 
-function TextElem_PB({ elementID, orderInBlock, labelElement, required, disabled = false, response, placeholder, size, position,
+function TextElem_PB({ id_Element, orderInBlock, labelElement, required, disabled = false, response, placeholder, size, position,
   borderElement, colorElement, fontSizeElement, setText }) {
   const theContext = useContext(MyContext)
   const [responseText, setResponseText] = useState(response[0])
@@ -24,19 +24,19 @@ function TextElem_PB({ elementID, orderInBlock, labelElement, required, disabled
     setText(valueOfText);
   }
 
-  function handleClickDataShow(ev) {
-    console.log(ev.target)
-    console.log('useRef:  ', elementRef.current)
-    console.log("*********************************************")
-    console.log("Orden: ", OrderRef.current.textContent)
-    console.log("X: ", ColXRef.current.textContent)
-    console.log("Y: ", RowYRef.current.textContent)
-    console.log("*********************************************")
+  // function handleClickDataShow(ev) {
+  //   console.log(ev.target)
+  //   console.log('useRef:  ', elementRef.current)
+  //   console.log("*********************************************")
+  //   console.log("Orden: ", OrderRef.current.textContent)
+  //   console.log("X: ", ColXRef.current.textContent)
+  //   console.log("Y: ", RowYRef.current.textContent)
+  //   console.log("*********************************************")
 
-    theContext.setObjComponentShow({
-      ...theContext.objComponentShow, type: "text"
-    })
-  }
+  //   theContext.setObjComponentShow({
+  //     ...theContext.objComponentShow, type: "text"
+  //   })
+  // }
 
 
   return (
@@ -58,12 +58,12 @@ function TextElem_PB({ elementID, orderInBlock, labelElement, required, disabled
 
       onClick={(ev => handleClickDataShow(ev))}>
 
-      <label htmlFor={elementID} className="form-label labelOfForm d-flex flex-row justify-content-end align-items-center me-2"
+      <label htmlFor={id_Element} className="form-label labelOfForm d-flex flex-row justify-content-end align-items-center me-2"
         style={{ color: colorElement, fontSize: fontSizeElement }}>
         {labelElement}
       </label>
 
-      <input id={elementID} type="text" className={`contInputText form-control rounded-0 ${disabled ? "textNotActiv" : "textActiv"}`}
+      <input id={id_Element} type="text" className={`contInputText form-control rounded-0 ${disabled ? "textNotActiv" : "textActiv"}`}
         autoComplete="off" required={required} disabled={disabled} placeholder={placeholder} size={size}
         value={valueOfText} onChange={(ev) => handleChange(ev)} />
 

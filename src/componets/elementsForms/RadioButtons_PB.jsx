@@ -4,7 +4,7 @@ import RadioButtonElem_PB from './RadioButtonElem_PB'
 import '../../sass/componentSass/elementsForms/RadioButtons_PB.scss'
 
 
-function RadioButtons_PB({ elementID, legend, required, disabled = false, name, radioButtons, response, placeholder, setRadioButtons }) {
+function RadioButtons_PB({ id_Element, legend, required, disabled = false, name, radioButtons, response, placeholder, setRadioButtons }) {
   const theContext = useContext(MyContext)
   const [responseText, setResponseText] = useState(response[0])
   const [valueOfRadioButtons, setValueOfRadioButtons] = useState("")
@@ -25,7 +25,7 @@ function RadioButtons_PB({ elementID, legend, required, disabled = false, name, 
   }
 
   return (
-    <div ref={elementRef} id={elementID} className="contRadioButtons form-group m-0 p-1
+    <div ref={elementRef} id={id_Element} className="contRadioButtons form-group m-0 p-1
     border border-1 border-secondary form-floating"
 
       data-bs-toggle="tooltip" data-bs-html="false" data-bs-placement="bottom" data-bs-offset="10,15" data-bs-animation="true"
@@ -46,9 +46,9 @@ function RadioButtons_PB({ elementID, legend, required, disabled = false, name, 
           {
             radioButtons.map(radio => {
               return (
-                <li key={radio.elementID} className="list-group-item m-0 px-1" >
+                <li key={radio.id_Element} className="list-group-item m-0 px-1" >
                   <RadioButtonElem_PB
-                    elementID={radio.elementID}
+                    id_Element={radio.id_Element}
                     labelElement={radio.labelElement}
                     name={name}
                     required={radio.required}

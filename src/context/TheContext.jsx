@@ -52,7 +52,7 @@ function TheContext({ children }) {
 
   const [label, setLabel] = useState("")
   const pruebaLabelElement = {
-    elementID: "ID_0000",
+    id_Element: "ID_0000",
     orderInBlock: 1,
     position: { rowElem: 0, colElem: 0 },
     required: true,
@@ -65,7 +65,7 @@ function TheContext({ children }) {
 
   const [text, setText] = useState("")
   const pruebaTextElement = {
-    elementID: "ID_0001",
+    id_Element: "ID_0001",
     labelElement: "Soy un componente Text: ",
     required: true,
     disabled: false,
@@ -77,7 +77,7 @@ function TheContext({ children }) {
 
   const [number, setNumber] = useState(0)
   const pruebaNumberElement = {
-    elementID: "ID_0002",
+    id_Element: "ID_0002",
     labelElement: "Soy un componente Number: ",
     required: true,
     disabled: false,
@@ -89,7 +89,7 @@ function TheContext({ children }) {
 
   const [date, setDate] = useState(currentDate().Date_DD_MM_YY)
   const pruebaDateElement = {
-    elementID: "ID_0003",
+    id_Element: "ID_0003",
     labelElement: "Soy un componente Date: ",
     required: true,
     disabled: false,
@@ -100,7 +100,7 @@ function TheContext({ children }) {
 
   const [phone, setPhone] = useState("")
   const pruebaPhoneElement = {
-    elementID: "ID_0004",
+    id_Element: "ID_0004",
     labelElement: "Soy un componente Phone: ",
     required: true,
     disabled: false,
@@ -112,7 +112,7 @@ function TheContext({ children }) {
 
   const [email, setEmail] = useState("")
   const pruebaEmailElement = {
-    elementID: "ID_0005",
+    id_Element: "ID_0005",
     labelElement: "Soy un componente Email: ",
     required: true,
     disabled: false,
@@ -124,7 +124,7 @@ function TheContext({ children }) {
 
   const [areaText, setAreaText] = useState("")
   const pruebaAreaTextElement = {
-    elementID: "ID_0006",
+    id_Element: "ID_0006",
     labelElement: "Soy un componente Areatext: ",
     required: true,
     disabled: false,
@@ -138,7 +138,7 @@ function TheContext({ children }) {
 
   const [select, setSelect] = useState(null)
   const pruebaSelectElement = {
-    elementID: "ID_0007",
+    id_Element: "ID_0007",
     labelElement: "Soy un componente Select: ",
     required: true,
     disabled: false,
@@ -149,7 +149,7 @@ function TheContext({ children }) {
 
   const [checkbox, setCheckbox] = useState(false)
   const pruebaCheckboxElement = {
-    elementID: "ID_0008",
+    id_Element: "ID_0008",
     labelElement: "Soy un componente Checkbox",
     required: true,
     disabled: false,
@@ -160,7 +160,7 @@ function TheContext({ children }) {
 
   const [radioButton, setRadioButton] = useState(false)
   const pruebaRadioButtonElement = {
-    elementID: "ID_0009",
+    id_Element: "ID_0009",
     labelElement: "Soy un componente RadioButton",
     required: true,
     disabled: false,
@@ -170,7 +170,7 @@ function TheContext({ children }) {
   }
   const [radioButtons, setRadioButtons] = useState(false)
   const pruebaRadioButtons = {
-    elementID: "ID_0010",
+    id_Element: "ID_0010",
     labelElement: "",
     required: true,
     disabled: false,
@@ -182,7 +182,7 @@ function TheContext({ children }) {
     setComponent: setRadioButtons,
     radioButtons: [
       {
-        elementID: "ID_00010.1",
+        id_Element: "ID_00010.1",
         labelElement: "Soy un componente RadioButton",
         name: "pruebaRB",
         required: true,
@@ -192,7 +192,7 @@ function TheContext({ children }) {
         setRadioButton: setRadioButton
       },
       {
-        elementID: "ID_00010.2",
+        id_Element: "ID_00010.2",
         labelElement: "Soy un componente RadioButton",
         name: "pruebaRB",
         required: true,
@@ -202,7 +202,7 @@ function TheContext({ children }) {
         setRadioButton: setRadioButton
       },
       {
-        elementID: "ID_00010.3",
+        id_Element: "ID_00010.3",
         labelElement: "Soy un componente RadioButton",
         name: "pruebaRB",
         required: true,
@@ -224,43 +224,62 @@ function TheContext({ children }) {
   //  ****    Component objects
   //  1.-  Component ini (Master Component) 
   const objComponentIni = {
-    elementID: "",
-    type: "",
-    blockOrigen: "",
-    orderInBlock: "",
-    position: { rowElem: 0, colElem: 0 },
-    dimensions: { width: 1, height: "2.4rem" },
+    id_Element: "",
+    titleElement: "",
+    type_Element: "",
+    orderInBlock: 0,
     labelElement: "",
     required: true,
     disabled: false,
-    checked: undefined,
-    response: [""],
-    placeholder: "",
+    response: [],
+    placeholder: undefined,
     size: 1,
-    optionsValues: [""],
+    position: { rowElem: 0, colElem: 0 },
+    dimension: { width: 0, height: "2.4rem" },
+    valueComponent: undefined,
+    setComponent: undefined,
+    name: undefined,
+    borderElement: false,
+    colorElement: "rgb(9, 9, 9)",
+    fontSizeElement: "0.6rem",
+
+    //  Area Text
+    readonly: false,
+    row: 0,
+    col: 0,
+
+    //  Select
+    optionValues: [],
+
+    //  Checkbox
+    checked: false,
+
+    //  Radio Buttons
     legend: "",
-    name: "nameProb",
-    valueComponent: "",
-    setComponent: "",
     radioButtons: [
       {
-        elementID: "",
+        id_Element: "",
         labelElement: "",
         name: "",
         required: true,
         disabled: false,
         checked: false,
         response: [false],
-        setRadioButton: ""
+        setRadioButton: undefined
       }
-    ]
+    ],
+
+    //  Icons - Images
+    srcURLIcon: "",
+    nameImage: "",
+    widthImage: 0
   }
+
   //  2.- Component Master ini
   const masterComponentIni = {
-    elementID: "id_Master",
+    id_Element: "id_Master",
     titleElement: "Master Component",
     typeElement: "master",
-    blockOrigen: undefined,
     orderInBlock: undefined,
     labelElement: "Master Component",
     required: true,
@@ -268,8 +287,8 @@ function TheContext({ children }) {
     response: [""],
     placeholder: "Master Component",
     size: 0,
-    position: { rowElem: 0, colElem: 0},
-    dimensions: { width: 1, height: "2.4rem" },
+    position: { rowElem: 0, colElem: 0 },
+    dimension: { width: 1, height: "2.4rem" },
     valueComponent: undefined,
     setComponent: undefined,
     name: "",
@@ -287,12 +306,12 @@ function TheContext({ children }) {
 
     //  Element Checkbox
     checked: false,
-    
+
     //  Element Radio Buttons
     legend: "",
     radioButtons: [
       {
-        elementID: "",
+        id_Element: "",
         labelElement: "",
         name: "",
         required: true,
@@ -307,7 +326,7 @@ function TheContext({ children }) {
 
     //  Element Icon Image
     widthImage: 0,
-    srcURLIcon: "", 
+    srcURLIcon: "",
     nameImage: ""
   }
 
@@ -322,10 +341,10 @@ function TheContext({ children }) {
   const [componentModify, setComponentModify] = useState({})
 
   //  6.-  Component Show in Info-Box  <==  "Component Object" select in Info Component
-  const [objComponentShow, setObjComponentShow] = useState(masterComponentIni)
+  const [objComponentShow, setObjComponentShow] = useState(objComponentIni)
 
   //  7.-  Component Show in Layout <==  "Component Object" in Form Layout
-  const [objComponentLayout, setObjComponentLayout] = useState(masterComponentIni)
+  const [objComponentLayout, setObjComponentLayout] = useState(objComponentIni)
 
 
   //  Block objects
@@ -358,7 +377,7 @@ function TheContext({ children }) {
   //    ***************************     FORM OBJECT   *****************************************
   const [formObject, setFormObject] = useState(form_survey_disease_001)
 
-   /////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////
 
   //  State Variables from Context
   const exportData = {
