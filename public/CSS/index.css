@@ -36,6 +36,16 @@
   color: #0dcaf0;
 }
 
+.backgroundColorGreenDunkel {
+  background-color: rgba(1, 104, 54, 0.9176470588);
+  color: white;
+}
+.backgroundColorGreenDunkel:hover, .backgroundColorGreenDunkel:focus {
+  cursor: pointer;
+  background-color: rgba(1, 172, 89, 0.9176470588);
+  transform: scale(0.95);
+}
+
 .graycolor100 {
   background-color: #f8f9fa;
 }
@@ -78,6 +88,54 @@
 
 .blueGradientColorHell {
   background: linear-gradient(to bottom, rgb(161, 245, 253) 3%, rgb(127, 192, 198) 10%, rgb(58, 133, 143) 20%, rgb(46, 89, 94) 30%, rgb(176, 248, 251));
+}
+
+.backgroundColorBlue900 {
+  background-color: rgba(1, 1, 77, 0.9);
+}
+
+.backgroundColorBlue800 {
+  background-color: rgba(1, 1, 153, 0.9);
+}
+
+.backgroundColorBlue700 {
+  background-color: rgba(1, 1, 201, 0.9);
+}
+
+.backgroundColorBlue600 {
+  background-color: rgba(3, 3, 250, 0.9);
+}
+
+.backgroundColorBlue500 {
+  background-color: rgba(47, 47, 253, 0.9);
+}
+
+.backgroundColorBlue400 {
+  background-color: rgba(110, 110, 252, 0.9);
+}
+
+.backgroundColorBlue300 {
+  background-color: rgba(168, 168, 253, 0.9);
+}
+
+.backgroundColorBlue200 {
+  background-color: rgba(215, 215, 252, 0.9);
+}
+
+.backgroundColorBlue100 {
+  background-color: rgba(245, 245, 255, 0.9);
+}
+
+.graycolor700Color {
+  color: #495057;
+}
+
+.colorRedDunkel {
+  color: rgba(156, 2, 2, 0.9);
+}
+
+.colorBlueDunkel {
+  color: rgba(2, 0, 114, 0.9);
 }
 
 *,

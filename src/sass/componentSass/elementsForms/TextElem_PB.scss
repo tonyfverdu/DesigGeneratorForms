@@ -4,17 +4,7 @@
 
 
 .contTextElement {
-  height: auto;
-  transition: all ease 0.20s;
-
-  &:hover,
-  &:focus {
-    cursor: pointer;
-    height: auto;
-    outline: 2px ridge v.$colorHell2;
-    outline-offset: 3px;
-    border-radius: 2px;
-  }
+  height: 2.4rem;
 
   &>.labelOfForm {
     position: relative;
@@ -46,7 +36,7 @@
     &:hover,
     &:focus {
       cursor: pointer;
-      max-height: auto;
+      max-height: 2.4rem;
       border: 1px solid v.$colorHell4White;
       box-shadow: v.$boxShadow16;
     }
@@ -59,26 +49,4 @@
     background-color: v.$backgroundColorHellGrayT;
     border: none;
   }
-
-  // &>.bubble {
-  //   position: absolute;
-  //   display: none;
-  //   z-index: 100;
-  //   top: 156%;
-  //   left: -3.6rem;
-  //   border-radius: 9px;
-  //   background-color: v.$backgroundColorIniWhite;
-  //   border: 1px solid v.$backgroundColorHellGrayT;
-
-  //   &:after {
-  //     content: "";
-  //     position: absolute;
-  //     top: -36%;
-  //     left: 5%;;
-  //     border-bottom: 10px solid blue;
-  //     border-bottom-color: inherit;
-  //     border-left: 10px solid transparent;
-  //     border-right: 10px solid transparent;
-  //   }
-  // }
 }

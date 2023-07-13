@@ -5,9 +5,10 @@
 @mixin layoutInlineGenerall($float, $width) {
     position: relative;
     display: flex;
-    float:  $float;
-    width:  $width
+    float: $float;
+    width: $width
 }
+
 @mixin layoutInline {
     position: relative;
     display: block;
@@ -20,45 +21,51 @@
     display: inline-block;
     width: $width;
 }
+
 @mixin layoutInlineBlock {
     position: relative;
     display: inline-block;
 }
+
 //  3.- Layout Block  ************************************************
 @mixin layoutBlockGenerall($width) {
     position: relative;
-    display:  block;
+    display: block;
     width: $width;
 }
+
 @mixin layoutBlock {
     position: relative;
-    display:  block;
-    width:100%;
+    display: block;
+    width: 100%;
 }
 
 //  4.- Layout Flexbox  ***********************************************
-@mixin layoutFlexBoxGenerall($directionFlex, $justifyContent, $alignItem, $wrap, $width) {  // generall
+@mixin layoutFlexBoxGenerall($directionFlex, $justifyContent, $alignItem, $wrap, $width) {
+    // generall
     position: relative;
     display: flex;
     flex-direction: $directionFlex;
     justify-content: $justifyContent;
     align-items: $alignItem;
     flex-wrap: $wrap;
-    width:$width;
+    width: $width;
 }
+
 @mixin layoutFlexboxColumCenter {
-    position            : relative;
-    display             : flex;
-    flex-direction      : column;
-    justify-content     : center;
-    align-items         : center;
-    width               : 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
+
 @mixin layoutFlexboxRowCenter {
-    position            : relative;
-    display             : flex;
-    flex-direction      : row;
-    justify-content     : center;
-    align-items         : center;
-    width               : 100%;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }

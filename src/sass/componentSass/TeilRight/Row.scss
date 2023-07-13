@@ -3,37 +3,61 @@
 @use '../../designElement' as d;
 
 
-.contRow {
-  height: 0.3rem;
+.circle {
+  @include l.layoutFlexboxRowCenter;
+  justify-content: center;
+  align-items: center;
+  width: 1.3rem;
+  height: 1.3rem;
+  margin: 0%;
+  padding: 0.3rem;
+  background-color: v.$backgroundColorHellGrayT3;
+  border: 1px solid v.$backgroundColorHellGray2;
+  border-radius: 50%;
+  transition: all ease 0.20s;
 
-  &>.circle {
-    @include l.layoutFlexboxRowCenter;
-    justify-content: center;
-    align-items: center;
-    width: 1.3rem;
-    height: 1.3rem;
-    margin: 0%;
-    padding:0.3rem;
-    background-color: v.$backgroundColorHellGrayT3;
-    border: 1px solid v.$backgroundColorHellGray2;
-    border-radius: 50%;
-    transition: all ease 0.20s;
-
-    &:hover,
-    &:focus {
-      cursor: pointer;
-      transform: scale(0.85);
-      background-color: v.$backgroundColorHellGrayT;
-      border: 1px solid v.$colorRedNeu;
-      color: v.$colorRedNeu;
-    }
-  }
-
-  &>.contLine {
-    @include l.layoutFlexboxRowCenter;
-    height: 0.2rem;
-    background-color: v.$backgroundColorDunkelGray4;
-    color: v.$backgroundColorDunkelGray4;
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    transform: scale(0.85);
+    background-color: v.$colorHell9;
+    border: 1px solid v.$colorRedNeu;
+    color: v.$colorRedNeu;
   }
 }
 
+.circleComp {
+  @include l.layoutFlexboxRowCenter;
+  justify-content: center;
+  align-items: center;
+  width: 1rem;
+  height: 1rem;
+  margin: 0%;
+  padding: 0.1rem;
+  background-color: rgb(143, 58, 143);
+  border: 1px solid v.$colorDunkel7;
+  border-radius: 50%;
+  transition: all ease 0.20s;
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    transform: scale(0.85);
+    background-color: rgb(250, 149, 250);
+    border: 1px solid v.$colorRedNeu;
+  }
+}
+
+.contLine {
+  width: 100%;
+  height: 0.16rem;
+  background-color: v.$backgroundColorDunkelGray4;
+  color: v.$backgroundColorDunkelGray4;
+}
+
+.contLineComp {
+  width: 100%;
+  height: 0.14rem;
+  background-color: v.$colorIndigo;
+  color: v.$colorDunkel7;
+}

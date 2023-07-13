@@ -101,6 +101,21 @@
   height: auto;
 }
 
+//  Icon Image
+.icon {
+  transition: all ease 0.20s;
+
+  &:hover, &:focus {
+    cursor: pointer;
+    transform: scale(0.85) rotate(15deg);
+    border: 1px solid v.$backgroundColorDunkelGray4;
+    background-color: v.$backgroundColorHellGrayT;
+  }
+}
+
+
+//  Animations
+
 @keyframes App-logo-move {
   0% {
     transform: rotate(0deg) translateX(0px) scale(2) translateY(0px);

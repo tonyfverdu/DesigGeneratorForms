@@ -1,0 +1,42 @@
+.labelOfSelectIni {
+  position: relative;
+  width: auto;
+  min-width: fit-content;
+  height: auto;
+  margin: 0% auto;
+}
+
+.contSelectIni, .selectIniNotActiv, .selectIniActiv {
+  position: relative;
+  text-align: justify;
+  font-size: 0.55rem;
+  font-weight: 400;
+  color: rgb(39, 39, 39);
+  margin: 0% auto;
+  width: auto;
+  min-width: fit-content;
+  height: 2rem;
+  padding: 0.1%;
+  margin: 0%;
+  margin-right: 1%;
+  text-align: center;
+}
+
+.selectIniActiv {
+  transition: all ease 0.2s;
+}
+.selectIniActiv:hover, .selectIniActiv:focus {
+  cursor: pointer;
+  max-height: 2rem;
+  border: 1px solid rgba(1, 172, 89, 0.9176470588);
+  box-shadow: 0px 1px 1px 1px rgb(184, 255, 134), inset 0px 0px 0px 1px #03fb03, 1px 1px 3px 4px #99f0b6;
+}
+
+.selectIniNotActiv {
+  color: rgb(66, 66, 71);
+  font-weight: 600;
+  background-color: rgba(167, 166, 166, 0.6);
+  border: none;
+}
+
+/*# sourceMappingURL=SelectIni.css.map */

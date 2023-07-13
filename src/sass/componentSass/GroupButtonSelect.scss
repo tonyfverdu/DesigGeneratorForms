@@ -1,8 +1,10 @@
 @use '../layouts' as l;
 @use '../neumorphismus' as n;
+@use "../glassMorphismus" as g;
 
 
 .contGrpBtnSelect{
-  @include n.neuMorphismus4;
+  @include g.GlassMorphismus1Color;
   width: auto;
+  border-radius: 3px;
 }

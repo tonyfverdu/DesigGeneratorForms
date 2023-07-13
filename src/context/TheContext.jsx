@@ -10,33 +10,30 @@ import form_survey_disease_001 from '../Data/JSONFormDataObj_01.js'
 
 
 function TheContext({ children }) {
-  const [toogleReadLeft, setToogleReadLeft] = useState(false)
-  const [toogleCreateLeft, setToogleCreateLeft] = useState(false)
-  const [toogleModifyLeft, setToogleModifyLeft] = useState(false)
+
+  //    ***************************     FORM OBJECT   *****************************************
+  const [formObject, setFormObject] = useState({})
+  const [nameOfFormObject, setNameOfFormObject] = useState("")
+
+  const [JSONEingabenForm, setJSONEingabenForm] = useState("")   //  <== Eingaben ( vor String JSON zur JSON-Formulardaten)
+  const [JSONAusgabenForm, setJSONAusgabenForm] = useState("")   //  <== Ausgaben (vor JSON-Formulardaten zur String JSON)
+  const [toggleJSONEingaben, setToggleJSONEingaben] = useState(true)
+
+  /////////////////////////////////////////////////////////////////////////////////////////////
+
+  //     ***************************    SELECTION VARIABLES   *********************************
   const [optionState, setOptionState] = useState("read")
   const [optionDesigner, setOptionDesigner] = useState("form")
   const [optionLayout, setOptionLayout] = useState("read")
 
-  const [JSONEingabenForm, setJSONEingabenForm] = useState("")   //  <== Eingaben ( vor String JSON zur JSON-Formulardaten)
-  const [JSONAusgabenForm, setJSONAusgabenForm] = useState("")   //  <== Ausgaben (vor JSON-Formulardaten zur String JSON)
-  const [toggleJSONEingaben, setToggleJSONEingaben] = useState(false)
+  /////////////////////////////////////////////////////////////////////////////////////////////
 
-  //  Funtions of select Forms, Blocks and Components
-  // IV.-  Dieses Funktion hat keine machen
-  function handleSubmitFormIni(ev) {
-    ev.preventDefault();
-  }
+  //     ***************************    TOOGLE VARIABLES (READ, CREATE AND MODIFY)    *********
+  const [toogleReadLeft, setToogleReadLeft] = useState(false)
+  const [toogleCreateLeft, setToogleCreateLeft] = useState(false)
+  const [toogleModifyLeft, setToogleModifyLeft] = useState(false)
 
-  const [valueOfForm, setValueOfForm] = useState("")
-
-  // V.-  Dieses Funktion hat keine machen
-  function handleButtonSubmitFormDyn(ev) {
-    ev.preventDefault()
-    setToggleJSONEingaben(!toggleJSONEingaben)
-
-    console.log("Vamos a ver, el Formulario seleccionado es:  ", valueOfForm)
-  }
-
+  //////////////////////////////////////////////////////////////////////////////////////////////
   const [numRow, setNumRow] = useState(0)
   const [numCol, setNumCol] = useState(1)
 
@@ -50,6 +47,7 @@ function TheContext({ children }) {
     layout: [arrayRows][arrayColumns]
   })
 
+  //    ***************************     STATE VARIABLES OF ELEMENTS HTML_BP   ******************
   const [label, setLabel] = useState("")
   const pruebaLabelElement = {
     id_Element: "ID_0000",
@@ -218,121 +216,80 @@ function TheContext({ children }) {
 
   const [icon, setIcon] = useState(null)
 
+  //////////////////////////////////////////////////////////////////////////////////////////////
+
   //  0.-  Name - type of the selected Component
   const [element, setElement] = useState("master")
 
   //  ****    Component objects
   //  1.-  Component ini (Master Component) 
-  const objComponentIni = {
-    id_Element: "",
-    titleElement: "",
-    type_Element: "",
-    orderInBlock: 0,
-    labelElement: "",
-    required: true,
-    disabled: false,
-    response: [],
-    placeholder: undefined,
-    size: 1,
-    position: { rowElem: 0, colElem: 0 },
-    dimension: { width: 0, height: "2.4rem" },
-    valueComponent: undefined,
-    setComponent: undefined,
-    name: undefined,
-    borderElement: false,
-    colorElement: "rgb(9, 9, 9)",
-    fontSizeElement: "0.6rem",
-
-    //  Area Text
-    readonly: false,
-    row: 0,
-    col: 0,
-
-    //  Select
-    optionValues: [],
-
-    //  Checkbox
-    checked: false,
-
-    //  Radio Buttons
-    legend: "",
-    radioButtons: [
-      {
-        id_Element: "",
-        labelElement: "",
-        name: "",
-        required: true,
-        disabled: false,
-        checked: false,
-        response: [false],
-        setRadioButton: undefined
-      }
-    ],
-
-    //  Icons - Images
-    srcURLIcon: "",
-    nameImage: "",
-    widthImage: 0
-  }
 
   //  2.- Component Master ini
   const masterComponentIni = {
-    id_Element: "id_Master",
-    titleElement: "Master Component",
-    typeElement: "master",
-    orderInBlock: undefined,
-    labelElement: "Master Component",
-    required: true,
-    disabled: false,
-    response: [""],
-    placeholder: "Master Component",
-    size: 0,
-    position: { rowElem: 0, colElem: 0 },
-    dimension: { width: 1, height: "2.4rem" },
-    valueComponent: undefined,
-    setComponent: undefined,
-    name: "",
-    borderElement: true,
-    colorElement: "black",
-    fontSizeElement: "0.6rem",
+    "id_Element": "id_component_master",
+    "title_Element": "Component Master",
+    "type_Element": "master",
+    "orderInBlock": 0,
+    "label_Element": "Component Master",
+    "required": true,
+    "disabled": false,
+    "response": [],
+    "placeholder": "Default",
+    "size": 0,
+    "position": {
+      "rowElem": 0,
+      "colElem": 0
+    },
+    "dimension": {
+      "width": 1,
+      "height": "2.4rem"
+    },
+    "valueComponent": undefined,
+    "setComponent": undefined,
+    "name": undefined,
+    "borderElement": true,
+    "colorElement": "black",
+    "fontSizeElement": "0.6rem",
 
     //  Element Select
-    optionsValues: [],
+    "optionValues": [],
 
     //  Element Area Text 
-    readonly: false,
-    row: 0,
-    col: 0,
+    "readonly": false,
+    "row": 0,
+    "col": 0,
 
     //  Element Checkbox
-    checked: false,
+    "checked": false,
 
     //  Element Radio Buttons
-    legend: "",
-    radioButtons: [
+    "legend": "",
+    "radioButtons": [
       {
-        id_Element: "",
-        labelElement: "",
-        name: "",
-        required: true,
-        disabled: false,
-        checked: false,
-        response: [false],
-        setRadioButton: null
+        "id_Element": "",
+        "labelElement": "",
+        "name": "",
+        "required": true,
+        "disabled": false,
+        "checked": false,
+        "response": [
+          false
+        ],
+        "setRadioButton": undefined
       }
     ],
 
     //  Element Table
 
     //  Element Icon Image
-    widthImage: 0,
-    srcURLIcon: "",
-    nameImage: ""
+    "srcURLIcon": "",
+    "nameImage": "",
+    "widthImage": 0
   }
 
 
   //  3.-  Component in the state "read"
-  const [componentRead, setComponentRead] = useState(objComponentIni)
+  const [componentRead, setComponentRead] = useState(masterComponentIni)
 
   //  4.-  Component in the state "create"
   const [componentCreate, setComponentCreate] = useState({})
@@ -341,25 +298,34 @@ function TheContext({ children }) {
   const [componentModify, setComponentModify] = useState({})
 
   //  6.-  Component Show in Info-Box  <==  "Component Object" select in Info Component
-  const [objComponentShow, setObjComponentShow] = useState(objComponentIni)
+  const [objComponentShow, setObjComponentShow] = useState(masterComponentIni)
 
   //  7.-  Component Show in Layout <==  "Component Object" in Form Layout
-  const [objComponentLayout, setObjComponentLayout] = useState(objComponentIni)
+  const [objComponentLayout, setObjComponentLayout] = useState(masterComponentIni)
 
+  //  Rows of Components
+  const masterRowCompsIni = {
+    "components": [masterComponentIni]
+  }
+  const [arrayRowsComps, setArrayRowsComps] = useState([masterRowCompsIni])
 
   //  Block objects
-  const objBlockIni = {
-    titleOfBlock: "First block",
-    idOfBlock: "block_00_Form_001",
-    displayOrderOfBlock: 1,
-    numberOfBlockInForm: 1,
+  const masterBlock = {
+    "id_Block": "id_block_master",
+    "ordenDisplay_Block": 0,
+    "title_Block": "Master Block",
+    "label_Block": "MASTER BLOCK",
+    "description_Block": "Master Block of the template form.",
 
-    components: [
-      objComponentIni
+    "columns": [
+      masterRowCompsIni
     ]
   }
+
+  const [arrayOfBlocks, setArrayOfBlocks] = useState([masterBlock])
+
   //  1.-  Block Read
-  const [blockRead, setBlockRead] = useState(objBlockIni)
+  const [blockRead, setBlockRead] = useState(masterBlock)
 
   //  2.-  Block Create
   const [blockCreate, setBlockCreate] = useState({})
@@ -371,17 +337,13 @@ function TheContext({ children }) {
   const [toogleViewVaccines, setViewVaccines] = useState(false)
   const [toogleAddRowVaccines, setToogleAddRowVaccines] = useState(false)
 
-
   /////////////////////////////////////////////////////////////////////////////////////////////
 
-  //    ***************************     FORM OBJECT   *****************************************
-  const [formObject, setFormObject] = useState(form_survey_disease_001)
 
-  /////////////////////////////////////////////////////////////////////////////////////////////
-
-  //  State Variables from Context
+  //    *********************   EXPORT DATA OF State Variables from Context   ****************
   const exportData = {
     formObject, setFormObject,
+    nameOfFormObject, setNameOfFormObject,
 
     toogleReadLeft, setToogleReadLeft, toogleCreateLeft, setToogleCreateLeft, toogleModifyLeft, setToogleModifyLeft,
     optionState, setOptionState, optionDesigner, setOptionDesigner, optionLayout, setOptionLayout,
@@ -390,16 +352,21 @@ function TheContext({ children }) {
     JSONAusgabenForm, setJSONAusgabenForm,
     toggleJSONEingaben, setToggleJSONEingaben,
 
-    handleSubmitFormIni,
-    valueOfForm, setValueOfForm,
-    handleButtonSubmitFormDyn,
+    //  Blocks
+    masterBlock,
+    arrayOfBlocks, setArrayOfBlocks,
 
+    blockRead, setBlockRead, blockCreate, setBlockCreate, blockModify, setBlockModify,
+
+    //  Rows of Components
+    masterRowCompsIni,
+    arrayRowsComps, setArrayRowsComps,
+
+    //  Components
     masterComponentIni,
 
     objComponentShow, setObjComponentShow, objComponentLayout, setObjComponentLayout,
     componentRead, setComponentRead, componentCreate, setComponentCreate, componentModify, setComponentModify,
-
-    blockRead, setBlockRead, blockCreate, setBlockCreate, blockModify, setBlockModify,
 
     numRow, setNumRow, numCol, setNumCol, arrayOfRows, setArrayOfRows,
     arrayRows, setArrayRows, arrayColumns, setArrayColumns,
@@ -417,10 +384,9 @@ function TheContext({ children }) {
     checkbox, setCheckbox, pruebaCheckboxElement,
     radioButton, setRadioButton, radioButtons, setRadioButtons, pruebaRadioButtonElement, pruebaRadioButtons,
     table, setTable,
+    icon, setIcon,
 
-    toogleViewVaccines, setViewVaccines, toogleAddRowVaccines, setToogleAddRowVaccines,
-
-    icon, setIcon
+    toogleViewVaccines, setViewVaccines, toogleAddRowVaccines, setToogleAddRowVaccines
   }
 
 

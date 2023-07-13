@@ -1,10 +1,8 @@
-@use '../../myvariables' as v;
-@use '../../layouts' as l;
-@use '../../neumorphismus' as n;
+@use '../../glassMorphismus' as g;
+
 
 .contIcons {
-  @include l.layoutFlexboxRowCenter;
-  @include n.neuMorphismus4;
+  @include g.GlassMorphismus1Color;
   height: auto;
-  margin-bottom: 0.5rem;
+  border-radius: 4px;
 }

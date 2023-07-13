@@ -1,69 +1,92 @@
-import { useState, useContext, useRef, Fragment } from 'react'
+import { useState, useEffect, useContext, useRef, Fragment } from 'react'
 import { MyContext } from '../../context/TheContext.jsx'
 import MasterElem_PB from '../elementsForms/MasterElem_PB.jsx'
+import WhiteSpace_PB from '../elementsForms/WhiteSpace_PB.jsx'
 import IconEditDelete from '../icons/IconEditDelete.jsx'
 import '../../sass/componentSass/TeilRight/Column.scss'
-import { useEffect } from 'react'
 
 
-function Column() {
+function Column({ comp }) {
   const theContext = useContext(MyContext)
   const [toogleColBefore, setToogleColBefore] = useState(false)
   const [toogleColAfter, setToogleColAfter] = useState(false)
+  const [isSpace, setIsSpace] = useState(false)
   const refElementDiv = useRef(null)
-
-  useEffect(()=>{
-    if(!toogleColBefore && toogleColAfter) {
-      theContext.setArrayColumns([...theContext.arrayColumns, theContext.arrayColumns.length])
-    } 
-    console.log("arrayColumns:  ", theContext.arrayColumns)
-  }, [toogleColBefore, toogleColAfter])
 
   function addNewCol(parAfterBefore) {
     if (parAfterBefore === "after") {
       setToogleColAfter(!toogleColAfter)
     } else if (parAfterBefore === "before") {
       setToogleColBefore(!toogleColBefore)
+    } else {
+      console.error('Error: The argument of the function "addNewCol" must be the worts: "after" or "before" !!')
     }
   }
+
+  useEffect(() => {
+    if (!toogleColBefore && toogleColAfter) {
+      theContext.setArrayColumns([...theContext.arrayColumns, theContext.arrayColumns.length])
+    }
+  }, [toogleColBefore, toogleColAfter])
+
 
   return (
     <Fragment ref={refElementDiv} className="container-fluid d-flex flex-row justify-content-center align-items-start p-0 m-0">
       {
         toogleColBefore &&
-        <Column />
+
+        <Column
+          comp={comp}
+        />
+
       }
-      <button type="button" className="buttonNewElement d-flex flex-row justify-content-center align-items-center mx-1 p-0"
-        onClick={() => addNewCol("before")}>
-        <span className="text-dark fw-normal p-1 m-0">
-          {
-            !toogleColBefore ? "+" : "-"
-          }
-        </span>
-      </button>
-      <div className="col d-flex flex-row justify-content-center align-items-start m-0 p-0">
-        <MasterElem_PB
-          id_Element={theContext.masterComponentIni.id_Element}
-          placeholder={theContext.masterComponentIni.placeholder}
-          width={theContext.masterComponentIni.componentSeldimensionect.width}
-          disabled={false}
+      <div className="d-flex flex-column justify-content-between align-items-center p-0 m-0">
+        <CircleButton
+          isButton={"before"}
+          addNewCol={addNewCol}
+          parToogleCol={toogleColBefore}
         />
-        <IconEditDelete
-          refElementDiv={refElementDiv}
-        />
+        <button type="button" className={`btn btn-outline-success circleCol ${!isSpace ? "circleColSpace" : "circleColMinus"} 
+        d-flex flex-row justify-content-center align-items-center mx-auto fw-bold text-white p-0`}
+          style={{ fontSize: "0.6rem" }}
+          onClick={(ev) => setIsSpace(!isSpace)}>
+          S
+        </button>
+      </div>
+
+      <div className="d-flex flex-row justify-content-center align-items-start m-0 p-0">
+        {
+          !isSpace
+            ?
+            <>
+              <MasterElem_PB
+                comp={comp}
+                id_Element={comp.id_Element}
+                type_Element={comp.type_Element}
+                placeholder={comp.placeholder}
+                width={comp.dimension.width}
+                disabled={comp.disabled}
+              />
+              <IconEditDelete
+                refElementDiv={refElementDiv}
+              />
+            </>
+            :
+            <WhiteSpace_PB />
+        }
       </div>
       <>
-        <button type="button" className="buttonNewElement d-flex flex-row justify-content-center align-items-center ms-1 p-0"
-          onClick={() => addNewCol("after")}>
-          <span className="text-dark fw-normal p-1 m-0">
-            {
-              !toogleColAfter ? "+" : "-"
-            }
-          </span>
-        </button>
+        <CircleButton
+          isButton={"after"}
+          addNewCol={addNewCol}
+          parToogleCol={toogleColAfter}
+        />
+
         {
           toogleColAfter &&
-          <Column />
+          <Column
+            comp={comp}
+          />
         }
       </>
     </Fragment>
@@ -71,3 +94,17 @@ function Column() {
 }
 
 export default Column;
+
+export function CircleButton({ isButton, addNewCol, parToogleCol }) {
+  return (
+    <button type="button" className={`circleCol ${!parToogleCol ? "circleColPlus" : "circleColMinus"} d-flex flex-row justify-content-center align-items-center p-0`}
+      onClick={() => addNewCol(isButton)}>
+      <span className="fw-bold m-0 mx-auto">
+        {
+          !parToogleCol ? "+" : "-"
+        }
+      </span>
+    </button>
+  )
+}
+

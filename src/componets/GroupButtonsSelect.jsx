@@ -87,12 +87,12 @@ function GroupButtonsSelect({ preId, role, arialLabel, typeButton, nameInput, op
         )
       })
     } else {
-      console.error('Error:  The argument of the function "" must be an array!!')
+      console.error('Error: The argument of the function "showRadioButtons" must be an array!!')
     }
   }
 
   return (
-    <div className="contGrpBtnSelect col d-flex justify-content-center align-items-center p-1 m-2" >
+    <div className="contGrpBtnSelect col d-flex justify-content-end align-items-center p-1 m-1 mx-2" >
       <div className="btn-group btn-group-sm m-0" style={{ height: height }} role={role} aria-label={arialLabel}>
         {showRadioButtons(options)}
       </div>

@@ -27,7 +27,7 @@ function LabelElem_PB({ id_Element, orderInBlock, required, disabled, response, 
       </div>`}
       title={`Order: ${orderInBlock}       Position: X = ${position.colElem}  Y = ${position.rowElem}`}>
 
-      <div ref={elementRef} className="contLabelElement_PB d-flex flex-row justify-content-center align-items-center m-0 p-1" >
+      <div ref={elementRef} className="contLabelElement_PB d-flex flex-row justify-content-center align-items-center m-0 p-0" >
 
         <label id={id_Element} className="form-label labelOfForm d-flex flex-row justify-content-end align-items-center fw-bold me-2"
           style={{ color: colorElement, fontSize: fontSizeElement}} required={required} disabled={disabled} placeholder={placeholder} size={size} >
@@ -68,42 +68,5 @@ export default LabelElem_PB;
     theContext.setObjComponentShow({
       ...theContext.objComponentShow, type: "label"
     })
-  }
-*/
-
-/*
-  const objComponentIni = {  //  Object of Component - element
-    id_Element: "",
-    type: "",
-    blockOrigen: "",
-    orderInBlock: "0",
-    position: { rowElem: 0, colElem: 0 },
-    dimensions: { width: 0, height: "2.4rem" },
-    labelElement: "",
-    required: true,
-    disabled: false,
-    checked: undefined,
-    response: [""],
-    placeholder: "",
-    size: 1,
-    row:0, 
-    cols:0,
-    optionsValues: [""],
-    legend: "",
-    name: "",
-    valueComponent: "",
-    setComponent: "",
-    radioButtons: [
-      {
-        id_Element: "",
-        labelElement: "",
-        name: "",
-        required: true,
-        disabled: false,
-        checked: false,
-        response: [false],
-        setRadioButton: null
-      }
-    ]
   }
 */

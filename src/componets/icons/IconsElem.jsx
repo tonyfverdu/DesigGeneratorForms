@@ -25,7 +25,7 @@ function IconsElem({ height }) {
   }, [elementIcons])
 
   return (
-    <div className="contIcons col p-2" style={{ transform: `scale(${height})` }}>
+    <div className="contIcons col d-flex justify-content-center align-items-center p-1" style={{ transform: `scale(${height})` }}>
       <IconButtonLabel />
       <IconButtonText />
       <IconButtonNumber />

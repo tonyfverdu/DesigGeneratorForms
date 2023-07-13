@@ -110,7 +110,7 @@ function PrintFormInfo() {
     <div className="container-fluid mt-1 bg-body rounded">
       {
         theContext.toggleJSONEingaben &&
-        <>
+        <form >
           <div className="container shadow-sm d-flex flex-column justify-content-start align-items-center p-1">
             <header className="container row bg-light p-0 rounded">
               <h5 className="col h-5 fw-bold p-2 text-sm-start text-muted text-capitalize text-secondary ">
@@ -151,7 +151,7 @@ function PrintFormInfo() {
                     disabled={true}
                     response={[""]}
                     placeholder={theContext.valueOfForm}
-                    size={15}
+                    size={12}
                     position={{ rowElem: 0, colElem: 10 }}
                     width={3}
                     borderElement={false}
@@ -216,7 +216,7 @@ function PrintFormInfo() {
                         width={3}
                         borderElement={true}
                         colorElement={"rgb(9, 9, 9)"}
-                        fontSizeDate={"0.6rem"}
+                        fontSizeElement={"0.6rem"}
                         setDate={theContext.setDate}
                       />
                     </div>
@@ -286,7 +286,7 @@ function PrintFormInfo() {
                     orderInBlock={9}
                     required={true}
                     disabled={false}
-                    widthImage={"75"}
+                    widthImage={"50"}
                     position={{ rowElem: 2, colElem: 1 }}
                     borderElement={true}
                     srcURLIcon={"../src/assets/iconImages/"}
@@ -300,7 +300,7 @@ function PrintFormInfo() {
                     orderInBlock={10}
                     required={true}
                     disabled={false}
-                    widthImage={"75"}
+                    widthImage={"50"}
                     position={{ rowElem: 2, colElem: 1 }}
                     borderElement={true}
                     srcURLIcon={"../src/assets/iconImages/"}
@@ -365,8 +365,8 @@ function PrintFormInfo() {
                     </button>
                   </div>
 
-                  <div id="collapseOne1" class="accordion-collapse collapse show" aria-labelledby="headingOne1">
-                    <div class="accordion-body py-0 px-1 mx-1">
+                  <div id="collapseOne1" className="accordion-collapse collapse show" aria-labelledby="headingOne1">
+                    <div className="accordion-body py-0 px-1 mx-1">
                       <div className="row p-1 shadow-sm graycolor500">
                         <div className="col-3">
                           <LabelElem_PB
@@ -577,8 +577,8 @@ function PrintFormInfo() {
                     </button>
                   </div>
 
-                  <div id="collapseOne2" class="accordion-collapse collapse show" aria-labelledby="headingOne2">
-                    <div class="accordion-body py-0 px-1 mx-1">
+                  <div id="collapseOne2" className="accordion-collapse collapse show" aria-labelledby="headingOne2">
+                    <div className="accordion-body py-0 px-1 mx-1">
                       <div className="row p-1 shadow-sm graycolor500">
                         <div className="col-5">
                           <LabelElem_PB
@@ -618,7 +618,7 @@ function PrintFormInfo() {
                             />
                           </div>
                           <div className="col">
-                            <div class="d-grid gap-0">
+                            <div className="d-grid gap-0">
                               <button type="button" className="btn btn-sm btn-dark">Cambiar Municipio</button>
                             </div>
                           </div>
@@ -643,7 +643,7 @@ function PrintFormInfo() {
                             />
                           </div>
                           <div className="col">
-                            <div class="d-grid gap-0">
+                            <div className="d-grid gap-0">
                               <button type="button" className="btn btn-sm btn-dark">Cambiar Departamento</button>
                             </div>
                           </div>
@@ -668,7 +668,7 @@ function PrintFormInfo() {
                             />
                           </div>
                           <div className="col">
-                            <div class="d-grid gap-0">
+                            <div className="d-grid gap-0">
                               <button type="button" className="btn btn-sm btn-dark">Asignar 3° Ambito</button>
                             </div>
                           </div>
@@ -688,8 +688,8 @@ function PrintFormInfo() {
                     </button>
                   </h6>
 
-                  <div id="collapseOne3" class="accordion-collapse collapse show" aria-labelledby="headingOne3">
-                    <div class="accordion-body py-0 px-1 mx-1">
+                  <div id="collapseOne3" className="accordion-collapse collapse show" aria-labelledby="headingOne3">
+                    <div className="accordion-body py-0 px-1 mx-1">
                       <div className="row p-1 shadow-sm graycolor500">
                         <div className="col-3">
                           <LabelElem_PB
@@ -1044,8 +1044,8 @@ function PrintFormInfo() {
                     </button>
                   </h6>
 
-                  <div id="collapseOne4" class="accordion-collapse collapse show" aria-labelledby="headingOne4">
-                    <div class="accordion-body py-0 px-1 mx-1">
+                  <div id="collapseOne4" className="accordion-collapse collapse show" aria-labelledby="headingOne4">
+                    <div className="accordion-body py-0 px-1 mx-1">
                       <div className="row p-1 shadow-sm graycolor500 ">
                         <div className="col-3">
                           <LabelElem_PB
@@ -1118,8 +1118,8 @@ function PrintFormInfo() {
                     </button>
                   </h6>
 
-                  <div id="collapseOne5" class="accordion-collapse collapse show" aria-labelledby="headingOne5">
-                    <div class="accordion-body py-0 px-1 mx-1">
+                  <div id="collapseOne5" className="accordion-collapse collapse show" aria-labelledby="headingOne5">
+                    <div className="accordion-body py-0 px-1 mx-1">
                       <div className="row p-1 shadow-sm graycolor500 ">
                         <div className="col-3">
                           <LabelElem_PB
@@ -1248,8 +1248,8 @@ function PrintFormInfo() {
                     </button>
                   </h6>
 
-                  <div id="collapseOne6" class="accordion-collapse collapse show" aria-labelledby="headingOne6">
-                    <div class="accordion-body py-0 px-1 mx-1">
+                  <div id="collapseOne6" className="accordion-collapse collapse show" aria-labelledby="headingOne6">
+                    <div className="accordion-body py-0 px-1 mx-1">
                       <div className="row p-1 shadow-sm graycolor500 ">
                         <div className="col-3">
                           <LabelElem_PB
@@ -1382,8 +1382,8 @@ function PrintFormInfo() {
                     </button>
                   </h6>
 
-                  <div id="collapseOne7" class="accordion-collapse collapse show" aria-labelledby="headingOne7">
-                    <div class="accordion-body py-0 px-1 mx-1">
+                  <div id="collapseOne7" className="accordion-collapse collapse show" aria-labelledby="headingOne7">
+                    <div className="accordion-body py-0 px-1 mx-1">
                       <div className="row p-1 shadow-sm graycolor500 ">
                         <div className="col-3">
                           <LabelElem_PB
@@ -1664,9 +1664,9 @@ function PrintFormInfo() {
 
                           <div className="row p-1 mb-1 graycolor100 shadow-sm">
                             <div className="col-10 offset-md-1">
-                              <div class="btn-group" role="group" aria-label="Management Vaccines">
-                                <button type="button" class="btn btn-sm btn-outline-danger me-2" onClick={() => setDeleteData()}>Borrar</button>
-                                <button type="button" class="btn btn-sm btn-outline-success" onClick={(ev) => setAddVaccine(ev)}>Confirmar</button>
+                              <div className="btn-group" role="group" aria-label="Management Vaccines">
+                                <button type="button" className="btn btn-sm btn-outline-danger me-2" onClick={() => setDeleteData()}>Borrar</button>
+                                <button type="button" className="btn btn-sm btn-outline-success" onClick={(ev) => setAddVaccine(ev)}>Confirmar</button>
                               </div>
                             </div>
                           </div>
@@ -1850,7 +1850,7 @@ function PrintFormInfo() {
               </div>
             </div>
           </div>
-        </>
+        </form>
       }
     </div>
   )

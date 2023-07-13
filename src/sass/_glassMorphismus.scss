@@ -69,12 +69,20 @@ $textShadowGlassMorphismusTextGreen: 0.8rem 0.3rem 0.5rem rgb(68, 151, 71);
 }
 
 @mixin GlassMorphismus1 {
-    background: rgba(203, 203, 203, 0.2);
+    background: rgba(25, 5, 247, 0.9);
     border-radius: 9px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(7.7px);
     -webkit-backdrop-filter: blur(7.7px);
-    border: 1px solid rgba(203, 203, 203, 0.61);
+    border: 1px solid rgba(3, 169, 247, 0.2);
+}
+@mixin GlassMorphismus1Color {
+    background: rgba(4, 131, 250, 0.1);
+    border-radius: 4px;
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7.7px);
+    -webkit-backdrop-filter: blur(7.7px);
+    border: 1px solid rgba(4, 149, 245, 0.3);
 }
 
 @mixin GlassMorphismus2 {

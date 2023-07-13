@@ -1,13 +1,5 @@
 .contTextElement {
-  height: auto;
-  transition: all ease 0.2s;
-}
-.contTextElement:hover, .contTextElement:focus {
-  cursor: pointer;
-  height: auto;
-  outline: 2px ridge rgb(252, 248, 2);
-  outline-offset: 3px;
-  border-radius: 2px;
+  height: 2.4rem;
 }
 .contTextElement > .labelOfForm {
   position: relative;
@@ -40,7 +32,7 @@
 }
 .contTextElement > .textActiv:hover, .contTextElement > .textActiv:focus {
   cursor: pointer;
-  max-height: auto;
+  max-height: 2.4rem;
   border: 1px solid rgb(103, 247, 7);
   box-shadow: 0px 1px 1px 1px rgb(184, 255, 134), inset 0px 0px 0px 1px #03fb03, 1px 1px 3px 4px #99f0b6;
 }

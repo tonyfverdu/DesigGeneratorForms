@@ -1,15 +1,14 @@
-import { useState, useContext } from 'react'
+import { useState,useEffect, useContext } from 'react'
 import { MyContext } from '../../context/TheContext.jsx'
 import RowIni from './RowIni'
 import Column from './Column.jsx'
 import '../../sass/componentSass/TeilRight/Row.scss'
-import { useEffect } from 'react'
 
 
 function Row() {
   const theContext = useContext(MyContext)
   const [toogleNewRow, setToogleNewRow] = useState(true)
-  const [contRow, setContRow] = useState(null)
+  const [contRow, setContRow] = useState(0)
 
   useEffect(() => {
     setContRow(0)
@@ -47,7 +46,7 @@ function Row() {
             toogleNewRow ? "+" : "-"
           }
         </button>
-        <Column />
+        {/* <Column /> */}
         <hr className="contLine d-flex flex-row justify-content-start align-item-center p-0" />
       </div>
     </div>

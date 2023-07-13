@@ -130,6 +130,16 @@
   height: auto;
 }
 
+.icon {
+  transition: all ease 0.2s;
+}
+.icon:hover, .icon:focus {
+  cursor: pointer;
+  transform: scale(0.85) rotate(15deg);
+  border: 1px solid rgb(63, 63, 63);
+  background-color: rgba(167, 166, 166, 0.6);
+}
+
 @keyframes App-logo-move {
   0% {
     transform: rotate(0deg) translateX(0px) scale(2) translateY(0px);

@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { MyContext } from './context/TheContext'
 import { Routes, Route, Link } from 'react-router-dom'
 import { BsXSquareFill } from 'react-icons/bs'
@@ -12,14 +12,6 @@ import { TITLES_OF_APP, GROUP_BUTTONS_SELECT_LEFT } from './constants/contants.j
 import Home from './componets/pages/Home.jsx'
 import Nav from './componets/navegation/Nav.jsx'
 
-//  Iconos
-import IconsElem from './componets/icons/IconsElem'
-
-import SelectLayoutForm from './componets/TeilRight/SelectLayoutForm'
-
-import ComponentsList from './Data/ComponentsList'
-import CompMaster from './Data/CompMaster'
-
 import GroupButtonsSelect from './componets/GroupButtonsSelect'
 import ButtonSelectOptions from './componets/ButtonSelectOptions'
 import InfoOfElement from './componets/TeilLeft/InfoOfElement'
@@ -30,32 +22,38 @@ import InfoOfElement from './componets/TeilLeft/InfoOfElement'
 //  Right Teil
 import HeaderTitleRight from './componets/TeilRight/HeaderTitleRight.jsx'
 import SelectForm from './componets/TeilRight/SelectForm.jsx'
+
+import formJSON_prueba_01 from './Data/JSONFormPrueba_01.js'
+import formJSON_plantilla from './Data/JSONFormPlantillaObj.js'
+
+import PrintFormTemplate from './componets/managementJSON/PrintFormTemplate.jsx'
 import PrintFormInfo from './componets/managementJSON/PrintFormInfo.jsx'
 import FromJSONToForm from './componets/managementJSON/FromJSONToForm.jsx'
-
-// function Index() {
-//   return <h2>Dynamic Form</h2>;
-// }
-
-// function About() {
-//   return <h2>Sample Dynamic Form App v1.1</h2>;
-// }
 import './sass/App.scss'
 
 
 function App() {
   const theContext = useContext(MyContext);
-  const [toggleHeader, setToggleHeader] = useState(true)
+  const [formSelect, setFormSelect] = useState(formJSON_prueba_01)
+  theContext.setFormObject(formJSON_prueba_01)    //    ****************    <<=  AQUI SE ELIGE EL FORMULARIO A VISUALIZAR
 
-  function handleSelectButton(ev) {
-    console.log("Seleccion de estado.  ev.target", ev.target)
-    console.log("estado parte izquierda:  ", theContext.optionState)
-  }
+  // setFormSelect(formJSON_prueba_01)
+
+
+  // useEffect(() => {
+  //   setFormSelect(structuredClone(theContext.formObject))   //  Esta copia profunda de objeto no funciona
+  //   console.log("En el modulo App, formSelect es:  ", formSelect)
+  // }, [theContext.formObject])
+
+
+  const [toggleHeader, setToggleHeader] = useState(true)
+  const [toogleFormLayout, setToogleFormLayout] = useState(false)
+
 
   return (
     <div className="contCentral">
-      <div className="containerApp d-flex flex-column justify-content-center align-items-center mx-auto">
-        <button className="contIconExit rounded" aria-label="Close" onClick={() => setToggleHeader(!toggleHeader)} >
+      <div className="containerApp d-flex flex-column justify-content-center align-items-center mx-auto p-0  border border-danger">
+        <button className="contIconExit" aria-label="Close" onClick={() => setToggleHeader(!toggleHeader)} >
           <BsXSquareFill />
         </button>
       </div>
@@ -91,9 +89,9 @@ function App() {
       />
       {/* <nav className="containerNav">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          {/* <Route path="/albums" element={<Albums />} />
+           <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} /> */}
+      {/* <Route path="/albums" element={<Albums />} />
           <Route path="/songs" element={<Songs />} />
           <Route path="/resultSearchRecords" element={<ResultRecords />} />
           <Route path="/resultSearchSongs" element={<ResultSongs />} />
@@ -101,7 +99,7 @@ function App() {
           <Route path="/loginCustomer" element={<Home />} />
           <Route path="/registerOfCustomer" element={<Home />} />
           <Route path="/player" element={<Home />} />
-          <Route path="/customerRegistered" element={<Home />} />
+          <Route path="/customerRegistered" element={<Home />} /> 
           <Route path="*" element=
             {
               <Error
@@ -111,14 +109,16 @@ function App() {
           />
         </Routes>
       </nav> */}
-      <main className="containerMain container-fluid d-flex justify-content-center align-items-start m-1 p-0">
+
+
+      <main className="containerMain container-fluid d-flex justify-content-center align-items-start mx-auto p-0 graycolor500" >
 
         {/* ****     Links Teil: Processing Read - Create - Modify Form   **** */}
-        <section className="w-25 container d-flex flex-column justify-content-center align-items-center mb-0 mt-1 mx-0 p-1 bg-body">
+        <section className="w-25 container d-flex flex-column justify-content-center align-items-center m-0 mt-1 mx-auto p-0 graycolor100" >
 
           {/* ****     1.-  Menu Left:  Read - Create - Modify Form - Block or Component    **** */}
-          <div className="row d-flex flex-row justify-content-start align-items-center m-0 p-1">
-            <div className="col d-flex flex-row justify-content-end align-items-center m-0 p-1">
+          <div className="row container d-flex flex-row justify-content-center align-items-center m-0 p-0" >
+            <div className="col m-0 mx-1 p-0">
               <GroupButtonsSelect
                 preId={GROUP_BUTTONS_SELECT_LEFT.preId}
                 role={GROUP_BUTTONS_SELECT_LEFT.role}
@@ -132,31 +132,18 @@ function App() {
                 groupButton={GROUP_BUTTONS_SELECT_LEFT.groupButton}
               />
             </div>
-            {/* <div className="d-grid gap-0 col-4 mt-1 mx-auto p-0">
-              <button className="btn btn-sm btn-outline-secondary fw-bold fs-6" type="button" value="selectButton"
-                onClick={(ev) => handleSelectButton(ev)}>
-                Select <span className="text-danger fw-bolder fs-6">{theContext.optionSelectLeft}</span>
-              </button>
-            </div> */}
           </div>
 
-          {/* ****     2.-  Menu Left:  Icons - Components    **** */}
-          {
-            theContext.optionState !== 'read' &&
-            <div className="row p-1">
-              <IconsElem
-                height={"0.81"}
-              // situation={"componentInfo"}
-              />
-            </div>
-          }
-
-          {/* ****     3.-  Info of Form - Block - Elements (read only in "Read" state and "componets of forms" in "create" and "modify" state)   **** */}
+          {/* ****     2.-  Info of Form - Block - Elements (read only in "Read" state and "componets of forms" in "create" and "modify" state)   **** */}
           <div className="row container-fluid d-flex justify-content-center mb-1" >
-            <InfoOfElement />
+            <InfoOfElement
+              // formInput={formJSON_prueba_01}
+              formInput = {formSelect}
+              setFormInput ={setFormSelect}
+            />
           </div>
 
-          {/* ****     4.-  Group buttons of "Delete", "Save" and "Submit" dates of Form., Blocks and Componets   **** */}
+          {/* ****     3.-  Group buttons of "Delete", "Save" and "Submit" dates of Form., Blocks and Componets   **** */}
           <div className="row container d-flex justify-content-center mb-0 me-2" >
             <ButtonSelectOptions
               typeButton={"button"}
@@ -170,10 +157,8 @@ function App() {
         </section>
 
 
-
         {/* ****     Recths Teil: Processing Form layout and components    **** */}
-        <section className="contColumRight w-75 container d-flex flex-column justify-content-center align-items-center 
-        mb-0 mt-1 mx-1 ms-4 p-1 bg-body">
+        <section className="contColumRight w-75 container d-flex flex-column justify-content-center align-items-center m-0 mt-1 mx-auto ms-2 p-0 graycolor100">
           {/* ****      Form Processing Menu      **** */}
           <div className="row container-fluid contTopRight" >
             <div className="col" >
@@ -181,11 +166,38 @@ function App() {
                 titleOfDesigner={TITLES_OF_APP.TITLE_TYPE_DESIGNER}
                 titleSelectState={TITLES_OF_APP.TITLE_SELECT_STATE}
                 titleCreate={TITLES_OF_APP.TITLE_DESIGNER_FBC}
+                toogleFormLayout={toogleFormLayout}
+                setToogleFormLayout={setToogleFormLayout}
               />
             </div>
           </div>
 
-          {/* ****      Form Layout               **** */}
+          {/*   *************   RIGHT:  FORM LAYOUT   ********************************************************************* */}
+          {/* //  1.-  CREATE NEW FORM:  Print Form Template    *********************************************************** */}
+          <form className="container-fluid rounded-0 my-2 bg-light ">
+            {
+              toogleFormLayout &&
+              <>
+                <PrintFormTemplate
+                  formInput={formJSON_prueba_01}
+                />
+
+                {/* 2.-  Group buttons of "Delete", "Save" and "Submit" dates of Form., Blocks and Componets   ************ */}
+                <div className="row container d-flex justify-content-center mb-0 me-2" >
+                  <ButtonSelectOptions
+                    typeButton={"button"}
+                    role={"group"}
+                    arialLabelA={"Toolbar with button groups right"}
+                    arialLabelB={"Second group"}
+                    options={["Delete", "Save", "Submit"]}
+                    colors={["btn-outline-danger", "btn-outline-warning", " btn-outline-success"]}
+                  />
+                </div>
+
+              </>
+            }
+          </form>
+
           {/* {
             theContext.optionDesigner === "component" ?
               theContext.arrayOfRows.map((row, index) => {
@@ -203,10 +215,11 @@ function App() {
           {/* <ComponentsList /> */}
 
           {/* //  Ejemplo de Formulario Completo para pruebas:  <PrintFormInfo /> */}
-          <PrintFormInfo />
+          {/* <PrintFormInfo /> */}
 
           {/* <FromJSONToForm /> */}
         </section>
+
       </main>
     </div>
   );

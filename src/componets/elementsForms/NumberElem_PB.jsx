@@ -59,7 +59,7 @@ function NumberElem_PB({ id_Element, orderInBlock, labelElement, required, disab
         {labelElement}
       </label>
 
-      <input id={id_Element} type="number" className={`contInputNumber form-control rounded-0 ${disabled ? "numberNotActiv" : "numberActiv"}`}
+      <input id={id_Element} type="number" className={`contInputNumber form-control rounded-0 px-1 py-2 ${disabled ? "numberNotActiv" : "numberActiv"}`}
         required={required} disabled={disabled} placeholder={placeholder} size={size} min="0" max={Math.pow(10, size) - 1}
         value={valueOfNumber} onChange={(ev) => handleChange(ev)} />
 

@@ -1,0 +1,44 @@
+@use '../myvariables' as v;
+@use '../layouts' as l;
+@use '../designElement' as d;
+
+
+.labelOfSelectIni {
+  position: relative;
+  width: auto;
+  min-width: fit-content;
+  height: auto;
+  margin: 0% auto;
+}
+
+.contSelectIni {
+  @include d.configurationText1 (v.$backgroundColorDunkelGray5, 0.55rem);
+  width: auto;
+  min-width: fit-content;
+  height: 2rem;
+  padding: 0.1%;
+  margin: 0%;
+  margin-right: 1%;
+  text-align: center;
+}
+
+.selectIniActiv {
+  @extend .contSelectIni;
+  transition: all ease 0.20s;
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    max-height: 2rem;
+    border: 1px solid #01ac59ea;
+    box-shadow: v.$boxShadow16;
+  }
+}
+
+.selectIniNotActiv {
+  @extend .contSelectIni;
+  color: v.$backgroundColorDunkelGray;
+  font-weight: 600;
+  background-color: v.$backgroundColorHellGrayT;
+  border: none;
+}

@@ -3,7 +3,7 @@ import { MyContext } from '../../context/TheContext.jsx'
 import ShowElements from '../TeilLeft/ShowElements.jsx'
 import '../../sass/componentSass/elementsForms/MasterElem_PB.scss'
 
-function MasterElem_PB({ id_Element, placeholder, width, disabled=false }) {
+function MasterElem_PB({ comp, id_Element, type_Element, placeholder, width, disabled = false }) {
   const [toogleActiv, setToogleActiv] = useState(false)
 
   const refElement = useRef(null)
@@ -21,11 +21,15 @@ function MasterElem_PB({ id_Element, placeholder, width, disabled=false }) {
 
 
   return (
-    <div className="container-fluid d-flex flex-row justify-content-start align-items-start m-0 p-0"
+    <div className="container-fluid d-flex flex-row justify-content-start align-items-start m-0 p-0 graycolor300"
       onClick={(ev) => handleBtnMaster(ev)} >
       {
         toogleActiv ?
-          <ShowElements />
+          <ShowElements
+            type_Element={type_Element}
+            componentSelect={comp}
+
+          />
           :
           <div className="contMasterElement_PB container-fluid d-flex flex-row justify-content-start align-items-center m-0 p-1 
         border border-1 border-secondary"  >

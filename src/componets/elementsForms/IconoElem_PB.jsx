@@ -48,7 +48,7 @@ function IconoElem_PB({ id_Element, orderInBlock, required, disabled = false, wi
       title={`Order: ${orderInBlock}       Position: X = ${position.colElem}  Y = ${position.rowElem}`}
       onClick={(ev => handleClickDataShow(ev))}>
 
-      <img id={id_Element} src={`${srcURLIcon}${nameImage}.svg`} class="img-thumbnail rounded-circle mx-auto d-block" required={required}
+      <img id={id_Element} src={`${srcURLIcon}${nameImage}.svg`} className="icon img-thumbnail rounded-circle mx-auto d-block" required={required}
         disabled={disabled} alt={`Icon image:  ${nameImage}`} />
 
     </div>
