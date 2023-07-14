@@ -194,6 +194,13 @@ function InfoOfElement({ formInput, setFormInput }) {
   const [newBlock, setNewBlock] = useState(theContext.masterBlock)
   const [newArrayBlocks, setNewArrayBlocks] = useState(selectForm.blocks)
 
+  useEffect(() => {
+    setValueForm({ ...valueForm, blocks: newArrayBlocks })
+    setSelectForm({ ...selectForm, blocks: newArrayBlocks })
+
+
+  }, [newArrayBlocks])
+
   function handleAddBlock(ev) {
     ev.preventDefault()
 
@@ -206,11 +213,11 @@ function InfoOfElement({ formInput, setFormInput }) {
 
     setNewArrayBlocks([...newArrayBlocks, newBlock])
 
-    setValueForm({ ...valueForm, blocks: newArrayBlocks})
-    setSelectForm({ ...selectForm, blocks: newArrayBlocks })
+    // setValueForm({ ...valueForm, blocks: newArrayBlocks})
+    // setSelectForm({ ...selectForm, blocks: newArrayBlocks })
     // console.log("selectForm:  ", selectForm)
 
-    // theContext.setArrayOfBlocks([...theContext.arrayOfBlocks, newBlock])
+    theContext.setArrayOfBlocks([...theContext.arrayOfBlocks, newBlock])
     // console.log("The select Form in block:  ", theContext.arrayOfBlocks)
   }
 
