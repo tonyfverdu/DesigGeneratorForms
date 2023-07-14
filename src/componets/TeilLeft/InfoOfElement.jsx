@@ -121,17 +121,13 @@ function InfoOfElement({ formInput, setFormInput }) {
     formJSON_prueba_01.creation_date_Form = valueForm.creation_date_Form
     formJSON_prueba_01.version_Form = valueForm.version_Form
     formJSON_prueba_01.readonly_Form = valueForm.readonly_Form
-    formJSON_prueba_01.description_Form = valueForm.title_Form
+    formJSON_prueba_01.description_Form = valueForm.description_Form
+    formJSON_prueba_01.blocks = valueForm.blocks
 
-    setSelectForm(valueForm)
-
+    // setSelectForm(valueForm)
+    setSelectForm(structuredClone(valueForm))
     theContext.setFormObject(valueForm)
 
-
-    // setSelectForm(structuredClone(valueForm))
-
-    // setFormInput(valueForm)
-    // console.log("selectForm:  ", selectForm)
   }, [valueForm])
 
 
@@ -140,31 +136,33 @@ function InfoOfElement({ formInput, setFormInput }) {
     ev.preventDefault()
     const newValue = ev.target.value
 
-    setValueForm({ ...valueForm, id_Form: newValue + "" })
-    setSelectForm(valueForm)
-    // formJSON_prueba_01.id_Form = select.id_Form
+    setValueForm({ ...valueForm, id_Form: newValue })
+    setSelectForm({ selectForm, id_Form: newValue })
+    formJSON_prueba_01.id_Form = selectForm.id_Form
   }
   function handleChangeTITLEFORM(ev) {
     ev.preventDefault()
     const newValue = ev.target.value
 
     setValueForm({ ...valueForm, title_Form: newValue })
-    setSelectForm(valueForm)
-    // formJSON_prueba_01.title_Form = selectForm.title_Form
+    setSelectForm({ selectForm, title_Form: newValue })
+    formJSON_prueba_01.title_Form = selectForm.title_Form
   }
   function handleChangeCREADATEFORM(ev) {
     ev.preventDefault()
     const newValue = ev.target.value
 
     setValueForm({ ...valueForm, creation_date_Form: newValue })
-    setSelectForm(valueForm)
+    setSelectForm({ selectForm, creation_date_Form: newValue })
+    formJSON_prueba_01.creation_date_Form = selectForm.creation_date_Form
   }
   function handleChangeVERSIONFORM(ev) {
     ev.preventDefault()
     const newValue = ev.target.value
 
     setValueForm({ ...valueForm, version_Form: newValue })
-    setSelectForm(valueForm)
+    setSelectForm({ selectForm, version_Form: newValue })
+    formJSON_prueba_01.version_Form = selectForm.version_Form
   }
   function handleChangeREADONLYFORM(ev) {
     ev.preventDefault()
@@ -179,37 +177,39 @@ function InfoOfElement({ formInput, setFormInput }) {
     }
 
     setValueForm({ ...valueForm, readonly_Form: selectObject })
-    setSelectForm(valueForm)
+    setSelectForm({ selectForm, readonly_Form: newValue })
+    formJSON_prueba_01.readonly_Form = selectForm.readonly_Form
   }
   function handleChangeDESCRIPTIONFORM(ev) {
     ev.preventDefault()
     const newValue = ev.target.value
 
     setValueForm({ ...valueForm, description_Form: newValue })
-    setSelectForm(valueForm)
+    setSelectForm({ selectForm, description_Form: newValue })
+    formJSON_prueba_01.description_Form = selectForm.description_Form
   }
 
   //  Add a block in the array "selectForm.blocks"
   //  Input "text" input of value the new block
   const [newBlock, setNewBlock] = useState(theContext.masterBlock)
   const [newArrayBlocks, setNewArrayBlocks] = useState(selectForm.blocks)
+
   function handleAddBlock(ev) {
     ev.preventDefault()
-    
+
     setNewBlock({ ...newBlock, title_Block: ev.target.value })
-    console.log("New Block:  ", newBlock)
   }
+
   // Button "Add"
   function handleClickAddBlock(ev) {
     ev.preventDefault()
-    console.log("ay")
 
-    setNewArrayBlocks(newArrayBlocks.push(newBlock))
-    console.log("New array blocks:  ", newArrayBlocks)
+    setNewArrayBlocks([...newArrayBlocks, newBlock])
 
-    // setSelectForm({...selectForm, blocks: [...blocks, newBlock]})
+    setValueForm({ ...valueForm, blocks: newArrayBlocks})
+    setSelectForm({ ...selectForm, blocks: newArrayBlocks })
     // console.log("selectForm:  ", selectForm)
-    
+
     // theContext.setArrayOfBlocks([...theContext.arrayOfBlocks, newBlock])
     // console.log("The select Form in block:  ", theContext.arrayOfBlocks)
   }
