@@ -130,8 +130,6 @@ function InfoOfElement({ formInput, setFormInput }) {
 
   }, [valueForm])
 
-
-
   function handleChangeIDFORM(ev) {
     ev.preventDefault()
     const newValue = ev.target.value
@@ -198,7 +196,7 @@ function InfoOfElement({ formInput, setFormInput }) {
     setValueForm({ ...valueForm, blocks: newArrayBlocks })
     setSelectForm({ ...selectForm, blocks: newArrayBlocks })
 
-
+    theContext.setArrayOfBlocks([...theContext.arrayOfBlocks, newBlock])
   }, [newArrayBlocks])
 
   function handleAddBlock(ev) {
@@ -212,25 +210,64 @@ function InfoOfElement({ formInput, setFormInput }) {
     ev.preventDefault()
 
     setNewArrayBlocks([...newArrayBlocks, newBlock])
+  }
 
-    // setValueForm({ ...valueForm, blocks: newArrayBlocks})
-    // setSelectForm({ ...selectForm, blocks: newArrayBlocks })
-    // console.log("selectForm:  ", selectForm)
+  //   2.-  BLOCK
+  const [valueBlock, setValueBlock] = useState(blockSelect)
 
-    theContext.setArrayOfBlocks([...theContext.arrayOfBlocks, newBlock])
-    // console.log("The select Form in block:  ", theContext.arrayOfBlocks)
+  useEffect(() => {
+    formJSON_prueba_01.blocks[formJSON_prueba_01.blocks.length - 1].id_Block = valueBlock.id_Block
+    formJSON_prueba_01.blocks[formJSON_prueba_01.blocks.length - 1].title_Block = valueBlock.title_Block
+    formJSON_prueba_01.blocks[formJSON_prueba_01.blocks.length - 1].ordenDisplay_Block = valueBlock.ordenDisplay_Block
+    formJSON_prueba_01.blocks[formJSON_prueba_01.blocks.length - 1].label_Block = valueBlock.label_Block
+    formJSON_prueba_01.blocks[formJSON_prueba_01.blocks.length - 1].description_Block= valueBlock.description_Block
+
+    // setSelectForm(valueForm)
+    setSelectForm(structuredClone(valueForm))
+    theContext.setFormObject(valueForm)
+
+  }, [valueBlock])
+
+  function handleChangeIDBLOCK(ev) {
+    ev.preventDefault()
+    const newValue = ev.target.value
+
+    setValueBlock({ ...valueBlock, id_Block: newValue })
+    setBlockSelect({ blockSelect, id_Block: newValue })
+    // formJSON_prueba_01.blocks.id_Block = blockSelect.id_Block
+  }
+  function handleChangeTITLEBLOCK(ev) {
+    ev.preventDefault()
+    const newValue = ev.target.value
+
+    setValueBlock({ ...valueBlock, title_Block: newValue })
+    setBlockSelect({ blockSelect, title_Block: newValue })
+    // formJSON_prueba_01.title_Form = selectForm.title_Form
+  }
+  function handleChangeLABELBLOCK(ev) {
+    ev.preventDefault()
+    const newValue = ev.target.value
+
+    setValueBlock({ ...valueBlock, label_Block: newValue })
+    setBlockSelect({ blockSelect, label_Block: newValue })
+
+  }
+  function handleChangeDESCRIPTIONBLOCK(ev) {
+    ev.preventDefault()
+    const newValue = ev.target.value
+
+    setValueBlock({ ...valueBlock, description_Block: newValue })
+    setBlockSelect({ blockSelect, description_Block: newValue })
+  }
+  function handleChangeORDERBLOCK(ev) {
+    ev.preventDefault()
+    const newValue = ev.target.value
+
+    setValueBlock({ ...valueBlock, ordenDisplay_Block: newValue })
+    setBlockSelect({ blockSelect, ordenDisplay_Block: newValue })
   }
 
 
-  // function handleChangeForm(ev, parForm) {
-  //   ev.preventDefault()
-
-  //   setValueForm({...valueForm, title_Form: ev.target.value})
-  //   console.log(valueForm)
-  //   setSelectForm(valueForm)
-  // }
-
-  //   2.-  BLOCK
 
 
   //   3.-  COMPONENTS
@@ -478,6 +515,7 @@ function InfoOfElement({ formInput, setFormInput }) {
                         </span>
                         :
                         <input type="text" className="contInputText form-control ms-2 rounded-0 text-start" autoComplete="off" required={true}
+                          value={blockSelect.title_Block} onChange={(ev) => handleChangeTITLEBLOCK(ev)}
                           placeholder={"Type Block Title ..."} size={15} />
                     }
 
@@ -497,7 +535,9 @@ function InfoOfElement({ formInput, setFormInput }) {
                         </span>
                         :
                         <input type="text" className="contInputText form-control ms-2 rounded-0 text-start" autoComplete="off" required={true}
-                          placeholder={"Type Block Id ..."} size={15} />
+                          placeholder={"Type Block Id ..."} size={15}
+                          value={blockSelect.id_Block} onChange={(ev) => handleChangeIDBLOCK(ev)}
+                        />
                     }
                   </div>
                 </div>
@@ -515,7 +555,8 @@ function InfoOfElement({ formInput, setFormInput }) {
                         </span>
                         :
                         <input type="text" className="contInputText form-control ms-2 rounded-0 text-start" autoComplete="off" required={true}
-                          placeholder={"Type Block Label ..."} size={15} />
+                          placeholder={"Type Block Label ..."} size={15} 
+                          value={blockSelect.label_Block} onChange={(ev) => handleChangeLABELBLOCK(ev)}/>
                     }
                   </div>
                 </div>
@@ -533,7 +574,8 @@ function InfoOfElement({ formInput, setFormInput }) {
                         </textarea>
                         :
                         <textarea className="contAreaText p-1 ms-2" required={true} disabled={false} autoComplete="off" readOnly={false} placeholder={""}
-                          rows={3} cols={46} style={{ resize: "none", color: "rgb(9, 9, 9)", fontSize: "0.6rem" }} value={blockSelect.description_Block}>
+                          rows={3} cols={46} style={{ resize: "none", color: "rgb(9, 9, 9)", fontSize: "0.6rem" }} 
+                          value={blockSelect.description_Block} onChange={(ev) => handleChangeDESCRIPTIONBLOCK(ev)}>
                         </textarea>
                     }
                   </div>
@@ -574,7 +616,8 @@ function InfoOfElement({ formInput, setFormInput }) {
                         </span>
                         :
                         <input id="id_order_blocks" type="number" className="contInputNumber rounded-0 border border-secondary bg-white fw-bold p-1 gap-1"
-                          required disabled={true} size="1" placeholder={0} min="0" max={100} value={blockSelect.ordenDisplay_Block}
+                          required disabled={true} size="1" placeholder={0} min="0" max={100}
+                          value={blockSelect.ordenDisplay_Block} onChange={(ev) => handleChangeORDERBLOCK(ev)}
                           style={{ color: "rgb(9, 9, 9)", fontSize: "0.65rem", height: "1.4rem", width: "2rem" }} />
                     }
                   </div>
