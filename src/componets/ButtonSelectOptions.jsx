@@ -6,7 +6,7 @@ function ButtonSelectOptions({ typeButton, role, arialLabelA, arialLabelB, optio
   const theContext = useContext(MyContext)
 
   return (
-    <div className="col d-flex justify-content-end py-1" >
+    <div className="col d-flex justify-content-end align-items-center" >
       <div className="btn-toolbar" role="toolbar" aria-label={arialLabelA}>
         <div className="btn-group-sm" role={role} aria-label={arialLabelB}>
           {
@@ -14,7 +14,7 @@ function ButtonSelectOptions({ typeButton, role, arialLabelA, arialLabelB, optio
               //  gbtn1_0 ==> read, gbtn1_1 ==> create, gbtn1_2 ==> modify
               return (
                 <button key={index} type={typeButton} className={`btn ${colors[index]} text-white-emphasis fw-bold mx-1`}
-                  disabled={theContext.optionState === "read" ? true : false} >
+                  disabled={theContext.tooRead ? true : false} >
                   {opt}
                 </button>
               )

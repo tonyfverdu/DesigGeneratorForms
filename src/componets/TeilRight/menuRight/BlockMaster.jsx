@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from 'react';
-import { MyContext } from '../../context/TheContext.jsx';
-import LabelElem_PB from '../elementsForms/LabelElem_PB.jsx';
+import { MyContext } from '../../../context/TheContext.jsx';
+import LabelElem_PB from '../../elementsForms/LabelElem_PB.jsx';
 import Column from './Column.jsx';
 import ColComponents from './ColComponents.jsx';
 
-import '../../sass/componentSass/TeilRight/Row.scss'
+import '../../../sass/componentSass/TeilRight/Row.scss'
 
 
 function BlockMaster({ form, block, index }) {
@@ -27,7 +27,7 @@ function BlockMaster({ form, block, index }) {
 
       <div id={`collapse_${index}`} className="accordion-collapse collapse" aria-labelledby={`heading_${index}`} >
         <div className="accordion-body py-0 px-1 mx-1">
-          <div className="row p-1 shadow-sm graycolor500">
+          <div className="row px-0 py-0 shadow-sm graycolor500">
             <div className="col-3">
               <LabelElem_PB
                 id_Element={block.id_Block}
@@ -53,18 +53,22 @@ function BlockMaster({ form, block, index }) {
               columnsOfBlock.map((col, index) => {
                 return (
                   <>
-                    <div key={index} className="row my-2" >
-                      <ColComponents
-                        form={form}
-                        block={block}
-                        numRow={index}
-                      />
-                    </div>
+                    {
+                      !theContext.toogleReadLeft &&
+
+                      <div key={index} className="row py-1 my-2 graycolor100 shadow-sm" >
+                        <ColComponents
+                          form={form}
+                          block={block}
+                          numRow={index}
+                        />
+                      </div>
+                    }
 
                     <div key={index} className="row p-1 mb-1 graycolor100 shadow-sm" >
                       {col.components.map(comp => {
                         return (
-                          <div className={`col-${comp.dimension.width + ""} d-flex flex-row justify-content-start align-item-center gap-1`} >
+                          <div className={`col-${comp.dimension.width + ""} d-flex flex-row justify-content-start align-item-center gap-1 p-1 m-0`} >
                             <Column
                               comp={comp}
                             />
@@ -77,15 +81,19 @@ function BlockMaster({ form, block, index }) {
                 )
               })
               :
-              <>Error</>
+              <p className="display-6 text-center text-danger">Error</p>
           }
-          < div className="row my-2" >
-            <ColComponents
-              form={form}
-              block={block}
-              numRow={columnsOfBlock.length}
-            />
-          </div>
+          {
+            !theContext.toogleReadLeft &&
+
+            < div className="row py-1 my-2 graycolor100 shadow-sm" >
+              <ColComponents
+                form={form}
+                block={block}
+                numRow={columnsOfBlock.length}
+              />
+            </div>
+          }
         </div>
       </div >
     </>

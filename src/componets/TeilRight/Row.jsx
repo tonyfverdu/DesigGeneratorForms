@@ -1,7 +1,7 @@
 import { useState,useEffect, useContext } from 'react'
 import { MyContext } from '../../context/TheContext.jsx'
 import RowIni from './RowIni'
-import Column from './Column.jsx'
+import Column from './menuRight/Column.jsx'
 import '../../sass/componentSass/TeilRight/Row.scss'
 
 

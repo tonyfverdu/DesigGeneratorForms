@@ -11,8 +11,15 @@ import form_survey_disease_001 from '../Data/JSONFormDataObj_01.js'
 
 function TheContext({ children }) {
 
-  //    ***************************     FORM OBJECT   *****************************************
+  const [tooRead, setTooRead] = useState(true)
+
+
+  //    ***************************     MANAGEMENT OF FORM OBJECT   *****************************************
   const [formObject, setFormObject] = useState({})
+  const [formSelectLeft, setFormSelectLeft] = useState(formObject)
+  const [formSelectRight, setFormSelectRight] = useState(formObject)
+
+
   const [nameOfFormObject, setNameOfFormObject] = useState("")
 
   const [JSONEingabenForm, setJSONEingabenForm] = useState("")   //  <== Eingaben ( vor String JSON zur JSON-Formulardaten)
@@ -29,7 +36,7 @@ function TheContext({ children }) {
   /////////////////////////////////////////////////////////////////////////////////////////////
 
   //     ***************************    TOOGLE VARIABLES (READ, CREATE AND MODIFY)    *********
-  const [toogleReadLeft, setToogleReadLeft] = useState(false)
+  const [toogleReadLeft, setToogleReadLeft] = useState(true)
   const [toogleCreateLeft, setToogleCreateLeft] = useState(false)
   const [toogleModifyLeft, setToogleModifyLeft] = useState(false)
 
@@ -337,13 +344,21 @@ function TheContext({ children }) {
   const [toogleViewVaccines, setViewVaccines] = useState(false)
   const [toogleAddRowVaccines, setToogleAddRowVaccines] = useState(false)
 
+
+  //  Status Show (Read - "success" or Modify - "danger")
+  const [option, setOption] = useState("Read")
+  const [color, setColor] = useState("success")
+
   /////////////////////////////////////////////////////////////////////////////////////////////
 
 
   //    *********************   EXPORT DATA OF State Variables from Context   ****************
   const exportData = {
+    tooRead, setTooRead,
     formObject, setFormObject,
-    nameOfFormObject, setNameOfFormObject,
+    formSelectLeft, setFormSelectLeft,
+
+    nameOfFormObject, setNameOfFormObject, formSelectRight, setFormSelectRight,
 
     toogleReadLeft, setToogleReadLeft, toogleCreateLeft, setToogleCreateLeft, toogleModifyLeft, setToogleModifyLeft,
     optionState, setOptionState, optionDesigner, setOptionDesigner, optionLayout, setOptionLayout,
@@ -386,7 +401,10 @@ function TheContext({ children }) {
     table, setTable,
     icon, setIcon,
 
-    toogleViewVaccines, setViewVaccines, toogleAddRowVaccines, setToogleAddRowVaccines
+    toogleViewVaccines, setViewVaccines, toogleAddRowVaccines, setToogleAddRowVaccines,
+
+    //  Status Show
+    option, setOption, color, setColor
   }
 
 

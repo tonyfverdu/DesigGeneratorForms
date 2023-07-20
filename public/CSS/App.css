@@ -22,43 +22,9 @@
   min-height: 100vh;
   gap: 0.2%;
 }
-.contCentral .containerApp {
+.contCentral > .containerApp {
   width: 100vw;
   height: 0.1rem;
-}
-.contCentral .containerApp > .contIconExit {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  border-radius: 12px;
-  background-color: rgb(224, 229, 236);
-  box-shadow: rgba(163, 177, 198, 0.5) 4px 4px 6px 0px, rgb(255, 255, 255) -4px -4px 6px 0px;
-  position: absolute;
-  top: 0.6rem;
-  right: 1.2rem;
-  width: 1.8rem;
-  height: 1.8rem;
-  z-index: 20;
-  border-radius: 3px;
-  color: rgb(162, 3, 3);
-  transition: all ease 0.2s;
-}
-.contCentral .containerApp > .contIconExit:hover, .contCentral .containerApp > .contIconExit:focus {
-  color: rgb(220, 21, 21);
-  border-radius: 12px;
-  background-color: rgb(128, 131, 134);
-  box-shadow: rgba(72, 77, 87, 0.5) 6px 6px 8px 3px, rgb(180, 180, 180) -6px -6px 8px 3px;
-  border-radius: 3px;
-  border: 1px solid rgba(63, 63, 63, 0.6);
-  transform: scale(0.86);
-}
-.contCentral .containerApp > .contIconExit > i {
-  z-index: 20;
-  width: 2.5rem;
-  height: 2.5rem;
 }
 .contCentral > .containerLogos {
   position: absolute;
@@ -130,14 +96,35 @@
   height: auto;
 }
 
-.icon {
+.contIconExit {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border-radius: 12px;
+  background-color: rgb(224, 229, 236);
+  box-shadow: rgba(163, 177, 198, 0.5) 4px 4px 6px 0px, rgb(255, 255, 255) -4px -4px 6px 0px;
+  position: absolute;
+  top: 0.8rem;
+  right: 1.6rem;
+  width: 1.8rem;
+  height: 1.8rem;
+  z-index: 20;
+  border-radius: 50%;
+  color: rgb(162, 3, 3);
   transition: all ease 0.2s;
 }
-.icon:hover, .icon:focus {
+.contIconExit:hover, .contIconExit:focus {
   cursor: pointer;
-  transform: scale(0.85) rotate(15deg);
-  border: 1px solid rgb(63, 63, 63);
-  background-color: rgba(167, 166, 166, 0.6);
+  color: rgb(220, 21, 21);
+  border-radius: 12px;
+  background-color: rgb(128, 131, 134);
+  box-shadow: rgba(72, 77, 87, 0.5) 6px 6px 8px 3px, rgb(180, 180, 180) -6px -6px 8px 3px;
+  border-radius: 50%;
+  border: 1px solid rgba(63, 63, 63, 0.6);
+  transform: scale(0.86);
 }
 
 @keyframes App-logo-move {

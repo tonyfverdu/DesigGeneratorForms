@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react'
-import { MyContext } from '../../context/TheContext.jsx';
-import '../../sass/componentSass/TeilRight/Row.scss'
+import { MyContext } from '../../../context/TheContext.jsx';
+import '../../../sass/componentSass/TeilRight/Row.scss'
 
 
 function ColComponents({ form, block, numRow }) {

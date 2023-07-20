@@ -1,9 +1,9 @@
-import { useState, useEffect, useContext, useRef, Fragment } from 'react'
-import { MyContext } from '../../context/TheContext.jsx'
-import MasterElem_PB from '../elementsForms/MasterElem_PB.jsx'
-import WhiteSpace_PB from '../elementsForms/WhiteSpace_PB.jsx'
-import IconEditDelete from '../icons/IconEditDelete.jsx'
-import '../../sass/componentSass/TeilRight/Column.scss'
+import { useState, useEffect, useContext, useRef } from 'react'
+import { MyContext } from '../../../context/TheContext.jsx'
+import MasterElem_PB from '../../elementsForms/MasterElem_PB.jsx'
+import WhiteSpace_PB from '../../elementsForms/WhiteSpace_PB.jsx'
+import IconEditDelete from '../../icons/IconEditDelete.jsx'
+import '../../../sass/componentSass/TeilRight/Column.scss'
 
 
 function Column({ comp }) {
@@ -31,16 +31,14 @@ function Column({ comp }) {
 
 
   return (
-    <Fragment ref={refElementDiv} className="container-fluid d-flex flex-row justify-content-center align-items-start p-0 m-0">
+    <div ref={refElementDiv} className="container-fluid d-flex flex-row justify-content-start align-items-start p-0 m-0" >
       {
         toogleColBefore &&
-
         <Column
           comp={comp}
         />
-
       }
-      <div className="d-flex flex-column justify-content-between align-items-center p-0 m-0">
+      <div className="d-flex flex-column justify-content-between align-items-center p-0 m-0 h-100" >
         <CircleButton
           isButton={"before"}
           addNewCol={addNewCol}
@@ -54,7 +52,7 @@ function Column({ comp }) {
         </button>
       </div>
 
-      <div className="d-flex flex-row justify-content-center align-items-start m-0 p-0">
+      <div className="d-flex flex-row justify-content-center align-items-start mx-1 p-0" >
         {
           !isSpace
             ?
@@ -89,7 +87,7 @@ function Column({ comp }) {
           />
         }
       </>
-    </Fragment>
+    </div>
   )
 }
 

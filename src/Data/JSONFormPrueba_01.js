@@ -18,10 +18,11 @@ const formJSON_prueba_01 = {
 
       "columns": [
         {
+          "orderColInBlock": 0,
           "components": [
             {
-              "id_Element": "component_first_of_block",
-              "title_Element": "Title of First Component",
+              "id_Element": "comp1_of_first_block",
+              "title_Element": "Title of First Component from Block 1",
               "type_Element": "master",
               "orderInBlock": 0,
               "label_Element": "Element Master",
@@ -77,6 +78,65 @@ const formJSON_prueba_01 = {
               "srcURLIcon": "",
               "nameImage": "",
               "widthImage": 0
+            },
+            {
+              "id_Element": "comp2_of_first_block",
+              "title_Element": "Title of Second Component from Block 2",
+              "type_Element": "label",
+              "orderInBlock": 1,
+              "label_Element": "Element Label",
+              "required": true,
+              "disabled": false,
+              "response": [],
+              "placeholder": "I am a Label",
+              "size": 15,
+              "position": {
+                "rowElem": 0,
+                "colElem": 1
+              },
+              "dimension": {
+                "width": 2,
+                "height": "2.4rem"
+              },
+              "valueComponent": undefined,
+              "setComponent": undefined,
+              "name": undefined,
+              "borderElement": true,
+              "colorElement": "",
+              "fontSizeElement": "",
+
+              //  Area Text
+              "readonly": false,
+              "row": 0,
+              "col": 0,
+
+              //  Select
+              "optionValues": [],
+
+              //  Checkbox
+              "checked": false,
+
+              //  Radio Buttons
+              "legend": "",
+              "radioButtons": [
+                {
+                  "id_Element": "",
+                  "labelElement": "",
+                  "name": "",
+                  "required": true,
+                  "disabled": false,
+                  "checked": false,
+                  "response": [
+                    false
+                  ],
+                  "setRadioButton": undefined
+                }
+              ],
+
+              //  Icons - Images
+              "srcURLIcon": "",
+              "nameImage": "",
+              "widthImage": 0
             }
           ]
         }
@@ -91,10 +151,11 @@ const formJSON_prueba_01 = {
 
       "columns": [
         {
+          "orderColInBlock": 0,
           "components": [
             {
               "id_Element": "component_first_of_block_2",
-              "title_Element": "Label Element",
+              "title_Element": "Label Element, first element from Block 2",
               "type_Element": "label",
               "orderInBlock": 0,
               "label_Element": "",
@@ -154,7 +215,7 @@ const formJSON_prueba_01 = {
           ]
         }
       ]
-    },
+    }
   ]
 }
 

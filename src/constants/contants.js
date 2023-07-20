@@ -3,7 +3,7 @@ export const TITLES_OF_APP = {
   TITLE_MEMO_LIST_HEADER: "Custom Forms Dynamic Creator",
   SUBTITLE_MEMO_LIST_HEADER: "App (Bootstrap - Sass -JS - React)",
   TITLE_OF_SITE: "Custom Forms Dynamic Creator",
-  TITLE_TYPE_DESIGNER: "Designer",
+  TITLE_TYPE_DESIGNER: "Designer Layout: ",
   TITLE_SELECT_STATE: "Layout Status: ",
   TITLE_DESIGNER_FBC: {
     form: "Forms",
@@ -77,7 +77,7 @@ export const TYPE_COMPONENTS = [
     id_Component: 1,
     type: "label",
     title: "Label",
-    label:"",
+    label: "",
     placeholder: "Element Label"
   },
   {
@@ -163,24 +163,21 @@ export const TYPE_COMPONENTS = [
   }
 ]
 
-export const tableColorComponents = [
-  {color: "white", code: "rgb(246, 240, 240)"}, {color: "yellow", code: "rgb(252, 248, 2)"}, {color: "orange", code: "rgb(248, 164, 8)"},
-  {color: "red", code: "rgba(207, 35, 35, 0.9)"}, {color: "greenHell", code: "rgb(103, 255, 2)"}, {color: "greenDark", code: "rgb(1, 63, 22)"},
-  {color: "blueHell", code: "rgb(100, 250, 255))"}, {color: "blueDark", code: "rgb(5, 29, 253)"}, {color: "lila", code: "#ac2bac"},
-  {color: "grey", code: "rgb(140, 140, 140)"}, {color: "black", code: "rgb(13, 13, 13)"}
+export const COLOR_COMPONENTS = [
+  { color: "white", code: "rgb(246, 240, 240)" }, { color: "yellow", code: "rgb(252, 248, 2)" }, { color: "orange", code: "rgb(248, 164, 8)" },
+  { color: "red", code: "rgba(207, 35, 35, 0.9)" }, { color: "greenHell", code: "rgb(103, 255, 2)" }, { color: "greenDark", code: "rgb(1, 63, 22)" },
+  { color: "blueHell", code: "rgb(100, 250, 255))" }, { color: "blueDark", code: "rgb(5, 29, 253)" }, { color: "lila", code: "#ac2bac" },
+  { color: "grey", code: "rgb(140, 140, 140)" }, { color: "black", code: "rgb(13, 13, 13)" }
 ]
 
 export const GROUP_BUTTONS_SELECT_LEFT = {
   preId: "actionSelect_",
   role: "groupTop",
   arialLabel: "Radio toggle button group top",
-  typeButton: "radio",
-  nameInput: "btnradio1",
-  options: ["Read", "Create", "Modify"],
-  colors: ["dark", "success", "primary"],
-  sizeLetter: "0.9rem",
+  typeButton: "button",
+  options: ["Read", "Modify"],
+  colors: ["success", "danger"],
   height: "2rem",
-  groupButton: "select_left"
 }
 
 

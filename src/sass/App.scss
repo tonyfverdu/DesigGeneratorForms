@@ -11,39 +11,11 @@
   min-height: 100vh;
   gap: 0.2%;
 
-  .containerApp {
+  &>.containerApp {
     width: 100vw;
     height: 0.1rem;
 
-    &>.contIconExit {
-      @include l.layoutFlexboxRowCenter;
-      @include n.teclaNeumorphismus1;
-      position: absolute;
-      top: 0.6rem;
-      right: 1.2rem;
-      width: 1.8rem;
-      height: 1.8rem;
-      z-index: 20;
-      border-radius: 3px;
-      color: v.$colorRedNeuDunkel3;
-      transition: all ease 0.20s;
 
-      &:hover,
-      &:focus {
-        color: v.$colorRedNew;
-        @include n.teclaNeumorphismus1Hover;
-        border-radius: 3px;
-        border: 1px solid v.$backgroundColorDunkelGray4T;
-        transform: scale(0.86);
-      }
-
-      &>i {
-        z-index: 20;
-        width: 2.5rem;
-        height: 2.5rem;
-      }
-
-    }
   }
 
   &>.containerLogos {
@@ -102,16 +74,41 @@
 }
 
 //  Icon Image
-.icon {
+.contIconExit {
+  @include l.layoutFlexboxRowCenter;
+  @include n.teclaNeumorphismus1;
+  position: absolute;
+  top: 0.8rem;
+  right: 1.6rem;
+  width: 1.8rem;
+  height: 1.8rem;
+  z-index: 20;
+  border-radius: 50%;
+  color: v.$colorRedNeuDunkel3;
   transition: all ease 0.20s;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     cursor: pointer;
-    transform: scale(0.85) rotate(15deg);
-    border: 1px solid v.$backgroundColorDunkelGray4;
-    background-color: v.$backgroundColorHellGrayT;
+    color: v.$colorRedNew;
+    @include n.teclaNeumorphismus1Hover;
+    border-radius: 50%;
+    border: 1px solid v.$backgroundColorDunkelGray4T;
+    transform: scale(0.86);
   }
 }
+
+// .icon {
+//   transition: all ease 0.20s;
+
+//   &:hover,
+//   &:focus {
+//     cursor: pointer;
+//     transform: scale(0.85) rotate(15deg);
+//     border: 1px solid v.$backgroundColorDunkelGray4;
+//     background-color: v.$backgroundColorHellGrayT;
+//   }
+// }
 
 
 //  Animations

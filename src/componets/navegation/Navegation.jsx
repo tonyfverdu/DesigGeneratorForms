@@ -3,7 +3,7 @@ import ItemMenu from './ItemMenu.jsx'
 import '../../sass/componentSass/navegation/Navegation.scss'
 
 function Navegation() {
-  const arrayItemsMenu = ['Home', 'Design', 'Generate', 'See', 'Read']
+  const arrayItemsMenu = ['Home', 'View', 'Design', 'Result']
 
   return (
     <div className="menuNavegation">

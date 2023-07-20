@@ -26,6 +26,7 @@ function ShowElements({ type_Element, componentSelect }) {
         case "master":
           setElementOut(
             <MasterElem_PB
+              comp={componentSelect}
               id_Element={componentSelect.id_Element}
               placeholder={componentSelect.placeholder}
               width={componentSelect.dimension.width}
@@ -254,10 +255,14 @@ function ShowElements({ type_Element, componentSelect }) {
   return (
     <div className="container-fluid d-flex flex-row justify-content-between align-items-center gap-1">
       <div className="row">
-        <h6 className="col-2 text-primary fw-bold pt-2 me-1" style={{ fontSize: "0.8rem" }}>
-          {type_Element}
+        <h6 className="col" >
+          <span className="ms-1 p-1 fw-bold"
+            style={{ fontSize: "0.64rem", textShadow: "-4px -3px 4px rgba(0, 0, 0, 0.39), 2px 3px 4px rgba(0, 0, 0, 0.3)" }} >
+            Element of Form:
+          </span>
+          <span className="text-danger fw-bolder pt-2 ms-1 h-6">{type_Element}</span>
         </h6>
-        <div className="col-12 graycolor400 ms-2" style={{ fontSize: "0.8rem" }}>
+        <div className="col-12 graycolor400 mx-auto" style={{ fontSize: "0.8rem" }}>
           {
             elementOut
           }
