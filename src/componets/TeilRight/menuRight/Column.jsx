@@ -16,11 +16,17 @@ function Column({ comp }) {
   function addNewCol(parAfterBefore) {
     if (parAfterBefore === "after") {
       setToogleColAfter(!toogleColAfter)
+
     } else if (parAfterBefore === "before") {
       setToogleColBefore(!toogleColBefore)
+
     } else {
       console.error('Error: The argument of the function "addNewCol" must be the worts: "after" or "before" !!')
     }
+  }
+
+  function deleteComponent(parRefElement) {
+    parRefElement.current.remove()
   }
 
   useEffect(() => {
@@ -31,14 +37,14 @@ function Column({ comp }) {
 
 
   return (
-    <div ref={refElementDiv} className="container-fluid d-flex flex-row justify-content-start align-items-start p-0 m-0" >
+    <div ref={refElementDiv} className="container-fluid d-flex flex-row justify-content-start align-items-start p-0 mx-auto" >
       {
         toogleColBefore &&
         <Column
           comp={comp}
         />
       }
-      <div className="d-flex flex-column justify-content-between align-items-center p-0 m-0 h-100" >
+      <div className="d-flex flex-column justify-content-between align-items-center p-0 ms-1" style={{ height: "2.6rem" }}>
         <CircleButton
           isButton={"before"}
           addNewCol={addNewCol}
@@ -52,11 +58,11 @@ function Column({ comp }) {
         </button>
       </div>
 
-      <div className="d-flex flex-row justify-content-center align-items-start mx-1 p-0" >
+      <div className=" mx-1 p-0 " >
         {
           !isSpace
             ?
-            <>
+            <div className="d-flex flex-column justify-content-center align-items-center" >
               <MasterElem_PB
                 comp={comp}
                 id_Element={comp.id_Element}
@@ -66,13 +72,15 @@ function Column({ comp }) {
                 disabled={comp.disabled}
               />
               <IconEditDelete
+                deleteComponent={deleteComponent}
                 refElementDiv={refElementDiv}
               />
-            </>
+            </div>
             :
             <WhiteSpace_PB />
         }
       </div>
+      
       <>
         <CircleButton
           isButton={"after"}

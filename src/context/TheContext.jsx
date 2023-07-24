@@ -5,35 +5,29 @@ import currentDate from '../functions/currentDate.js'
 export const MyContext = createContext(null)
 
 //  Importing initial data from the form template and examples of Forms
-import formJSON_plantilla from '../Data/JSONFormPlantillaObj.js'
-import form_survey_disease_001 from '../Data/JSONFormDataObj_01.js'
+// import formJSON_plantilla from '../Data/JSONFormPlantillaObj.js'
+// import form_survey_disease_001 from '../Data/JSONFormDataObj_01.js'
 
 
 function TheContext({ children }) {
 
-  const [tooRead, setTooRead] = useState(true)
-
-
-  //    ***************************     MANAGEMENT OF FORM OBJECT   *****************************************
+  //    1.-   MANAGEMENT OF FORM OBJECT - theContext.formObject   ******************************************************************
   const [formObject, setFormObject] = useState({})
-  const [formSelectLeft, setFormSelectLeft] = useState(formObject)
-  const [formSelectRight, setFormSelectRight] = useState(formObject)
-
-
   const [nameOfFormObject, setNameOfFormObject] = useState("")
 
   const [JSONEingabenForm, setJSONEingabenForm] = useState("")   //  <== Eingaben ( vor String JSON zur JSON-Formulardaten)
   const [JSONAusgabenForm, setJSONAusgabenForm] = useState("")   //  <== Ausgaben (vor JSON-Formulardaten zur String JSON)
   const [toggleJSONEingaben, setToggleJSONEingaben] = useState(true)
 
-  /////////////////////////////////////////////////////////////////////////////////////////////
+
+  //    2.-   MANAGEMENT OF STATE FORM - READ OR CREATE-MODIFY    ******************************************************************
+  const [tooRead, setTooRead] = useState(true)
+
 
   //     ***************************    SELECTION VARIABLES   *********************************
   const [optionState, setOptionState] = useState("read")
   const [optionDesigner, setOptionDesigner] = useState("form")
   const [optionLayout, setOptionLayout] = useState("read")
-
-  /////////////////////////////////////////////////////////////////////////////////////////////
 
   //     ***************************    TOOGLE VARIABLES (READ, CREATE AND MODIFY)    *********
   const [toogleReadLeft, setToogleReadLeft] = useState(true)
@@ -356,9 +350,7 @@ function TheContext({ children }) {
   const exportData = {
     tooRead, setTooRead,
     formObject, setFormObject,
-    formSelectLeft, setFormSelectLeft,
-
-    nameOfFormObject, setNameOfFormObject, formSelectRight, setFormSelectRight,
+    nameOfFormObject, setNameOfFormObject,
 
     toogleReadLeft, setToogleReadLeft, toogleCreateLeft, setToogleCreateLeft, toogleModifyLeft, setToogleModifyLeft,
     optionState, setOptionState, optionDesigner, setOptionDesigner, optionLayout, setOptionLayout,

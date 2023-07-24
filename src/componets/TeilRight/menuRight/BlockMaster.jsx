@@ -2,18 +2,43 @@ import { useState, useEffect, useContext } from 'react';
 import { MyContext } from '../../../context/TheContext.jsx';
 import LabelElem_PB from '../../elementsForms/LabelElem_PB.jsx';
 import Column from './Column.jsx';
-import ColComponents from './ColComponents.jsx';
+import ColAddLine from './ColAddLine.jsx';
 
 import '../../../sass/componentSass/TeilRight/Row.scss'
 
 
 function BlockMaster({ form, block, index }) {
   const theContext = useContext(MyContext)
-  const [columnsOfBlock, setColumnsOfBlock] = useState(block.columns)
+
+
+  const [columnsOfBlock, setColumnsOfBlock] = useState([])  //  <<=  Objetos columnas del bloque: block
+
+  const [arrayOfCompByColumn, setArrayOfCompByColumn] = useState([])
 
   useEffect(() => {
     setColumnsOfBlock(block.columns)
-  }, [])
+    // comp_Colum(columnsOfBlock)
+
+    // console.log("columnsOfBlock:  ", columnsOfBlock)
+    // setArrayColumn((block.columns.components))
+
+    // console.log("columnsOfBlock:  ", columnsOfBlock)
+
+    // comp_Colum(columnsOfBlock)
+    // console.log("compOfColumn:  ", compOfColumn)
+  }, [block])
+
+  function comp_Colum(parArrayColumn) {
+    console.log("parArrayColumn:  ", parArrayColumn)
+    if (Array.isArray(parArrayColumn)) {
+      setArrayOfCompByColumn(parArrayColumn.map((col, i) => {
+        return col.components[i]
+      }))
+    } else {
+      console.log('Error:  The argument of the function "compOfColum" must be an array!!')
+      setArrayOfCompByColumn(null)
+    }
+  }
 
 
   return (
@@ -25,9 +50,9 @@ function BlockMaster({ form, block, index }) {
         </button>
       </div>
 
-      <div id={`collapse_${index}`} className="accordion-collapse collapse" aria-labelledby={`heading_${index}`} >
-        <div className="accordion-body py-0 px-1 mx-1">
-          <div className="row px-0 py-0 shadow-sm graycolor500">
+      <div id={`collapse_${index}`} className="accordion-collapse collapse p-0 mx-auto" aria-labelledby={`heading_${index}`} >
+        <div className="accordion-body p-0 mx-2" >
+          <div className="row shadow-sm graycolor500" >
             <div className="col-3">
               <LabelElem_PB
                 id_Element={block.id_Block}
@@ -54,10 +79,10 @@ function BlockMaster({ form, block, index }) {
                 return (
                   <>
                     {
-                      !theContext.toogleReadLeft &&
+                      !theContext.tooRead &&
 
-                      <div key={index} className="row py-1 my-2 graycolor100 shadow-sm" >
-                        <ColComponents
+                      <div key={index} className="row p-0 my-1 graycolor100 shadow-sm" >
+                        <ColAddLine
                           form={form}
                           block={block}
                           numRow={index}
@@ -66,9 +91,9 @@ function BlockMaster({ form, block, index }) {
                     }
 
                     <div key={index} className="row p-1 mb-1 graycolor100 shadow-sm" >
-                      {col.components.map(comp => {
+                      {col.components.map((comp, i) => {
                         return (
-                          <div className={`col-${comp.dimension.width + ""} d-flex flex-row justify-content-start align-item-center gap-1 p-1 m-0`} >
+                          <div key={i} className={`col-${comp.dimension.width + ""} d-grip p-0 m-0`} style={{ width: "auto" }}>
                             <Column
                               comp={comp}
                             />
@@ -84,17 +109,17 @@ function BlockMaster({ form, block, index }) {
               <p className="display-6 text-center text-danger">Error</p>
           }
           {
-            !theContext.toogleReadLeft &&
+            !theContext.tooRead &&
 
-            < div className="row py-1 my-2 graycolor100 shadow-sm" >
-              <ColComponents
+            < div className="row p-0 my-1 graycolor100 shadow-sm" >
+              <ColAddLine
                 form={form}
                 block={block}
                 numRow={columnsOfBlock.length}
               />
             </div>
           }
-        </div>
+        </div >
       </div >
     </>
   )

@@ -1,6 +1,8 @@
 import { useState, useEffect, useContext } from 'react'
 import { MyContext } from '../../context/TheContext.jsx'
 
+import HeaderHead from './MenuLeft/HeaderHead.jsx'
+
 import MasterElem_PB from '../elementsForms/MasterElem_PB.jsx'
 import LabelElem_PB from '../elementsForms/LabelElem_PB.jsx'
 import TextElem_PB from '../elementsForms/TextElem_PB.jsx'
@@ -253,20 +255,32 @@ function ShowElements({ type_Element, componentSelect }) {
   }, [type_Element])
 
   return (
-    <div className="container-fluid d-flex flex-row justify-content-between align-items-center gap-1">
-      <div className="row">
-        <h6 className="col" >
-          <span className="ms-1 p-1 fw-bold"
-            style={{ fontSize: "0.64rem", textShadow: "-4px -3px 4px rgba(0, 0, 0, 0.39), 2px 3px 4px rgba(0, 0, 0, 0.3)" }} >
-            Element of Form:
-          </span>
-          <span className="text-danger fw-bolder pt-2 ms-1 h-6">{type_Element}</span>
-        </h6>
-        <div className="col-12 graycolor400 mx-auto" style={{ fontSize: "0.8rem" }}>
-          {
-            elementOut
-          }
+    <div id="accordionShowComp" className="accordion container-fluid graycolor400 d-flex flex-column justify-content-center align-items-center p-1 mx-auto mb-1">
+      <div className="accordion-item rounded-0 container-fluid mx-auto graycolor400 border-0 " style={{ marginBottom: "0.3rem" }} >
+        <HeaderHead
+          idHeading={"headingShowComp"}
+          dataTarget={"#collapseShowComp"}
+          ariaControl={"collapseShowComp"}
+          fontSize={"0.75rem"}
+          title={"Show Component: "}
+          value={type_Element}
+        />
+
+        <div id="collapseShowComp" className="accordion-collapse collapse ms-0" aria-labelledby="headingShowComp" data-bs-parent="#accordionShowComp">
+          <div className="accordion-body p-0 mb-0">
+            <div className="row d-flex justify-content-center align-items-center gap-1 m-1" >
+              <div className="col-12 d-flex flex-column justify-content-start align-items-start graycolor400 mx-auto"
+                style={{ padding: "0.2rem", margin: "0.2rem auto" }} >
+                <span className="m-0" style={{ width: "100%", fontSize: "0.6rem" }}>
+                  {
+                    elementOut
+                  }
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
   )

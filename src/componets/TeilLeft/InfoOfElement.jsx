@@ -12,31 +12,31 @@ import '../../sass/componentSass/TeilLeft/InfoOfElement.scss'
 
 import formJSON_prueba_01 from '../../Data/JSONFormPrueba_01.js';
 import changeElementInArray from '../../functions/changeElementOfArray.js';
+import findIndexBlockSelect from '../../functions/findIndexBlockSelect.js';
+import findIndexCompSelect from '../../functions/findIndexCompSelect.js';
 
 
-function InfoOfElement({ formInput, setFormInput }) {
+function InfoOfElement({ formInput }) {
   const theContext = useContext(MyContext)
 
-  //  Local state variable
-  const [formLocalSelect, setFormLocalSelect] = useState(JSON.parse(JSON.stringify(formInput))) //  <<===   User-selected Form
+  //  ****    Local state variable    **************************************************************************************************
+  const [formLocalSelect, setFormLocalSelect] = useState(formInput) //  <<===   User-selected Form
 
+  //  ==>>  Loading the form block array in the context variable:  theContext.arrayOfBlocks
   const [arrayBlocksSelect, setArrayBlocksSelect] = useState(formLocalSelect.blocks)
   const [blockSelect, setBlockSelect] = useState(arrayBlocksSelect[0])    //  <<===   User-selected Block
-
   const [arrayColumnsSelect, setArrayColumnsSelect] = useState(blockSelect.columns)
-  const [arrayCompsSelect, setArrayCompsSelect] = useState(blockSelect.columns.map(col => col.components.map(comp => comp)))
-  const [componentSelect, setComponentSelect] = useState(arrayCompsSelect[0])  //  <<===   User-selected Component
-
-  // console.log("Componentes:  arrayCompsSelect:  ", arrayCompsSelect)
+  const [arrayCompsSelect, setArrayCompsSelect] = useState(arrayColumnsSelect.map(col => col.components.map(comp => comp)))
+  const [componentSelect, setComponentSelect] = useState(arrayCompsSelect[0][0])  //  <<===   User-selected Component
 
   //  Change formInput
   useEffect(() => {
-    setFormLocalSelect(JSON.parse(JSON.stringify(formInput)))
+    setFormLocalSelect(formInput)
     setArrayBlocksSelect(formLocalSelect.blocks)
     setBlockSelect(arrayBlocksSelect[0])
     setArrayColumnsSelect(blockSelect.columns)
     setArrayCompsSelect(blockSelect.columns.map(col => col.components.map(comp => comp)))
-    setComponentSelect(arrayCompsSelect[0])
+    setComponentSelect(arrayCompsSelect[0][0])
   }, [formInput])
 
   //  Change BlockSelect
@@ -57,46 +57,28 @@ function InfoOfElement({ formInput, setFormInput }) {
   useEffect(() => {
     // setArrayBlocks(changeElementInArray(arrayBlocks, blockSelect))
     findIndexBlockSelect(valueForm.blocks, blockSelect)
-    setComponentSelect(blockSelect.columns[0].components[0])
+    setComponentSelect(blockSelect.columns[0].components[0][indexBlockSelect])
   }, [blockSelect])
 
 
   ////////////////////////////////////////////////  GESTION DE VARIABLES DE ESTADO LOCALES DEL FORMULARIO   ///////////////////////////
   const [valueForm, setValueForm] = useState(formInput)
+  const [valueArrays, setValueArrays] = useState(formInput.blocks)
   const [valueBlock, setValueBlock] = useState(blockSelect)
   const [valueComp, setValueComp] = useState(componentSelect)
 
   useState(() => {
     setValueForm(formLocalSelect)
   }, [formLocalSelect])
+  useState(()=> {
+    setValueArrays(formLocalSelect.blocks)
+  }, [formLocalSelect.blocks])
   useState(() => {
     setValueBlock(blockSelect)
   }, [blockSelect])
   useState(() => {
     setValueComp(componentSelect)
   }, [componentSelect])
-
-  useEffect(() => {
-    // formJSON_prueba_01.id_Form = valueForm.id_Form
-    // formJSON_prueba_01.title_Form = valueForm.title_Form
-    // formJSON_prueba_01.creation_date_Form = valueForm.creation_date_Form
-    // formJSON_prueba_01.version_Form = valueForm.version_Form
-    // formJSON_prueba_01.readonly_Form = valueForm.readonly_Form
-    // formJSON_prueba_01.description_Form = valueForm.description_Form
-    // formJSON_prueba_01.blocks = valueForm.blocks
-
-
-
-    // setFormInput(valueForm)
-    setFormInput(valueForm)
-    // theContext.setFormObject(valueForm)
-  }, [valueForm])
-
-  //  MIRAR ESTO BIEN CON DETALLE
-  // useEffect(() => {
-  //   // setFormInput({...formInput, blocks: valueBlock})
-  //   setFormInput({...formInput, blocks: valueBlock})
-  // }, [valueBlock])
 
 
   return (
@@ -114,6 +96,7 @@ function InfoOfElement({ formInput, setFormInput }) {
         valueForm={valueForm}
         setValueForm={setValueForm}
 
+        indexBlockSelect={indexBlockSelect}
         setIndexBlockSelect={setIndexBlockSelect}
       />
 
@@ -122,36 +105,32 @@ function InfoOfElement({ formInput, setFormInput }) {
         formSelect={formLocalSelect}
         setFormSelect={setFormLocalSelect}
 
-        arrayBlocks={arrayBlocksSelect}
-        setArrayBlocks={setArrayBlocksSelect}
+        arrayBlocks={valueArrays}
+        setArrayBlocks={setValueArrays}
         blockSelect={blockSelect}
         setBlockSelect={setBlockSelect}
 
         valueForm={valueForm}
         setValueForm={setValueForm}
+        valueArrays={valueArrays}
+        setValueArrays={setValueArrays}
         valueBlock={valueBlock}
         setValueBlock={setValueBlock}
         valueComp={valueComp}
         setValueComp={setValueComp}
 
         indexBlockSelect={indexBlockSelect}
-        // setIndexBlockSelect={setIndexBlockSelect}
+        setIndexBlockSelect={setIndexBlockSelect}
       />
 
       {/* ****     ELEMENT SHOW:     **** */}
-      {/* < div className="container-fluid bg-secondary d-flex flex-column justify-content-center align-items-center py-2 px-3 mx-auto my-1" >
-        <div className="row container-fluid d-flex justify-content-center align-items-center gap-0 my-1 mx-auto bg-secondary">
-          <div className="col bg-body mx-1 p-2 graycolor400">
-            <ShowElements
-              type_Element={valueComp.type_Element}
-              componentSelect={valueComp}
-            />
-          </div>
-        </div>
-      </div > */}
+      <ShowElements
+        type_Element={valueComp.type_Element}
+        componentSelect={valueComp}
+      />
 
       {/* ****     2.-  Menu Left:  Icons - Components    **** */}
-      {/* {
+      {
         !theContext.tooRead &&
         <div className="row p-1">
           <IconsElem
@@ -159,16 +138,16 @@ function InfoOfElement({ formInput, setFormInput }) {
           // situation={"componentInfo"}
           />
         </div>
-      } */}
+      }
 
       {/* ****      COMPONENT DATA SHOW   **** */}
-      {/* <DataCompMenu
-        formInput={formSelect}
-        setFormInput={setFormSelect}
+      <DataCompMenu
+        formInput={formLocalSelect}
+        setFormInput={setFormLocalSelect}
         blockSelect={blockSelect}
-        componentSelect={componentSelect}
-        setComponentSelect={setComponentSelect}
-      /> */}
+        componentSelect={valueComp}
+        setComponentSelect={setValueComp}
+      />
 
     </div>
   )
@@ -176,130 +155,123 @@ function InfoOfElement({ formInput, setFormInput }) {
 
 export default InfoOfElement;
 
+
+
+
+
+
 /*
-  //  Control of read, create and modify state  ???????
+  //  ==>>  Loading the form block array in the context variable:  theContext.arrayOfBlocks
+  theContext.setArrayOfBlocks(formInput.blocks)
+  const [lengthOfArrayOfBlocks, setLengthOfArrayOfBlocks] = useState(0)
+
+
+  const [blockSelect, setBlockSelect] = useState({})    //  <<===   User-selected Block
+  const [indexBlockSelect, setIndexBlockSelect] = useState(0)
+  // const [lengthOfArrayOfBlocks, setLengthOfArrayOfBlocks] = useState(0)
+
   useEffect(() => {
-    setTooRead(theContext.toogleReadLeft)
-    setTooModify(theContext.toogleCreateLeft)
+    setFormLocalSelect(formInput)
+    theContext.setArrayOfBlocks(formLocalSelect.blocks)
+    //setLengthOfArrayOfBlocks(theContext.arrayOfBlocks.length)
+    setLengthOfArrayOfBlocks(0)
 
-    switch (theContext.optionState) {
-      case "read":
-        theContext.setObjComponentShow(theContext.componentRead)
-        break;
-      case "modify":
-        theContext.setObjComponentShow(theContext.componentModify)
-        break;
-      default:
-        break;
-    }
-  }, [theContext.toogleReadLeft], [theContext.toogleModifyLeft])
+    setBlockSelect(theContext.arrayOfBlocks[0])
+    setIndexBlockSelect(0)
 
 
-  
+  }, [formInput])
+
+  ////////////////////////////////////////////////  GESTION DE VARIABLES DE ESTADO LOCALES DEL FORMULARIO   ///////////////////////////
+  const [valueForm, setValueForm] = useState(formLocalSelect)
+  useState(() => {
+    setValueForm(formLocalSelect)
+  }, [formLocalSelect])
 */
 
 /*
+  const [componentSelect, setComponentSelect] = useState({})  //  <<===   User-selected Component
+
+  //    ESTO ES UNA COPIA DE LO QUE HAY EN PRINTFORMTEMPLATE
+  useEffect(() => {
+setLengthOfArrayOfBlocks(theContext.arrayOfBlocks.length)
+
+
+    // setArrayColumnsSelect(theContext.arrayOfBlocks[0].columns)
+    // setArrayCompsSelect(theContext.arrayOfBlocks[0].columns[0].components)
+    setComponentSelect(theContext.arrayOfBlocks[0].columns[0].components[0])
+  }, [formInput])
+
+
+
+
+  ////////////////////////////////////////////////  GESTION DE VARIABLES DE ESTADO LOCALES DEL FORMULARIO   ///////////////////////////
+  const [valueForm, setValueForm] = useState(formLocalSelect)
+  const [valueArrays, setValueArrays] = useState(theContext.arrayOfBlocks)
+  const [valueBlock, setValueBlock] = useState(blockSelect)
+  const [valueComp, setValueComp] = useState(componentSelect)
+
+
+  // useState(() => {
+  //   setArrayColumnsSelect(theContext.setArrayOfBlocks)
+  // }, [theContext.setArrayOfBlocks])
+  useState(() => {
+    setValueBlock(blockSelect)
+  }, [blockSelect])
+  useState(() => {
+    setValueComp(componentSelect)
+  }, [componentSelect])
+
+
+
+
+
+
+*/
+
+/*
+const [arrayColumnsSelect, setArrayColumnsSelect] = useState([])
+  const [arrayCompsSelect, setArrayCompsSelect] = useState([])
+  const [componentSelect, setComponentSelect] = useState({})  //  <<===   User-selected Component
+
+
+
+
+
+  //  Change BlockSelect
+  const [indexBlockSelect, setIndexBlockSelect] = useState(0)
   // useEffect(() => {
-  //   formJSON_prueba_01.id_Form = valueForm.id_Form
-  //   formJSON_prueba_01.title_Form = valueForm.title_Form
-  //   formJSON_prueba_01.creation_date_Form = valueForm.creation_date_Form
-  //   formJSON_prueba_01.version_Form = valueForm.version_Form
-  //   formJSON_prueba_01.readonly_Form = valueForm.readonly_Form
-  //   formJSON_prueba_01.description_Form = valueForm.description_Form
-  //   formJSON_prueba_01.blocks = valueForm.blocks
+  //   findIndexBlockSelect(valueForm.blocks, blockSelect, indexBlockSelect, setIndexBlockSelect)
+  //   // setComponentSelect(blockSelect.columns[0].components[0])
+  // }, [blockSelect])
 
-
-
-  //   // setFormInput(valueForm)
-  //   setFormSelect(valueForm)
-  //   // theContext.setFormObject(valueForm)
-  // }, [valueForm])
-
+  //  Change CompSelect
+  const [indexCompSelect, setIndexCompSelect] = useState(0)
   // useEffect(() => {
-  //   // console.log("formJSON_prueba_01.blocks:  ", formJSON_prueba_01.blocks, " proximo indice:  ", formJSON_prueba_01.blocks.length)
+  //   findIndexCompSelect(valueForm.blocks.components, valueComp, indexCompSelect, setIndexCompSelect)
+  //   setComponentSelect(blockSelect.columns[0].components[0])
+  // }, [componentSelect])
 
-  //   formJSON_prueba_01.blocks[formJSON_prueba_01.blocks.length].title_Block = valueBlock.title_Block
-  //   formJSON_prueba_01.blocks[formJSON_prueba_01.blocks.length].ordenDisplay_Block = valueBlock.ordenDisplay_Block
-  //   formJSON_prueba_01.blocks[formJSON_prueba_01.blocks.length].label_Block = valueBlock.label_Block
-  //   formJSON_prueba_01.blocks[formJSON_prueba_01.blocks.length].description_Block= valueBlock.description_Block
-
-  //   setSelectForm(valueForm)
-  //   setFormSelect({ ...formSelect, blocks: blockSelect })
-  //   // setSelectForm(structuredClone(valueForm))
-
+  //  MIRAR ESTO BIEN CON DETALLE
+  // useEffect(() => {
+  //   // setFormInput({...formInput, blocks: valueBlock})
+  //   setFormInput({...formInput, blocks: valueBlock})
   // }, [valueBlock])
 
-
-
-
-  // const [selectComponent, setSelectComponent] = useState(componentSelect)  //  <==  ??
-  // useEffect(() => {
-  //   setFormInput(formSelect)
-  //   theContext.setArrayOfBlocks(formSelect.blocks)
-
-  //   setBlockSelect(formSelect.blocks[0])
-  //   setComponentSelect(formSelect.blocks[0].columns[0].components[0])
-
-  //   setSelectComponent(componentSelect)
-
-  //   setTooRead(true)
-  //   setTooModify(false)
-  // }, [formSelect])
-  /*
-   
-  
-    useEffect(() => {
-      setSelectComponent(componentSelect)
-    }, [componentSelect])
-  
-    useEffect(() => {
-      // setSelectForm(theContext.formObject)
-  
-      setSelectComponent(theContext.objComponentShow)
-    }, [theContext.objComponentShow])
-  
-  
-  
-    function handleOnChangeComponent(ev) {
-      ev.preventDefault();
-      console.log("Se ha seleccionado a, ev.target.value:  ", ev.target.value)
-  
-      // setSelectComponent(ev.target.value)
-      // theContext.setElement(selectComponent)
-    }
-  
- 
-  
-    function handleComponentSelect(ev) {
-      ev.preventDefault()
-      let compSelectObj = null
-  
-      // if (Array.isArray(blockSelect.components)) {
-      //   compSelectObj = blockSelect.components.find(component => component.type_Element === ev.target.value)
-      // }
-      // setComponentSelect(compSelectObj)
-    }
-  
-    function handleCompSelectObj(ev) {
-      ev.preventDefault()
-  
-      // if (Array.isArray(blockSelect.components)) {
-      //   const compSelectObj = blockSelect.components.find(component => {
-      //     return component.type_Element === ev.target.value
-      //   })
-      //   setComponentSelect(compSelectObj)
-      // }
-  
-      // if (Array.isArray(TYPE_COMPONENTS)) {
-      //   const compSelectObj = TYPE_COMPONENTS.find(component => component.type === ev.target.value)
-      //   setComponentSelect(compSelectObj)
-      // }
-    }
-  
-    //   3.-  COMPONENTS
-  
-    
 */
+
+
+
+
+//  Change formInput
+// useEffect(() => {
+//   setFormLocalSelect(JSON.parse(JSON.stringify(formInput)))
+//   setArrayBlocksSelect(formLocalSelect.blocks)
+//   setBlockSelect(arrayBlocksSelect[0])
+//   setArrayColumnsSelect(blockSelect.columns)
+//   setArrayCompsSelect(blockSelect.columns.map(col => col.components.map(comp => comp)))
+//   setComponentSelect(arrayCompsSelect[0])
+// }, [formInput])
 
 
 

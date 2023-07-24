@@ -3,7 +3,7 @@ import { MyContext } from '../../../context/TheContext.jsx';
 import '../../../sass/componentSass/TeilRight/Row.scss'
 
 
-function ColComponents({ form, block, numRow }) {
+function ColAddLine({ form, block, numRow }) {
   const theContext = useContext(MyContext)
   const [variableBlock, setVariableBlock] = useState({})
   const [toogleNewColComps, setToogleNewRowBlock] = useState(true)
@@ -57,4 +57,4 @@ function ColComponents({ form, block, numRow }) {
   )
 }
 
-export default ColComponents;
+export default ColAddLine;

@@ -81,21 +81,21 @@ const formJSON_prueba_01 = {
             },
             {
               "id_Element": "comp2_of_first_block",
-              "title_Element": "Title of Second Component from Block 2",
-              "type_Element": "label",
+              "title_Element": "Title of Second Component from Block 1",
+              "type_Element": "master",
               "orderInBlock": 1,
-              "label_Element": "Element Label",
+              "label_Element": "Element Master",
               "required": true,
               "disabled": false,
               "response": [],
-              "placeholder": "I am a Label",
-              "size": 15,
+              "placeholder": "Default",
+              "size": 0,
               "position": {
                 "rowElem": 0,
-                "colElem": 1
+                "colElem": 0
               },
               "dimension": {
-                "width": 2,
+                "width": 1,
                 "height": "2.4rem"
               },
               "valueComponent": undefined,
@@ -137,7 +137,7 @@ const formJSON_prueba_01 = {
               "srcURLIcon": "",
               "nameImage": "",
               "widthImage": 0
-            }
+            },
           ]
         }
       ]
@@ -158,6 +158,70 @@ const formJSON_prueba_01 = {
               "title_Element": "Label Element, first element from Block 2",
               "type_Element": "label",
               "orderInBlock": 0,
+              "label_Element": "",
+              "required": true,
+              "disabled": false,
+              "response": [],
+              "placeholder": "Element Label",
+              "size": 0,
+              "position": {
+                "rowElem": 0,
+                "colElem": 0
+              },
+              "dimension": {
+                "width": 3,
+                "height": "2.4rem"
+              },
+              "valueComponent": undefined,
+              "setComponent": undefined,
+              "name": undefined,
+              "borderElement": true,
+              "colorElement": "",
+              "fontSizeElement": "",
+    
+              //  Area Text
+              "readonly": false,
+              "row": 0,
+              "col": 0,
+    
+              //  Select
+              "optionValues": [],
+    
+              //  Checkbox
+              "checked": false,
+    
+              //  Radio Buttons
+              "legend": "",
+              "radioButtons": [
+                {
+                  "id_Element": "",
+                  "labelElement": "",
+                  "name": "",
+                  "required": true,
+                  "disabled": false,
+                  "checked": false,
+                  "response": [
+                    false
+                  ],
+                  "setRadioButton": undefined
+                }
+              ],
+    
+              //  Icons - Images
+              "srcURLIcon": "",
+              "nameImage": "",
+              "widthImage": 0
+            }
+          ]
+        },
+        {
+          "orderColInBlock": 1,
+          "components": [
+            {
+              "id_Element": "component_second_of_block_2",
+              "title_Element": "Label Element, second element from Block 2",
+              "type_Element": "label",
+              "orderInBlock": 1,
               "label_Element": "",
               "required": true,
               "disabled": false,

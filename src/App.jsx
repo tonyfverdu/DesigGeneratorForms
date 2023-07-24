@@ -3,10 +3,8 @@ import { MyContext } from './context/TheContext'
 import { BsXSquareFill } from 'react-icons/bs'
 import HeaderComponent from './componets/others/HeaderComponent.jsx'
 
-//  Constans
 import { TITLES_OF_APP, GROUP_BUTTONS_SELECT_LEFT } from './constants/contants.js'
 
-//  Pages
 import Nav from './componets/navegation/Nav.jsx'
 
 //  Components
@@ -26,64 +24,13 @@ function App() {
   const [toggleHeader, setToggleHeader] = useState(true);
   const [toogleFormLayout, setToogleFormLayout] = useState(false)
 
-  theContext.setFormObject(formJSON_prueba_01)
+  // theContext.setFormObject(formJSON_prueba_01)
+  const [formSelectLocal, setFormSelectLocal] = useState(formJSON_prueba_01)
 
-  const [formSelectLocalLeft, setFormSelectLocalLeft] = useState(formJSON_prueba_01)  //  <<=  VER SI SE QUITA
-  // const [formSelectLocalRight, setFormSelectLocalRight] = useState(formJSON_prueba_01)
+  useEffect(()=> {
+    theContext.setFormObject(formSelectLocal)
+  }, [formSelectLocal])
 
-  useEffect(() => {
-    theContext.setFormSelectLeft(formSelectLocalLeft)
-  }, [formSelectLocalLeft])
-
-  // useEffect(() => {
-  //   theContext.setFormSelectRight(formSelectLocalRight)
-  // }, [formSelectLocalRight])
-
-  // useEffect(() => {
-  //   theContext.setFormSelectLeft(theContext.formObject)
-  //   theContext.setFormSelectRight(theContext.formObject)
-
-  //   console.log("theContext.formObject:  ", theContext.formObject)
-
-  // }, [])
-
-  // const [formSelectLeft, setFormSelectLeft] = useState(JSON.parse(JSON.stringify(formJSON_prueba_01)))
-
-  // console.log("formSelectLeft:  ", formSelectLeft)
-
-  //  ****>>  PRUEBA DE LA VARIABLE READ EN APP Y PASADA COMO PROPIEDAD     *********************
-  // const [tooRead, setTooRead] = useState(false)
-
-
-
-  // const [formSelectRight, setFormSelectRight] = useState(JSON.parse(JSON.stringify(formJSON_prueba_01)))
-
-  // theContext.setFormObject(JSON.parse(JSON.stringify(formJSON_prueba_01)))    //    ****************    <<=  AQUI SE ELIGE EL FORMULARIO A VISUALIZAR
-
-
-
-  // useEffect(() => {
-  //   // theContext.setFormObject(formSelectLeft)
-  //   // theContext.setFormObject(formSelectRight)
-  //   // console.log("formSelectLeft:  ", formSelectLeft)
-  //   console.log("")
-  //   // console.log("formSelectRight:  ", formSelectRight)
-  // }, [])
-
-
-  // setFormSelect(formJSON_prueba_01)
-
-
-  // useEffect(() => {
-  //   setFormSelect(structuredClone(theContext.formObject))   //  Esta copia profunda de objeto no funciona
-  //   console.log("En el modulo App, formSelect es:  ", formSelect)
-  // }, [theContext.formObject])
-
-
-
-  // const [toogleFormLayout, setToogleFormLayout] = useState(false)
-
-  //  
   return (
     <div className="contCentral">
       <div className="d-flex flex-column justify-content-center align-items-center mx-auto p-0 m-0" >
@@ -148,8 +95,7 @@ function App() {
           {/* ****     2.-  Info of Form - Block - Elements (read only in "Read" state and "componets of forms" in "create" and "modify" state)   **** */}
           <div className="row container-fluid d-flex justify-content-center mb-1" >
             <InfoOfElement
-              formInput={formSelectLocalLeft}
-              setFormInput={setFormSelectLocalLeft}
+              formInput={formSelectLocal}
             />
           </div>
 
@@ -190,8 +136,8 @@ function App() {
               toogleFormLayout &&
               <>
                 <PrintFormTemplate
-                  formInput={formSelectLocalLeft}
-                  setFormInput={setFormSelectLocalLeft}
+                  formInput={theContext.formObject}
+                  setFormInput={theContext.setFormObject}
                 />
 
                 {/* 2.-  Group buttons of "Delete", "Save" and "Submit" dates of Form., Blocks and Componets   ************ */}
@@ -217,7 +163,6 @@ function App() {
 export default App;
 
 /*
- 
       {/* <nav className="containerNav">
         <Routes>
            <Route path="/" element={<Home />} />
@@ -241,77 +186,4 @@ export default App;
         </Routes>
       </nav> * /}
 
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// {
-//   theContext.optionDesigner === "component" ?
-//     theContext.arrayOfRows.map((row, index) => {
-//       return <div key={index} className="row container-fluid d-flex flex-row justify-content-start align-item-center p-1 py-2 my-1 bg-light 
-//                 border border-secondary border-end-0 border-start-0">
-//         {row}
-//       </div>
-//     })
-//     :
-//     <>
-//       <p className="text-dark display-4 fw-bold p-6 mt-2 me-2">Aqui viene el layout de:  <span className="text-danger fw-bolder display-2">{theContext.optionDesigner}</span></p>
-//     </>
-// }
-
-{/* <ComponentsList /> */ }
-
-{/* //  Ejemplo de Formulario Completo para pruebas:  <PrintFormInfo /> */ }
-{/* <PrintFormInfo /> */ }
-
-{/* <FromJSONToForm /> */ }
-
-
-/*
-    <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/formManagement/">Sample Form</Link>
-            </li>
-            <li>
-              <Link to="/formBuilder/">Form Builder</Link>
-            </li>
-          </ul>
-        </nav>
-
-        <Route path="/" exact component={Index} />
-        <Route path="/about/" component={About} />
-        <Route path="/formManagement/" component={FormManagement} />
-        <Route path="/formBuilder/" component={FormBuilder} />
-      </div>
-    </Router>
 */

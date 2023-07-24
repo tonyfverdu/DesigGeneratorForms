@@ -12,26 +12,25 @@ import { TITLES_RCM_LEFT } from '../../../constants/contants.js';  //  Constants
 import formJSON_prueba_01 from '../../../Data/JSONFormPrueba_01.js';
 
 
-function DataFormMenu({ formSelect, setFormSelect, blockSelect, setBlockSelect, valueForm, setValueForm, setIndexBlockSelect }) {
+function DataFormMenu({ formSelect, setFormSelect, blockSelect, setBlockSelect, valueForm, setValueForm, indexBlockSelect, setIndexBlockSelect }) {
   const theContext = useContext(MyContext)
-  // const [indexBlockSelect, setIndexBlockSelect] = useState(0)
 
-  // function findIndexBlockSelect(parArrayBlocks, parBlockSelect) {
-  //   if (Array.isArray(parArrayBlocks)) {
-  //     setIndexBlockSelect(parArrayBlocks.findIndex(block => block.id_Block === parBlockSelect.id_Block))
-  //     if (indexBlockSelect <= -1) {
-  //       console.error(`Error: There is not the elements in the array of the function "findIndexBlockSelect"`)
-  //       setIndexBlockSelect(null)
-  //     }
-  //   } else {
-  //     console.error('Error:  The argument of the function "findIndexBlockSelect" must be an array!!')
-  //     setIndexBlockSelect(null)
-  //   }
-  // }
+  function findIndexBlockSelect(parArrayBlocks, parBlockSelect) {
+    if (Array.isArray(parArrayBlocks)) {
+      setIndexBlockSelect(parArrayBlocks.findIndex(block => block.id_Block === parBlockSelect.id_Block))
+      if (indexBlockSelect <= -1) {
+        console.error(`Error: There is not the elements in the array of the function "findIndexBlockSelect"`)
+        setIndexBlockSelect(null)
+      }
+    } else {
+      console.error('Error:  The argument of the function "findIndexBlockSelect" must be an array!!')
+      setIndexBlockSelect(null)
+    }
+  }
 
-  // useEffect(()=> {
-  //   findIndexBlockSelect(valueForm.blocks, blockSelect)
-  // }, [blockSelect])
+  useEffect(() => {
+    findIndexBlockSelect(valueForm.blocks, blockSelect)
+  }, [blockSelect])
 
   //  FORM FUNCTIONS
   function handleChangeTITLEFORM(ev) {
@@ -40,7 +39,6 @@ function DataFormMenu({ formSelect, setFormSelect, blockSelect, setBlockSelect, 
 
     setValueForm({ ...valueForm, title_Form: newValue })
     setFormSelect({ ...formSelect, title_Form: newValue })
-    // formJSON_prueba_01.title_Form = formSelect.title_Form
   }
   function handleChangeIDFORM(ev) {
     ev.preventDefault()
@@ -128,6 +126,11 @@ function DataFormMenu({ formSelect, setFormSelect, blockSelect, setBlockSelect, 
     setNewArrayBlocks([...newArrayBlocks, newBlock])
   }
 
+  //  IMPORTANT !!
+  useEffect(()=> {
+    theContext.setFormObject(valueForm)
+  }, [valueForm])
+
 
   return (
     <div id="accordionForm" className="accordion container-fluid graycolor400 d-flex flex-column justify-content-center align-items-center p-1 mx-auto mb-1">
@@ -149,7 +152,7 @@ function DataFormMenu({ formSelect, setFormSelect, blockSelect, setBlockSelect, 
               <div className="col-12 d-flex flex-row justify-content-start align-items-start m-0 p-1 bg-body">
                 <FieldText
                   title={TITLES_RCM_LEFT.FORM_TITLE}
-                  value={formSelect.title_Form}
+                  value={valueForm.title_Form}
                   fontSize={"0.64rem"}
                   action={handleChangeTITLEFORM}
                 />
@@ -160,7 +163,7 @@ function DataFormMenu({ formSelect, setFormSelect, blockSelect, setBlockSelect, 
               <div className="col-12 d-flex flex-row justify-content-start align-items-start m-0 p-1 bg-body">
                 <FieldText
                   title={TITLES_RCM_LEFT.FORM_ID_TITLE}
-                  value={formSelect.id_Form}
+                  value={valueForm.id_Form}
                   fontSize={"0.64rem"}
                   action={handleChangeIDFORM}
                 />
@@ -171,7 +174,7 @@ function DataFormMenu({ formSelect, setFormSelect, blockSelect, setBlockSelect, 
               <div className="col-4 d-flex flex-column justify-content-start align-items-center m-0 p-1 bg-body" style={{ height: "3.6rem" }}>
                 <FieldData
                   title={TITLES_RCM_LEFT.FORM_DATE_CREATION}
-                  value={formSelect.creation_date_Form}
+                  value={valueForm.creation_date_Form}
                   fontSize={"0.64rem"}
                   action={handleChangeCREADATEFORM}
                 />
@@ -180,7 +183,7 @@ function DataFormMenu({ formSelect, setFormSelect, blockSelect, setBlockSelect, 
               <div className="col-4 d-flex flex-column justify-content-start align-items-center m-0 py-1 px-0 bg-body" style={{ height: "3.6rem" }}>
                 <FieldText
                   title={TITLES_RCM_LEFT.FORM_VERSION}
-                  value={formSelect.version_Form}
+                  value={valueForm.version_Form}
                   fontSize={"0.64rem"}
                   action={handleChangeVERSIONFORM}
                 />
@@ -189,8 +192,7 @@ function DataFormMenu({ formSelect, setFormSelect, blockSelect, setBlockSelect, 
               <div className="col d-flex flex-column justify-content-start align-items-center m-0 p-1 bg-body" style={{ height: "3.6rem" }}>
                 <FieldSelect
                   title={TITLES_RCM_LEFT.FORM_READONLY}
-                  //value={formSelect.readonly_Form.toString().toUpperCase()}
-                  value={formSelect.readonly_Form.toString().toUpperCase()}
+                  value={valueForm.readonly_Form.toString().toUpperCase()}
                   fontSize={"0.64rem"}
                   arrayValues={arrayValues}
                   action={handleChangeREADONLYFORM}
@@ -202,7 +204,7 @@ function DataFormMenu({ formSelect, setFormSelect, blockSelect, setBlockSelect, 
               <div className="col-12 d-flex flex-column justify-content-start align-items-start m-0 p-1 bg-body">
                 <FieldTextArea
                   title={TITLES_RCM_LEFT.FORM_DESCRIPTION}
-                  value={formSelect.description_Form}
+                  value={valueForm.description_Form}
                   fontSize={"0.64rem"}
                   tooRead={theContext.tooRead}
                   action={handleChangeDESCRIPTIONFORM}
@@ -214,7 +216,7 @@ function DataFormMenu({ formSelect, setFormSelect, blockSelect, setBlockSelect, 
               <div className="col-12 d-flex flex-column justify-content-center align-items-start m-0 p-1 bg-body" >
                 <FieldSelectAdd
                   title={TITLES_RCM_LEFT.FORM_BLOCKS}
-                  value={formSelect.blocks}
+                  value={valueForm.blocks}
                   fontSize={"0.64rem"}
                   fontSizeButton={"0.7rem"}
                   tooRead={theContext.tooRead}

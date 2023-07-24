@@ -12,25 +12,23 @@ import TextElem_PB from '../elementsForms/TextElem_PB.jsx'
 
 function PrintFormTemplate({ formInput, setFormInput }) {
   const theContext = useContext(MyContext)
-  
-  const [formLocalSelect, setFormLocalSelect] = useState(JSON.parse(JSON.stringify(formInput)))
-  theContext.setArrayOfBlocks(formLocalSelect.blocks)
+
+  //  ****    Local state variable    **************************************************************************************************
+  const [formLocalSelect, setFormLocalSelect] = useState(formInput)
+
+  useState(()=> {
+    theContext.setFormObject(formLocalSelect)
+  }, [formLocalSelect])
+
+  //  ==>>  Loading the form block array in the context variable:  theContext.arrayOfBlocks
+  theContext.setArrayOfBlocks(formInput.blocks)
   const [lengthOfArrayOfBlocks, setLengthOfArrayOfBlocks] = useState(theContext.arrayOfBlocks.length)
 
   useEffect(() => {
-    setFormLocalSelect(JSON.parse(JSON.stringify(formInput)))
-    theContext.setArrayOfBlocks(formLocalSelect.blocks)
+    setFormLocalSelect(formInput)
+    theContext.setArrayOfBlocks(formInput.blocks)
     setLengthOfArrayOfBlocks(theContext.arrayOfBlocks.length)
   }, [formInput])
-
-  // useEffect(() => {
-  //   theContext.setArrayOfBlocks(formLocalSelect.formInput.blocks)
-  //   setLengthOfArrayOfBlocks(formSelect.formInput.blocks.length)
-  // }, [formLocalSelect])
-
-  // useEffect(() => {
-  //   setLengthOfArrayOfBlocks(formLocalSelect.blocks.length + 1)
-  // }, [formLocalSelect.blocks])
 
 
   return (
@@ -50,7 +48,7 @@ function PrintFormTemplate({ formInput, setFormInput }) {
         {/* //  Here are the dates of the form:  First row */}
         {/* //  1.-  First row:  Title of Form + Id of Form with background color gray */}
         <div className="row d-flex flex-row justify-content-start align-items-center gx-0 shadow-sm graycolor500 p-1 mb-2">
-          <div className="col-4 text-start m-0 p-0 text-start" >
+          <div className="col-3 text-start m-0 p-0 text-start" >
             <LabelElem_PB
               id_Element={""}
               orderInBlock={1}
@@ -90,33 +88,41 @@ function PrintFormTemplate({ formInput, setFormInput }) {
 
         {/* //  2.-  Array of Blocks from Form */}
         {
-          theContext.arrayOfBlocks !== undefined &&
-          theContext.arrayOfBlocks.map((block, index) => {
-            return (
-              <>
-                {
-                  !theContext.tooRead &&
-                  <div className="row my-2">
-                    <RowBlock
-                      form={formLocalSelect}
-                      count={index}
-                    />
-                  </div>
-                }
+          theContext.arrayOfBlocks !== undefined
+            ?
+            Array.isArray(theContext.arrayOfBlocks)
+              ?
+              theContext.arrayOfBlocks.map((block, index) => {
+                return (
+                  <>
+                    {
+                      !theContext.tooRead &&
+                      <div key={block.id_Block} className="row my-2">
+                        <RowBlock
+                          form={formLocalSelect}
+                          count={index}
+                        />
+                      </div>
+                    }
 
-                <div key={block.id_Block} id={`accordionBlock_${index}`} className="accordion accordion-flush bg-secondary mx-auto mb-3">
-                  <div className="accordion-item p-1 m-0" >
-                    <BlockMaster
-                      form={formLocalSelect}
-                      block={block}
-                      index={index}
-                    />
-                  </div >
-                </div>
-              </>
-            )
-          })
+                    <div key={block.id_Block} id={`accordionBlock_${index}`} className="accordion accordion-flush bg-secondary mx-auto mb-1" >
+                      <div className="accordion-item p-0 m-0" >
+                        <BlockMaster
+                          form={formLocalSelect}
+                          block={block}
+                          index={index}
+                        />
+                      </div >
+                    </div>
+                  </>
+                )
+              })
+              :
+              <p className="fs-6 text-center text-danger fw-bold">ERROR, theContext.arrayOfBlocks NO ES UN ARRAY </p>
+            :
+            <p className="fs-6 text-center text-danger fw-bold">ERROR</p>
         }
+
         {
           !theContext.tooRead &&
           <div className="row my-2">
@@ -134,9 +140,19 @@ function PrintFormTemplate({ formInput, setFormInput }) {
 
 export default PrintFormTemplate;
 
-//  Nota.-
+//    ****    EXPLICACION   *******************************************************
+/*
 
-/*  The context variable: "theContext.toogleReadLeft" is the one that controls the "read" view in the layout view of the 
-    layout view (right-hand side)
+1.-  Cargo en la variable de estado de React:  formLocalSelect, el valor del objeto de formulario: "formInput", 
+     pasado como argumento al componente
+
+2.-  Cargo en la variable de "contexto": theContext.arrayOfBlocks, el "array de bloques" del formulario de entrada.  
+     Paso el valor de "length" de este array a la variable de estado del componente:  "lengthOfArrayOfBlocks"
+
+     Cada vez que cambie el valor del parametro de entrada del componente:  "formInput", reinicializo el valor de los 
+     valores anteriores con useEffect.
+
+3.-  
+
+
 */
-

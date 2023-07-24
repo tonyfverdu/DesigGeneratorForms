@@ -99,8 +99,9 @@ function DataBlockMenu({ formSelect, setFormSelect, blockSelect, setBlockSelect,
   const [compSelectObj, setCompSelectObj] = useState(arrayComponents[0])
 
   function handleComponentSelect(ev) {
+ 
     ev.preventDefault()
-    console.log("type_Element:  ", ev.target.value)
+    console.log("ev.target:  ", ev.target)
 
     if (Array.isArray(arrayComponents)) {
       setCompSelectObj(arrayComponents.find(comp => comp.type_Element === ev.target.value))
