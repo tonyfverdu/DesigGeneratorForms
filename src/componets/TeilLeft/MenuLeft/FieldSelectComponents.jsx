@@ -22,10 +22,10 @@ function FieldSelectComponents({ title, value, fontSize, arrayValues, action }) 
         </option>
         {
           Array.isArray(arrayValues) &&
-          arrayValues.map((comp, i) => {
+          arrayValues.map(comp => {
             return (
-              <option key={comp.id_Element} className="fw-normal text-dark" value={comp.title_Element} >
-                {comp.title_Element}
+              <option key={comp.id_Component} className="fw-normal text-dark" value={comp.title} >
+                {comp.title}
               </option>
             )
           })

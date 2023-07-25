@@ -11,9 +11,8 @@ import { TITLES_RCM_LEFT, TYPE_COMPONENTS, COLOR_COMPONENTS } from '../../../con
 import createArray from '../../../functions/createArray.js';
 
 
-function DataCompMenu({ formInput, setFormInput, blockSelect, componentSelect, setComponentSelect }) {
+function DataCompMenu({ formSelect, setFormSelect, blockSelect, componentSelect, setComponentSelect }) {
   const theContext = useContext(MyContext)
-
 
   const [arrayComponents, setArrayOfComponents] = useState(blockSelect.columns[0].components)
   const [arrayValuesComp, setArrayValuesComp] = useState(createArray(arrayComponents.length))
@@ -73,8 +72,8 @@ function DataCompMenu({ formInput, setFormInput, blockSelect, componentSelect, s
           <div className="accordion-body p-0 mb-0">
 
             <div className="row d-flex justify-content-center align-items-center gap-1 mt-1" >
-              <div className={`col-3 d-flex ${theContext.tooRead ? "flex-row" : "flex-column"} justify-content-start align-items-start m-0 pe-3 mt-1 p-1 bg-body `}
-                style={theContext.tooRead ? { height: "1.967rem" } : { height: "3.714rem", margin: "auto 0%" }} >
+              <div className="col-3 d-flex flex-column justify-content-start align-items-start m-0 pe-3 mt-1 p-1 bg-body"
+                style={{ height: "3.714rem", margin: "auto 0%" }} >
 
                 <FieldSelectComponents
                   title={TITLES_RCM_LEFT.COMPONENT_TYPE}

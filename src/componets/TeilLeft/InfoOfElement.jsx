@@ -142,8 +142,8 @@ function InfoOfElement({ formInput }) {
 
       {/* ****      COMPONENT DATA SHOW   **** */}
       <DataCompMenu
-        formInput={formLocalSelect}
-        setFormInput={setFormLocalSelect}
+        formSelect={formLocalSelect}
+        setFormSelect={setFormLocalSelect}
         blockSelect={blockSelect}
         componentSelect={valueComp}
         setComponentSelect={setValueComp}
