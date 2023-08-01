@@ -14,8 +14,14 @@ import createArray from '../../../functions/createArray.js';
 function DataCompMenu({ formSelect, setFormSelect, blockSelect, componentSelect, setComponentSelect }) {
   const theContext = useContext(MyContext)
 
-  const [arrayComponents, setArrayOfComponents] = useState(blockSelect.columns[0].components)
-  const [arrayValuesComp, setArrayValuesComp] = useState(createArray(arrayComponents.length))
+  const [compLocal, setComLocal] = useState(componentSelect);
+
+  useEffect(() => {
+    setComLocal(componentSelect)
+    console.log("En DataCompMenu:  ", compLocal.title_Element)
+  }, [componentSelect])
+
+
 
   function handleChangeTYPECOMP(ev) {
     console.log("Hola")
@@ -73,8 +79,7 @@ function DataCompMenu({ formSelect, setFormSelect, blockSelect, componentSelect,
 
             <div className="row d-flex justify-content-center align-items-center gap-1 mt-1" >
               <div className="col-3 d-flex flex-column justify-content-start align-items-start m-0 pe-3 mt-1 p-1 bg-body"
-                style={{ height: "3.714rem", margin: "auto 0%" }} >
-
+                style={{ height: "3.504rem", margin: "auto 0%" }} >
                 <FieldSelectComponents
                   title={TITLES_RCM_LEFT.COMPONENT_TYPE}
                   value={componentSelect.type_Element}
@@ -83,10 +88,9 @@ function DataCompMenu({ formSelect, setFormSelect, blockSelect, componentSelect,
                   arrayValues={TYPE_COMPONENTS}
                   action={handleChangeTYPECOMP}
                 />
-
               </div>
 
-              <div className={`col-8 d-flex ${theContext.tooRead ? "flex-row" : "flex-column"} justify-content-start align-items-start m-0 mt-1 p-1 bg-body `}>
+              <div className="col-8 d-flex flex-column justify-content-start align-items-start m-0 mt-1 p-1 bg-body ">
                 <FieldText
                   title={TITLES_RCM_LEFT.COMPONENT_TITLE}
                   value={componentSelect.title_Element}
@@ -97,8 +101,8 @@ function DataCompMenu({ formSelect, setFormSelect, blockSelect, componentSelect,
               </div>
             </div>
 
-            <div className="row d-flex justify-content-center align-items-center gap-1 mb-0" >
-              <div className={`col-8 d-flex ${theContext.tooRead ? "flex-row" : "flex-column"} justify-content-start align-items-start m-0 mt-1 p-1 bg-body `}>
+            <div className="row d-flex justify-content-center align-items-center gap-0 mb-0" style={{ margin: "auto 0.04rem" }}>
+              <div className={`col-12 d-flex ${theContext.tooRead ? "flex-row" : "flex-column"} justify-content-start align-items-start m-0 mt-1 p-1 bg-body `}>
                 <FieldText
                   title={TITLES_RCM_LEFT.COMPONENT_ID}
                   value={componentSelect.id_Element}
@@ -107,7 +111,7 @@ function DataCompMenu({ formSelect, setFormSelect, blockSelect, componentSelect,
                   action={handleChangeIDCOMP}
                 />
               </div>
-              <div className={`col-3 d-flex ${theContext.tooRead ? "flex-row justify-content-start p-1" : "flex-column justify-content-center px-0 pe-2"} align-items-start m-0 mt-1 bg-body `} >
+              {/* <div className={`col-3 d-flex ${theContext.tooRead ? "flex-row justify-content-start p-1" : "flex-column justify-content-center px-0 pe-2"} align-items-start m-0 mt-1 bg-body `} >
                 <FieldSelect
                   title={TITLES_RCM_LEFT.COMPONENT_DISPLAY_ORDER}
                   value={componentSelect.orderInBlock}
@@ -116,7 +120,7 @@ function DataCompMenu({ formSelect, setFormSelect, blockSelect, componentSelect,
                   arrayValues={arrayValuesComp}
                   action={handleChangeORDERINLOCK}
                 />
-              </div>
+              </div> */}
             </div>
 
             <div className="row d-flex justify-content-center align-items-center gap-1 mb-0" >

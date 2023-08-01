@@ -108,9 +108,6 @@ function DataFormMenu({ formSelect, setFormSelect, blockSelect, setBlockSelect, 
     const blockSelectObject = formSelect.blocks.find(block => block.title_Block === ev.target.value)
     setIndexBlockSelect(formSelect.blocks.findIndex(block => block.title_Block === ev.target.value))
     setBlockSelect(blockSelectObject)
-
-    // Number.isInteger(indexBlockSelect) ? console.log("El indice del Bloque es:  ", indexBlockSelect)
-    //   : console.log("El indice del Bloque es:  ", setIndexBlockSelect(0))
   }
 
   function handleAddBlock(ev) {

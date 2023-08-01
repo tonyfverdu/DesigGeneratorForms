@@ -33,7 +33,7 @@ function DataBlockMenu({ formSelect, setFormSelect, arrayBlocks, setArrayBlocks,
   }
 
   const [arrayComponents, setArrayOfComponents] = useState(compByBlock(blockSelect))
-  const [compSelectObj, setCompSelectObj] = useState({})
+  const [compSelectObj, setCompSelectObj] = useState(valueComp)
   const [numberBlocks, setNumberBlocks] = useState(formSelect.blocks.length)
   const [arrayOrders, setArrayOrders] = useState(createArray(numberBlocks))
 
@@ -51,63 +51,8 @@ function DataBlockMenu({ formSelect, setFormSelect, arrayBlocks, setArrayBlocks,
 
   useEffect(() => {
     findIndexBlockSelect2(arrayBlocks, blockSelect)
-    console.log("indexBlockSelect2:  ", indexBlockSelect2)
   }, [blockSelect])
-  // const [indexBlockSelect, setIndexBlockSelect] = useState(0)
 
-  // function findIndexBlockSelect(parArrayBlocks, parBlockSelect) {
-  //   if (Array.isArray(parArrayBlocks)) {
-  //     setIndexBlockSelect(parArrayBlocks.findIndex(block => block.id_Block === parBlockSelect.id_Block))
-  //     if (indexBlockSelect <= -1) {
-  //       console.error(`Error:  There is not the elements in the array of the function "findIndexBlockSelect"`)
-  //       setIndexBlockSelect(null)
-  //     }
-  //   } else {
-  //     console.error('Error:  The argument of the function "findIndexBlockSelect" must be an array!!')
-  //     setIndexBlockSelect(null)
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   findIndexBlockSelect(formSelect.blocks, blockSelect)
-
-  //   // setArrayBlocks([...arrayBlocks, arrayBlocks[indexBlockSelect] = blockSelect])
-  // }, [blockSelect])
-
-  // useEffect(() => {
-  // formSelect.blocks[indexBlockSelect].title_Block = valueBlock.title_Block
-
-  // arrayBlocks[indexBlockSelect] = {...arrayBlocks, title_Block: valueBlock.title_Block}
-  // setArrayBlocks([...arrayBlocks, arrayBlocks[indexBlockSelect] = arrayBlocks[indexBlockSelect]])
-  // setTheFormIs({...theFormIs, blocks: arrayBlocks})
-
-  // formSelect.blocks[indexBlockSelect].id_Block = valueBlock.id_Block
-  // setBlockSelect([...formSelect.blocks, formSelect.blocks[indexBlockSelect].title_Block = valueBlock.title_Block])
-  // formSelect.blocks[indexBlockSelect].ordenDisplay_Block = valueBlock.ordenDisplay_Block
-  // formSelect.blocks[indexBlockSelect].label_Block = valueBlock.label_Block
-  // formSelect.blocks[indexBlockSelect].description_Block = valueBlock.description_Block
-
-  // setFormSelect(structuredClone(valueForm))
-  // theContext.setFormObject(valueForm)
-
-  // setFormSelect({ ...formSelect, blocks: [...blocks, blocks[indexBlockSelect] = valueBlock] })
-
-  // setArrayBlocks([...arrayBlocks, arrayBlocks[indexBlockSelect] = blockSelect])
-  // setFormSelect({ ...formSelect, blocks: arrayBlocks })
-
-
-  //   setFormSelect({ ...formSelect, blocks: arrayBlocks })
-
-  // }, [valueBlock])
-
-  // useEffect(() => {
-  //   console.log("useEffect de cambio de blockSelect")
-  //   setValueForm({ ...valueForm, blocks: arrayBlocks })
-
-
-  // }, [blockSelect])
-
-  //    TRATAMIENTO DE CAMBIOS EN LOS ATRIBUTOS DE BLOCK
   const [parChangeBlock, setParChangeBlock] = useState("")
   let newArray = []
 
@@ -120,7 +65,7 @@ function DataBlockMenu({ formSelect, setFormSelect, arrayBlocks, setArrayBlocks,
           // console.log("arrayNuevo:  ", arrayNuevo)
 
           console.log("ValueBlock:  ", valueBlock)
-          
+
 
           //setValueArrays([...valueArrays, valueArrays[indexBlockSelect2] = valueBlock])
           newArray = valueArrays.map(value => {
@@ -129,10 +74,10 @@ function DataBlockMenu({ formSelect, setFormSelect, arrayBlocks, setArrayBlocks,
             }
             return value
           })
-        
+
           // setValueArrays(changeElementInArray(valueArrays, valueArrays[indexBlockSelect2].id_Block, valueArrays))
           // setValueForm({ ...valueForm, blocks: newArray })
-          
+
           // setArrayBlocks(newArray)
           // setFormSelect(valueForm)
           // findIndexBlockSelect2(newArray, valueBlock)
@@ -199,10 +144,13 @@ function DataBlockMenu({ formSelect, setFormSelect, arrayBlocks, setArrayBlocks,
           break;
 
         case "components_Block":
+          console.log("En components_Block newArray:  ", newArray)
+
           newArray = valueArrays.map(value => {
             if (value.id_Block === valueBlock.id_Block) {
-              value = { ...value, ordenDisplay_Block: valueBlock.ordenDisplay_Block }
+              value = { ...value, components: valueBlock.columns }
             }
+            console.log("value:  ", value)
             return value
           })
           setValueArrays(newArray)
@@ -273,7 +221,7 @@ function DataBlockMenu({ formSelect, setFormSelect, arrayBlocks, setArrayBlocks,
     setBlockSelect({ ...blockSelect, ordenDisplay_Block: newValue })
   }
 
-  //  Arreglo de componentes en en select DE COMPONENTES
+  //  Arrangement of components in the Component Select
   function handleComponentSelect(ev) {
     ev.preventDefault()
     const newValue = ev.target.value
@@ -281,18 +229,22 @@ function DataBlockMenu({ formSelect, setFormSelect, arrayBlocks, setArrayBlocks,
     setParChangeBlock("components_Block")
 
     if (Array.isArray(arrayComponents)) {
-      setCompSelectObj(arrayComponents.find(comp => comp.title_Element === ev.target.value))
-      console.log("compSelectObj:  ", compSelectObj)
+      setValueComp(arrayComponents.find(comp => comp.title_Element === newValue))
     }
-    setValueComp(compSelectObj)
   }
 
-    //  IMPORTANT !!
-    // useEffect(()=> {
-    //   console.log("Ejecuto esto")
-    //   theContext.setArrayOfBlocks([...theContext.arrayOfBlocks, blockSelect])
-    //   theContext.setFormObject({...theContext.formObject, blocks: theContext.arrayOfBlocks})
-    // }, [valueForm])
+  // useEffect(() => {
+  //   console.log("arrayComponents:  ", arrayComponents)
+  //   console.log("compSelectObj:  ", compSelectObj)
+
+  // }, [arrayComponents])
+
+  //  IMPORTANT !!
+  // useEffect(()=> {
+  //   console.log("Ejecuto esto")
+  //   theContext.setArrayOfBlocks([...theContext.arrayOfBlocks, blockSelect])
+  //   theContext.setFormObject({...theContext.formObject, blocks: theContext.arrayOfBlocks})
+  // }, [valueForm])
 
   return (
     <div id="accordionBlock" className="accordion container-fluid graycolor400 d-flex flex-column justify-content-center align-items-center p-1 mx-auto mb-1">
@@ -357,11 +309,11 @@ function DataBlockMenu({ formSelect, setFormSelect, arrayBlocks, setArrayBlocks,
             <div className="row d-flex justify-content-start align-items-center gap-1 m-1">
 
               <div className="col d-flex flex-column justify-content-start align-items-center m-0 p-1 bg-body" style={{ height: "3.6rem" }} >
-                <FieldSelectComponents
+                <FieldSelect
                   title={TITLES_RCM_LEFT.BLOCK_COMPONENTS}
-                  value={compSelectObj}
+                  value={compSelectObj.title_Element}
                   fontSize={"0.64rem"}
-                  arrayValues={arrayComponents}
+                  arrayValues={arrayComponents.map(comp => comp.title_Element)}
                   action={handleComponentSelect}
                 />
               </div>
@@ -385,3 +337,62 @@ function DataBlockMenu({ formSelect, setFormSelect, arrayBlocks, setArrayBlocks,
 }
 
 export default DataBlockMenu;
+
+/*
+  // const [indexBlockSelect, setIndexBlockSelect] = useState(0)
+
+  // function findIndexBlockSelect(parArrayBlocks, parBlockSelect) {
+  //   if (Array.isArray(parArrayBlocks)) {
+  //     setIndexBlockSelect(parArrayBlocks.findIndex(block => block.id_Block === parBlockSelect.id_Block))
+  //     if (indexBlockSelect <= -1) {
+  //       console.error(`Error:  There is not the elements in the array of the function "findIndexBlockSelect"`)
+  //       setIndexBlockSelect(null)
+  //     }
+  //   } else {
+  //     console.error('Error:  The argument of the function "findIndexBlockSelect" must be an array!!')
+  //     setIndexBlockSelect(null)
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   findIndexBlockSelect(formSelect.blocks, blockSelect)
+
+  //   // setArrayBlocks([...arrayBlocks, arrayBlocks[indexBlockSelect] = blockSelect])
+  // }, [blockSelect])
+
+  // useEffect(() => {
+  // formSelect.blocks[indexBlockSelect].title_Block = valueBlock.title_Block
+
+  // arrayBlocks[indexBlockSelect] = {...arrayBlocks, title_Block: valueBlock.title_Block}
+  // setArrayBlocks([...arrayBlocks, arrayBlocks[indexBlockSelect] = arrayBlocks[indexBlockSelect]])
+  // setTheFormIs({...theFormIs, blocks: arrayBlocks})
+
+  // formSelect.blocks[indexBlockSelect].id_Block = valueBlock.id_Block
+  // setBlockSelect([...formSelect.blocks, formSelect.blocks[indexBlockSelect].title_Block = valueBlock.title_Block])
+  // formSelect.blocks[indexBlockSelect].ordenDisplay_Block = valueBlock.ordenDisplay_Block
+  // formSelect.blocks[indexBlockSelect].label_Block = valueBlock.label_Block
+  // formSelect.blocks[indexBlockSelect].description_Block = valueBlock.description_Block
+
+  // setFormSelect(structuredClone(valueForm))
+  // theContext.setFormObject(valueForm)
+
+  // setFormSelect({ ...formSelect, blocks: [...blocks, blocks[indexBlockSelect] = valueBlock] })
+
+  // setArrayBlocks([...arrayBlocks, arrayBlocks[indexBlockSelect] = blockSelect])
+  // setFormSelect({ ...formSelect, blocks: arrayBlocks })
+
+
+  //   setFormSelect({ ...formSelect, blocks: arrayBlocks })
+
+  // }, [valueBlock])
+
+  // useEffect(() => {
+  //   console.log("useEffect de cambio de blockSelect")
+  //   setValueForm({ ...valueForm, blocks: arrayBlocks })
+
+
+  // }, [blockSelect])
+
+  //    TRATAMIENTO DE CAMBIOS EN LOS ATRIBUTOS DE BLOCK
+  
+*/

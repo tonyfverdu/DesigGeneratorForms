@@ -148,7 +148,6 @@ function InfoOfElement({ formInput }) {
         componentSelect={valueComp}
         setComponentSelect={setValueComp}
       />
-
     </div>
   )
 }

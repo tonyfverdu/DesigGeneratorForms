@@ -24,7 +24,6 @@ function App() {
   const [toggleHeader, setToggleHeader] = useState(true);
   const [toogleFormLayout, setToogleFormLayout] = useState(false)
 
-  // theContext.setFormObject(formJSON_prueba_01)
   const [formSelectLocal, setFormSelectLocal] = useState(formJSON_prueba_01)
 
   useEffect(()=> {

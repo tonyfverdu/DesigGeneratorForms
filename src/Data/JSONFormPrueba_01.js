@@ -22,7 +22,7 @@ const formJSON_prueba_01 = {
           "components": [
             {
               "id_Element": "comp1_of_first_block",
-              "title_Element": "Title of First Component from Block 1",
+              "title_Element": "Block 1: First Component",
               "type_Element": "master",
               "orderInBlock": 0,
               "label_Element": "Element Master",
@@ -81,7 +81,7 @@ const formJSON_prueba_01 = {
             },
             {
               "id_Element": "comp2_of_first_block",
-              "title_Element": "Title of Second Component from Block 1",
+              "title_Element": "Block 1: Second Component",
               "type_Element": "master",
               "orderInBlock": 1,
               "label_Element": "Element Master",
@@ -155,7 +155,7 @@ const formJSON_prueba_01 = {
           "components": [
             {
               "id_Element": "component_first_of_block_2",
-              "title_Element": "Label Element, first element from Block 2",
+              "title_Element": "Block 2: First Element Label",
               "type_Element": "label",
               "orderInBlock": 0,
               "label_Element": "",
