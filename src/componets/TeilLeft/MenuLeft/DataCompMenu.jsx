@@ -14,51 +14,83 @@ import createArray from '../../../functions/createArray.js';
 function DataCompMenu({ formSelect, setFormSelect, blockSelect, componentSelect, setComponentSelect }) {
   const theContext = useContext(MyContext)
 
-  const [compLocal, setComLocal] = useState(componentSelect);
+  const [compLocal, setCompLocal] = useState(componentSelect);
 
   useEffect(() => {
-    setComLocal(componentSelect)
-    console.log("En DataCompMenu:  ", compLocal.title_Element)
-  }, [componentSelect])
-
-
+    setComponentSelect(compLocal)
+  }, [compLocal])
 
   function handleChangeTYPECOMP(ev) {
-    console.log("Hola")
+    ev.preventDefault()
+    const newValue = ev.target.value
+
+    setCompLocal({...compLocal, type_Element: newValue})
   }
   function handleChangeTITLECOMP(ev) {
-    console.log("Hola")
+    ev.preventDefault()
+    const newValue = ev.target.value
+
+    setCompLocal({...compLocal, title_Element: newValue})
   }
   function handleChangeIDCOMP(ev) {
-    console.log("Hola")
+    ev.preventDefault()
+    const newValue = ev.target.value
+
+    setCompLocal({...compLocal, id_Element: newValue})
   }
   function handleChangeORDERINLOCK(ev) {
-    console.log("Hola")
+    ev.preventDefault()
+    const newValue = ev.target.value
+
+    setCompLocal({...compLocal, orderInBlock: newValue})
   }
   function handleChangeLABELCOMP(ev) {
-    console.log("Hola")
+    ev.preventDefault()
+    const newValue = ev.target.value
+
+    setCompLocal({...compLocal, label_Element: newValue})
   }
   function handleChangeSIZECOMP(ev) {
-    console.log("Hola")
+    ev.preventDefault()
+    const newValue = ev.target.value
+
+    setCompLocal({...compLocal, size: newValue})
   }
   function handleChangePLACEHOLDERCOMP(ev) {
-    console.log("Hola")
+    ev.preventDefault()
+    const newValue = ev.target.value
+
+    setCompLocal({...compLocal, placeholder: newValue})
   }
   function handleChangeREQUIREDCOMP(ev) {
-    console.log("Hola")
+    ev.preventDefault()
+    const newValue = ev.target.value
+
+    setCompLocal({...compLocal, required: newValue})
   }
   function handleChangeDISABLEDCOMP(ev) {
-    console.log("Hola")
+    ev.preventDefault()
+    const newValue = ev.target.value
+
+    setCompLocal({...compLocal, disabled: newValue})
   }
   function handleChangeBORDERCOMP(ev) {
-    console.log("Hola")
+    ev.preventDefault()
+    const newValue = ev.target.value
+
+    setCompLocal({...compLocal, borderElement: newValue})
   }
   function handleChangeCOLORCOMP(ev) {
-    console.log("Hola")
-  }
+    ev.preventDefault()
+    const newValue = ev.target.value
 
+    setCompLocal({...compLocal, colorElement: newValue})
+  }
   function handleChangeFSCOMP(ev) {
-    console.log("Hola")
+    ev.preventDefault()
+    const newValue = ev.target.value
+
+    setCompLocal({...compLocal, fontSizeElement: newValue})
   }
 
   return (
@@ -71,7 +103,7 @@ function DataCompMenu({ formSelect, setFormSelect, blockSelect, componentSelect,
           ariaControl={"collapseComp"}
           fontSize={"0.75rem"}
           title={TITLES_RCM_LEFT.COMPONENT_HEAD}
-          value={componentSelect.title_Element}
+          value={compLocal.title_Element}
         />
 
         <div id="collapseComp" className="accordion-collapse collapse ms-0" aria-labelledby="headingComp" data-bs-parent="#accordionComp">
@@ -82,7 +114,7 @@ function DataCompMenu({ formSelect, setFormSelect, blockSelect, componentSelect,
                 style={{ height: "3.504rem", margin: "auto 0%" }} >
                 <FieldSelectComponents
                   title={TITLES_RCM_LEFT.COMPONENT_TYPE}
-                  value={componentSelect.type_Element}
+                  value={compLocal.type_Element}
                   tooRead={theContext.tooRead}
                   fontSize={"0.64rem"}
                   arrayValues={TYPE_COMPONENTS}
@@ -93,7 +125,7 @@ function DataCompMenu({ formSelect, setFormSelect, blockSelect, componentSelect,
               <div className="col-8 d-flex flex-column justify-content-start align-items-start m-0 mt-1 p-1 bg-body ">
                 <FieldText
                   title={TITLES_RCM_LEFT.COMPONENT_TITLE}
-                  value={componentSelect.title_Element}
+                  value={compLocal.title_Element}
                   fontSize={"0.64rem"}
                   tooRead={theContext.tooRead}
                   action={handleChangeTITLECOMP}
@@ -105,7 +137,7 @@ function DataCompMenu({ formSelect, setFormSelect, blockSelect, componentSelect,
               <div className={`col-12 d-flex ${theContext.tooRead ? "flex-row" : "flex-column"} justify-content-start align-items-start m-0 mt-1 p-1 bg-body `}>
                 <FieldText
                   title={TITLES_RCM_LEFT.COMPONENT_ID}
-                  value={componentSelect.id_Element}
+                  value={compLocal.id_Element}
                   fontSize={"0.64rem"}
                   tooRead={theContext.tooRead}
                   action={handleChangeIDCOMP}
@@ -127,7 +159,7 @@ function DataCompMenu({ formSelect, setFormSelect, blockSelect, componentSelect,
               <div className="col-8 d-flex flex-row justify-content-start align-items-start m-0 mt-1 p-1 bg-body">
                 <FieldText
                   title={TITLES_RCM_LEFT.COMPONENT_LABEL}
-                  value={componentSelect.label_Element}
+                  value={compLocal.label_Element}
                   fontSize={"0.64rem"}
                   tooRead={theContext.tooRead}
                   action={handleChangeLABELCOMP}
@@ -137,7 +169,7 @@ function DataCompMenu({ formSelect, setFormSelect, blockSelect, componentSelect,
               <div className={`col-3 d-flex flex-row justify-content-start align-items-start m-0 mt-1 p-1 px-0 bg-body `}>
                 <FieldNumber
                   title={TITLES_RCM_LEFT.COMPONENT_SIZE}
-                  value={componentSelect.size}
+                  value={compLocal.size}
                   fontSize={"0.64rem"}
                   tooRead={theContext.tooRead}
                   action={handleChangeSIZECOMP}
@@ -149,7 +181,7 @@ function DataCompMenu({ formSelect, setFormSelect, blockSelect, componentSelect,
               <div className="col-12 d-flex flex-row justify-content-start align-items-start mx-0 mt-1 p-1 bg-body">
                 <FieldText
                   title={TITLES_RCM_LEFT.COMPONENT_PLACEHOLDER}
-                  value={componentSelect.placeholder}
+                  value={compLocal.placeholder}
                   fontSize={"0.64rem"}
                   tooRead={theContext.tooRead}
                   action={handleChangePLACEHOLDERCOMP}
@@ -163,7 +195,7 @@ function DataCompMenu({ formSelect, setFormSelect, blockSelect, componentSelect,
               <div className="col-5 d-flex flex-row justify-content-center align-items-center m-0 mt-1 me-2 p-1 bg-body" >
                 <FieldSelect
                   title={TITLES_RCM_LEFT.COMPONENT_REQUIRED_ASK}
-                  value={componentSelect.required + ""}
+                  value={compLocal.required + ""}
                   fontSize={"0.64rem"}
                   tooRead={theContext.tooRead}
                   arrayValues={["True", "False"]}
@@ -174,7 +206,7 @@ function DataCompMenu({ formSelect, setFormSelect, blockSelect, componentSelect,
               <div className="col-5 d-flex flex-row justify-content-center align-items-center m-0 mt-1 p-1 bg-body" >
                 <FieldSelect
                   title={TITLES_RCM_LEFT.COMPONENT_DISABLED_ASK}
-                  value={componentSelect.disabled + ""}
+                  value={compLocal.disabled + ""}
                   fontSize={"0.64rem"}
                   tooRead={theContext.tooRead}
                   arrayValues={["True", "False"]}
@@ -187,7 +219,7 @@ function DataCompMenu({ formSelect, setFormSelect, blockSelect, componentSelect,
               <div className={`col-3 ${theContext.tooRead ? "flex-row align-items-center" : "flex-column align-items-start"} justify-content-start m-0 mt-1 p-1 pe-2 bg-body`}>
                 <FieldSelect
                   title={TITLES_RCM_LEFT.COMPONENT_BORDER}
-                  value={componentSelect.borderElement + ""}
+                  value={compLocal.borderElement + ""}
                   fontSize={"0.6rem"}
                   tooRead={theContext.tooRead}
                   arrayValues={["YES", "NOT"]}
@@ -198,7 +230,7 @@ function DataCompMenu({ formSelect, setFormSelect, blockSelect, componentSelect,
               <div className="col-3 flex-row justify-content-start align-items-center m-0 mt-1 p-1 bg-body">
                 <FieldSelectColors
                   title={TITLES_RCM_LEFT.COMPONENT_COLOR}
-                  value={componentSelect.borderElement + ""}
+                  value={compLocal.colorElement}
                   fontSize={"0.6rem"}
                   tooRead={theContext.tooRead}
                   arrayValues={COLOR_COMPONENTS}
@@ -210,7 +242,7 @@ function DataCompMenu({ formSelect, setFormSelect, blockSelect, componentSelect,
                 style={{ height: "auto" }}>
                 <FieldText
                   title={TITLES_RCM_LEFT.COMPONENT_FONT_SIZE}
-                  value={componentSelect.fontSizeElement}
+                  value={compLocal.fontSizeElement}
                   fontSize={"0.6rem"}
                   tooRead={theContext.tooRead}
                   action={handleChangeFSCOMP}
@@ -224,9 +256,9 @@ function DataCompMenu({ formSelect, setFormSelect, blockSelect, componentSelect,
                   title={TITLES_RCM_LEFT.COMPONENT_POSITION}
                   titleField1={TITLES_RCM_LEFT.COMPONENT_POSITION_ROW}
                   titleField2={TITLES_RCM_LEFT.COMPONENT_POSITION_COLUMN}
-                  value={componentSelect.position}
-                  value1Field1={componentSelect.position.rowElem}
-                  value1Field2={componentSelect.position.colElem}
+                  value={compLocal.position}
+                  value1Field1={compLocal.position.rowElem}
+                  value1Field2={compLocal.position.colElem}
                   fontSize={"0.64rem"}
                   fontSize2={"0.58rem"}
                   tooRead={theContext.tooRead}
@@ -240,9 +272,9 @@ function DataCompMenu({ formSelect, setFormSelect, blockSelect, componentSelect,
                   title={TITLES_RCM_LEFT.COMPONENT_DIMENSION}
                   titleField1={TITLES_RCM_LEFT.COMPONENT_DIMENSION_WIDTH}
                   titleField2={TITLES_RCM_LEFT.COMPONENT_DIMENSION_HEIGHT}
-                  value={componentSelect.dimension}
-                  value1Field1={componentSelect.dimension.width}
-                  value1Field2={componentSelect.dimension.height}
+                  value={compLocal.dimension}
+                  value1Field1={compLocal.dimension.width}
+                  value1Field2={compLocal.dimension.height}
                   fontSize={"0.64rem"}
                   fontSize2={"0.58rem"}
                   tooRead={theContext.tooRead}

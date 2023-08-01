@@ -70,12 +70,13 @@ function InfoOfElement({ formInput }) {
   useState(() => {
     setValueForm(formLocalSelect)
   }, [formLocalSelect])
-  useState(()=> {
+  useState(() => {
     setValueArrays(formLocalSelect.blocks)
   }, [formLocalSelect.blocks])
   useState(() => {
     setValueBlock(blockSelect)
   }, [blockSelect])
+  
   useState(() => {
     setValueComp(componentSelect)
   }, [componentSelect])
