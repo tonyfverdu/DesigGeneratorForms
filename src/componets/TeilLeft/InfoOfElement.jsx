@@ -37,6 +37,7 @@ function InfoOfElement({ formInput }) {
     setArrayColumnsSelect(blockSelect.columns)
     setArrayCompsSelect(blockSelect.columns.map(col => col.components.map(comp => comp)))
     setComponentSelect(arrayCompsSelect[0][0])
+    
   }, [formInput])
 
   //  Change BlockSelect
@@ -76,7 +77,7 @@ function InfoOfElement({ formInput }) {
   useState(() => {
     setValueBlock(blockSelect)
   }, [blockSelect])
-  
+
   useState(() => {
     setValueComp(componentSelect)
   }, [componentSelect])
@@ -145,9 +146,22 @@ function InfoOfElement({ formInput }) {
       <DataCompMenu
         formSelect={formLocalSelect}
         setFormSelect={setFormLocalSelect}
+
+        arrayBlocks={valueArrays}
+        setArrayBlocks={setValueArrays}
+
         blockSelect={blockSelect}
-        componentSelect={valueComp}
-        setComponentSelect={setValueComp}
+        setBlockSelect={setBlockSelect}
+
+        valueForm={valueForm}
+        setValueForm={setValueForm}
+        valueArrays={valueArrays}
+        setValueArrays={setValueArrays}
+        valueBlock={valueBlock}
+        setValueBlock={setValueBlock}
+
+        valueComp={valueComp}
+        setValueComp={setValueComp}
       />
     </div>
   )

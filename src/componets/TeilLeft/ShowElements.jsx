@@ -21,17 +21,256 @@ import IconoElem_PB from '../elementsForms/IconoElem_PB.jsx'
 function ShowElements({ type_Element, componentSelect }) {
   const theContext = useContext(MyContext);
   const [elementOut, setElementOut] = useState(null)
+  const [compLocalSelect, setCompLocalSelect] = useState(componentSelect)
 
-  function selectElementShow(parTypeElement) {
+  useEffect(() => {
+    selectElementShow(type_Element, componentSelect)
+  }, [type_Element])
+
+  useEffect(() => {
+    setCompLocalSelect(componentSelect)
+
+    console.log("En Show Element, compLocalSelect:  ", compLocalSelect)
+  }, [componentSelect])
+
+  // function selectElementShow(parTypeElement) {
+  //   if (typeof parTypeElement === "string") {
+  //     switch (type_Element) {
+  //       case "master":
+  //         setElementOut(
+  //           <MasterElem_PB
+  //             comp={compLocalSelect}
+  //             id_Element={compLocalSelect.id_Element}
+  //             placeholder={compLocalSelect.placeholder}
+  //             width={compLocalSelect.dimension.width}
+  //             disabled={false}
+  //           />
+  //         )
+  //         break;
+  //       case "label":
+  //         setElementOut(
+  //           <LabelElem_PB
+  //             id_Element={compLocalSelect.id_Element}
+  //             orderInBlock={compLocalSelect.orderInBlock}
+  //             required={compLocalSelect.required}
+  //             disabled={compLocalSelect.disabled}
+  //             response={compLocalSelect.response}
+  //             placeholder={compLocalSelect.placeholder}
+  //             size={compLocalSelect.size}
+  //             position={compLocalSelect.position}
+  //             width={compLocalSelect.dimension.width}
+  //             borderElement={compLocalSelect.borderElement}
+  //             colorElement={compLocalSelect.colorElement}
+  //             fontSizeElement={compLocalSelect.fontSizeElement}
+  //           />
+  //         )
+  //         break;
+  //       case "text":
+  //         setElementOut(
+  //           <TextElem_PB
+  //             id_Element={compLocalSelect.id_Element}
+  //             orderInBlock={compLocalSelect.orderInBlock}
+  //             labelElement={compLocalSelect.labelElement}
+  //             required={compLocalSelect.required}
+  //             disabled={compLocalSelect.disabled}
+  //             response={compLocalSelect.response}
+  //             placeholder={compLocalSelect.placeholder}
+  //             size={compLocalSelect.size}
+  //             position={compLocalSelect.position}
+  //             borderElement={compLocalSelect.borderElement}
+  //             colorElement={compLocalSelect.colorElement}
+  //             fontSizeElement={compLocalSelect.fontSizeElement}
+  //             setText={theContext.setText}
+  //           />
+  //         )
+  //         break;
+  //       case "number":
+  //         setElementOut(
+  //           <NumberElem_PB
+  //             id_Element={compLocalSelect.id_Element}
+  //             orderInBlock={compLocalSelect.orderInBlock}
+  //             labelElement={compLocalSelect.labelElement}
+  //             required={compLocalSelect.required}
+  //             disabled={compLocalSelect.disabled}
+  //             response={compLocalSelect.response}
+  //             placeholder={compLocalSelect.placeholder}
+  //             size={compLocalSelect.size}
+  //             position={compLocalSelect.position}
+  //             borderElement={compLocalSelect.borderElement}
+  //             colorElement={compLocalSelect.colorElement}
+  //             fontSizeElement={compLocalSelect.fontSizeElement}
+  //             setNumber={theContext.setNumber}
+  //           />
+  //         )
+  //         break;
+  //       case "date":
+  //         setElementOut(
+  //           <DateElem_PB
+  //             id_Element={compLocalSelect.id_Element}
+  //             orderInBlock={compLocalSelect.orderInBlock}
+  //             labelElement={compLocalSelect.labelElement}
+  //             required={compLocalSelect.required}
+  //             disabled={compLocalSelect.disabled}
+  //             response={compLocalSelect.response}
+  //             placeholder={compLocalSelect.placeholder}
+  //             size={compLocalSelect.size}
+  //             position={compLocalSelect.position}
+  //             borderElement={compLocalSelect.borderElement}
+  //             colorElement={compLocalSelect.colorElement}
+  //             fontSizeElement={compLocalSelect.fontSizeElement}
+  //             setDate={theContext.setDate}
+  //           />
+  //         )
+  //         break;
+  //       case "phone":
+  //         setElementOut(
+  //           <PhoneElem_PB
+  //             id_Element={compLocalSelect.id_Element}
+  //             orderInBlock={compLocalSelect.orderInBlock}
+  //             labelElement={compLocalSelect.labelElement}
+  //             required={compLocalSelect.required}
+  //             disabled={compLocalSelect.disabled}
+  //             response={compLocalSelect.response}
+  //             placeholder={compLocalSelect.placeholder}
+  //             size={compLocalSelect.size}
+  //             position={compLocalSelect.position}
+  //             borderElement={compLocalSelect.borderElement}
+  //             colorElement={compLocalSelect.colorElement}
+  //             fontSizeElement={compLocalSelect.fontSizeElement}
+  //             setPhone={theContext.setPhone}
+  //           />
+  //         )
+  //         break;
+  //       case "email":
+  //         setElementOut(
+  //           <EmailElem_PB
+  //             id_Element={compLocalSelect.id_Element}
+  //             orderInBlock={compLocalSelect.orderInBlock}
+  //             labelElement={compLocalSelect.labelElement}
+  //             required={compLocalSelect.required}
+  //             disabled={compLocalSelect.disabled}
+  //             response={compLocalSelect.response}
+  //             placeholder={compLocalSelect.placeholder}
+  //             size={compLocalSelect.size}
+  //             position={compLocalSelect.position}
+  //             borderElement={compLocalSelect.borderElement}
+  //             colorElement={compLocalSelect.colorElement}
+  //             fontSizeElement={compLocalSelect.fontSizeElement}
+  //             setEmail={theContext.setEmail}
+  //           />
+  //         )
+  //         break;
+  //       case "textArea":
+  //         setElementOut(
+  //           <AreaTextElem_PB
+  //             id_Element={compLocalSelect.id_Element}
+  //             orderInBlock={compLocalSelect.orderInBlock}
+  //             labelElement={compLocalSelect.labelElement}
+  //             required={compLocalSelect.required}
+  //             disabled={compLocalSelect.disabled}
+  //             readonly={compLocalSelect.readonly}
+  //             response={compLocalSelect.response}
+  //             placeholder={compLocalSelect.placeholder}
+  //             row={compLocalSelect.row}
+  //             col={compLocalSelect.col}
+  //             position={compLocalSelect.position}
+  //             borderElement={compLocalSelect.borderElement}
+  //             colorElement={compLocalSelect.colorElement}
+  //             fontSizeElement={compLocalSelect.fontSizeElement}
+  //             setAreaText={theContext.setTextArea}
+  //           />
+  //         )
+  //         break;
+  //       case "select":
+  //         setElementOut(
+  //           <SelectElement_PB
+  //             id_Element={compLocalSelect.id_Element}
+  //             orderInBlock={compLocalSelect.orderInBlock}
+  //             labelElement={compLocalSelect.labelElement}
+  //             required={compLocalSelect.required}
+  //             disabled={compLocalSelect.disabled}
+  //             response={compLocalSelect.response}
+  //             placeholder={compLocalSelect.placeholder}
+  //             size={compLocalSelect.size}
+  //             position={compLocalSelect.position}
+  //             borderElement={compLocalSelect.borderElement}
+  //             colorElement={compLocalSelect.colorElement}
+  //             fontSizeElement={compLocalSelect.fontSizeElement}
+  //             optionsValues={compLocalSelect.optionsValues}
+  //             setSelect={theContext.setSelect}
+  //           />
+  //         )
+  //         break;
+  //       case "checkbox":
+  //         setElementOut(
+  //           <CheckboxElem_PB
+  //             id_Element={compLocalSelect.id_Element}
+  //             orderInBlock={compLocalSelect.orderInBlock}
+  //             labelElement={compLocalSelect.labelElement}
+  //             required={compLocalSelect.required}
+  //             disabled={compLocalSelect.disabled}
+  //             checked={compLocalSelect.checked}
+  //             response={compLocalSelect.response}
+  //             position={compLocalSelect.position}
+  //             borderElement={compLocalSelect.borderElement}
+  //             colorElement={compLocalSelect.colorElement}
+  //             fontSizeElement={compLocalSelect.fontSizeElement}
+  //             setCheckbox={theContext.setCheckbox}
+  //           />
+  //         )
+  //         break;
+  //       case "radioButtons":
+  //         setElementOut(
+  //           <RadioButtons_PB
+  //             id_Element={compLocalSelect.id_Element}
+  //             orderInBlock={compLocalSelect.orderInBlock}
+  //             legend={compLocalSelect.legend}
+  //             required={compLocalSelect.required}
+  //             disabled={compLocalSelect.disabled}
+  //             name={compLocalSelect.name}
+  //             radioButtons={compLocalSelect.radioButtons}
+  //             response={compLocalSelect.response}
+  //             placeholder={compLocalSelect.placeholder}
+  //             position={compLocalSelect.position}
+  //           // setRadioButtons={componentSelect.setComponent}
+  //           />
+  //         )
+  //         break;
+  //       case "icon":
+  //         setElementOut(
+  //           <IconoElem_PB
+  //             id_Element={compLocalSelect.id_Element}
+  //             orderInBlock={compLocalSelect.orderInBlock}
+  //             required={compLocalSelect.required}
+  //             disabled={compLocalSelect.disabled}
+  //             name={compLocalSelect.name}
+  //             widthImage={compLocalSelect.widthImage}
+  //             position={compLocalSelect.position}
+  //             borderElement={compLocalSelect.borderElement}
+  //             srcURLIcon={compLocalSelect.srcURLIcon}
+  //             nameImage={compLocalSelect.nameImage}
+  //             setIcon={theContext.setIcon}
+  //           />
+  //         )
+  //         break;
+  //       default:
+  //         break;
+  //     }
+  //   } else {
+  //     console.error('Error:  the argument of the function "selectElementShow" must be a string!!')
+  //   }
+  // }
+
+  function selectElementShow(parTypeElement, compLocalSelect) {
     if (typeof parTypeElement === "string") {
       switch (type_Element) {
         case "master":
           setElementOut(
             <MasterElem_PB
-              comp={componentSelect}
-              id_Element={componentSelect.id_Element}
-              placeholder={componentSelect.placeholder}
-              width={componentSelect.dimension.width}
+              comp={compLocalSelect}
+              id_Element={compLocalSelect.id_Element}
+              placeholder={compLocalSelect.placeholder}
+              width={compLocalSelect.dimension.width}
               disabled={false}
             />
           )
@@ -39,36 +278,36 @@ function ShowElements({ type_Element, componentSelect }) {
         case "label":
           setElementOut(
             <LabelElem_PB
-              id_Element={componentSelect.id_Element}
-              orderInBlock={componentSelect.orderInBlock}
-              required={componentSelect.required}
-              disabled={componentSelect.disabled}
-              response={componentSelect.response}
-              placeholder={componentSelect.placeholder}
-              size={componentSelect.size}
-              position={componentSelect.position}
-              width={componentSelect.dimension.width}
-              borderElement={componentSelect.borderElement}
-              colorElement={componentSelect.colorElement}
-              fontSizeElement={componentSelect.fontSizeElement}
+              id_Element={compLocalSelect.id_Element}
+              orderInBlock={compLocalSelect.orderInBlock}
+              required={compLocalSelect.required}
+              disabled={compLocalSelect.disabled}
+              response={compLocalSelect.response}
+              placeholder={compLocalSelect.placeholder}
+              size={compLocalSelect.size}
+              position={compLocalSelect.position}
+              width={compLocalSelect.dimension.width}
+              borderElement={compLocalSelect.borderElement}
+              colorElement={compLocalSelect.colorElement}
+              fontSizeElement={compLocalSelect.fontSizeElement}
             />
           )
           break;
         case "text":
           setElementOut(
             <TextElem_PB
-              id_Element={componentSelect.id_Element}
-              orderInBlock={componentSelect.orderInBlock}
-              labelElement={componentSelect.labelElement}
-              required={componentSelect.required}
-              disabled={componentSelect.disabled}
-              response={componentSelect.response}
-              placeholder={componentSelect.placeholder}
-              size={componentSelect.size}
-              position={componentSelect.position}
-              borderElement={componentSelect.borderElement}
-              colorElement={componentSelect.colorElement}
-              fontSizeElement={componentSelect.fontSizeElement}
+              id_Element={compLocalSelect.id_Element}
+              orderInBlock={compLocalSelect.orderInBlock}
+              labelElement={compLocalSelect.labelElement}
+              required={compLocalSelect.required}
+              disabled={compLocalSelect.disabled}
+              response={compLocalSelect.response}
+              placeholder={compLocalSelect.placeholder}
+              size={compLocalSelect.size}
+              position={compLocalSelect.position}
+              borderElement={compLocalSelect.borderElement}
+              colorElement={compLocalSelect.colorElement}
+              fontSizeElement={compLocalSelect.fontSizeElement}
               setText={theContext.setText}
             />
           )
@@ -76,18 +315,18 @@ function ShowElements({ type_Element, componentSelect }) {
         case "number":
           setElementOut(
             <NumberElem_PB
-              id_Element={componentSelect.id_Element}
-              orderInBlock={componentSelect.orderInBlock}
-              labelElement={componentSelect.labelElement}
-              required={componentSelect.required}
-              disabled={componentSelect.disabled}
-              response={componentSelect.response}
-              placeholder={componentSelect.placeholder}
-              size={componentSelect.size}
-              position={componentSelect.position}
-              borderElement={componentSelect.borderElement}
-              colorElement={componentSelect.colorElement}
-              fontSizeElement={componentSelect.fontSizeElement}
+              id_Element={compLocalSelect.id_Element}
+              orderInBlock={compLocalSelect.orderInBlock}
+              labelElement={compLocalSelect.labelElement}
+              required={compLocalSelect.required}
+              disabled={compLocalSelect.disabled}
+              response={compLocalSelect.response}
+              placeholder={compLocalSelect.placeholder}
+              size={compLocalSelect.size}
+              position={compLocalSelect.position}
+              borderElement={compLocalSelect.borderElement}
+              colorElement={compLocalSelect.colorElement}
+              fontSizeElement={compLocalSelect.fontSizeElement}
               setNumber={theContext.setNumber}
             />
           )
@@ -95,18 +334,18 @@ function ShowElements({ type_Element, componentSelect }) {
         case "date":
           setElementOut(
             <DateElem_PB
-              id_Element={componentSelect.id_Element}
-              orderInBlock={componentSelect.orderInBlock}
-              labelElement={componentSelect.labelElement}
-              required={componentSelect.required}
-              disabled={componentSelect.disabled}
-              response={componentSelect.response}
-              placeholder={componentSelect.placeholder}
-              size={componentSelect.size}
-              position={componentSelect.position}
-              borderElement={componentSelect.borderElement}
-              colorElement={componentSelect.colorElement}
-              fontSizeElement={componentSelect.fontSizeElement}
+              id_Element={compLocalSelect.id_Element}
+              orderInBlock={compLocalSelect.orderInBlock}
+              labelElement={compLocalSelect.labelElement}
+              required={compLocalSelect.required}
+              disabled={compLocalSelect.disabled}
+              response={compLocalSelect.response}
+              placeholder={compLocalSelect.placeholder}
+              size={compLocalSelect.size}
+              position={compLocalSelect.position}
+              borderElement={compLocalSelect.borderElement}
+              colorElement={compLocalSelect.colorElement}
+              fontSizeElement={compLocalSelect.fontSizeElement}
               setDate={theContext.setDate}
             />
           )
@@ -114,18 +353,18 @@ function ShowElements({ type_Element, componentSelect }) {
         case "phone":
           setElementOut(
             <PhoneElem_PB
-              id_Element={componentSelect.id_Element}
-              orderInBlock={componentSelect.orderInBlock}
-              labelElement={componentSelect.labelElement}
-              required={componentSelect.required}
-              disabled={componentSelect.disabled}
-              response={componentSelect.response}
-              placeholder={componentSelect.placeholder}
-              size={componentSelect.size}
-              position={componentSelect.position}
-              borderElement={componentSelect.borderElement}
-              colorElement={componentSelect.colorElement}
-              fontSizeElement={componentSelect.fontSizeElement}
+              id_Element={compLocalSelect.id_Element}
+              orderInBlock={compLocalSelect.orderInBlock}
+              labelElement={compLocalSelect.labelElement}
+              required={compLocalSelect.required}
+              disabled={compLocalSelect.disabled}
+              response={compLocalSelect.response}
+              placeholder={compLocalSelect.placeholder}
+              size={compLocalSelect.size}
+              position={compLocalSelect.position}
+              borderElement={compLocalSelect.borderElement}
+              colorElement={compLocalSelect.colorElement}
+              fontSizeElement={compLocalSelect.fontSizeElement}
               setPhone={theContext.setPhone}
             />
           )
@@ -133,18 +372,18 @@ function ShowElements({ type_Element, componentSelect }) {
         case "email":
           setElementOut(
             <EmailElem_PB
-              id_Element={componentSelect.id_Element}
-              orderInBlock={componentSelect.orderInBlock}
-              labelElement={componentSelect.labelElement}
-              required={componentSelect.required}
-              disabled={componentSelect.disabled}
-              response={componentSelect.response}
-              placeholder={componentSelect.placeholder}
-              size={componentSelect.size}
-              position={componentSelect.position}
-              borderElement={componentSelect.borderElement}
-              colorElement={componentSelect.colorElement}
-              fontSizeElement={componentSelect.fontSizeElement}
+              id_Element={compLocalSelect.id_Element}
+              orderInBlock={compLocalSelect.orderInBlock}
+              labelElement={compLocalSelect.labelElement}
+              required={compLocalSelect.required}
+              disabled={compLocalSelect.disabled}
+              response={compLocalSelect.response}
+              placeholder={compLocalSelect.placeholder}
+              size={compLocalSelect.size}
+              position={compLocalSelect.position}
+              borderElement={compLocalSelect.borderElement}
+              colorElement={compLocalSelect.colorElement}
+              fontSizeElement={compLocalSelect.fontSizeElement}
               setEmail={theContext.setEmail}
             />
           )
@@ -152,20 +391,20 @@ function ShowElements({ type_Element, componentSelect }) {
         case "textArea":
           setElementOut(
             <AreaTextElem_PB
-              id_Element={componentSelect.id_Element}
-              orderInBlock={componentSelect.orderInBlock}
-              labelElement={componentSelect.labelElement}
-              required={componentSelect.required}
-              disabled={componentSelect.disabled}
-              readonly={componentSelect.readonly}
-              response={componentSelect.response}
-              placeholder={componentSelect.placeholder}
-              row={componentSelect.row}
-              col={componentSelect.col}
-              position={componentSelect.position}
-              borderElement={componentSelect.borderElement}
-              colorElement={componentSelect.colorElement}
-              fontSizeElement={componentSelect.fontSizeElement}
+              id_Element={compLocalSelect.id_Element}
+              orderInBlock={compLocalSelect.orderInBlock}
+              labelElement={compLocalSelect.labelElement}
+              required={compLocalSelect.required}
+              disabled={compLocalSelect.disabled}
+              readonly={compLocalSelect.readonly}
+              response={compLocalSelect.response}
+              placeholder={compLocalSelect.placeholder}
+              row={compLocalSelect.row}
+              col={compLocalSelect.col}
+              position={compLocalSelect.position}
+              borderElement={compLocalSelect.borderElement}
+              colorElement={compLocalSelect.colorElement}
+              fontSizeElement={compLocalSelect.fontSizeElement}
               setAreaText={theContext.setTextArea}
             />
           )
@@ -173,19 +412,19 @@ function ShowElements({ type_Element, componentSelect }) {
         case "select":
           setElementOut(
             <SelectElement_PB
-              id_Element={componentSelect.id_Element}
-              orderInBlock={componentSelect.orderInBlock}
-              labelElement={componentSelect.labelElement}
-              required={componentSelect.required}
-              disabled={componentSelect.disabled}
-              response={componentSelect.response}
-              placeholder={componentSelect.placeholder}
-              size={componentSelect.size}
-              position={componentSelect.position}
-              borderElement={componentSelect.borderElement}
-              colorElement={componentSelect.colorElement}
-              fontSizeElement={componentSelect.fontSizeElement}
-              optionsValues={componentSelect.optionsValues}
+              id_Element={compLocalSelect.id_Element}
+              orderInBlock={compLocalSelect.orderInBlock}
+              labelElement={compLocalSelect.labelElement}
+              required={compLocalSelect.required}
+              disabled={compLocalSelect.disabled}
+              response={compLocalSelect.response}
+              placeholder={compLocalSelect.placeholder}
+              size={compLocalSelect.size}
+              position={compLocalSelect.position}
+              borderElement={compLocalSelect.borderElement}
+              colorElement={compLocalSelect.colorElement}
+              fontSizeElement={compLocalSelect.fontSizeElement}
+              optionsValues={compLocalSelect.optionsValues}
               setSelect={theContext.setSelect}
             />
           )
@@ -193,17 +432,17 @@ function ShowElements({ type_Element, componentSelect }) {
         case "checkbox":
           setElementOut(
             <CheckboxElem_PB
-              id_Element={componentSelect.id_Element}
-              orderInBlock={componentSelect.orderInBlock}
-              labelElement={componentSelect.labelElement}
-              required={componentSelect.required}
-              disabled={componentSelect.disabled}
-              checked={componentSelect.checked}
-              response={componentSelect.response}
-              position={componentSelect.position}
-              borderElement={componentSelect.borderElement}
-              colorElement={componentSelect.colorElement}
-              fontSizeElement={componentSelect.fontSizeElement}
+              id_Element={compLocalSelect.id_Element}
+              orderInBlock={compLocalSelect.orderInBlock}
+              labelElement={compLocalSelect.labelElement}
+              required={compLocalSelect.required}
+              disabled={compLocalSelect.disabled}
+              checked={compLocalSelect.checked}
+              response={compLocalSelect.response}
+              position={compLocalSelect.position}
+              borderElement={compLocalSelect.borderElement}
+              colorElement={compLocalSelect.colorElement}
+              fontSizeElement={compLocalSelect.fontSizeElement}
               setCheckbox={theContext.setCheckbox}
             />
           )
@@ -211,16 +450,16 @@ function ShowElements({ type_Element, componentSelect }) {
         case "radioButtons":
           setElementOut(
             <RadioButtons_PB
-              id_Element={componentSelect.id_Element}
-              orderInBlock={componentSelect.orderInBlock}
-              legend={componentSelect.legend}
-              required={componentSelect.required}
-              disabled={componentSelect.disabled}
-              name={componentSelect.name}
-              radioButtons={componentSelect.radioButtons}
-              response={componentSelect.response}
-              placeholder={componentSelect.placeholder}
-              position={componentSelect.position}
+              id_Element={compLocalSelect.id_Element}
+              orderInBlock={compLocalSelect.orderInBlock}
+              legend={compLocalSelect.legend}
+              required={compLocalSelect.required}
+              disabled={compLocalSelect.disabled}
+              name={compLocalSelect.name}
+              radioButtons={compLocalSelect.radioButtons}
+              response={compLocalSelect.response}
+              placeholder={compLocalSelect.placeholder}
+              position={compLocalSelect.position}
             // setRadioButtons={componentSelect.setComponent}
             />
           )
@@ -228,16 +467,16 @@ function ShowElements({ type_Element, componentSelect }) {
         case "icon":
           setElementOut(
             <IconoElem_PB
-              id_Element={componentSelect.id_Element}
-              orderInBlock={componentSelect.orderInBlock}
-              required={componentSelect.required}
-              disabled={componentSelect.disabled}
-              name={componentSelect.name}
-              widthImage={componentSelect.widthImage}
-              position={componentSelect.position}
-              borderElement={componentSelect.borderElement}
-              srcURLIcon={componentSelect.srcURLIcon}
-              nameImage={componentSelect.nameImage}
+              id_Element={compLocalSelect.id_Element}
+              orderInBlock={compLocalSelect.orderInBlock}
+              required={compLocalSelect.required}
+              disabled={compLocalSelect.disabled}
+              name={compLocalSelect.name}
+              widthImage={compLocalSelect.widthImage}
+              position={compLocalSelect.position}
+              borderElement={compLocalSelect.borderElement}
+              srcURLIcon={compLocalSelect.srcURLIcon}
+              nameImage={compLocalSelect.nameImage}
               setIcon={theContext.setIcon}
             />
           )
@@ -250,9 +489,7 @@ function ShowElements({ type_Element, componentSelect }) {
     }
   }
 
-  useEffect(() => {
-    selectElementShow(type_Element)
-  }, [type_Element])
+
 
   return (
     <div id="accordionShowComp" className="accordion container-fluid graycolor400 d-flex flex-column justify-content-center align-items-center p-1 mx-auto mb-1">

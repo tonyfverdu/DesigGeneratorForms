@@ -5,11 +5,11 @@ import HeaderHead from './HeaderHead.jsx';
 import FieldText from './FieldText.jsx';
 import FieldTextArea from './FieldTextArea.jsx';
 import FieldSelect from './FieldSelect.jsx';
-import FieldSelectComponents from './FieldSelectComponents.jsx';
+// import FieldSelectComponents from './FieldSelectComponents.jsx';
 
 import { TITLES_RCM_LEFT } from '../../../constants/contants.js';  //  Constants of Form
 import createArray from '../../../functions/createArray.js';
-import changeElementInArray from '../../../functions/changeElementOfArray.js';
+// import changeElementInArray from '../../../functions/changeElementOfArray.js';
 
 import compByBlock from '../../../functions/compByBlock.js';
 
@@ -47,7 +47,6 @@ function DataBlockMenu({ formSelect, setFormSelect, arrayBlocks, setArrayBlocks,
   useEffect(() => {
     setCompSelectObj(valueComp)
   }, [valueComp])
-
 
   useEffect(() => {
     findIndexBlockSelect2(arrayBlocks, blockSelect)
