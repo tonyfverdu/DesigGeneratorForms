@@ -4,20 +4,23 @@ import { MdTextFields } from 'react-icons/md';
 import '../../sass/componentSass/icons/IconButton.scss'
 
 
-function IconButtonText() {
-  const theContext = useContext(MyContext)
+function IconButtonText({ handleTypeComp }) {
+  const { setElement, setObjComponentShow } = useContext(MyContext);
 
   function handleButton() {
-    theContext.setElement("text")
-    theContext.setObjComponentShow({
-      ...theContext.objComponentShow, id_Element: "ID_text_001",
-      type: "text", placeholder: "Valor Componente Text", size: 25,
+    setElement("text");
+
+    setObjComponentShow(prevState => ({
+      ...prevState,
+      id_Element: "ID_text_001",
+      type: "text",
+      placeholder: "Valor Componente Text ...",
+      size: 25,
       dimensions: { width: 4, height: "2.4rem" },
       labelElement: "Componente Text: ",
-      valueComponent: theContext.text,
-      setComponent: theContext.setText
-    })
-  }
+    }));
+    handleTypeComp("text");
+  };
 
   return (
     <div className="col p-0 m-0">
@@ -29,6 +32,20 @@ function IconButtonText() {
 }
 
 export default IconButtonText;
+
+/*
+    // const newObjComponentShow = {
+    //   ...prevValues,
+    //   id_Element: "ID_text_001",
+    //   type: "text",
+    //   placeholder: "Valor Componente Text ...",
+    //   size: 25,
+    //   dimensions: { width: 4, height: "2.4rem" },
+    //   labelElement: "Componente Text: ",
+    //   valueComponent: theContext.text,
+    //   setComponent: theContext.setText
+    // };
+*/
 
 /*
   const component = {

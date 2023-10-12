@@ -26,7 +26,7 @@ function IconoElem_PB({ id_Element, orderInBlock, required, disabled = false, wi
     console.log("*********************************************")
 
     theContext.setObjComponentShow({
-      ...theContext.objComponentShow, type: "text"
+      ...theContext.objComponentShow, type: "icon"
     })
   }
 

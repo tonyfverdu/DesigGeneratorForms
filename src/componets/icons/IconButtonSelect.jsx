@@ -4,26 +4,25 @@ import { MdFormatListBulleted } from 'react-icons/md';
 import '../../sass/componentSass/icons/IconButton.scss'
 
 
-function IconButtonSelect() {
-  const theContext = useContext(MyContext)
+function IconButtonSelect({ handleTypeComp }) {
+  const { setElement, setObjComponentShow } = useContext(MyContext);
 
   function handleButton() {
-    theContext.setElement("select")
-    theContext.setObjComponent(component)
-  }
+    setElement("select");
+    // setObjComponent(component);
 
-  function handleButton() {
-    theContext.setElement("select")
-    theContext.setObjComponentShow({
-      ...theContext.objComponentShow, id_Element: "ID_text_001",
-      type: "select", placeholder: "Valor 1", size: 1,
+    setObjComponentShow(prevState => ({
+      ...prevState,
+      id_Element: "ID_select_001",
+      type: "select",
+      placeholder: "Valor 1",
+      size: 1,
       dimensions: { width: 3, height: "2.4rem" },
       labelElement: "Componente Select: ",
-      optionsValues: ["Valor 1", "Valor 2", "Valor 3"],
-      valueComponent: theContext.select,
-      setComponent: theContext.setSelect
-    })
-  }
+      optionsValues: ["Valor 1", "Valor 2", "Valor 3"]
+    }));
+    handleTypeComp("select");
+  };
 
   return (
     <div className="col p-0 m-0">
@@ -35,6 +34,9 @@ function IconButtonSelect() {
 }
 
 export default IconButtonSelect;
+
+// valueComponent: theContext.select,
+// setComponent: theContext.setSelect
 
 /*
   const component = {

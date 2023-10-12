@@ -103,9 +103,9 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  border-radius: 12px;
+  border-radius: 18px;
   background-color: rgb(224, 229, 236);
-  box-shadow: rgba(163, 177, 198, 0.5) 4px 4px 6px 0px, rgb(255, 255, 255) -4px -4px 6px 0px;
+  box-shadow: rgba(163, 177, 198, 0.5) 6px 6px 8px 1px, rgb(255, 255, 255) -4px -4px 6px 0px;
   position: absolute;
   top: 0.8rem;
   right: 1.6rem;
@@ -119,9 +119,9 @@
 .contIconExit:hover, .contIconExit:focus {
   cursor: pointer;
   color: rgb(220, 21, 21);
-  border-radius: 12px;
+  border-radius: 6px;
   background-color: rgb(128, 131, 134);
-  box-shadow: rgba(72, 77, 87, 0.5) 6px 6px 8px 3px, rgb(180, 180, 180) -6px -6px 8px 3px;
+  box-shadow: rgba(72, 77, 87, 0.5) 2px 2px 4px 1px, rgb(180, 180, 180) -2px -2px 4px 1px;
   border-radius: 50%;
   border: 1px solid rgba(63, 63, 63, 0.6);
   transform: scale(0.86);

@@ -30,7 +30,7 @@ function LabelElem_PB({ id_Element, orderInBlock, required, disabled, response, 
       <div ref={elementRef} className="contLabelElement_PB d-flex flex-row justify-content-center align-items-center m-0 p-0" >
 
         <label id={id_Element} className="form-label labelOfForm d-flex flex-row justify-content-end align-items-center fw-bold me-2"
-          style={{ color: colorElement, fontSize: fontSizeElement}} required={required} disabled={disabled} placeholder={placeholder} size={size} >
+          style={{ color: colorElement, fontSize: fontSizeElement }} required={required} disabled={disabled} placeholder={placeholder} size={size} >
           {placeholder}
         </label>
       </div>

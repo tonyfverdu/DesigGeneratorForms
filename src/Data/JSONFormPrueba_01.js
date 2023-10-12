@@ -43,7 +43,7 @@ const formJSON_prueba_01 = {
               "setComponent": undefined,
               "name": undefined,
               "borderElement": true,
-              "colorElement": "",
+              "colorElement": "black",
               "fontSizeElement": "",
 
               //  Area Text
@@ -102,7 +102,7 @@ const formJSON_prueba_01 = {
               "setComponent": undefined,
               "name": undefined,
               "borderElement": true,
-              "colorElement": "",
+              "colorElement": "grey",
               "fontSizeElement": "",
 
               //  Area Text
@@ -155,7 +155,7 @@ const formJSON_prueba_01 = {
           "components": [
             {
               "id_Element": "component_first_of_block_2",
-              "title_Element": "Block 2: First Element Label",
+              "title_Element": "Block 2 - Row 0: First Element 1 - Label",
               "type_Element": "label",
               "orderInBlock": 0,
               "label_Element": "",
@@ -176,7 +176,7 @@ const formJSON_prueba_01 = {
               "setComponent": undefined,
               "name": undefined,
               "borderElement": true,
-              "colorElement": "",
+              "colorElement": "black",
               "fontSizeElement": "",
     
               //  Area Text
@@ -219,7 +219,7 @@ const formJSON_prueba_01 = {
           "components": [
             {
               "id_Element": "component_second_of_block_2",
-              "title_Element": "Label Element, second element from Block 2",
+              "title_Element": "Block 2 - Row 1: Second Element 2 - Label",
               "type_Element": "label",
               "orderInBlock": 1,
               "label_Element": "",
@@ -240,7 +240,7 @@ const formJSON_prueba_01 = {
               "setComponent": undefined,
               "name": undefined,
               "borderElement": true,
-              "colorElement": "",
+              "colorElement": "black",
               "fontSizeElement": "",
     
               //  Area Text

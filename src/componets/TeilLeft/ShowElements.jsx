@@ -1,8 +1,6 @@
 import { useState, useEffect, useContext } from 'react'
 import { MyContext } from '../../context/TheContext.jsx'
-
 import HeaderHead from './MenuLeft/HeaderHead.jsx'
-
 import MasterElem_PB from '../elementsForms/MasterElem_PB.jsx'
 import LabelElem_PB from '../elementsForms/LabelElem_PB.jsx'
 import TextElem_PB from '../elementsForms/TextElem_PB.jsx'
@@ -18,509 +16,245 @@ import RadioButtons_PB from '../elementsForms/RadioButtons_PB.jsx'
 import IconoElem_PB from '../elementsForms/IconoElem_PB.jsx'
 
 
-function ShowElements({ type_Element, componentSelect }) {
+function ShowElements({ valueComp }) {
   const theContext = useContext(MyContext);
-  const [elementOut, setElementOut] = useState(null)
-  const [compLocalSelect, setCompLocalSelect] = useState(componentSelect)
+  const [elementOut, setElementOut] = useState(null);
 
   useEffect(() => {
-    selectElementShow(type_Element, componentSelect)
-  }, [type_Element])
+    selectElementShow(valueComp);
+  }, []);
 
-  useEffect(() => {
-    setCompLocalSelect(componentSelect)
+  function selectElementShow(parComponent) {
+    if (parComponent) {
+      const elementMap = {
+        master: () => (
+          <MasterElem_PB
+            comp={parComponent}
+          />
+        ),
+        label: () => (
+          <LabelElem_PB
+            id_Element={parComponent.id_Element}
+            orderInBlock={parComponent.orderInBlock}
+            required={parComponent.required}
+            disabled={parComponent.disabled}
+            response={parComponent.response}
+            placeholder={parComponent.placeholder}
+            size={parComponent.size}
+            position={parComponent.position}
+            width={parComponent.dimension.width}
+            borderElement={parComponent.borderElement}
+            colorElement={parComponent.colorElement}
+            fontSizeElement={parComponent.fontSizeElement}
+          />
+        ),
+        text: () => (
+          <TextElem_PB
+            id_Element={parComponent.id_Element}
+            orderInBlock={parComponent.orderInBlock}
+            labelElement={parComponent.labelElement}
+            required={parComponent.required}
+            disabled={parComponent.disabled}
+            response={parComponent.response}
+            placeholder={parComponent.placeholder}
+            size={parComponent.size}
+            position={parComponent.position}
+            borderElement={parComponent.borderElement}
+            colorElement={parComponent.colorElement}
+            fontSizeElement={parComponent.fontSizeElement}
+            setText={theContext.setText}
+          />
+        ),
+        number: () => (
+          <NumberElem_PB
+            id_Element={parComponent.id_Element}
+            orderInBlock={parComponent.orderInBlock}
+            labelElement={parComponent.labelElement}
+            required={parComponent.required}
+            disabled={parComponent.disabled}
+            response={parComponent.response}
+            placeholder={parComponent.placeholder}
+            size={parComponent.size}
+            position={parComponent.position}
+            borderElement={parComponent.borderElement}
+            colorElement={parComponent.colorElement}
+            fontSizeElement={parComponent.fontSizeElement}
+            setNumber={theContext.setNumber}
+          />
+        ),
+        date: () => (
+          <DateElem_PB
+            id_Element={parComponent.id_Element}
+            orderInBlock={parComponent.orderInBlock}
+            labelElement={parComponent.labelElement}
+            required={parComponent.required}
+            disabled={parComponent.disabled}
+            response={parComponent.response}
+            placeholder={parComponent.placeholder}
+            size={parComponent.size}
+            position={parComponent.position}
+            borderElement={parComponent.borderElement}
+            colorElement={parComponent.colorElement}
+            fontSizeElement={parComponent.fontSizeElement}
+            setDate={theContext.setDate}
+          />
+        ),
+        phone: () => (
+          <PhoneElem_PB
+            id_Element={parComponent.id_Element}
+            orderInBlock={parComponent.orderInBlock}
+            labelElement={parComponent.labelElement}
+            required={parComponent.required}
+            disabled={parComponent.disabled}
+            response={parComponent.response}
+            placeholder={parComponent.placeholder}
+            size={parComponent.size}
+            position={parComponent.position}
+            borderElement={parComponent.borderElement}
+            colorElement={parComponent.colorElement}
+            fontSizeElement={parComponent.fontSizeElement}
+            setPhone={theContext.setPhone}
+          />
+        ),
+        email: () => (
+          <EmailElem_PB
+            id_Element={parComponent.id_Element}
+            orderInBlock={parComponent.orderInBlock}
+            labelElement={parComponent.labelElement}
+            required={parComponent.required}
+            disabled={parComponent.disabled}
+            response={parComponent.response}
+            placeholder={parComponent.placeholder}
+            size={parComponent.size}
+            position={parComponent.position}
+            borderElement={parComponent.borderElement}
+            colorElement={parComponent.colorElement}
+            fontSizeElement={parComponent.fontSizeElement}
+            setEmail={theContext.setEmail}
+          />
+        ),
+        textarea: () => (
+          <AreaTextElem_PB
+            id_Element={parComponent.id_Element}
+            orderInBlock={parComponent.orderInBlock}
+            labelElement={parComponent.labelElement}
+            required={parComponent.required}
+            disabled={parComponent.disabled}
+            readonly={parComponent.readonly}
+            response={parComponent.response}
+            placeholder={parComponent.placeholder}
+            row={parComponent.row}
+            col={parComponent.col}
+            position={parComponent.position}
+            borderElement={parComponent.borderElement}
+            colorElement={parComponent.colorElement}
+            fontSizeElement={parComponent.fontSizeElement}
+            setAreaText={theContext.setTextArea}
+          />
+        ),
+        select: () => (
+          <SelectElement_PB
+            id_Element={parComponent.id_Element}
+            orderInBlock={parComponent.orderInBlock}
+            labelElement={parComponent.labelElement}
+            required={parComponent.required}
+            disabled={parComponent.disabled}
+            response={parComponent.response}
+            placeholder={parComponent.placeholder}
+            size={parComponent.size}
+            position={parComponent.position}
+            borderElement={parComponent.borderElement}
+            colorElement={parComponent.colorElement}
+            fontSizeElement={parComponent.fontSizeElement}
+            optionsValues={parComponent.optionsValues}
+            setSelect={theContext.setSelect}
+          />
+        ),
+        checkbox: () => (
+          <CheckboxElem_PB
+            id_Element={parComponent.id_Element}
+            orderInBlock={parComponent.orderInBlock}
+            labelElement={parComponent.labelElement}
+            required={parComponent.required}
+            disabled={parComponent.disabled}
+            checked={parComponent.checked}
+            response={parComponent.response}
+            position={parComponent.position}
+            borderElement={parComponent.borderElement}
+            colorElement={parComponent.colorElement}
+            fontSizeElement={parComponent.fontSizeElement}
+            setCheckbox={theContext.setCheckbox}
+          />
+        ),
+        radioButtons: () => (
+          <RadioButtons_PB
+            id_Element={parComponent.id_Element}
+            orderInBlock={parComponent.orderInBlock}
+            legend={parComponent.legend}
+            required={parComponent.required}
+            disabled={parComponent.disabled}
+            name={parComponent.name}
+            radioButtons={parComponent.radioButtons}
+            response={parComponent.response}
+            placeholder={parComponent.placeholder}
+            position={parComponent.position}
+          // setRadioButtons={parComponent.setComponent}
+          />
+        ),
+        icon: () => (
+          <IconoElem_PB
+            id_Element={parComponent.id_Element}
+            orderInBlock={parComponent.orderInBlock}
+            required={parComponent.required}
+            disabled={parComponent.disabled}
+            name={parComponent.name}
+            widthImage={parComponent.widthImage}
+            position={parComponent.position}
+            borderElement={parComponent.borderElement}
+            srcURLIcon={parComponent.srcURLIcon}
+            nameImage={parComponent.nameImage}
+            setIcon={theContext.setIcon}
+          />
+        ),
+      };
 
-    console.log("En Show Element, compLocalSelect:  ", compLocalSelect)
-  }, [componentSelect])
-
-  // function selectElementShow(parTypeElement) {
-  //   if (typeof parTypeElement === "string") {
-  //     switch (type_Element) {
-  //       case "master":
-  //         setElementOut(
-  //           <MasterElem_PB
-  //             comp={compLocalSelect}
-  //             id_Element={compLocalSelect.id_Element}
-  //             placeholder={compLocalSelect.placeholder}
-  //             width={compLocalSelect.dimension.width}
-  //             disabled={false}
-  //           />
-  //         )
-  //         break;
-  //       case "label":
-  //         setElementOut(
-  //           <LabelElem_PB
-  //             id_Element={compLocalSelect.id_Element}
-  //             orderInBlock={compLocalSelect.orderInBlock}
-  //             required={compLocalSelect.required}
-  //             disabled={compLocalSelect.disabled}
-  //             response={compLocalSelect.response}
-  //             placeholder={compLocalSelect.placeholder}
-  //             size={compLocalSelect.size}
-  //             position={compLocalSelect.position}
-  //             width={compLocalSelect.dimension.width}
-  //             borderElement={compLocalSelect.borderElement}
-  //             colorElement={compLocalSelect.colorElement}
-  //             fontSizeElement={compLocalSelect.fontSizeElement}
-  //           />
-  //         )
-  //         break;
-  //       case "text":
-  //         setElementOut(
-  //           <TextElem_PB
-  //             id_Element={compLocalSelect.id_Element}
-  //             orderInBlock={compLocalSelect.orderInBlock}
-  //             labelElement={compLocalSelect.labelElement}
-  //             required={compLocalSelect.required}
-  //             disabled={compLocalSelect.disabled}
-  //             response={compLocalSelect.response}
-  //             placeholder={compLocalSelect.placeholder}
-  //             size={compLocalSelect.size}
-  //             position={compLocalSelect.position}
-  //             borderElement={compLocalSelect.borderElement}
-  //             colorElement={compLocalSelect.colorElement}
-  //             fontSizeElement={compLocalSelect.fontSizeElement}
-  //             setText={theContext.setText}
-  //           />
-  //         )
-  //         break;
-  //       case "number":
-  //         setElementOut(
-  //           <NumberElem_PB
-  //             id_Element={compLocalSelect.id_Element}
-  //             orderInBlock={compLocalSelect.orderInBlock}
-  //             labelElement={compLocalSelect.labelElement}
-  //             required={compLocalSelect.required}
-  //             disabled={compLocalSelect.disabled}
-  //             response={compLocalSelect.response}
-  //             placeholder={compLocalSelect.placeholder}
-  //             size={compLocalSelect.size}
-  //             position={compLocalSelect.position}
-  //             borderElement={compLocalSelect.borderElement}
-  //             colorElement={compLocalSelect.colorElement}
-  //             fontSizeElement={compLocalSelect.fontSizeElement}
-  //             setNumber={theContext.setNumber}
-  //           />
-  //         )
-  //         break;
-  //       case "date":
-  //         setElementOut(
-  //           <DateElem_PB
-  //             id_Element={compLocalSelect.id_Element}
-  //             orderInBlock={compLocalSelect.orderInBlock}
-  //             labelElement={compLocalSelect.labelElement}
-  //             required={compLocalSelect.required}
-  //             disabled={compLocalSelect.disabled}
-  //             response={compLocalSelect.response}
-  //             placeholder={compLocalSelect.placeholder}
-  //             size={compLocalSelect.size}
-  //             position={compLocalSelect.position}
-  //             borderElement={compLocalSelect.borderElement}
-  //             colorElement={compLocalSelect.colorElement}
-  //             fontSizeElement={compLocalSelect.fontSizeElement}
-  //             setDate={theContext.setDate}
-  //           />
-  //         )
-  //         break;
-  //       case "phone":
-  //         setElementOut(
-  //           <PhoneElem_PB
-  //             id_Element={compLocalSelect.id_Element}
-  //             orderInBlock={compLocalSelect.orderInBlock}
-  //             labelElement={compLocalSelect.labelElement}
-  //             required={compLocalSelect.required}
-  //             disabled={compLocalSelect.disabled}
-  //             response={compLocalSelect.response}
-  //             placeholder={compLocalSelect.placeholder}
-  //             size={compLocalSelect.size}
-  //             position={compLocalSelect.position}
-  //             borderElement={compLocalSelect.borderElement}
-  //             colorElement={compLocalSelect.colorElement}
-  //             fontSizeElement={compLocalSelect.fontSizeElement}
-  //             setPhone={theContext.setPhone}
-  //           />
-  //         )
-  //         break;
-  //       case "email":
-  //         setElementOut(
-  //           <EmailElem_PB
-  //             id_Element={compLocalSelect.id_Element}
-  //             orderInBlock={compLocalSelect.orderInBlock}
-  //             labelElement={compLocalSelect.labelElement}
-  //             required={compLocalSelect.required}
-  //             disabled={compLocalSelect.disabled}
-  //             response={compLocalSelect.response}
-  //             placeholder={compLocalSelect.placeholder}
-  //             size={compLocalSelect.size}
-  //             position={compLocalSelect.position}
-  //             borderElement={compLocalSelect.borderElement}
-  //             colorElement={compLocalSelect.colorElement}
-  //             fontSizeElement={compLocalSelect.fontSizeElement}
-  //             setEmail={theContext.setEmail}
-  //           />
-  //         )
-  //         break;
-  //       case "textArea":
-  //         setElementOut(
-  //           <AreaTextElem_PB
-  //             id_Element={compLocalSelect.id_Element}
-  //             orderInBlock={compLocalSelect.orderInBlock}
-  //             labelElement={compLocalSelect.labelElement}
-  //             required={compLocalSelect.required}
-  //             disabled={compLocalSelect.disabled}
-  //             readonly={compLocalSelect.readonly}
-  //             response={compLocalSelect.response}
-  //             placeholder={compLocalSelect.placeholder}
-  //             row={compLocalSelect.row}
-  //             col={compLocalSelect.col}
-  //             position={compLocalSelect.position}
-  //             borderElement={compLocalSelect.borderElement}
-  //             colorElement={compLocalSelect.colorElement}
-  //             fontSizeElement={compLocalSelect.fontSizeElement}
-  //             setAreaText={theContext.setTextArea}
-  //           />
-  //         )
-  //         break;
-  //       case "select":
-  //         setElementOut(
-  //           <SelectElement_PB
-  //             id_Element={compLocalSelect.id_Element}
-  //             orderInBlock={compLocalSelect.orderInBlock}
-  //             labelElement={compLocalSelect.labelElement}
-  //             required={compLocalSelect.required}
-  //             disabled={compLocalSelect.disabled}
-  //             response={compLocalSelect.response}
-  //             placeholder={compLocalSelect.placeholder}
-  //             size={compLocalSelect.size}
-  //             position={compLocalSelect.position}
-  //             borderElement={compLocalSelect.borderElement}
-  //             colorElement={compLocalSelect.colorElement}
-  //             fontSizeElement={compLocalSelect.fontSizeElement}
-  //             optionsValues={compLocalSelect.optionsValues}
-  //             setSelect={theContext.setSelect}
-  //           />
-  //         )
-  //         break;
-  //       case "checkbox":
-  //         setElementOut(
-  //           <CheckboxElem_PB
-  //             id_Element={compLocalSelect.id_Element}
-  //             orderInBlock={compLocalSelect.orderInBlock}
-  //             labelElement={compLocalSelect.labelElement}
-  //             required={compLocalSelect.required}
-  //             disabled={compLocalSelect.disabled}
-  //             checked={compLocalSelect.checked}
-  //             response={compLocalSelect.response}
-  //             position={compLocalSelect.position}
-  //             borderElement={compLocalSelect.borderElement}
-  //             colorElement={compLocalSelect.colorElement}
-  //             fontSizeElement={compLocalSelect.fontSizeElement}
-  //             setCheckbox={theContext.setCheckbox}
-  //           />
-  //         )
-  //         break;
-  //       case "radioButtons":
-  //         setElementOut(
-  //           <RadioButtons_PB
-  //             id_Element={compLocalSelect.id_Element}
-  //             orderInBlock={compLocalSelect.orderInBlock}
-  //             legend={compLocalSelect.legend}
-  //             required={compLocalSelect.required}
-  //             disabled={compLocalSelect.disabled}
-  //             name={compLocalSelect.name}
-  //             radioButtons={compLocalSelect.radioButtons}
-  //             response={compLocalSelect.response}
-  //             placeholder={compLocalSelect.placeholder}
-  //             position={compLocalSelect.position}
-  //           // setRadioButtons={componentSelect.setComponent}
-  //           />
-  //         )
-  //         break;
-  //       case "icon":
-  //         setElementOut(
-  //           <IconoElem_PB
-  //             id_Element={compLocalSelect.id_Element}
-  //             orderInBlock={compLocalSelect.orderInBlock}
-  //             required={compLocalSelect.required}
-  //             disabled={compLocalSelect.disabled}
-  //             name={compLocalSelect.name}
-  //             widthImage={compLocalSelect.widthImage}
-  //             position={compLocalSelect.position}
-  //             borderElement={compLocalSelect.borderElement}
-  //             srcURLIcon={compLocalSelect.srcURLIcon}
-  //             nameImage={compLocalSelect.nameImage}
-  //             setIcon={theContext.setIcon}
-  //           />
-  //         )
-  //         break;
-  //       default:
-  //         break;
-  //     }
-  //   } else {
-  //     console.error('Error:  the argument of the function "selectElementShow" must be a string!!')
-  //   }
-  // }
-
-  function selectElementShow(parTypeElement, compLocalSelect) {
-    if (typeof parTypeElement === "string") {
-      switch (type_Element) {
-        case "master":
-          setElementOut(
-            <MasterElem_PB
-              comp={compLocalSelect}
-              id_Element={compLocalSelect.id_Element}
-              placeholder={compLocalSelect.placeholder}
-              width={compLocalSelect.dimension.width}
-              disabled={false}
-            />
-          )
-          break;
-        case "label":
-          setElementOut(
-            <LabelElem_PB
-              id_Element={compLocalSelect.id_Element}
-              orderInBlock={compLocalSelect.orderInBlock}
-              required={compLocalSelect.required}
-              disabled={compLocalSelect.disabled}
-              response={compLocalSelect.response}
-              placeholder={compLocalSelect.placeholder}
-              size={compLocalSelect.size}
-              position={compLocalSelect.position}
-              width={compLocalSelect.dimension.width}
-              borderElement={compLocalSelect.borderElement}
-              colorElement={compLocalSelect.colorElement}
-              fontSizeElement={compLocalSelect.fontSizeElement}
-            />
-          )
-          break;
-        case "text":
-          setElementOut(
-            <TextElem_PB
-              id_Element={compLocalSelect.id_Element}
-              orderInBlock={compLocalSelect.orderInBlock}
-              labelElement={compLocalSelect.labelElement}
-              required={compLocalSelect.required}
-              disabled={compLocalSelect.disabled}
-              response={compLocalSelect.response}
-              placeholder={compLocalSelect.placeholder}
-              size={compLocalSelect.size}
-              position={compLocalSelect.position}
-              borderElement={compLocalSelect.borderElement}
-              colorElement={compLocalSelect.colorElement}
-              fontSizeElement={compLocalSelect.fontSizeElement}
-              setText={theContext.setText}
-            />
-          )
-          break;
-        case "number":
-          setElementOut(
-            <NumberElem_PB
-              id_Element={compLocalSelect.id_Element}
-              orderInBlock={compLocalSelect.orderInBlock}
-              labelElement={compLocalSelect.labelElement}
-              required={compLocalSelect.required}
-              disabled={compLocalSelect.disabled}
-              response={compLocalSelect.response}
-              placeholder={compLocalSelect.placeholder}
-              size={compLocalSelect.size}
-              position={compLocalSelect.position}
-              borderElement={compLocalSelect.borderElement}
-              colorElement={compLocalSelect.colorElement}
-              fontSizeElement={compLocalSelect.fontSizeElement}
-              setNumber={theContext.setNumber}
-            />
-          )
-          break;
-        case "date":
-          setElementOut(
-            <DateElem_PB
-              id_Element={compLocalSelect.id_Element}
-              orderInBlock={compLocalSelect.orderInBlock}
-              labelElement={compLocalSelect.labelElement}
-              required={compLocalSelect.required}
-              disabled={compLocalSelect.disabled}
-              response={compLocalSelect.response}
-              placeholder={compLocalSelect.placeholder}
-              size={compLocalSelect.size}
-              position={compLocalSelect.position}
-              borderElement={compLocalSelect.borderElement}
-              colorElement={compLocalSelect.colorElement}
-              fontSizeElement={compLocalSelect.fontSizeElement}
-              setDate={theContext.setDate}
-            />
-          )
-          break;
-        case "phone":
-          setElementOut(
-            <PhoneElem_PB
-              id_Element={compLocalSelect.id_Element}
-              orderInBlock={compLocalSelect.orderInBlock}
-              labelElement={compLocalSelect.labelElement}
-              required={compLocalSelect.required}
-              disabled={compLocalSelect.disabled}
-              response={compLocalSelect.response}
-              placeholder={compLocalSelect.placeholder}
-              size={compLocalSelect.size}
-              position={compLocalSelect.position}
-              borderElement={compLocalSelect.borderElement}
-              colorElement={compLocalSelect.colorElement}
-              fontSizeElement={compLocalSelect.fontSizeElement}
-              setPhone={theContext.setPhone}
-            />
-          )
-          break;
-        case "email":
-          setElementOut(
-            <EmailElem_PB
-              id_Element={compLocalSelect.id_Element}
-              orderInBlock={compLocalSelect.orderInBlock}
-              labelElement={compLocalSelect.labelElement}
-              required={compLocalSelect.required}
-              disabled={compLocalSelect.disabled}
-              response={compLocalSelect.response}
-              placeholder={compLocalSelect.placeholder}
-              size={compLocalSelect.size}
-              position={compLocalSelect.position}
-              borderElement={compLocalSelect.borderElement}
-              colorElement={compLocalSelect.colorElement}
-              fontSizeElement={compLocalSelect.fontSizeElement}
-              setEmail={theContext.setEmail}
-            />
-          )
-          break;
-        case "textArea":
-          setElementOut(
-            <AreaTextElem_PB
-              id_Element={compLocalSelect.id_Element}
-              orderInBlock={compLocalSelect.orderInBlock}
-              labelElement={compLocalSelect.labelElement}
-              required={compLocalSelect.required}
-              disabled={compLocalSelect.disabled}
-              readonly={compLocalSelect.readonly}
-              response={compLocalSelect.response}
-              placeholder={compLocalSelect.placeholder}
-              row={compLocalSelect.row}
-              col={compLocalSelect.col}
-              position={compLocalSelect.position}
-              borderElement={compLocalSelect.borderElement}
-              colorElement={compLocalSelect.colorElement}
-              fontSizeElement={compLocalSelect.fontSizeElement}
-              setAreaText={theContext.setTextArea}
-            />
-          )
-          break;
-        case "select":
-          setElementOut(
-            <SelectElement_PB
-              id_Element={compLocalSelect.id_Element}
-              orderInBlock={compLocalSelect.orderInBlock}
-              labelElement={compLocalSelect.labelElement}
-              required={compLocalSelect.required}
-              disabled={compLocalSelect.disabled}
-              response={compLocalSelect.response}
-              placeholder={compLocalSelect.placeholder}
-              size={compLocalSelect.size}
-              position={compLocalSelect.position}
-              borderElement={compLocalSelect.borderElement}
-              colorElement={compLocalSelect.colorElement}
-              fontSizeElement={compLocalSelect.fontSizeElement}
-              optionsValues={compLocalSelect.optionsValues}
-              setSelect={theContext.setSelect}
-            />
-          )
-          break;
-        case "checkbox":
-          setElementOut(
-            <CheckboxElem_PB
-              id_Element={compLocalSelect.id_Element}
-              orderInBlock={compLocalSelect.orderInBlock}
-              labelElement={compLocalSelect.labelElement}
-              required={compLocalSelect.required}
-              disabled={compLocalSelect.disabled}
-              checked={compLocalSelect.checked}
-              response={compLocalSelect.response}
-              position={compLocalSelect.position}
-              borderElement={compLocalSelect.borderElement}
-              colorElement={compLocalSelect.colorElement}
-              fontSizeElement={compLocalSelect.fontSizeElement}
-              setCheckbox={theContext.setCheckbox}
-            />
-          )
-          break;
-        case "radioButtons":
-          setElementOut(
-            <RadioButtons_PB
-              id_Element={compLocalSelect.id_Element}
-              orderInBlock={compLocalSelect.orderInBlock}
-              legend={compLocalSelect.legend}
-              required={compLocalSelect.required}
-              disabled={compLocalSelect.disabled}
-              name={compLocalSelect.name}
-              radioButtons={compLocalSelect.radioButtons}
-              response={compLocalSelect.response}
-              placeholder={compLocalSelect.placeholder}
-              position={compLocalSelect.position}
-            // setRadioButtons={componentSelect.setComponent}
-            />
-          )
-          break;
-        case "icon":
-          setElementOut(
-            <IconoElem_PB
-              id_Element={compLocalSelect.id_Element}
-              orderInBlock={compLocalSelect.orderInBlock}
-              required={compLocalSelect.required}
-              disabled={compLocalSelect.disabled}
-              name={compLocalSelect.name}
-              widthImage={compLocalSelect.widthImage}
-              position={compLocalSelect.position}
-              borderElement={compLocalSelect.borderElement}
-              srcURLIcon={compLocalSelect.srcURLIcon}
-              nameImage={compLocalSelect.nameImage}
-              setIcon={theContext.setIcon}
-            />
-          )
-          break;
-        default:
-          break;
+      const setElement = elementMap[parComponent.type_Element];
+      if (setElement) {
+        setElementOut(setElement);
       }
     } else {
-      console.error('Error:  the argument of the function "selectElementShow" must be a string!!')
+      throw new Error('Error: the argument of the function "selectElementShow" must be a string!!');
     }
-  }
-
+  };
 
 
   return (
     <div id="accordionShowComp" className="accordion container-fluid graycolor400 d-flex flex-column justify-content-center align-items-center p-1 mx-auto mb-1">
       <div className="accordion-item rounded-0 container-fluid mx-auto graycolor400 border-0 " style={{ marginBottom: "0.3rem" }} >
         <HeaderHead
-          idHeading={"headingShowComp"}
-          dataTarget={"#collapseShowComp"}
-          ariaControl={"collapseShowComp"}
-          fontSize={"0.75rem"}
-          title={"Show Component: "}
-          value={type_Element}
+          idHeading="headingShowComp"
+          dataTarget="#collapseShowComp"
+          ariaControl="collapseShowComp"
+          fontSize="0.65rem"
+          title="Show Component: "
+          value={valueComp.type_Element}
         />
 
         <div id="collapseShowComp" className="accordion-collapse collapse ms-0" aria-labelledby="headingShowComp" data-bs-parent="#accordionShowComp">
           <div className="accordion-body p-0 mb-0">
             <div className="row d-flex justify-content-center align-items-center gap-1 m-1" >
-              <div className="col-12 d-flex flex-column justify-content-start align-items-start graycolor400 mx-auto"
+              <div className="col d-flex flex-column justify-content-start align-items-start graycolor200 mx-auto"
                 style={{ padding: "0.2rem", margin: "0.2rem auto" }} >
-                <span className="m-0" style={{ width: "100%", fontSize: "0.6rem" }}>
-                  {
-                    elementOut
-                  }
+                <span className="m-0 border-2 border-danger" style={{ width: "100%", fontSize: "0.6rem" }}>
+                  {elementOut}
                 </span>
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
-  )
+  );
 }
 
 export default ShowElements;

@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { MyContext } from "../../../context/TheContext";
 
 function FieldSelect({ title, value, fontSize, arrayValues, action }) {
-  const theContext = useContext(MyContext)
+  const theContext = useContext(MyContext);
 
   return (
     <>
@@ -19,7 +19,7 @@ function FieldSelect({ title, value, fontSize, arrayValues, action }) {
           <select size="1" required={true} aria-label=".form-select-sm" className="contSelect rounded-0 container border border-secondary 
                         bg-white fw-bold p-1 my-1 mx-1 text-danger" style={{ fontSize: fontSize }}
             value={value} onChange={action} >
-              
+
             <option value="" className="fw-bold text-secondary text-danger" style={{ fontSize: fontSize }}>
               Select
             </option>

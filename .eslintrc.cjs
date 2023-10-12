@@ -17,5 +17,7 @@ module.exports = {
         "react"
     ],
     "rules": {
+        "eslint-disable": "off", // react/react-in-jsx-scope 
+        "eslint-disable": "react/prop-types"
     }
 }

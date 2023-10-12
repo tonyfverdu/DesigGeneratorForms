@@ -1,13 +1,12 @@
-export default function findIndexBlockSelect(parArrayBlocks, parBlockSelect, parIndexBlockSelect, parSetIndexBlockSelect) {
-  if (Array.isArray(parArrayBlocks)) {
-    parSetIndexBlockSelect(parArrayBlocks.findIndex(block => block.id_Block === parBlockSelect.id_Block))
-    if (parIndexBlockSelect <= -1) {
-      console.error(`Error:  There is not the elements in the array of the function "findIndexBlockSelect"`)
-      parSetIndexBlockSelect(null)
-    }
-  } else {
-    console.error('Error:  The argument of the function "findIndexBlockSelect" must be an array!!')
-    parSetIndexBlockSelect(null)
+export default function findIndexBlockSelect(parArrayBlocks, parBlockSelect) {
+  if (!Array.isArray(parArrayBlocks)) {
+    throw new Error('Error: The argument of the function "findIndexBlockSelect" must be an array!!');
   }
-  return parIndexBlockSelect;
+
+  const newIndexBlockSelect = parArrayBlocks.findIndex(block => block.id_Block === parBlockSelect.id_Block);
+  if (newIndexBlockSelect === -1) {
+    throw new Error('Error: There are no elements in the array of the function "findIndexBlockSelect"');
+  }
+
+  return newIndexBlockSelect;
 }

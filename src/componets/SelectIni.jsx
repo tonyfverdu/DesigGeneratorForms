@@ -29,10 +29,10 @@ function SelectIni({ id_Element, labelElement, required, disabled = false, place
 
   return (
     <div className="form-group container-fluid d-flex flex-row justify-content-start align-items-center m-0 p-1" >
-      <label htmlForm={id_Element} className="labelOfSelectIni fw-bold text-center form-label mx-1"
+      <label className="labelOfSelectIni fw-bold text-center form-label mx-1"
         style={{ color: colorSelect, fontSize: fontSizeSelect }} >
         {labelElement}
-      </label>
+     
       <select id={id_Element} size="1" required={required} disabled={disabled} aria-label=".form-select-sm"
         className={`form-select-sm contSelect container bg-white fw-bold p-1 my-1 text-danger 
         ${disabled ? "selectIniNotActiv" : "selectIniActiv border border-secondary"}`}
@@ -47,6 +47,7 @@ function SelectIni({ id_Element, labelElement, required, disabled = false, place
           optionsOfSelect(optionsValues)
         }
       </select>
+      </label>
     </div>
   );
 }

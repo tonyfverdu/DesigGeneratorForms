@@ -1,35 +1,30 @@
-import { useState, useEffect, useContext } from 'react'
-import { MyContext } from '../../context/TheContext.jsx'
-
-//  Rows od Blocks
-import BlockMaster from '../TeilRight/menuRight/BlockMaster.jsx'
-import RowBlock from '../TeilRight/RowBlock.jsx'
-
-//  Import of Component of Form
-import LabelElem_PB from '../elementsForms/LabelElem_PB.jsx'
-import TextElem_PB from '../elementsForms/TextElem_PB.jsx'
+import { useState, useEffect, useContext } from 'react';
+import { MyContext } from '../../context/TheContext.jsx';
+import BlockMaster from '../TeilRight/menuRight/BlockMaster.jsx';
+import RowBlock from '../TeilRight/RowBlock.jsx';
+import LabelElem_PB from '../elementsForms/LabelElem_PB.jsx';
+import TextElem_PB from '../elementsForms/TextElem_PB.jsx';
 
 
-function PrintFormTemplate({ formInput, setFormInput }) {
-  const theContext = useContext(MyContext)
-
-  //  ****    Local state variable    **************************************************************************************************
-  const [formLocalSelect, setFormLocalSelect] = useState(formInput)
+function PrintFormTemplate({ formSelectLocal, setFormSelectLocal}) {
+  const theContext = useContext(MyContext);
+  const [formLocalSelect, setFormLocalSelect] = useState({ ...formSelectLocal });
+  const [lengthOfArrayOfBlocks, setLengthOfArrayOfBlocks] = useState(0);
 
   useState(()=> {
-    theContext.setFormObject(formLocalSelect)
+    setFormLocalSelect(formSelectLocal)
+    theContext.setFormObject(formSelectLocal);
+    theContext.setArrayOfBlocks(formSelectLocal.blocks);
+    setLengthOfArrayOfBlocks(theContext.arrayOfBlocks.length)
   }, [formLocalSelect])
 
   //  ==>>  Loading the form block array in the context variable:  theContext.arrayOfBlocks
-  theContext.setArrayOfBlocks(formInput.blocks)
-  const [lengthOfArrayOfBlocks, setLengthOfArrayOfBlocks] = useState(theContext.arrayOfBlocks.length)
-
-  useEffect(() => {
-    setFormLocalSelect(formInput)
-    theContext.setArrayOfBlocks(formInput.blocks)
-    setLengthOfArrayOfBlocks(theContext.arrayOfBlocks.length)
-  }, [formInput])
-
+  // useState(() => {
+  //   theContext.setArrayOfBlocks(formSelectLocal.blocks);
+  // }, [theContext.arrayOfBlocks]);
+  
+  // const [lengthOfArrayOfBlocks, setLengthOfArrayOfBlocks] = useState(theContext.arrayOfBlocks.length);
+  
 
   return (
     <form className="container-fluid rounded-0 my-2 bg-light ">
@@ -135,7 +130,7 @@ function PrintFormTemplate({ formInput, setFormInput }) {
 
       </div>
     </form >
-  )
+  );
 }
 
 export default PrintFormTemplate;

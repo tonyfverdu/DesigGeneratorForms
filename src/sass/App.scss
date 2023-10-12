@@ -14,8 +14,6 @@
   &>.containerApp {
     width: 100vw;
     height: 0.1rem;
-
-
   }
 
   &>.containerLogos {
@@ -91,7 +89,7 @@
   &:focus {
     cursor: pointer;
     color: v.$colorRedNew;
-    @include n.teclaNeumorphismus1Hover;
+    @include n.teclaNeumorphismus2Hover;
     border-radius: 50%;
     border: 1px solid v.$backgroundColorDunkelGray4T;
     transform: scale(0.86);

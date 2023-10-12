@@ -1,23 +1,26 @@
-import {useContext} from 'react'
+import { useContext } from 'react'
 import { MyContext } from '../../context/TheContext'
 import { MdEmail } from 'react-icons/md';
 import '../../sass/componentSass/icons/IconButton.scss'
 
 
-function IconButtonEmail() {
-  const theContext = useContext(MyContext)
+function IconButtonEmail({ handleTypeComp }) {
+  const { setElement, setObjComponentShow } = useContext(MyContext);
 
   function handleButton() {
-    theContext.setElement("email")
-    theContext.setObjComponentShow({
-      ...theContext.objComponentShow, id_Element: "ID_email_001",
-      type: "email", placeholder: "enteryouremail@dom.com", size: 28,
+    setElement("email");
+
+    setObjComponentShow(prevState => ({
+      ...prevState,
+      id_Element: "ID_email_001",
+      type: "email",
+      placeholder: "enteryouremail@dom.com",
+      size: 28,
       dimensions: { width: 4, height: "2.4rem" },
       labelElement: "Componente Email: ",
-      valueComponent: theContext.email,
-      setComponent: theContext.setEmail
-    })
-  }
+    }));
+    handleTypeComp("email");
+  };
 
   return (
     <div className="col p-0 m-0">

@@ -1,397 +1,241 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext, useEffect, useCallback } from 'react';
 import { MyContext } from '../../../context/TheContext.jsx';
-
 import HeaderHead from './HeaderHead.jsx';
 import FieldText from './FieldText.jsx';
 import FieldTextArea from './FieldTextArea.jsx';
 import FieldSelect from './FieldSelect.jsx';
-// import FieldSelectComponents from './FieldSelectComponents.jsx';
-
-import { TITLES_RCM_LEFT } from '../../../constants/contants.js';  //  Constants of Form
-import createArray from '../../../functions/createArray.js';
-// import changeElementInArray from '../../../functions/changeElementOfArray.js';
-
+import FieldSelectAdd from './FieldSelectAdd.jsx';
+import { TITLES_RCM_LEFT } from '../../../constants/contants.js';
 import compByBlock from '../../../functions/compByBlock.js';
 
+function DataBlockMenu({ setFormSelect, setArrayBlocks, blockSelect, setBlockSelect, rowSelect, setRowSelect,
+  valueArrays, setValueArrays, valueComp, setValueComp }) {
+  const theContext = useContext(MyContext);
 
-function DataBlockMenu({ formSelect, setFormSelect, arrayBlocks, setArrayBlocks, blockSelect, setBlockSelect,
-  valueForm, setValueForm, valueArrays, setValueArrays, valueBlock, setValueBlock, valueComp, setValueComp, indexBlockSelect }) {
-  const theContext = useContext(MyContext)
+  const [arrayComponents, setArrayOfComponents] = useState([]);
+  const [compSelectObj, setCompSelectObj] = useState({}); // Initial value can be an empty object
+  const [indexRowSelect, setIndexRowSelect] = useState(0);
+  const [arrayOrders, setArrayOrders] = useState([]);
+  const [parChangeBlock, setParChangeBlock] = useState("");
 
-  const [indexBlockSelect2, setIndexBlockSelect2] = useState(indexBlockSelect)
-  function findIndexBlockSelect2(parArrayBlocks, parBlockSelect) {
-    if (Array.isArray(parArrayBlocks)) {
-      setIndexBlockSelect2(parArrayBlocks.findIndex(block => block.id_Block === parBlockSelect.id_Block))
-      if (indexBlockSelect <= -1) {
-        console.error(`Error:  There is not the elements in the array of the function "findIndexBlockSelect"`)
-        setIndexBlockSelect2(null)
-      }
-    } else {
-      console.error('Error:  The argument of the function "findIndexBlockSelect2" must be an array!!')
-      setIndexBlockSelect2(null)
-    }
-  }
+  const handleChange = useCallback((ev, blockKey) => {
+    ev.preventDefault();
+    const newValue = ev.target.value;
 
-  const [arrayComponents, setArrayOfComponents] = useState(compByBlock(blockSelect))
-  const [compSelectObj, setCompSelectObj] = useState(valueComp)
-  const [numberBlocks, setNumberBlocks] = useState(formSelect.blocks.length)
-  const [arrayOrders, setArrayOrders] = useState(createArray(numberBlocks))
-
-  //  PONER TODOS LOS COMPONENTES DE BLOQUE UTILIZANDO LA FUNCION CREADA
-  useEffect(() => {
-    setArrayOfComponents(compByBlock(blockSelect))
-    // console.log("arrayComponents:  ", arrayComponents)
-    // setCompSelectObj(valueComp)
-  }, [blockSelect])
+    setParChangeBlock(blockKey);
+    setBlockSelect(prevBlockSelect => ({ ...prevBlockSelect, [blockKey]: newValue }));
+  }, []);
 
   useEffect(() => {
-    setCompSelectObj(valueComp)
-  }, [valueComp])
+    const newArrayComp = compByBlock(blockSelect);
+    setArrayOfComponents(newArrayComp);
+    setRowSelect(blockSelect.columns[0])
+    setCompSelectObj(rowSelect.components[0]);
+  }, [blockSelect, rowSelect, valueComp]);
 
   useEffect(() => {
-    findIndexBlockSelect2(arrayBlocks, blockSelect)
-  }, [blockSelect])
-
-  const [parChangeBlock, setParChangeBlock] = useState("")
-  let newArray = []
-
-  function cambioArray(parChangeBlock) {
     if (theContext.tooRead) {
-      switch (parChangeBlock) {
-        case "title_Block":
+      const newArray = valueArrays.map(value => {
+        if (value.id_Block === blockSelect.id_Block) {
+          return {
+            ...value,
+            title_Block: parChangeBlock === "title_Block" ? blockSelect.title_Block : value.title_Block,
+            id_Block: parChangeBlock === "id_Block" ? blockSelect.id_Block : value.id_Block,
+            label_Block: parChangeBlock === "label_Block" ? blockSelect.label_Block : value.label_Block,
+            description_Block: parChangeBlock === "description_Block" ? blockSelect.description_Block : value.description_Block,
+            ordenDisplay_Block: parChangeBlock === "ordenDisplay_Block" ? blockSelect.ordenDisplay_Block : value.ordenDisplay_Block,
+            components: parChangeBlock === "components_Block" ? blockSelect.columns : value.components
+          };
+        }
+        return value;
+      });
 
-          // const arrayNuevo = changeElementInArray(valueArrays, valueArrays[indexBlockSelect2].id_Block, valueArrays)
-          // console.log("arrayNuevo:  ", arrayNuevo)
+      setValueArrays(newArray);
+      setArrayBlocks(newArray);
+      setFormSelect(prevFormSelect => ({ ...prevFormSelect, blocks: newArray }));
+      cambioArray();
+    }
+  }, [theContext.tooRead, parChangeBlock]);
 
-          console.log("ValueBlock:  ", valueBlock)
+  const handleComponentSelect = useCallback((ev) => {
+    ev.preventDefault();
+    const newValue = ev.target.value;
 
+    const selectedComponent = arrayComponents.find(comp => comp.title_Element === newValue);
+    if (selectedComponent) {
+      setParChangeBlock("components_Block");
+      setValueComp(selectedComponent);
+    }
+  }, [arrayComponents]);
 
-          //setValueArrays([...valueArrays, valueArrays[indexBlockSelect2] = valueBlock])
-          newArray = valueArrays.map(value => {
-            if (value.id_Block === valueBlock.id_Block) {
-              value = { ...value, title_Block: valueBlock.title_Block }
-            }
-            return value
-          })
+  const handleRowSelect = useCallback((ev) => {
+    ev.preventDefault();
+    const rowValue = 'Row: ' + ev.target.value;
 
-          // setValueArrays(changeElementInArray(valueArrays, valueArrays[indexBlockSelect2].id_Block, valueArrays))
-          // setValueForm({ ...valueForm, blocks: newArray })
+    const newRowSelectObject = blockSelect.columns.find(row => row.orderColInBlock === rowValue);
 
-          // setArrayBlocks(newArray)
-          // setFormSelect(valueForm)
-          // findIndexBlockSelect2(newArray, valueBlock)
-          // console.log("indexBlockSelect2:  ", indexBlockSelect2)
+    if (newRowSelectObject) {
+      const newIndexRowSelect = blockSelect.columns.indexOf(newRowSelectObject);
+      setIndexRowSelect(newIndexRowSelect);
+      setRowSelect(newRowSelectObject);
+    }
+  }, [blockSelect.columns, setRowSelect]);
 
-          console.log("newArray? es array:  ", Array.isArray(newArray), "  newArray:  ", newArray)
-          setValueArrays(newArray)
-          setArrayBlocks(newArray)
-          setBlockSelect(valueBlock)
-          setValueForm({ ...valueForm, blocks: newArray })
-          setFormSelect(valueForm)
-          break;
-
-        case "id_Block":
-          newArray = valueArrays.map(value => {
-            if (value.id_Block === valueBlock.id_Block) {
-              value = { ...value, id_Block: valueBlock.id_Block }
-            }
-            return value
-          })
-          setValueArrays(newArray)
-          setValueForm({ ...valueForm, blocks: newArray })
-          setArrayBlocks(newArray)
-          setFormSelect(valueForm)
-          break;
-
-        case "label_Block":
-          newArray = valueArrays.map(value => {
-            if (value.id_Block === valueBlock.id_Block) {
-              value = { ...value, label_Block: valueBlock.label_Block }
-            }
-            return value
-          })
-          setValueArrays(newArray)
-          setValueForm({ ...valueForm, blocks: newArray })
-          setArrayBlocks(newArray)
-          setFormSelect(valueForm)
-          break;
-
-        case "description_Block":
-          newArray = valueArrays.map(value => {
-            if (value.id_Block === valueBlock.id_Block) {
-              value = { ...value, description_Block: valueBlock.description_Block }
-            }
-            return value
-          })
-          setValueArrays(newArray)
-          setValueForm({ ...valueForm, blocks: newArray })
-          setArrayBlocks(newArray)
-          setFormSelect(valueForm)
-          break;
-
-        case "ordenDisplay_Block":
-          newArray = valueArrays.map(value => {
-            if (value.id_Block === valueBlock.id_Block) {
-              value = { ...value, ordenDisplay_Block: valueBlock.ordenDisplay_Block }
-            }
-            return value
-          })
-          setValueArrays(newArray)
-          setValueForm({ ...valueForm, blocks: newArray })
-          setArrayBlocks(newArray)
-          setFormSelect(valueForm)
-          break;
-
-        case "components_Block":
-          console.log("En components_Block newArray:  ", newArray)
-
-          newArray = valueArrays.map(value => {
-            if (value.id_Block === valueBlock.id_Block) {
-              value = { ...value, components: valueBlock.columns }
-            }
-            console.log("value:  ", value)
-            return value
-          })
-          setValueArrays(newArray)
-          setValueForm({ ...valueForm, blocks: newArray })
-          setArrayBlocks(newArray)
-          setFormSelect(valueForm)
-          break;
-
-        default:
-          setParChangeBlock("")
-          break;
+  const cambioArray = useCallback(() => {
+    const newArray = valueArrays.map(value => {
+      if (value.id_Block === blockSelect.id_Block) {
+        return {
+          ...value,
+          title_Block: parChangeBlock === "title_Block" ? blockSelect.title_Block : value.title_Block,
+          id_Block: parChangeBlock === "id_Block" ? blockSelect.id_Block : value.id_Block,
+          label_Block: parChangeBlock === "label_Block" ? blockSelect.label_Block : value.label_Block,
+          description_Block: parChangeBlock === "description_Block" ? blockSelect.description_Block : value.description_Block,
+          ordenDisplay_Block: parChangeBlock === "ordenDisplay_Block" ? blockSelect.ordenDisplay_Block : value.ordenDisplay_Block,
+          components: parChangeBlock === "components_Block" ? blockSelect.columns : value.components
+        };
       }
-    }
-  }
+      return value;
+    });
 
+    setValueArrays(newArray);
+    setArrayBlocks(newArray);
+    setFormSelect(prevFormSelect => ({ ...prevFormSelect, blocks: newArray }));
+    // setFormSelect(prevFormSelect => {
+    //   prevFormSelect.blocks = newArray;
+    //   return prevFormSelect;
+    // });
+  }, [parChangeBlock, blockSelect, valueArrays, setFormSelect, setArrayBlocks]);
 
-  useEffect(() => {
-    cambioArray(parChangeBlock)
-    theContext.setArrayOfBlocks([...theContext.arrayOfBlocks, blockSelect])
-  }, [theContext.tooRead])
-
-  useEffect(() => {
-    setValueBlock(blockSelect)
-    findIndexBlockSelect2(arrayBlocks, blockSelect)
-    setArrayOfComponents(blockSelect.columns[0].components)
-  }, [blockSelect])
-
-
-  //  BLOCK FUNCTIONS
-  function handleChangeTITLEBLOCK(ev) {
-    ev.preventDefault()
-    const newValue = ev.target.value
-
-    setParChangeBlock("title_Block")
-    setValueBlock({ ...valueBlock, title_Block: newValue })
-    setBlockSelect({ ...blockSelect, title_Block: newValue })
-  }
-  function handleChangeIDBLOCK(ev) {
-    ev.preventDefault()
-    const newValue = ev.target.value
-
-    setParChangeBlock("id_Block")
-    setValueBlock({ ...valueBlock, id_Block: newValue })
-    setBlockSelect({ ...blockSelect, id_Block: newValue })
-  }
-  function handleChangeLABELBLOCK(ev) {
-    ev.preventDefault()
-    const newValue = ev.target.value
-
-    setParChangeBlock("label_Block")
-    setValueBlock({ ...valueBlock, label_Block: newValue })
-    setBlockSelect({ ...blockSelect, label_Block: newValue })
-  }
-  function handleChangeDESCRIPTIONBLOCK(ev) {
-    ev.preventDefault()
-    const newValue = ev.target.value
-
-    setParChangeBlock("description_Block")
-    setValueBlock({ ...valueBlock, description_Block: newValue })
-    setBlockSelect({ ...blockSelect, description_Block: newValue })
-  }
-  function handleChangeORDERBLOCK(ev) {
-    ev.preventDefault()
-    const newValue = ev.target.value
-
-    setParChangeBlock("ordenDisplay_Block")
-    setValueBlock({ ...valueBlock, ordenDisplay_Block: newValue })
-    setBlockSelect({ ...blockSelect, ordenDisplay_Block: newValue })
-  }
-
-  //  Arrangement of components in the Component Select
-  function handleComponentSelect(ev) {
-    ev.preventDefault()
-    const newValue = ev.target.value
-
-    setParChangeBlock("components_Block")
-
-    if (Array.isArray(arrayComponents)) {
-      setValueComp(arrayComponents.find(comp => comp.title_Element === newValue))
-    }
-  }
-
-  // useEffect(() => {
-  //   console.log("arrayComponents:  ", arrayComponents)
-  //   console.log("compSelectObj:  ", compSelectObj)
-
-  // }, [arrayComponents])
-
-  //  IMPORTANT !!
-  // useEffect(()=> {
-  //   console.log("Ejecuto esto")
-  //   theContext.setArrayOfBlocks([...theContext.arrayOfBlocks, blockSelect])
-  //   theContext.setFormObject({...theContext.formObject, blocks: theContext.arrayOfBlocks})
-  // }, [valueForm])
+  // Move static elements outside the component's return statement => Define static JSX elements outside the return statement
+  const fieldText1 = (
+    <FieldText
+      title={TITLES_RCM_LEFT.BLOCK_TITLE}
+      value={blockSelect.title_Block}
+      fontSize="0.6rem"
+      action={(ev) => handleChange(ev, "title_Block")}
+    />
+  );
+  const fieldText2 = (
+    <FieldText
+      title={TITLES_RCM_LEFT.BLOCK_ID_TITLE}
+      value={blockSelect.id_Block}
+      fontSize="0.6rem"
+      action={(ev) => handleChange(ev, "id_Block")}
+    />
+  );
+  const fieldText3 = (
+    <FieldText
+      title={TITLES_RCM_LEFT.BLOCK_LABEL}
+      value={blockSelect.label_Block}
+      fontSize="0.6rem"
+      action={(ev) => handleChange(ev, "label_Block")}
+    />
+  );
+  const fieldTextArea = (
+    <FieldTextArea
+      title={TITLES_RCM_LEFT.BLOCK_DESCRIPTION}
+      value={blockSelect.description_Block}
+      fontSize="0.6rem"
+      action={(ev) => handleChange(ev, "description_Block")}
+    />
+  );
+  const fieldSelect1 = (
+    <FieldSelect
+      title={TITLES_RCM_LEFT.BLOCK_ORDER_DISPLAY}
+      value={blockSelect.ordenDisplay_Block}
+      fontSize="0.6rem"
+      arrayValues={arrayOrders}
+      action={(ev) => handleChange(ev, "ordenDisplay_Block")}
+    />
+  );
 
   return (
     <div id="accordionBlock" className="accordion container-fluid graycolor400 d-flex flex-column justify-content-center align-items-center p-1 mx-auto mb-1">
-      <div className="accordion-item rounded-0 container-fluid mx-auto graycolor400 border-0 " style={{ marginBottom: "0.3rem" }} >
-
+      <div className="accordion-item rounded-0 container-fluid mx-auto graycolor400 border-0" style={{ marginBottom: "0.3rem" }} >
         <HeaderHead
-          idHeading={"headingBlock"}
-          dataTarget={"#collapseBlock"}
-          ariaControl={"collapseBlock"}
-          fontSize={"0.75rem"}
+          idHeading="headingBlock"
+          dataTarget="#collapseBlock"
+          ariaControl="collapseBlock"
+          fontSize="0.62rem"
           title={TITLES_RCM_LEFT.BLOCK_HEAD}
-          value={valueBlock.title_Block}
+          value={blockSelect.title_Block}
         />
 
         <div id="collapseBlock" className="accordion-collapse collapse ms-0" aria-labelledby="headingBlock" data-bs-parent="#accordionBlock">
           <div className="accordion-body p-0 mb-0">
-
             <div className="row d-flex justify-content-center align-items-center gap-1 m-1" >
-
               <div className="col-5 d-flex flex-column justify-content-start align-items-start m-0 p-1 bg-body" >
-                <FieldText
-                  title={TITLES_RCM_LEFT.BLOCK_TITLE}
-                  value={valueBlock.title_Block}
-                  fontSize={"0.64rem"}
-                  action={handleChangeTITLEBLOCK}
-                />
+                {fieldText1}
               </div>
 
               <div className="col d-flex flex-column justify-content-start align-items-start m-0 p-1 bg-body" >
-                <FieldText
-                  title={TITLES_RCM_LEFT.BLOCK_ID_TITLE}
-                  value={valueBlock.id_Block}
-                  fontSize={"0.64rem"}
-                  action={handleChangeIDBLOCK}
-                />
+                {fieldText2}
               </div>
 
             </div>
 
             <div className="row d-flex justify-content-center align-items-center gap-1 m-1" >
               <div className="col-12 d-flex flex-row justify-content-start align-items-start m-0 p-1 bg-body">
-                <FieldText
-                  title={TITLES_RCM_LEFT.BLOCK_LABEL}
-                  value={valueBlock.label_Block}
-                  fontSize={"0.64rem"}
-                  action={handleChangeLABELBLOCK}
-                />
+                {fieldText3}
               </div>
             </div>
 
             <div className="row d-flex justify-content-start align-items-center gap-1 m-1">
               <div className="col-12 d-flex flex-column justify-content-start align-items-start m-0 p-1 bg-body">
-                <FieldTextArea
-                  title={TITLES_RCM_LEFT.BLOCK_DESCRIPTION}
-                  value={valueBlock.description_Block}
-                  fontSize={"0.64rem"}
-                  action={handleChangeDESCRIPTIONBLOCK}
+                {fieldTextArea}
+              </div>
+            </div>
+
+            <div className="row d-flex justify-content-start align-items-center gap-1 m-1">
+              <div className="col-12 d-flex flex-column justify-content-center align-items-start m-0 p-1 bg-body" >
+                <FieldSelectAdd
+                  title="Rows"
+                  type="rows"
+                  value={blockSelect.columns}
+                  fontSize="0.6rem"
+                  fontSizeButton="0.64rem"
+                  tooRead={theContext.tooRead}
+                  action={handleRowSelect}
                 />
               </div>
             </div>
 
             <div className="row d-flex justify-content-start align-items-center gap-1 m-1">
-
               <div className="col d-flex flex-column justify-content-start align-items-center m-0 p-1 bg-body" style={{ height: "3.6rem" }} >
-                <FieldSelect
+                <FieldSelectAdd
                   title={TITLES_RCM_LEFT.BLOCK_COMPONENTS}
-                  value={compSelectObj.title_Element}
-                  fontSize={"0.64rem"}
-                  arrayValues={arrayComponents.map(comp => comp.title_Element)}
+                  type="components"
+                  value={rowSelect.components}
+                  fontSize="0.6rem"
+                  fontSizeButton="0.64rem"
+                  tooRead={theContext.tooRead}
                   action={handleComponentSelect}
                 />
               </div>
-
               <div className="col-3 d-flex flex-column justify-content-start align-items-center m-0 p-1 bg-body" style={{ height: "3.6rem" }} >
-                <FieldSelect
-                  title={TITLES_RCM_LEFT.BLOCK_ORDER_DISPLAY}
-                  value={valueBlock.ordenDisplay_Block}
-                  fontSize={"0.64rem"}
-                  arrayValues={arrayOrders}
-                  action={handleChangeORDERBLOCK}
-                />
+                {fieldSelect1}
               </div>
             </div>
-
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default DataBlockMenu;
 
 /*
-  // const [indexBlockSelect, setIndexBlockSelect] = useState(0)
+    This code snippet defines a React functional component called DataBlockMenu. 
+    
+    It takes in several props and uses React hooks like useState, useEffect, useContext, and useCallback 
+    to manage state and perform side effects.
 
-  // function findIndexBlockSelect(parArrayBlocks, parBlockSelect) {
-  //   if (Array.isArray(parArrayBlocks)) {
-  //     setIndexBlockSelect(parArrayBlocks.findIndex(block => block.id_Block === parBlockSelect.id_Block))
-  //     if (indexBlockSelect <= -1) {
-  //       console.error(`Error:  There is not the elements in the array of the function "findIndexBlockSelect"`)
-  //       setIndexBlockSelect(null)
-  //     }
-  //   } else {
-  //     console.error('Error:  The argument of the function "findIndexBlockSelect" must be an array!!')
-  //     setIndexBlockSelect(null)
-  //   }
-  // }
+    The component renders a form-like structure with various input fields and selects. The values of these 
+    fields are controlled by the component's state variables, which are updated when the user interacts with 
+    the form elements.
 
-  // useEffect(() => {
-  //   findIndexBlockSelect(formSelect.blocks, blockSelect)
+    The component also contains several event handlers that update the state variables based on user input.
 
-  //   // setArrayBlocks([...arrayBlocks, arrayBlocks[indexBlockSelect] = blockSelect])
-  // }, [blockSelect])
-
-  // useEffect(() => {
-  // formSelect.blocks[indexBlockSelect].title_Block = valueBlock.title_Block
-
-  // arrayBlocks[indexBlockSelect] = {...arrayBlocks, title_Block: valueBlock.title_Block}
-  // setArrayBlocks([...arrayBlocks, arrayBlocks[indexBlockSelect] = arrayBlocks[indexBlockSelect]])
-  // setTheFormIs({...theFormIs, blocks: arrayBlocks})
-
-  // formSelect.blocks[indexBlockSelect].id_Block = valueBlock.id_Block
-  // setBlockSelect([...formSelect.blocks, formSelect.blocks[indexBlockSelect].title_Block = valueBlock.title_Block])
-  // formSelect.blocks[indexBlockSelect].ordenDisplay_Block = valueBlock.ordenDisplay_Block
-  // formSelect.blocks[indexBlockSelect].label_Block = valueBlock.label_Block
-  // formSelect.blocks[indexBlockSelect].description_Block = valueBlock.description_Block
-
-  // setFormSelect(structuredClone(valueForm))
-  // theContext.setFormObject(valueForm)
-
-  // setFormSelect({ ...formSelect, blocks: [...blocks, blocks[indexBlockSelect] = valueBlock] })
-
-  // setArrayBlocks([...arrayBlocks, arrayBlocks[indexBlockSelect] = blockSelect])
-  // setFormSelect({ ...formSelect, blocks: arrayBlocks })
-
-
-  //   setFormSelect({ ...formSelect, blocks: arrayBlocks })
-
-  // }, [valueBlock])
-
-  // useEffect(() => {
-  //   console.log("useEffect de cambio de blockSelect")
-  //   setValueForm({ ...valueForm, blocks: arrayBlocks })
-
-
-  // }, [blockSelect])
-
-  //    TRATAMIENTO DE CAMBIOS EN LOS ATRIBUTOS DE BLOCK
-  
+    Overall, this component is responsible for rendering a menu for managing data blocks and their properties.
 */

@@ -4,17 +4,21 @@ import { MdFontDownload } from 'react-icons/md';
 import '../../sass/componentSass/icons/IconButton.scss'
 
 
-function IconButtonLabel() {
-  const theContext = useContext(MyContext)
+function IconButtonLabel({ handleTypeComp }) {
+  const { setElement, setObjComponentShow } = useContext(MyContext);
 
-  function handleButton() {
-    theContext.setElement("label")
+  const handleButton = () => {
+    setElement("label");
 
-    theContext.setObjComponentShow({
-      ...theContext.objComponentShow, id_Element: "ID_label_001",
-      type: "label", placeholder: "Soy un componente Label", size: 10
-    })
-  }
+    setObjComponentShow(prevState => ({
+      ...prevState,
+      id_Element: "ID_label_001",
+      type: "label",
+      placeholder: "Soy un componente Label",
+      size: 10
+    }));
+    handleTypeComp("label");
+  };
 
   return (
     <div className="col p-0 m-0">
@@ -22,7 +26,7 @@ function IconButtonLabel() {
         <MdFontDownload />
       </button>
     </div>
-  )
+  );
 }
 
 export default IconButtonLabel;

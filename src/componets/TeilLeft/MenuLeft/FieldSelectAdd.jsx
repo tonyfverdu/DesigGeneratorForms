@@ -1,5 +1,5 @@
 
-function FieldSelectAdd({ title, value, fontSize, fontSizeButton, tooRead, action, actionAddButton, actionClickAdd }) {
+function FieldSelectAdd({ title, type, value, fontSize, fontSizeButton, tooRead, action, actionAddButton, actionClickAdd }) {
   return (
     <>
       <span id="id_select_blocks" className="ms-1 p-1 fw-bold"
@@ -19,7 +19,21 @@ function FieldSelectAdd({ title, value, fontSize, fontSizeButton, tooRead, actio
             </option>
             {
               Array.isArray(value) &&
-              value.map(block => <option key={block.id_Block} value={block.title_Block} className="fw-normal text-dark">{block.title_Block}</option>)
+
+                type === 'blocks' ? value.map(elem => <option key={elem.id_Block} value={elem.title_Block} className="fw-normal text-dark">
+                  {elem.title_Block}
+                </option>)
+                :
+                type === 'rows' ? value.map(elem => <option key={elem.orderColInBlock} value={`Row: ${elem.orderColInBlock}`} className="fw-normal text-dark">
+                  {`Row: ${elem.orderColInBlock}`}
+                </option>)
+                  :
+                  // type === 'components' ? value.map(elem => <option key={elem.id_Element} value={elem.title_Element} className="fw-normal text-dark">
+                  type === 'components' ? value.map(elem => <option key={elem.id_Element} value={elem.title_Element} className="fw-normal text-dark">
+                    {elem.title_Element}
+                  </option>)
+                    :
+                    null
             }
           </select>
           :
@@ -63,4 +77,4 @@ function FieldSelectAdd({ title, value, fontSize, fontSizeButton, tooRead, actio
   )
 }
 
-export default FieldSelectAdd
+export default FieldSelectAdd;

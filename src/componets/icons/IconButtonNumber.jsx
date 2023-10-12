@@ -4,19 +4,22 @@ import { TbNumbers } from 'react-icons/tb';
 import '../../sass/componentSass/icons/IconButton.scss'
 
 
-function IconButtonNumber() {
-  const theContext = useContext(MyContext)
+function IconButtonNumber({ handleTypeComp }) {
+  const { setElement, setObjComponentShow } = useContext(MyContext);
 
   function handleButton() {
-    theContext.setElement("number")
-    theContext.setObjComponentShow({
-      ...theContext.objComponentShow, id_Element: "ID_number_001",
-      type: "number", placeholder: 0, size: 3,
+    setElement("number");
+
+    setObjComponentShow(prevState => ({
+      ...prevState,
+      id_Element: "ID_number_001",
+      type: "number",
+      placeholder: 0,
+      size: 3,
       dimensions: { width: 3, height: "2.4rem" },
-      labelElement: "Componente Number: ",
-      valueComponent: theContext.number,
-      setComponent: theContext.setNumber
-    })
+      labelElement: "Componente Number: "
+    }));
+    handleTypeComp("number");
   }
 
   return (

@@ -4,20 +4,24 @@ import { TbIcons } from 'react-icons/tb';
 import '../../sass/componentSass/icons/IconButton.scss'
 
 
-function IconButtonIcons() {
-  const theContext = useContext(MyContext)
+function IconButtonIcons({ handleTypeComp }) {
+  const { setElement, setObjComponentShow } = useContext(MyContext);
 
   function handleButton() {
-    theContext.setElement("icon")
-    theContext.setObjComponentShow({
-      ...theContext.objComponentShow, id_Element: "ID_icon_001",
-      type: "icon", srcURLIcon: "../src/assets/iconImages/", nameImage: "iconImage", widthImage: 25,
+    setElement("icon");
+
+    setObjComponentShow(prevState => ({
+      ...prevState,
+      id_Element: "ID_icon_001",
+      type: "icon",
+      srcURLIcon: "src/assets/iconImages/",
+      nameImage: "iconImage.svg",
+      widthImage: 25,
       dimensions: { width: 4, height: "2.4rem" },
-      labelElement: "",
-      valueComponent: theContext.icon,
-      setComponent: theContext.setIcon
-    })
-  }
+      labelElement: "Image: ",
+    }));
+    handleTypeComp("icon");
+  };
 
   return (
     <div className="col p-0 m-0">

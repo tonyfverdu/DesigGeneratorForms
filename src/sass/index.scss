@@ -63,9 +63,16 @@
 .graycolor200 {
   background-color: #e9ecef;
 }
+.text-graycolor200 {
+  color: #e9ecef;
+}
 
 .graycolor300 {
   background-color: #dee2e6;
+}
+
+.text-graycolor300 {
+  color: #dee2e6;
 }
 
 .graycolor400 {
@@ -146,6 +153,28 @@
 
 .colorBlueDunkel {
   color: rgba(2, 0, 114, 0.9);
+}
+
+.fs-06 {
+  font-size: 0.6rem;
+}
+.fs-07 {
+  font-size: 0.7rem;
+}
+.fs-08 {
+  font-size: 0.8rem;
+}
+.fs-09 {
+  font-size: 0.9rem;
+}
+.fs-10 {
+  font-size: 1.0rem;
+}
+.fs-11 {
+  font-size: 1.1rem;
+}
+.fs-12 {
+  font-size: 1.2rem;
 }
 
 *,

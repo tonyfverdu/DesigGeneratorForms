@@ -1,3 +1,6 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/jsx-key */
+/* eslint-disable react/react-in-jsx-scope */
 import { useState, createContext } from 'react'
 import RowIni from '../componets/TeilRight/RowIni.jsx'
 import currentDate from '../functions/currentDate.js'
@@ -317,6 +320,7 @@ function TheContext({ children }) {
     "title_Block": "Master Block",
     "label_Block": "MASTER BLOCK",
     "description_Block": "Master Block of the template form.",
+    "colorElement": "black",
 
     "columns": [
       masterRowCompsIni

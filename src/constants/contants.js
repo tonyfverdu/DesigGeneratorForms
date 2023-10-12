@@ -18,7 +18,7 @@ export const TITLES_RCM_LEFT = {
   SUBTITLE_OF_SECTION: "Form - Blocks- Components Variables Info",
 
   //  General Form Data
-  FORM_HEAD: "Form info: ",
+  FORM_HEAD: "Form: ",
   FORM_TITLE: "Title: ",
   FORM_ID_TITLE: "Code: ",
   FORM_TYPE: "Type: ",
@@ -30,7 +30,7 @@ export const TITLES_RCM_LEFT = {
 
 
   //  General Block Data
-  BLOCK_HEAD: "Block info: ",
+  BLOCK_HEAD: "Block: ",
   BLOCK_TITLE: "Block: ",
   BLOCK_ID_TITLE: "Code: ",
   BLOCK_LABEL: "Label: ",
@@ -40,7 +40,7 @@ export const TITLES_RCM_LEFT = {
 
 
   //  General Component Data
-  COMPONENT_HEAD: "Component info: ",
+  COMPONENT_HEAD: "Component: ",
   COMPONENT_TITLE: "Ask: ",
   COMPONENT_TYPE: "Type: ",
   COMPONENT_ID: "Id: ",
@@ -64,6 +64,7 @@ export const TITLES_RCM_LEFT = {
 }
 
 //  Type of Components - Elements of a Form
+export const TYPE_ELEMENTS2 = ["master", "label", "text", "number", "date", "phone", "email", "textArea", "select", "checkbox", "radioButtons", "icon"]
 export const TYPE_COMPONENTS = [
   {
     id_Component: 0,

@@ -4,21 +4,24 @@ import { BsTextareaT } from 'react-icons/bs';
 import '../../sass/componentSass/icons/IconButton.scss'
 
 
-function IconButtonTextArea() {
-  const theContext = useContext(MyContext)
+function IconButtonTextArea({ handleTypeComp }) {
+  const { setElement, setObjComponentShow } = useContext(MyContext);
 
   function handleButton() {
-    theContext.setElement("textArea")
-    theContext.setObjComponentShow({
-      ...theContext.objComponentShow, id_Element: "ID_textArea_001",
-      type: "textArea", placeholder: "Escriba un texto multilinea ...", size: 30,
+    setElement("areaText");
+
+    setObjComponentShow(prevState => ({
+      ...prevState,
+      id_Element: "ID_textArea_001",
+      type: "areaText",
+      placeholder: "Escriba un texto multilinea ...",
+      size: 30,
       dimensions: { width: 3, height: "2.4rem" },
       labelElement: "Componente Area Text: ",
       row: 2,
-      cols: 50,
-      valueComponent: theContext.areaText,
-      setComponent: theContext.setAreaText
-    })
+      cols: 50
+    }));
+    handleTypeComp("areaText");
   }
 
   return (

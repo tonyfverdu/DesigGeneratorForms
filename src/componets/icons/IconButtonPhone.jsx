@@ -1,22 +1,25 @@
-import {useContext} from 'react'
+import { useContext } from 'react'
 import { MyContext } from '../../context/TheContext'
 import { MdPhone } from 'react-icons/md';
 import '../../sass/componentSass/icons/IconButton.scss'
 
 
-function IconButtonPhone() {
-  const theContext = useContext(MyContext)
+function IconButtonPhone({ handleTypeComp }) {
+  const { setElement, setObjComponentShow } = useContext(MyContext);
 
   function handleButton() {
-    theContext.setElement("phone")
-    theContext.setObjComponentShow({
-      ...theContext.objComponentShow, id_Element: "ID_phone_001",
-      type: "phone", placeholder: "91-111-1111", size: 12,
+    setElement("phone");
+
+    setObjComponentShow(prevState => ({
+      ...prevState,
+      id_Element: "ID_phone_001",
+      type: "phone",
+      placeholder: "91-111-1111",
+      size: 12,
       dimensions: { width: 3, height: "2.4rem" },
       labelElement: "Componente Phone: ",
-      valueComponent: theContext.phone,
-      setComponent: theContext.setPhone
-    })
+    }));
+    handleTypeComp("phone");
   }
 
   return (

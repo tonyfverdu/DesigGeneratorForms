@@ -1,6 +1,10 @@
+import { useContext } from 'react';
+import { MyContext } from '../../../context/TheContext.jsx';
 import { TbZoomInAreaFilled } from "react-icons/tb";
 
-function FieldSelectColors({ title, value, tooRead, fontSize, arrayValues, action }) {
+function FieldSelectColors({ title, value, fontSize, arrayValues, action }) {
+  const theContext = useContext(MyContext);
+
   return (
     <>
       <span id="id_span_componets" className="ms-1 p-1 fw-bold"
@@ -9,7 +13,7 @@ function FieldSelectColors({ title, value, tooRead, fontSize, arrayValues, actio
       </span>
 
       {
-        tooRead ?
+        theContext.tooRead ?
           <span className="ms-0 p-1 fw-normal" style={{ fontSize: "0.6rem" }} >{value}</span>
           :
           <select id="id_select_color" size="1" required disabled={false}

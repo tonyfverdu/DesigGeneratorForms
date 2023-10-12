@@ -4,20 +4,25 @@ import { BsCalendarDate } from 'react-icons/bs';
 import '../../sass/componentSass/icons/IconButton.scss'
 
 
-function IconButtonDate() {
-  const theContext = useContext(MyContext)
+function IconButtonDate({ handleTypeComp }) {
+  const { setElement, setObjComponentShow } = useContext(MyContext);
 
   function handleButton() {
-    theContext.setElement("date")
-    theContext.setObjComponentShow({
-      ...theContext.objComponentShow, id_Element: "ID_date_001",
-      type: "date", placeholder: "01/01/2023", size: 20,
+    setElement("date");
+
+    setObjComponentShow(prevState => ({
+      ...prevState,
+      id_Element: "ID_date_001",
+      type: "date",
+      placeholder: "01/01/2023",
+      size: 20,
       dimensions: { width: 3, height: "2.4rem" },
       labelElement: "Componente Date: ",
-      valueComponent: theContext.date,
-      setComponent: theContext.setDate
-    })
+    }));
+    handleTypeComp("date");
   }
+
+
 
   return (
     <div className="col p-0 m-0">
