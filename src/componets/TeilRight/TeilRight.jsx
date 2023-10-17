@@ -1,21 +1,11 @@
-import { useEffect, useContext } from 'react';
-import { MyContext } from '../../context/TheContext.jsx';
 import HeaderTitleRight from './menuRight/HeaderTitleRight.jsx';
 import PrintFormTemplate from '../managementJSON/PrintFormTemplate';
 import ButtonSelectOptions from '../ButtonSelectOptions.jsx';
 import { TITLES_OF_APP } from '../../constants/contants.js';
 
-const TeilRight = ({ formSelectLocal, setFormSelectLocal, toggleFormLayout, setToggleFormLayout }) => {
-  const theContext = useContext(MyContext);
-
-  // useEffect(() => {
-  //   setFormSelectLocal(theContext.formObject);
-  //   // theContext.setFormObject(theContext.formObject);
-  // }, [theContext.formObject]);
-
+const TeilRight = ({ toggleFormLayout, setToggleFormLayout }) => {
   return (
     <section className="contColumRight w-100 container-fluid mx-4 mt-1 p-0 d-flex flex-column justify-content-center align-items-center graycolor100">
-      {/* Form Processing Menu */}
       <div className="row container-fluid contTopRight">
         <div className="col">
           <HeaderTitleRight
@@ -28,18 +18,17 @@ const TeilRight = ({ formSelectLocal, setFormSelectLocal, toggleFormLayout, setT
         </div>
       </div>
 
-      {/*   *************   RIGHT:  FORM LAYOUT   ********************************************************************* */}
       <form className="container-fluid rounded-0 my-2 bg-light">
         {toggleFormLayout && (
           <>
             <PrintFormTemplate
-              formSelectLocal={formSelectLocal}
-              setFormSelectLocal={setFormSelectLocal}
-            // formInput={formSelectLocal}
-            // setFormInput={theContext.setFormObject}
+            // formSelectLocal={theContext.formObject}
+            // setFormSelectLocal={theContext.setFormObject}
+
+            // blockSelect={blockSelect} 
+            // setBlockSelect={setBlockSelect}
             />
 
-            {/* 2.-  Group buttons of "Delete", "Save" and "Submit" dates of Form, Blocks and Componets */}
             <div className="row container d-flex justify-content-center mb-0 me-2">
               <ButtonSelectOptions
                 typeButton="button"
@@ -57,7 +46,67 @@ const TeilRight = ({ formSelectLocal, setFormSelectLocal, toggleFormLayout, setT
   );
 };
 
+
 export default TeilRight;
+
+// const theContext = useContext(MyContext);
+// const [formLocalSelect, setFormLocalSelect] = useState({});
+
+// useEffect(() => {
+//   setFormLocalSelect(formSelectLocal);
+// }, [formSelectLocal]);
+
+// useEffect(() => {
+//   theContext.setFormObject(formLocalSelect);
+// }, [formLocalSelect])
+
+// useEffect(() => {
+//   setFormLocalSelect(theContext.formObject);
+//   // theContext.setFormObject(formSelectLocal);
+//   // setBlockSelectIndex(0);
+//   // setComponentSelectIndex(0);
+// }, [theContext.formObject]);
+
+/*
+<section className="contColumRight w-100 container-fluid mx-4 mt-1 p-0 d-flex flex-column justify-content-center align-items-center graycolor100">
+<div className="row container-fluid contTopRight">
+<div className="col">
+          <HeaderTitleRight
+            titleOfDesigner={TITLES_OF_APP.TITLE_TYPE_DESIGNER}
+            titleSelectState={TITLES_OF_APP.TITLE_SELECT_STATE}
+            titleCreate={TITLES_OF_APP.TITLE_DESIGNER_FBC}
+            toogleFormLayout={toggleFormLayout}
+            setToogleFormLayout={setToggleFormLayout}
+          />
+        </div>
+</div>
+<form className="container-fluid rounded-0 my-2 bg-light">
+        {toggleFormLayout && (
+          <>
+            <PrintFormTemplate
+              formSelectLocal={formSelectLocal}
+              setFormSelectLocal={setFormSelectLocal}
+            // formInput={formSelectLocal}
+            // setFormInput={theContext.setFormObject}
+            />
+
+            {/* 2.-  Group buttons of "Delete", "Save" and "Submit" dates of Form, Blocks and Componets * /}
+            <div className="row container d-flex justify-content-center mb-0 me-2">
+              <ButtonSelectOptions
+                typeButton="button"
+                role="group"
+                arialLabelA="Toolbar with button groups right"
+                arialLabelB="Second group"
+                options={["Delete", "Save", "Submit"]}
+                colors={["btn-outline-danger", "btn-outline-warning", " btn-outline-success"]}
+              />
+            </div>
+          </>
+        )}
+</form>
+</section>
+
+*/
 
 /*
     This code is a React functional component called "TeilRight". 

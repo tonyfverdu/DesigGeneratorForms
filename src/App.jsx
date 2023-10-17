@@ -20,16 +20,26 @@ import './sass/App.scss'
  * @returns {JSX.Element} The rendered App component.
  */
 function App() {
-  const [formSelectLocal, setFormSelectLocal] = useState(formJSON_prueba_01);
+  const theContext = useContext(MyContext);
+
+  const [formSelectLocal, setFormSelectLocal] = useState(theContext.formObject);
+  // const [blockSelect, setBlockSelect] = useState({});
+
   const [toggleHeader, setToggleHeader] = useState(true);
   const [toggleFormLayout, setToggleFormLayout] = useState(false);
-  const theContext = useContext(MyContext);
+  
 
   const toggleHeaderHandler = () => setToggleHeader(!toggleHeader);
 
   useEffect(() => {
-    theContext.setFormObject(formSelectLocal);
-  }, [formSelectLocal]);
+    setFormSelectLocal(theContext.formObject);
+    //theContext.setBlockSelectObject(formSelectLocal.blocks[0]);  //  <<==  Nuevo !!
+  }, [theContext.formObject]);
+
+  // useEffect(() => {
+  //   theContext.setFormObject(formSelectLocal);
+  //   theContext.setBlockSelectObject(formSelectLocal.blocks[0]);  //  <<==  Nuevo !!
+  // }, [formSelectLocal]);
 
   return (
     <div className="contCentral">
@@ -37,6 +47,7 @@ function App() {
 
       {/* Header component */}
       <HeaderFigure toggleHeader={toggleHeader} />
+
       {/* Navigation component */}
       <Nav titleSite={TITLES_OF_APP.TITLE_OF_SITE} />
 
@@ -44,17 +55,29 @@ function App() {
         {/* Links Teil: Processing Read - Create - Modify Form */}
         <OffCanvasMenuLeft formSelectLocal={formSelectLocal} >
           <TeilLeft
-            formSelectLocal={formSelectLocal}
+            formSelectLocal={theContext.formObject}
+            setFormSelectLocal={theContext.formObject}
+
+          // blockSelect={blockSelect}
+          // setBlockSelect={setBlockSelect}
           />
         </OffCanvasMenuLeft>
 
         {/* Recths Teil: Processing Form layout and components */}
         <div className='container-fluid me-1 d-flex flex-column justify-content-center align-items-center'>
           <TeilRight
-            formSelectLocal={formSelectLocal}
-            setFormSelectLocal={setFormSelectLocal}
+            // formSelectLocal={theContext.formObject}
+            // setFormSelectLocal={theContext.setFormObject}
+
+            // formSelectLocal={theContext.formObject}
+            // setFormSelectLocal={theContext.formObject}
+
+            // blockSelect={blockSelect}
+            // setBlockSelect={setBlockSelect}
+
             toggleFormLayout={toggleFormLayout}
-            setToggleFormLayout={setToggleFormLayout} />
+            setToggleFormLayout={setToggleFormLayout}
+          />
         </div>
 
       </main>

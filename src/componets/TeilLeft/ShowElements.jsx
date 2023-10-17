@@ -16,13 +16,14 @@ import RadioButtons_PB from '../elementsForms/RadioButtons_PB.jsx'
 import IconoElem_PB from '../elementsForms/IconoElem_PB.jsx'
 
 
-function ShowElements({ valueComp }) {
+function ShowElements({ type_Element, valueComp }) {
+  console.log({ type_Element, valueComp });
   const theContext = useContext(MyContext);
   const [elementOut, setElementOut] = useState(null);
 
   useEffect(() => {
     selectElementShow(valueComp);
-  }, []);
+  }, [valueComp]);
 
   function selectElementShow(parComponent) {
     if (parComponent) {
@@ -35,6 +36,9 @@ function ShowElements({ valueComp }) {
         label: () => (
           <LabelElem_PB
             id_Element={parComponent.id_Element}
+            title_Element={parComponent.title_Element}
+            type_Element={type_Element}
+            label_Element={parComponent.label_Element}
             orderInBlock={parComponent.orderInBlock}
             required={parComponent.required}
             disabled={parComponent.disabled}
@@ -46,6 +50,8 @@ function ShowElements({ valueComp }) {
             borderElement={parComponent.borderElement}
             colorElement={parComponent.colorElement}
             fontSizeElement={parComponent.fontSizeElement}
+
+            // comp={parComponent}
           />
         ),
         text: () => (
@@ -235,7 +241,7 @@ function ShowElements({ valueComp }) {
           idHeading="headingShowComp"
           dataTarget="#collapseShowComp"
           ariaControl="collapseShowComp"
-          fontSize="0.65rem"
+          fontSize="0.64rem"
           title="Show Component: "
           value={valueComp.type_Element}
         />

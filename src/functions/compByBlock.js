@@ -7,6 +7,7 @@
  * @returns {Array} Returns an array of components.
  */
 export default function compByBlock(parBlock) {
+  console.log("parBlock:  ", parBlock);
   const { columns } = parBlock;
   if (!Array.isArray(columns)) {
     throw new Error('Error: parBlock.columns in the function "compByBlock" must be an array!!');

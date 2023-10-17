@@ -4,32 +4,33 @@ import '../../sass/componentSass/TeilRight/Row.scss'
 
 
 function RowBlock({ form, count }) {
-  const theContext = useContext(MyContext)
-  const [toogleNewRowBlock, setToogleNewRowBlock] = useState(true)
-  const [contBlocks, setContBlocks] = useState(count)
-  const elementRowRef = useRef(null)
+  const theContext = useContext(MyContext);
+
+  const [toogleNewRowBlock, setToogleNewRowBlock] = useState(true);
+  const [contBlocks, setContBlocks] = useState(0);
+  const elementRowRef = useRef(null);
 
   useEffect(() => {
     setContBlocks(count)
-  }, [])
+  }, [count])
 
-  function addNewBlock() {
+  const addNewBlock = () => {
     theContext.setArrayOfBlocks(theContext.arrayOfBlocks.splice(count, 0, theContext.masterBlock))
     theContext.setFormObject({ ...form, blocks: theContext.arrayOfBlocks })
 
-    setContBlocks(contBlocks => contBlocks + 1)
+    setContBlocks(contBlocks => contBlocks + 1);
 
-    setToogleNewRowBlock(!toogleNewRowBlock)
+    setToogleNewRowBlock((prevValue) => !prevValue);
   }
 
   function deleteBlock() {
-    theContext.setArrayOfBlocks(theContext.arrayOfBlocks.splice(count, 1))
-    theContext.setFormObject({ ...form, blocks: theContext.arrayOfBlocks })
+    theContext.setArrayOfBlocks(theContext.arrayOfBlocks.splice(count, 1, theContext.masterBlock));
+    theContext.setFormObject({ ...form, blocks: theContext.arrayOfBlocks });
 
-    setContBlocks(contBlocks => contBlocks - 1)
-    elementRowRef.current.remove()
+    setContBlocks(contBlocks => contBlocks - 1);
+    elementRowRef.current.remove();
 
-    setToogleNewRowBlock(!toogleNewRowBlock)
+    setToogleNewRowBlock((prevValue) => !prevValue);
   }
 
   return (
@@ -53,7 +54,8 @@ function RowBlock({ form, count }) {
         </button>
       </div>
     </div>
-  )
+  );
 }
 
 export default RowBlock;
+

@@ -1,28 +1,24 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useCallback } from 'react';
 
 function StatusOption({ fontSizeText, option, widthBand }) {
   const textSpanStyle = {
     fontSize: fontSizeText,
-    width: widthBand,
-    borderRadius: '16px',
+    width: widthBand
   };
 
   const getOptionClassName = useCallback(() => {
-    if (option === undefined) {
-      return "p-1 px-2 m-0 bg-primary rounded";
-    } else {
-      return option === "Read" ? "p-1 px-2 m-0 bg-success rounded" : "p-1 px-2 m-0 bg-danger rounded";
-    }
+    const optionClassName = option === "Read" ? "p-2 bg-success rounded-circle" : "p-2 bg-danger rounded-circle";
+    return optionClassName;
   }, [option]);
 
   const optionClassName = getOptionClassName();
 
   return (
-    <p className={optionClassName}>
-      <span className="mx-2 p-1 text-center text-white fw-bold" style={textSpanStyle}>
+    <span className={optionClassName}>
+      <span className="text-center text-white fw-bold" style={textSpanStyle}>
         {option}
       </span>
-    </p>
+    </span>
   );
 }
 

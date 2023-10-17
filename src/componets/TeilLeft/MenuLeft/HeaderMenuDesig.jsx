@@ -4,11 +4,11 @@ function HeaderMenuDesig() {
   const { TITLE_OF_SECTION, SUBTITLE_OF_SECTION } = TITLES_RCM_LEFT;
 
   return (
-    <header className="d-flex flex-column justify-content-center align-items-center mx-auto py-1 mt-1 mb-2">
-      <h6 className="text-white h6 fw-bolder m-0 p-0">
+    <header className="d-flex flex-column justify-content-center align-items-center mx-auto p-0 m-0 mt-1">
+      <h6 className="text-white h6 p-0 m-0 fw-bolder">
         {TITLE_OF_SECTION}
       </h6>
-      <h6 className={"fs-06 fw-bold text-graycolor200 m-0 p-0 py-1"}>
+      <h6 className={"fw-semibold text-graycolor200 p-0"} style={{ fontSize: "0.55rem", margin: '0.2rem' }}>
         {SUBTITLE_OF_SECTION}
       </h6>
     </header>

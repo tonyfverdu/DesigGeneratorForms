@@ -10,23 +10,26 @@ import { GROUP_BUTTONS_SELECT_LEFT } from '../../constants/contants.js';
  * @param {Object} formSelectLocal - The form select local object.
  * @return {JSX.Element} The rendered TeilLeft component.
  */
-const TeilLeft = ({ formSelectLocal }) => {
-  // Render the menu buttons on the left side
-  const menuButtonsLeft = (
-    <div className="col mx-auto" style={{ padding: "0.05rem" }}>
-      <MenuButtonsLeft {...GROUP_BUTTONS_SELECT_LEFT} />
-    </div>
-  );
 
-  // Render the information of the element
-  const infoOfElement = (
+//  blockSelect, setBlockSelect
+const TeilLeft = ({ formSelectLocal, setFormSelectLocal }) => (
+  <section className="container mx-auto d-flex flex-column justify-content-center align-items-center gap-0 graycolor100">
+    <div className="row container-fluid d-flex flex-row justify-content-center align-items-center m-1"
+      style={{ padding: "0.1rem" }}>
+      <div className="col m-0 mx-auto" style={{ padding: "0.05rem" }}>
+        <MenuButtonsLeft {...GROUP_BUTTONS_SELECT_LEFT} />
+      </div>
+    </div>
+
     <div className="row d-flex justify-content-center align-items-center" style={{ padding: "0.05rem" }}>
-      <InfoOfElement formInput={formSelectLocal} />
-    </div>
-  );
+      <InfoOfElement
+        formSelectLocal={formSelectLocal}
+        setFormSelectLocal={setFormSelectLocal}
 
-  // Render the button select options
-  const buttonSelectOptions = (
+        // blockSelect={blockSelect}
+        // setBlockSelect={setBlockSelect}
+      />
+    </div>
     <div className="row container-fluid d-flex justify-content-end align-items-center mb-1">
       <ButtonSelectOptions
         typeButton="button"
@@ -37,16 +40,8 @@ const TeilLeft = ({ formSelectLocal }) => {
         colors={["btn-outline-danger", "btn-outline-warning", " btn-outline-success"]}
       />
     </div>
-  );
-
-  return (
-    <section className="container mx-auto d-flex flex-column justify-content-center align-items-center gap-0 graycolor100">
-      {menuButtonsLeft}
-      {infoOfElement}
-      {buttonSelectOptions}
-    </section>
-  );
-};
+  </section>
+);
 
 export default TeilLeft;
 

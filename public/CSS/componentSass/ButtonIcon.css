@@ -1,0 +1,60 @@
+.buttonIcon {
+  display: block;
+  margin: 0% auto;
+  padding: 4% 9%;
+  color: rgba(2, 2, 101, 0.9);
+  text-align: center;
+  text-decoration: none;
+  text-shadow: -0.6rem -0.4rem 0.28rem rgb(101, 101, 102);
+  font-weight: 900;
+  border-radius: 6px;
+  background: linear-gradient(315deg, #f0f0f0, #cacaca);
+  box-shadow: -3px -3px 7px #949494, 2px 2px 4px #ffffff;
+  padding: 4% 8%;
+  margin: 1% auto;
+  transition: all 0.35s ease;
+  cursor: pointer;
+}
+.buttonIcon:hover {
+  background: linear-gradient(315deg, #8f8f8f, #414141);
+  box-shadow: -2px -2px 5px #545454, 1px 1px 4px #bababa;
+  font-weight: bolder;
+  color: rgb(227, 154, 19);
+  transform: scale(0.92);
+}
+.buttonIcon > .modalPopup {
+  font-size: 12px;
+  margin: 5% 0%;
+}
+.buttonIcon > .modalPopup > .headerPopup {
+  width: 100%;
+  border-bottom: 1px solid gray;
+  font-size: 18px;
+  text-align: center;
+  padding: 5px;
+}
+.buttonIcon > .modalPopup > .contentPopup {
+  width: 100%;
+  padding: 10px 5px;
+}
+.buttonIcon > .modalPopup > .actionsPopup {
+  width: 100%;
+  padding: 10px 5px;
+  margin: auto;
+  text-align: center;
+}
+.buttonIcon > .modalPopup > .closePopup {
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  padding: 2px 5px;
+  line-height: 20px;
+  right: -10px;
+  top: -10px;
+  font-size: 24px;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #cfcece;
+}
+
+/*# sourceMappingURL=ButtonIcon.css.map */

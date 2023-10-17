@@ -1,5 +1,60 @@
+import { useContext } from "react";
+import { MyContext } from "../../../context/TheContext";
 
-function FieldSelectAdd({ title, type, value, fontSize, fontSizeButton, tooRead, action, actionAddButton, actionClickAdd }) {
+function FieldSelectAdd({ title, type, value, fontSize, fontSizeButton, action, actionAddButton, actionClickAdd }) {
+  const theContext = useContext(MyContext);
+
+  const renderOptions = (parValue) => {
+    if (!Array.isArray(parValue)) {
+      return null;
+    }
+
+    if (type === 'blocks') {
+      return value.map(elem => (
+        <option key={elem.id_Block} value={elem.title_Block} className="fw-normal text-dark">
+          {elem.title_Block}
+        </option>
+      ));
+    } else if (type === 'rows') {
+      return value.map(elem => (
+        <option key={elem.orderColInBlock} value={`Row: ${elem.orderColInBlock}`} className="fw-normal text-dark">
+          {`Row: ${elem.orderColInBlock}`}
+        </option>
+      ));
+    } else if (type === 'components') {
+      return value.map(elem => (
+        <option key={elem.id_Element} value={elem.title_Element} className="fw-normal text-dark">
+          {elem.title_Element}
+        </option>
+      ));
+    } else {
+      return null;
+    }
+  };
+
+  const renderBlocks = (parValue) => {
+    if (!Array.isArray(parValue)) {
+      return null;
+    }
+    return value.map(block => <option key={block.id_Block} value={block.title_Block} className="fw-normal text-dark">{block.title_Block}</option>)
+  }
+
+  const selectTypePlaceholder = (parType) => {
+    if (!parType) {
+      return null;
+    } else {
+      if(parType === 'blocks') {
+        return 'Add a block...';
+      } else if (parType === 'rows') {
+        return 'Add a row...';
+      } else if (parType === 'components') {
+        return 'Add a component...';
+      } else {
+        return null;
+      }
+    }
+  }
+
   return (
     <>
       <span id="id_select_blocks" className="ms-1 p-1 fw-bold"
@@ -7,7 +62,7 @@ function FieldSelectAdd({ title, type, value, fontSize, fontSizeButton, tooRead,
         {title}
       </span>
       {
-        tooRead ?
+        theContext.tooRead ?
           <select id="id_select_blocks" size="1" required disabled={false}
             className="contSelect col-11 rounded-0 border border-secondary bg-white fw-bold p-1 my-1 mx-auto text-danger"
             onChange={action}
@@ -17,31 +72,14 @@ function FieldSelectAdd({ title, type, value, fontSize, fontSizeButton, tooRead,
               style={{ fontSize: fontSize }}>
               Select
             </option>
-            {
-              Array.isArray(value) &&
-
-                type === 'blocks' ? value.map(elem => <option key={elem.id_Block} value={elem.title_Block} className="fw-normal text-dark">
-                  {elem.title_Block}
-                </option>)
-                :
-                type === 'rows' ? value.map(elem => <option key={elem.orderColInBlock} value={`Row: ${elem.orderColInBlock}`} className="fw-normal text-dark">
-                  {`Row: ${elem.orderColInBlock}`}
-                </option>)
-                  :
-                  // type === 'components' ? value.map(elem => <option key={elem.id_Element} value={elem.title_Element} className="fw-normal text-dark">
-                  type === 'components' ? value.map(elem => <option key={elem.id_Element} value={elem.title_Element} className="fw-normal text-dark">
-                    {elem.title_Element}
-                  </option>)
-                    :
-                    null
-            }
+            {renderOptions(value)}
           </select>
           :
           <div className="container d-flex flex-column justify-content-center align-items-start m-0 p-0" >
             <div className="row container-fluid d-flex justify-content-between align-items-start m-0 p-0 gap-1" >
               <div className="col-8 mx-auto p-0">
                 <input type="text" className="contInputText form-control ms-1 rounded-0 text-start" autoComplete="off" required={true}
-                  placeholder={"Add block ..."} size={15}
+                  placeholder={selectTypePlaceholder(type)} size={15}
                   onChange={actionAddButton} />
               </div>
 
@@ -65,16 +103,13 @@ function FieldSelectAdd({ title, type, value, fontSize, fontSizeButton, tooRead,
                   style={{ fontSize: "0.65rem" }}>
                   Select
                 </option>
-                {
-                  Array.isArray(value) &&
-                  value.map(block => <option key={block.id_Block} value={block.title_Block} className="fw-normal text-dark">{block.title_Block}</option>)
-                }
+                {renderBlocks(value)}
               </select>
             </div>
           </div>
       }
     </>
-  )
+  );
 }
 
 export default FieldSelectAdd;

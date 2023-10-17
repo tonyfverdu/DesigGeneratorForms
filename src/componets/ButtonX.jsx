@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { BsXSquareFill } from 'react-icons/bs';
 
 /**

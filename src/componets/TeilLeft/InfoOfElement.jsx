@@ -6,29 +6,50 @@ import DataBlockMenu from './MenuLeft/DataBlockMenu.jsx';
 import ShowElements from './ShowElements.jsx';
 import IconsElem from '../icons/IconsElem.jsx';
 import DataCompMenu from './MenuLeft/DataCompMenu.jsx';
-import '../../sass/componentSass/TeilLeft/InfoOfElement.scss'
+import '../../sass/componentSass/TeilLeft/InfoOfElement.scss';
 
-function InfoOfElement({ formInput }) {
+//  blockSelect, setBlockSelect
+
+function InfoOfElement({ formSelectLocal, setFormSelectLocal }) {
   const theContext = useContext(MyContext);
 
-  const [formLocalSelect, setFormLocalSelect] = useState(formInput);
+  const [formMenuForm, setFormMenuForm] = useState({});
   const [blockSelectIndex, setBlockSelectIndex] = useState(0);
-  const [blockSelect, setBlockSelect] = useState(formLocalSelect.blocks[blockSelectIndex]);
-  const [rowSelect, setRowSelect] = useState(blockSelect.columns[0]);
+  // const [blockSelect, setBlockSelect] = useState(formSelectLocal.blocks[0]);
+  // const [rowSelect, setRowSelect] = useState(formSelectLocal.blocks[0].columns[0]);
+  console.log("aqui viene")
+  console.log(formSelectLocal.blocks[0])
+  const [blockSelect, setBlockSelect] = useState(formSelectLocal.blocks[0]);
+  const [rowSelect, setRowSelect] = useState(formSelectLocal.blocks[0].columns[0]);
   const [componentSelectIndex, setComponentSelectIndex] = useState(0);
 
-  const [arrayColumnsSelect, setArrayColumnsSelect] = useState(blockSelect.columns)
-  const [arrayCompsSelect, setArrayCompsSelect] = useState(arrayColumnsSelect.map(col => col.components.map(comp => comp)))
-  const [componentSelect, setComponentSelect] = useState(arrayCompsSelect[0][0])  //  <<===   User-selected Component
+  const [arrayColumnsSelect, setArrayColumnsSelect] = useState([]);
+  const [arrayCompsSelect, setArrayCompsSelect] = useState([]);
+  const [componentSelect, setComponentSelect] = useState({})  //  <<===   User-selected Component
 
   useEffect(() => {
-    setFormLocalSelect(formInput);
+    setFormMenuForm(formSelectLocal);
+
     setBlockSelectIndex(0);
+    setBlockSelect(formSelectLocal.blocks[blockSelectIndex]);
+
+    theContext.setBlockSelectObject(formSelectLocal.blocks[blockSelectIndex]);  //  <<==  New !!
+
+    setRowSelect(blockSelect.columns[0]);
     setComponentSelectIndex(0);
-  }, [formInput]);
+    setArrayColumnsSelect(blockSelect.columns);
+    setArrayCompsSelect(arrayColumnsSelect.map(col => col.components.map(comp => comp)));
+    setComponentSelect(blockSelect.columns[0].components[0]);
+  }, [formSelectLocal]);
+
+  // useEffect(() => {
+  //   theContext.setFormObject(formMenuForm);
+  //   setBlockSelectIndex(0);
+  //   setComponentSelectIndex(0);
+  // }, [formMenuForm]);
 
   //  Change BlockSelect
-  const [indexBlockSelect, setIndexBlockSelect] = useState(0)
+  const [indexBlockSelect, setIndexBlockSelect] = useState(0);
   const findIndexBlockSelect = (parArrayBlocks, parBlockSelect) => {
     if (!Array.isArray(parArrayBlocks)) {
       console.error('Error: The argument of the function "findIndexBlockSelect" must be an array!!');
@@ -44,22 +65,22 @@ function InfoOfElement({ formInput }) {
     return indexBlockSelect;
   };
 
-  useEffect(() => {
-    const indexBlockSelect = findIndexBlockSelect(formInput.blocks, formInput.blocks[blockSelectIndex]);
-    if (indexBlockSelect !== null) {
-      setComponentSelectIndex(indexBlockSelect);
-    }
-  }, [blockSelectIndex]);
+  // useEffect(() => {
+  //   const indexBlockSelect = findIndexBlockSelect(formMenuForm.blocks, formMenuForm.blocks[blockSelectIndex]);
+  //   if (indexBlockSelect !== null) {
+  //     setComponentSelectIndex(indexBlockSelect);
+  //   }
+  // }, [blockSelectIndex]);
 
   ////////////////////////////////////////////////  GESTION DE VARIABLES DE ESTADO LOCALES DEL FORMULARIO   ///////////////////////////
-  const [valueArrays, setValueArrays] = useState(formInput.blocks);
+  const [valueArrays, setValueArrays] = useState(formMenuForm.blocks);
   const [valueBlock, setValueBlock] = useState(blockSelect);
   const [valueComp, setValueComp] = useState(componentSelect);
 
-  useEffect(() => { 
+  useEffect(() => {
     setValueBlock(blockSelect);
     setValueComp(componentSelect);
-  }, [valueArrays, valueBlock, valueComp]);
+  }, [valueArrays, valueBlock, componentSelect]);
 
 
   return (
@@ -70,17 +91,17 @@ function InfoOfElement({ formInput }) {
 
       {/*   ****    FORM DATA SHOW    **** */}
       <DataFormMenu
-        formSelect={formLocalSelect}
-        setFormSelect={setFormLocalSelect}
-        blockSelect={blockSelect}
+        formSelectLocal={theContext.formObject}
+        setFormSelectLocal={theContext.setFormObject}
+        // blockSelect={blockSelect}
         setBlockSelect={setBlockSelect}
-        componentSelect={formLocalSelect.blocks[blockSelectIndex].columns[componentSelectIndex].components[componentSelectIndex]}
-        setComponentSelectIndex={setComponentSelectIndex}
+      // componentSelect={formSelectLocal.blocks[blockSelectIndex].columns[componentSelectIndex].components[componentSelectIndex]}
+      // setComponentSelectIndex={setComponentSelectIndex}
       />
 
       {/* ****      BLOCK DATA SHOW   **** */}
       <DataBlockMenu
-        setFormSelect={setFormLocalSelect}
+        setFormSelect={setFormMenuForm}
 
         arrayBlocks={valueArrays}
         setArrayBlocks={setValueArrays}
@@ -138,6 +159,31 @@ function InfoOfElement({ formInput }) {
 }
 
 export default InfoOfElement;
+
+/*
+
+
+
+      {/* ****     COMPONENT DATA SHOW   **** * /}
+      <DataCompMenu
+        // formSelect={formLocalSelect}
+        // setFormSelect={setFormLocalSelect}
+
+        // arrayBlocks={valueArrays}
+        // setArrayBlocks={setValueArrays}
+
+        // blockSelect={blockSelect}
+        // setBlockSelect={setBlockSelect}
+
+        // valueArrays={valueArrays}
+        // setValueArrays={setValueArrays}
+        // valueBlock={valueBlock}
+        // setValueBlock={setValueBlock}
+
+        valueComp={valueComp}
+        setValueComp={setValueComp}
+      />
+*/
 
 
 

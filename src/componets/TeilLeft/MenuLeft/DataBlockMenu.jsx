@@ -8,6 +8,7 @@ import FieldSelectAdd from './FieldSelectAdd.jsx';
 import { TITLES_RCM_LEFT } from '../../../constants/contants.js';
 import compByBlock from '../../../functions/compByBlock.js';
 
+
 function DataBlockMenu({ setFormSelect, setArrayBlocks, blockSelect, setBlockSelect, rowSelect, setRowSelect,
   valueArrays, setValueArrays, valueComp, setValueComp }) {
   const theContext = useContext(MyContext);
@@ -30,32 +31,32 @@ function DataBlockMenu({ setFormSelect, setArrayBlocks, blockSelect, setBlockSel
     const newArrayComp = compByBlock(blockSelect);
     setArrayOfComponents(newArrayComp);
     setRowSelect(blockSelect.columns[0])
-    setCompSelectObj(rowSelect.components[0]);
-  }, [blockSelect, rowSelect, valueComp]);
+    setCompSelectObj(blockSelect.columns[0].components[0]);
+  }, [blockSelect]);
 
-  useEffect(() => {
-    if (theContext.tooRead) {
-      const newArray = valueArrays.map(value => {
-        if (value.id_Block === blockSelect.id_Block) {
-          return {
-            ...value,
-            title_Block: parChangeBlock === "title_Block" ? blockSelect.title_Block : value.title_Block,
-            id_Block: parChangeBlock === "id_Block" ? blockSelect.id_Block : value.id_Block,
-            label_Block: parChangeBlock === "label_Block" ? blockSelect.label_Block : value.label_Block,
-            description_Block: parChangeBlock === "description_Block" ? blockSelect.description_Block : value.description_Block,
-            ordenDisplay_Block: parChangeBlock === "ordenDisplay_Block" ? blockSelect.ordenDisplay_Block : value.ordenDisplay_Block,
-            components: parChangeBlock === "components_Block" ? blockSelect.columns : value.components
-          };
-        }
-        return value;
-      });
+  // useEffect(() => {
+  //   if (theContext.tooRead) {
+  //     const newArray = valueArrays.map(value => {
+  //       if (value.id_Block === blockSelect.id_Block) {
+  //         return {
+  //           ...value,
+  //           title_Block: parChangeBlock === "title_Block" ? blockSelect.title_Block : value.title_Block,
+  //           id_Block: parChangeBlock === "id_Block" ? blockSelect.id_Block : value.id_Block,
+  //           label_Block: parChangeBlock === "label_Block" ? blockSelect.label_Block : value.label_Block,
+  //           description_Block: parChangeBlock === "description_Block" ? blockSelect.description_Block : value.description_Block,
+  //           ordenDisplay_Block: parChangeBlock === "ordenDisplay_Block" ? blockSelect.ordenDisplay_Block : value.ordenDisplay_Block,
+  //           components: parChangeBlock === "components_Block" ? blockSelect.columns : value.components
+  //         };
+  //       }
+  //       return value;
+  //     });
 
-      setValueArrays(newArray);
-      setArrayBlocks(newArray);
-      setFormSelect(prevFormSelect => ({ ...prevFormSelect, blocks: newArray }));
-      cambioArray();
-    }
-  }, [theContext.tooRead, parChangeBlock]);
+  //     setValueArrays(newArray);
+  //     setArrayBlocks(newArray);
+  //     setFormSelect(prevFormSelect => ({ ...prevFormSelect, blocks: newArray }));
+  //     cambioArray();
+  //   }
+  // }, [theContext.tooRead, parChangeBlock]);
 
   const handleComponentSelect = useCallback((ev) => {
     ev.preventDefault();
@@ -65,6 +66,8 @@ function DataBlockMenu({ setFormSelect, setArrayBlocks, blockSelect, setBlockSel
     if (selectedComponent) {
       setParChangeBlock("components_Block");
       setValueComp(selectedComponent);
+    } else {
+      throw new Error('Error: There is not the elements in the array of the function "handleComponentSelect"');
     }
   }, [arrayComponents]);
 
@@ -106,7 +109,7 @@ function DataBlockMenu({ setFormSelect, setArrayBlocks, blockSelect, setBlockSel
     // });
   }, [parChangeBlock, blockSelect, valueArrays, setFormSelect, setArrayBlocks]);
 
-  // Move static elements outside the component's return statement => Define static JSX elements outside the return statement
+  //  Move static elements outside the component's return statement => Define static JSX elements outside the return statement
   const fieldText1 = (
     <FieldText
       title={TITLES_RCM_LEFT.BLOCK_TITLE}
@@ -194,7 +197,6 @@ function DataBlockMenu({ setFormSelect, setArrayBlocks, blockSelect, setBlockSel
                   value={blockSelect.columns}
                   fontSize="0.6rem"
                   fontSizeButton="0.64rem"
-                  tooRead={theContext.tooRead}
                   action={handleRowSelect}
                 />
               </div>
@@ -208,7 +210,6 @@ function DataBlockMenu({ setFormSelect, setArrayBlocks, blockSelect, setBlockSel
                   value={rowSelect.components}
                   fontSize="0.6rem"
                   fontSizeButton="0.64rem"
-                  tooRead={theContext.tooRead}
                   action={handleComponentSelect}
                 />
               </div>
@@ -222,6 +223,11 @@ function DataBlockMenu({ setFormSelect, setArrayBlocks, blockSelect, setBlockSel
     </div>
   );
 }
+
+  //  IMPORTANT !!
+  useEffect(() => {
+    theContext.setFormObject(formSelectLocal);
+  }, [formSelectLocal]);
 
 export default DataBlockMenu;
 

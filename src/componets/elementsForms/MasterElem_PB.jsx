@@ -15,14 +15,14 @@ function MasterElem_PB({ comp }) {
   const [toogleActiv, setToogleActiv] = useState(false);
   const refElement = useRef(null);
 
-  const handleBtnMaster = useCallback(() => {
+  const handleBtnChangeActiv = useCallback(() => {
     setToogleActiv((prevState) => !prevState);
   }, []);
 
   return (
     <div
       className="container-fluid d-flex flex-row justify-content-center align-items-center m-0 p-0 graycolor300"
-      onClick={handleBtnMaster}
+      onClick={handleBtnChangeActiv}
     >
       {toogleActiv ? (
         <ListDataElement TitleList="Component Data" fontSize="0.62rem" arrayOfLines={arrayOfList} />
@@ -48,5 +48,7 @@ function MasterElem_PB({ comp }) {
 }
 
 export default MasterElem_PB;
+
+
 
 

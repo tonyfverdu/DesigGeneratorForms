@@ -3,7 +3,9 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { useState, createContext } from 'react'
 import RowIni from '../componets/TeilRight/RowIni.jsx'
-import currentDate from '../functions/currentDate.js'
+import currentDate from '../functions/currentDate.js';
+
+import formJSON_prueba_01 from '../Data/JSONFormPrueba_01.js';
 
 export const MyContext = createContext(null)
 
@@ -15,8 +17,10 @@ export const MyContext = createContext(null)
 function TheContext({ children }) {
 
   //    1.-   MANAGEMENT OF FORM OBJECT - theContext.formObject   ******************************************************************
-  const [formObject, setFormObject] = useState({})
-  const [nameOfFormObject, setNameOfFormObject] = useState("")
+  const [formObject, setFormObject] = useState(formJSON_prueba_01);
+  const [nameOfFormObject, setNameOfFormObject] = useState("");
+
+  const [blockSelectObject, setBlockSelectObject] = useState({})
 
   const [JSONEingabenForm, setJSONEingabenForm] = useState("")   //  <== Eingaben ( vor String JSON zur JSON-Formulardaten)
   const [JSONAusgabenForm, setJSONAusgabenForm] = useState("")   //  <== Ausgaben (vor JSON-Formulardaten zur String JSON)
@@ -355,6 +359,8 @@ function TheContext({ children }) {
     tooRead, setTooRead,
     formObject, setFormObject,
     nameOfFormObject, setNameOfFormObject,
+
+    blockSelectObject, setBlockSelectObject,
 
     toogleReadLeft, setToogleReadLeft, toogleCreateLeft, setToogleCreateLeft, toogleModifyLeft, setToogleModifyLeft,
     optionState, setOptionState, optionDesigner, setOptionDesigner, optionLayout, setOptionLayout,
