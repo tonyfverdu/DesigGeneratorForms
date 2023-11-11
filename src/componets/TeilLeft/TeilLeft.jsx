@@ -11,8 +11,7 @@ import { GROUP_BUTTONS_SELECT_LEFT } from '../../constants/contants.js';
  * @return {JSX.Element} The rendered TeilLeft component.
  */
 
-//  blockSelect, setBlockSelect
-const TeilLeft = ({ formSelectLocal, setFormSelectLocal }) => (
+const TeilLeft = () => (
   <section className="container mx-auto d-flex flex-column justify-content-center align-items-center gap-0 graycolor100">
     <div className="row container-fluid d-flex flex-row justify-content-center align-items-center m-1"
       style={{ padding: "0.1rem" }}>
@@ -22,13 +21,7 @@ const TeilLeft = ({ formSelectLocal, setFormSelectLocal }) => (
     </div>
 
     <div className="row d-flex justify-content-center align-items-center" style={{ padding: "0.05rem" }}>
-      <InfoOfElement
-        formSelectLocal={formSelectLocal}
-        setFormSelectLocal={setFormSelectLocal}
-
-        // blockSelect={blockSelect}
-        // setBlockSelect={setBlockSelect}
-      />
+      <InfoOfElement />
     </div>
     <div className="row container-fluid d-flex justify-content-end align-items-center mb-1">
       <ButtonSelectOptions

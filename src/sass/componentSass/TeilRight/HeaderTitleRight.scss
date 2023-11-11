@@ -1,6 +1,5 @@
 @use '../../neumorphismus' as n;
 
-
 .contHeader {
   @include n.neuMorphismus3;
   border-radius: 5px;

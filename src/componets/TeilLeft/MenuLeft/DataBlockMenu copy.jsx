@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect, useCallback } from 'react';
+import { useState, useContext, useEffect, useCallback, useMemo } from 'react';
 import { MyContext } from '../../../context/TheContext.jsx';
 import HeaderHead from './HeaderHead.jsx';
 import FieldText from './FieldText.jsx';
@@ -9,59 +9,58 @@ import { TITLES_RCM_LEFT } from '../../../constants/contants.js';
 import compByBlock from '../../../functions/compByBlock.js';
 
 function DataBlockMenu({ blockSelect, setBlockSelect, rowSelect, setRowSelect, valueComp, setValueComp }) {
-  const { formObject, setFormObject, arrayOfBlocks, setArrayOfBlocks, indexOfBlockInArray, setIndexOfBlockInArray,
-    blockSelectObject, setBlockSelectObject, setArrayOfRowsCompsObject, setArrayOfComponetsObject, tooRead } = useContext(MyContext);
+  const { formObject, setFormObject, arrayOfBlocks, setArrayOfBlocks, blockSelectObject, setBlockSelectObject,
+    setArrayOfRowsCompsObject, setArrayOfComponetsObject, tooRead } = useContext(MyContext);
 
-  // 1.- State variables for Block menu
-  const [newArrayLocalBlocks, setNewArrayLocalBlocks] = useState(formObject.blocks);
-  const [indexBlockSelect, setIndexBlockSelect] = useState(indexOfBlockInArray);
-  const [parChangeBlock, setParChangeBlock] = useState("");
-
+  //  State variables
   const [blockSelectLocal, setBlockSelectLocal] = useState(blockSelect);
+  const [indexBlockSelect, setIndexBlockSelect] = useState(0);
+  const [parChangeBlock, setParChangeBlock] = useState("");
+  const [newArrayLocalBlocks, setNewArrayLocalBlocks] = useState(formObject.blocks);
 
   const [indexRowSelect, setIndexRowSelect] = useState(0);
   const [compSelectObj, setCompSelectObj] = useState({});
   const [arrayOrders, setArrayOrders] = useState([]);
-  const [orderOfComponent, setOrderOfComponent] = useState(null);
+  const [orderOfComponent, setOrderOfComponent] = useState(0);
   const [arrayCompsByRow, setArrayOfCompsByRow] = useState([]);
   const [arrayComponentsLocal, setArrayComponentsLocal] = useState([]);
 
-  // 2.- UseEffects Hooks for Block menu
   useEffect(() => {
-    setParChangeBlock("");
     setBlockSelectLocal(blockSelect);
-
-    const newIndexBlockInArray = formObject.blocks.findIndex(block => block.id_Block === blockSelect.id_Block);
-    setIndexBlockSelect(newIndexBlockInArray);
+    setParChangeBlock("");
+    const newIndexSelect = formObject.blocks.findIndex(block => block.id_Block === blockSelect.id_Block);
+    setIndexBlockSelect(newIndexSelect);
 
     setNewArrayLocalBlocks(formObject.blocks);
-  }, [blockSelect]);
-
-  // useEffect(() => {
-    // setBlockSelect(arrayOfBlocks[indexOfBlockInArray]);
-    // setBlockSelectObject(arrayOfBlocks[indexOfBlockInArray]);
-
-    // const updatedArrayBlocks = newArrayLocalBlocks.map((block, index) => {
-    //   if (index === indexOfBlockInArray) {
-    //     return blockSelectLocal;
-    //   } else {
-    //     return block;
-    //   }
-    // });
-    // setArrayOfBlocks(updatedArrayBlocks);
-  // }, [indexOfBlockInArray]);
+  }, []);
 
   useEffect(() => {
-    setArrayOfBlocks(newArrayLocalBlocks);
-    
-    setFormObject(prevFormSelect => ({ ...prevFormSelect, blocks: newArrayLocalBlocks }));
-  }, [newArrayLocalBlocks]);
+    setBlockSelect(arrayOfBlocks[indexBlockSelect]);
+    setBlockSelectObject(arrayOfBlocks[indexBlockSelect]);
+  }, [indexBlockSelect]);
 
   // useEffect(() => {
-  //   setFormObject(prevFormSelect => ({ ...prevFormSelect, blocks: arrayOfBlocks }));
-  // }, [arrayOfBlocks])
+  //   setFormObject(prevFormSelect => ({ ...prevFormSelect, blocks: newArrayLocalBlocks }));
+  // }, [newArrayLocalBlocks]);
 
-  // 3.- Functions that should be called when the block is selected
+  useEffect(() => {
+    setRowSelect(blockSelect.columns[0]);
+    setArrayOfCompsByRow(blockSelect.columns[0].components);
+    setCompSelectObj(blockSelect.columns[0].components[0]);
+
+    const newArrayComp = compByBlock(blockSelect);  //  <<==  All components of the block
+    setArrayComponentsLocal(newArrayComp);
+    setArrayOfComponetsObject(newArrayComp);
+    setOrderOfComponent(blockSelect.columns[0].components[0].orderInBlock);
+
+    setArrayOrders(newArrayComp.map((_, index) => index));
+
+    // setRowSelect(blockSelect.columns[0]);
+    setArrayOfCompsByRow(blockSelect.columns[0].components);
+    setCompSelectObj(blockSelect.columns[0].components[0]);
+  }, [formObject.blocks, blockSelect]);
+
+  //  Functions that should be called when the block is selected.
   const handleChange = (ev, blockKey) => {
     ev.preventDefault();
     const { value: newValue } = ev.target;
@@ -75,23 +74,21 @@ function DataBlockMenu({ blockSelect, setBlockSelect, rowSelect, setRowSelect, v
 
     // 2.- Update array of blocks. Update the array of blocks by directly modifying the block at the index
     // const newArrayBlocksArray = structuredClone(newArrayLocalBlocks);
-    const indexBlockSelect = newArrayLocalBlocks.findIndex(block => block.ordenDisplay_Block === blockSelect.ordenDisplay_Block);
+    const indexBlockSelect = formObject.blocks.findIndex(block => block.ordenDisplay_Block === blockSelect.ordenDisplay_Block);
 
     if (indexBlockSelect === -1) {
       throw new Error("Block not found");
     }
-    setIndexOfBlockInArray(indexBlockSelect);
-    setIndexBlockSelect(indexBlockSelect);
-
-    const updatedArrayBlocks = newArrayLocalBlocks.map((block, index) => {
+    const updatedArrayBlocks = formObject.blocks.map((block, index) => {
       if (index === indexBlockSelect) {
         return updatedBlockSelectLocal;
       } else {
         return block;
       }
     });
+    setIndexBlockSelect(indexBlockSelect);
     setNewArrayLocalBlocks(updatedArrayBlocks);
-    // setArrayOfBlocks(updatedArrayBlocks);
+    setArrayOfBlocks(updatedArrayBlocks);
 
     // 4.- Update formObject
     // setFormObject(prevFormObject => ({
@@ -99,6 +96,113 @@ function DataBlockMenu({ blockSelect, setBlockSelect, rowSelect, setRowSelect, v
     //   blocks: updatedArrayBlocks
     // }));
   };
+
+
+
+  /*
+    const handleChange = useCallback((ev, blockKey) => {
+      ev.preventDefault();
+      const { value: newValue } = ev.target;
+      setParChangeBlock(blockKey);
+  
+      // 1.- Update block. Update blockSelectLocal, blockSelect, and blockSelectObject using a single spread operator
+      // const updatedBlockSelectLocal = { ...blockSelect, [blockKey]: newValue };
+      // setBlockSelectLocal(updatedBlockSelectLocal);
+      // setBlockSelect(updatedBlockSelectLocal);
+      // setBlockSelectObject(updatedBlockSelectLocal);
+  
+      // 2.- Update array of blocks. Update the array of blocks by directly modifying the block at the index
+      // const newArrayBlocksArray = structuredClone(arrayOfBlocks);
+      // const indexBlockSelect = newArrayBlocksArray.findIndex(block => block.ordenDisplay_Block === blockSelect.ordenDisplay_Block);
+      // if (indexBlockSelect === -1) {
+      //   throw new Error("Block not found");
+      // }
+      // const updatedArrayBlocks = arrayOfBlocks.map((block, index) => (index === indexBlockSelect ? updatedBlockSelectLocal : block));
+      // console.log('newArrayBlocksArray:  ', newArrayBlocksArray);
+      // console.log('En update array de blocks II, indexBlockSelect:  ', indexBlockSelect);
+      // updatedArrayBlocks[indexBlockSelect] = updatedBlockSelectLocal;
+      // setIndexBlockSelect(indexBlockSelect);
+      // setNewArrayLocalBlocks(updatedArrayBlocks);
+      // setArrayOfBlocks(updatedArrayBlocks);
+  
+      // console.log('En handleChange: updatedBlockSelectLocal:  ', updatedBlockSelectLocal);
+  
+      // 3.- Update array of componets of block select local
+      // const updateArrayComponents = newArrayBlocksArray.columns.map(col => col.components.map(comp => comp));
+      // setArrayOfComponetsObject(updateArrayComponents);
+  
+  
+      // 4.- Update formObject
+      // setFormObject(prevFormObject => ({
+      //   ...prevFormObject,
+      //   blocks: updatedArrayBlocks
+      // }));
+    }, [setParChangeBlock, blockSelect, setNewArrayLocalBlocks, setFormObject]);
+  */
+
+
+
+  // useEffect(() => {
+  //   setNewArrayLocalBlocks(formObject.blocks);
+  // }, [formObject.blocks])
+
+  /*
+    //  UseEffect is used internally by the component implementation to determine whether the component 
+    //  should be used for the effect
+    // useEffect(() => {
+    //   // const indexBlockSelect = formObject.blocks.findIndex(block => block.title_Block === blockSelect.title_Block);
+    //   // console.log('indexBlockSelect', indexBlockSelect);
+    //   // setIndexBlockSelect(indexBlockSelect);
+    //   setNewArrayLocalBlocks(formObject.blocks);
+    //   setIndexBlockSelect(0);
+    // }, []);
+  
+    // useEffect(() => {
+    //   setNewArrayLocalBlocks(formObject.blocks);
+    // }, [formObject]);
+  
+    // useEffect(() => {
+    //   setBlockSelectLocal(blockSelect);
+    //   setBlockSelectObject(blockSelect);
+  
+    //   setParChangeBlock("");
+  
+    //   setArrayOfRowsCompsObject(blockSelect.columns);
+    //   console.log('En useEffect: blockSelect.columns:  ', blockSelect.columns);
+  
+    //   setRowSelect(blockSelect.columns[0]);
+    //   setArrayOfCompsByRow(blockSelect.columns[0].components);
+    //   setCompSelectObj(blockSelect.columns[0].components[0]);
+  
+    //   const newArrayComp = compByBlock(blockSelect);  //  <<==  All components of the block
+    //   setArrayComponentsLocal(newArrayComp);
+    //   setArrayOfComponetsObject(newArrayComp);
+    //   setOrderOfComponent(blockSelect.columns[0].components[0].orderInBlock);
+  
+    //   setArrayOrders(newArrayComp.map((_, index) => index));
+    // }, [blockSelect]);
+  
+    // // useEffect(() => {
+    // //   // console.log('En useEffect: arrayOfBlocks:  ', arrayOfBlocks);
+    // //   setFormObject({ ...formObject, blocks: arrayOfBlocks });
+    // // }, [arrayOfBlocks])
+  */
+
+
+
+  // const handleChange = (ev, blockKey) => {
+
+  //   // 2.- Update array of blocks. Update the array of blocks by directly modifying the block at the index
+
+
+  //   // 3.- Update array of componets of block select local
+  //   const updateArrayComponents = updatedBlockSelectLocal.columns.map(col => col.components.map(comp => comp));
+  //   setArrayOfComponetsObject(updateArrayComponents);
+
+  //   // 4.- Update formObject
+  //   //setFormObject({ ...formObject, blocks: newArrayBlocks });
+  // }
+
 
 
 
@@ -152,13 +256,13 @@ function DataBlockMenu({ blockSelect, setBlockSelect, rowSelect, setRowSelect, v
       ariaControl="collapseBlock"
       fontSize="0.62rem"
       title={TITLES_RCM_LEFT.BLOCK_HEAD}
-      value={blockSelectObject.title_Block}
+      value={blockSelect.title_Block}
     />
   );
   const fieldTextBlockTitle = (
     <FieldText
       title={TITLES_RCM_LEFT.BLOCK_TITLE}
-      value={blockSelectObject.title_Block}
+      value={blockSelect.title_Block}
       fontSize="0.6rem"
       action={(ev) => handleChange(ev, "title_Block")}
     />
@@ -166,7 +270,7 @@ function DataBlockMenu({ blockSelect, setBlockSelect, rowSelect, setRowSelect, v
   const fieldTextBlockID = (
     <FieldText
       title={TITLES_RCM_LEFT.BLOCK_ID_TITLE}
-      value={blockSelectObject.id_Block}
+      value={blockSelect.id_Block}
       fontSize="0.6rem"
       action={(ev) => handleChange(ev, "id_Block")}
     />
@@ -174,7 +278,7 @@ function DataBlockMenu({ blockSelect, setBlockSelect, rowSelect, setRowSelect, v
   const fieldTextBlockLabel = (
     <FieldText
       title={TITLES_RCM_LEFT.BLOCK_LABEL}
-      value={blockSelectObject.label_Block}
+      value={blockSelect.label_Block}
       fontSize="0.6rem"
       action={(ev) => handleChange(ev, "label_Block")}
     />

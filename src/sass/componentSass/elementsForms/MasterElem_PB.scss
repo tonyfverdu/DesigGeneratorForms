@@ -5,22 +5,15 @@
 
 .contMasterElement_PB {
   height: 2.4rem;
-  // transition: all ease 0.20s;
-
-  // &:hover,
-  // &:focus {
-  //   cursor: pointer;
-  //   outline: 2px ridge v.$colorHell2;
-  //   outline-offset: 3px;
-  //   border-radius: 2px;
-  // }
+  background-color: v.$backgroundColorHellGrayT;
+  border: 1px solid v.$backgroundColorHellGray2;
 
   &>.buttonMasterElem {
-    @include d.configurationText1 (v.$colorElementIni, 0.55rem);
-    width: auto;
+    @include d.configurationText1 (v.$colorElementIni, 0.54rem);
+    width: 100%;
     height: 2.4rem;
     margin: 0%;
-    padding: 0% 2%;
+    padding: 0%;
     font-weight: 600;
     text-align: center;
     transition: all ease 0.20s;

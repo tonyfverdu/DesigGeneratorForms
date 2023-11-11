@@ -1,229 +1,147 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext} from 'react';
 import { MyContext } from '../../context/TheContext.jsx';
 import BlockMaster from '../TeilRight/menuRight/BlockMaster.jsx';
 import RowBlock from '../TeilRight/RowBlock.jsx';
 import LabelElem_PB from '../elementsForms/LabelElem_PB.jsx';
 import TextElem_PB from '../elementsForms/TextElem_PB.jsx';
-
-import DataFormMenu from '../TeilLeft/MenuLeft/DataFormMenu.jsx';
-
 import { FaEye } from 'react-icons/fa';
-import { TbCircleLetterX } from 'react-icons/tb';
-import ButtonX from '../ButtonX.jsx';
+import ButtonIconForm from '../ButtonIconForm.jsx';
 import '../../sass/componentSass/ButtonIcon.scss';
-
-import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 
-
 function PrintFormTemplate() {
-  const theContext = useContext(MyContext);
-  const [formOfLayout, setFormOfLayout] = useState({});
+  const { formObject, setFormObject, setArrayOfBlocks, tooRead, setText } = useContext(MyContext);
+  const { blocks, title_Form, id_Form } = formObject;
   const [lengthOfArrayOfBlocks, setLengthOfArrayOfBlocks] = useState(0);
 
   useEffect(() => {
-    setFormOfLayout(theContext.formObject);
-    // theContext.setFormObject(formSelectLocal);
-    theContext.setArrayOfBlocks(theContext.formObject.blocks);
-    setLengthOfArrayOfBlocks(theContext.arrayOfBlocks.length);
-  }, [theContext.formObject]);
+    setArrayOfBlocks(formObject.blocks);
+    setLengthOfArrayOfBlocks(formObject.blocks.length);
+  }, [formObject]);
+
+  const renderRowBlock = (block, index) => {
+    const rowBlockProps = {
+      formInput: formObject,
+      count: index,
+      setLengthOfArrayOfBlocks,
+    };
+
+    const rowBlock = (
+      <div key={block.id_Block} className="col">
+        {!tooRead && (
+          <div className="container-fluid row d-flex flex-row justify-content-start align-items-center gx-0 shadow-sm graycolor200 p-1 mb-1">
+            <RowBlock {...rowBlockProps} />
+          </div>
+        )}
+        <div id={`accordionBlock_${index}`} className="accordion accordion-flush bg-secondary mx-auto mb-1">
+          <div className="accordion-item p-0 m-0">
+            <BlockMaster block={block} index={index} />
+          </div>
+        </div>
+      </div>
+    );
+
+    return rowBlock;
+  };
+
+  const renderFormTitle = () => (
+    <header className="w-auto col-11">
+      <h5 className="col h5 fw-bolder p-2 text-sm-start text-capitalize colorBlueDunkel">
+        Form Title: <span className="fs-6 fw-bold text-graycolor300 mx-auto ms-1">{title_Form}</span>
+      </h5>
+    </header>
+  );
+
+  const renderFormTitle_ID = () => {
+    const titleElement = (
+      <div className="col-2 text-start m-0 p-0">
+        <LabelElem_PB
+          id_Element={"id_LabelOfForm"}
+          orderInBlock={0}
+          required={true}
+          disabled={true}
+          response={[title_Form]}
+          placeholder={title_Form}
+          size={35}
+          position={{ rowElem: 0, colElem: 0 }}
+          width={2}
+          borderElement={false}
+          colorElement="rgb(9, 9, 9)"
+          fontSizeElement="0.7rem"
+        />
+      </div>
+    );
+    const idElement = (
+      <div className="col-2 offset-md-8">
+        <TextElem_PB
+          id_Element={"id_IdOfForm"}
+          orderInBlock={1}
+          labelElement="Id: "
+          required={true}
+          disabled={true}
+          response={[""]}
+          placeholder={id_Form}
+          size={20}
+          position={{ rowElem: 0, colElem: 10 }}
+          width={2}
+          borderElement={false}
+          colorElement="rgb(9, 9, 9)"
+          fontSizeElement="0.6rem"
+          text={id_Form}
+          setText={setText}
+        />
+      </div>
+    );
+
+    return (
+      <div className="container-fluid row d-flex flex-row justify-content-start align-items-center gx-0 shadow-sm graycolor500 p-1 mb-1">
+        {titleElement}
+        {idElement}
+      </div>
+    );
+  };
+
+  const renderRowBlockContainer = () => {
+    const rowBlockProps = {
+      formInput: formObject,
+      count: blocks.length,
+      setLengthOfArrayOfBlocks,
+    };
+
+    return (
+      <div className="container-fluid row d-flex flex-row justify-content-start align-items-center gx-0 
+      shadow-sm graycolor200 p-1 mb-1">
+        <RowBlock {...rowBlockProps} />
+      </div>
+    );
+  };
 
   return (
-    <form className="container-fluid rounded-0 bg-light ">
-      <div className="container-fluid shadow-sm d-flex flex-column justify-content-start align-items-center p-0 mb-1">
+    <form className="container-fluid rounded-0 bg-light">
+      <div className="container-fluid shadow-sm d-flex flex-column justify-content-start align-items-center p-0 mb-1 graycolor600">
         <div className="container-fluid d-flex flex-row justify-content-between align-items-center">
-          <header className="w-auto col-11">
-            <h5 className="col h5 fw-bold p-2 text-sm-start text-capitalize colorBlueDunkel" >
-              Form Title: <span className="fs-6 text-secondary fw-bolder mx-auto ms-2" >
-                {formOfLayout.title_Form}
-              </span>
-            </h5>
-          </header>
+          {renderFormTitle()}
           <div className='col-1'>
-            <ButtonIcon
+            <ButtonIconForm
               iconComponent={<FaEye />}
-              formSelectLocal={formOfLayout}
-              setFormSelectLocal={setFormOfLayout}
+              formSelectLocal={formObject}
+              setFormSelectLocal={setFormObject}
             />
           </div>
         </div>
       </div>
 
-      < div className="container-fluid shadow-sm p-0 mb-1">
-        {/* //  1.-  First row:  Title of Form + Id of Form with background color gray */}
-        <div className="row d-flex flex-row justify-content-start align-items-center gx-0 shadow-sm graycolor500 p-1 mb-2">
-          <div className="col-3 text-start m-0 p-0 text-start" >
-            <LabelElem_PB
-              id_Element={"formTitle_01"}
-              orderInBlock={1}
-              required={true}
-              disabled={true}
-              response={[formOfLayout.title_Form]}
-              placeholder={formOfLayout.title_Form}
-              size={50}
-              position={{ rowElem: 0, colElem: 0 }}
-              width={3}
-              borderElement={false}
-              colorElement="rgb(9, 9, 9)"
-              fontSizeElement="0.8rem"
-            />
-          </div>
+      {renderFormTitle_ID()}
 
-          <div className="col-3 offset-md-5" >
-            <TextElem_PB
-              id_Element="id_IdOfForm"
-              orderInBlock={2}
-              labelElement="Id: "
-              required={true}
-              disabled={true}
-              response={[""]}
-              placeholder={formOfLayout.id_Form}
-              size={12}
-              position={{ rowElem: 0, colElem: 10 }}
-              width={3}
-              borderElement={false}
-              colorElement="rgb(9, 9, 9)"
-              fontSizeElement="0.8rem"
-              text={formOfLayout.id_Form}
-              setText={theContext.setText}
-            />
-          </div>
-        </div>
-
-        {/* //  2.-  Array of Blocks from Form */}
-        {
-          theContext.arrayOfBlocks !== undefined
-            ?
-            Array.isArray(theContext.arrayOfBlocks)
-              ?
-              theContext.arrayOfBlocks.map((block, index) => {
-                return (
-                  <>
-                    {
-                      !theContext.tooRead &&
-                      <div key={block.id_Block} className="row my-2">
-                        <RowBlock
-                          form={formOfLayout}
-                          count={index}
-                        />
-                      </div>
-                    }
-
-                    <div key={block.id_Block} id={`accordionBlock_${index}`} className="accordion accordion-flush bg-secondary mx-auto mb-1" >
-                      <div className="accordion-item p-0 m-0" >
-                        <BlockMaster
-                          form={formOfLayout}
-                          block={block}
-                          index={index}
-                        />
-                      </div >
-                    </div>
-                  </>
-                )
-              })
-              :
-              <p className="fs-6 text-center text-danger fw-bold">ERROR, theContext.arrayOfBlocks NO ES UN ARRAY </p>
-            :
-            <p className="fs-6 text-center text-danger fw-bold">ERROR</p>
-        }
-
-        {
-          !theContext.tooRead &&
-          <div className="row my-2">
-            <RowBlock
-              form={formOfLayout}
-              count={lengthOfArrayOfBlocks}
-            />
-          </div>
-        }
-      </div>
+       <div className="container-fluid shadow-sm p-0 mb-2">
+        {blocks.map(renderRowBlock)}
+       {!tooRead && renderRowBlockContainer()}
+      </div> 
     </form >
   );
 }
 
 export default PrintFormTemplate;
-
-function ButtonIcon({ iconComponent, formSelectLocal, setFormSelectLocal }) {
-  const theContext = useContext(MyContext);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const styleCircleCSS = {
-    backgroundColor: "rgba(0, 0, 0, 0.25)",
-    width: "auto",
-    height: "auto",
-    padding: "0.1rem",
-    hover: { backgroundColor: "rgba(0, 0, 0, 0.5)", transform: "scale(0.9)", transformScale: "1.1" },
-    backgroundImage: "../../assets/icons/eyeicon.svg",
-  }
-
-  return (
-    <Popup
-      trigger={<button
-        type="button"
-        className="buttonIcon btn btn-outline-secondary d-flex justify-content-center align-items-center rounded-circle"
-        style={styleCircleCSS}>
-        <span className="d-flex flex-row justify-content-center align-items-center p-1 m-1">
-          {iconComponent}
-        </span>
-      </button>}
-      modal
-      nested>
-      {/* {close => (
-        <div className="modalPopup">
-          <button className="close" onClick={close}>
-            &times;
-          </button>
-          <div className="headerPopup"> Modal Title </div>
-          <div className="contentPopup">
-            <button className="close" onClick={setIsModalOpen(!isModalOpen)}>
-              <TbCircleLetterX />
-            </button>
-          </div>
-          <div className="actionsPopup">
-            <Popup
-              trigger={<button className="button"> Trigger </button>}
-              position="top center"
-              nested
-            >
-              <span>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
-                magni omnis delectus nemo, maxime molestiae dolorem numquam
-                mollitia, voluptate ea, accusamus excepturi deleniti ratione
-                sapiente! Laudantium, aperiam doloribus. Odit, aut.
-              </span>
-            </Popup>
-            <button
-              className="button"
-              onClick={() => {
-                console.log('modal closed ');
-                close();
-              }}
-            >
-              close modal
-            </button>
-          </div>
-        </div>
-      )} */}
-      {close => (
-        <>
-          <div className="modalPopup">
-            <ButtonX
-              toggleHeader={isModalOpen}
-              setToggleHeader={close}
-            />
-          </div>
-          <div className='w-full border-1 border-danger'>
-            <DataFormMenu
-              formSelectLocal={formSelectLocal}
-              setFormSelectLocal={setFormSelectLocal}
-              setBlockSelect={theContext.setBlockSelectObject}
-            />
-          </div>
-        </>
-      )}
-    </Popup>
-  );
-}
 
 
 //    ****    EXPLICACION   *******************************************************
@@ -240,5 +158,55 @@ function ButtonIcon({ iconComponent, formSelectLocal, setFormSelectLocal }) {
 
 3.-  
 
-
 */
+
+// LA FUNCION "removeBlock " NO HACE FALTA, YA QUE AL ACTUALIZAR EL ARRAY DE BLOQUES, EL COMPONENTE BLOCK SE QUITA YA DEL ARRAY
+
+// const rowRef = useRef(null);
+// const accordionRef = useRef(null);
+
+ // const removeBlock = useCallback(() => {
+  //   rowRef.current.remove();
+  //   accordionRef.current.remove();
+
+  //   setLengthOfArrayOfBlocks(prevLength => {
+  //     const updatedArrayOfBlocks = [...arrayOfBlocks];
+  //     updatedArrayOfBlocks.splice(prevLength, 1);
+  //     setArrayOfBlocks(updatedArrayOfBlocks);
+  //   });
+  // }, [arrayOfBlocks, setArrayOfBlocks, setLengthOfArrayOfBlocks]);
+
+  // const removeBlock = useCallback(() => {
+  //   rowRef.current.remove();
+  //   accordionRef.current.remove();
+
+  //   const updatedArrayOfBlocks = arrayOfBlocks.filter((_, index) => index !== lengthOfArrayOfBlocks);
+  //   setArrayOfBlocks(updatedArrayOfBlocks);
+  // }, [lengthOfArrayOfBlocks, arrayOfBlocks, setArrayOfBlocks]);
+
+  // const removeBlock = useCallback(() => {
+  //   rowRef.current.remove();
+  //   accordionRef.current.remove();
+  
+  //   setArrayOfBlocks(prevArrayOfBlocks => prevArrayOfBlocks.slice(0, -1));
+  // }, [arrayOfBlocks, setArrayOfBlocks]);
+
+  // const removeBlock = useCallback(() => {
+  //   setLengthOfArrayOfBlocks(formObject.blocks.length);
+  //   rowRef.current.remove();
+  //   accordionRef.current.remove();
+
+  //   const updatedArrayOfBlocks = arrayOfBlocks.filter((_, index) => index !== lengthOfArrayOfBlocks);
+  //   setArrayOfBlocks(updatedArrayOfBlocks);
+  // }, []);
+
+  // const removeBlock = useCallback(() => {
+  //   setLengthOfArrayOfBlocks(prevLength => {
+  //     const updatedArrayOfBlocks = arrayOfBlocks.filter((_, index) => index !== prevLength);
+  //     setArrayOfBlocks(updatedArrayOfBlocks);
+  //     return prevLength;
+  //   }, [arrayOfBlocks, setArrayOfBlocks, setLengthOfArrayOfBlocks]);
+
+  //   rowRef.current.remove();
+  //   accordionRef.current.remove();
+  // }, [formObject, arrayOfBlocks]);

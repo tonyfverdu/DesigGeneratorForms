@@ -1,22 +1,22 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, useCallback } from 'react';
 import { MyContext } from '../../../context/TheContext.jsx';
-import HeaderHead from "./HeaderHead.jsx";
-import FieldText from "./FieldText.jsx";
-import FieldNumber from './FieldNumber.jsx'
-import FieldSelect from './FieldSelect.jsx';
-import FieldSelectComponents from './FieldSelectComponents.jsx';
-import FieldSelectColors from './FieldSelectColors.jsx';
+import HeaderHead from './HeaderHead.jsx';
+import FieldText from './FieldText.jsx';
+import FieldNumber from './FieldNumber.jsx';
+import FieldData from './FieldData.jsx';
+// import FieldTextArea from './TeilLeft/MenuLeft/FieldTextArea.jsx';
+// import FieldSelectAdd from './TeilLeft/MenuLeft/FieldSelectAdd.jsx';
 import PositionFielsComp from './PositionFielsComp.jsx';
-import { TITLES_RCM_LEFT, TYPE_ELEMENTS2, COLOR_COMPONENTS } from '../../../constants/contants.js';  //  Constants of Form
-import createArray from '../../../functions/createArray.js';
+import FieldSelect from './FieldSelect.jsx';
+import FieldSelectColors from './FieldSelectColors.jsx';
+import { TITLES_RCM_LEFT, TYPE_ELEMENTS2, COLOR_COMPONENTS } from '../../../constants/contants.js';
 
 
 function DataCompMenu({ valueComp, setValueComp }) {
-  const theContext = useContext(MyContext);
+  const {tooRead} = useContext(MyContext);
   const [compLocal, setCompLocal] = useState(valueComp);
 
   useEffect(() => {
-    console.log("compLocal", compLocal);
     setCompLocal(valueComp);
   }, [valueComp])
 
@@ -249,7 +249,7 @@ function DataCompMenu({ valueComp, setValueComp }) {
             </div>
 
             <div className="row d-flex justify-content-center align-items-center">
-              <div className={`col d-flex ${theContext.tooRead ? "flex-row" : "flex-column"} justify-content-start align-items-start m-0 mt-1 p-1 bg-body `}>
+              <div className={`col d-flex ${tooRead ? "flex-row" : "flex-column"} justify-content-start align-items-start m-0 mt-1 p-1 bg-body `}>
                 {fieldText_ID}
               </div>
             </div>
@@ -271,25 +271,25 @@ function DataCompMenu({ valueComp, setValueComp }) {
             </div>
 
             <div className="row d-flex justify-content-center align-items-center gap-1 mb-0" >
-              <div className={`col-6 d-flex ${theContext.tooRead ? "flex-row" : "flex-column"} justify-content-center align-items-center m-0 mt-1 me-2 p-1 bg-body`} >
+              <div className={`col-6 d-flex ${tooRead ? "flex-row" : "flex-column"} justify-content-center align-items-center m-0 mt-1 me-2 p-1 bg-body`} >
                 {fieldSelectComponentRequired}
               </div>
 
-              <div className={`col d-flex ${theContext.tooRead ? "flex-row" : "flex-column"} justify-content-center align-items-center m-0 mt-1 p-1 bg-body`} >
+              <div className={`col d-flex ${tooRead ? "flex-row" : "flex-column"} justify-content-center align-items-center m-0 mt-1 p-1 bg-body`} >
                 {fieldSelectComponentDisabled}
               </div>
             </div>
 
             <div className="row d-flex justify-content-center align-items-center gap-1 mb-0" >
-              <div className={`col d-flex ${theContext.tooRead ? "flex-row align-items-center" : "flex-column align-items-start"} justify-content-start m-0 mt-1 p-1 bg-body`}>
+              <div className={`col d-flex ${tooRead ? "flex-row align-items-center" : "flex-column align-items-start"} justify-content-start m-0 mt-1 p-1 bg-body`}>
                 {fieldSelectComponentBorder}
               </div>
 
-              <div className={`col d-flex ${theContext.tooRead ? "flex-row align-items-center" : "flex-column align-items-start"} justify-content-start align-items-center m-0 mt-1 p-1 bg-body`}>
+              <div className={`col d-flex ${tooRead ? "flex-row align-items-center" : "flex-column align-items-start"} justify-content-start align-items-center m-0 mt-1 p-1 bg-body`}>
                 {fieldSelectComponentColor}
               </div>
 
-              <div className={`col-${theContext.tooRead ? '4' : '3'} d-flex ${theContext.tooRead ? "flex-row" : "flex-column"} justify-content-start align-items-center m-0 ms-4 mt-1 p-1 bg-body`}>
+              <div className={`col-${tooRead ? '4' : '3'} d-flex ${tooRead ? "flex-row" : "flex-column"} justify-content-start align-items-center m-0 ms-4 mt-1 p-1 bg-body`}>
                 {fieldText_Size}
               </div>
             </div>
@@ -307,7 +307,7 @@ function DataCompMenu({ valueComp, setValueComp }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default DataCompMenu;

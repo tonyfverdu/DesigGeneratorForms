@@ -7,13 +7,11 @@
  * @returns {Array} Returns an array of components.
  */
 export default function compByBlock(parBlock) {
-  console.log("parBlock:  ", parBlock);
-  const { columns } = parBlock;
-  if (!Array.isArray(columns)) {
+  if (!Array.isArray(parBlock.columns)) {
     throw new Error('Error: parBlock.columns in the function "compByBlock" must be an array!!');
   }
 
-  return columns.flatMap(col => col.components);
+  return parBlock.columns.flatMap(col => col.components);
 }
 
 /*

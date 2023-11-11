@@ -24,12 +24,8 @@ import '../../sass/componentSass/icons/IconsElem.scss'
  * @return {JSX.Element} The rendered IconsElem component.
  */
 function IconsElem({ height, valueComp, setValueComp }) {
-  const theContext = useContext(MyContext);
+  const {setElement, componentSelectObject, setComponentSelectObject} = useContext(MyContext);
   const [elementIcons, setElementIcons] = useState("");
-
-  useEffect(() => {
-    theContext.setElement(elementIcons);
-  }, [elementIcons]);
 
   const iconButtons = [
     IconButtonLabel,
@@ -46,30 +42,32 @@ function IconsElem({ height, valueComp, setValueComp }) {
     IconButtonIcons,
   ];
 
-  const handleTypeComp = (parType) => {
-    if (parType !== undefined) {
-      const elementIcons = {
-        label: "label",
-        text: "text",
-        number: "number",
-        date: "date",
-        phone: "phone",
-        email: "email",
-        textarea: "textArea",
-        select: "select",
-        checkbox: "checkbox",
-        radio: "radio",
-        table: "table",
-        icon: "icon",
-      };
+  useEffect(() => {
+    setElement(elementIcons);
+  }, [elementIcons]);
 
-      if (elementIcons.hasOwnProperty(parType)) {
-        setElementIcons(elementIcons[parType]);
-        setValueComp({
-          ...valueComp,
-          type_Element: parType
-        });
-      }
+  const handleTypeComp = (parType) => {
+    const elementIcons = {
+      label: "label",
+      text: "text",
+      number: "number",
+      date: "date",
+      phone: "phone",
+      email: "email",
+      textarea: "textArea",
+      select: "select",
+      checkbox: "checkbox",
+      radio: "radio",
+      table: "table",
+      icon: "icon",
+    };
+
+    if (parType && elementIcons.hasOwnProperty(parType)) {
+      setElementIcons(elementIcons[parType]);
+      setValueComp({
+        ...valueComp,
+        type_Element: parType
+      });
     }
   };
 
@@ -79,9 +77,9 @@ function IconsElem({ height, valueComp, setValueComp }) {
 
   return (
     <div className="row graycolor400 d-flex flex-row justify-content-center align-items-center p-1 mx-auto mb-1"
-      style={{ width: "80%" }}>
+      style={{ width: "96%" }}>
       <div className="contIcons col d-flex flex-wrap justify-content-center align-items-center">
-        <span className="col d-flex flex-wrap justify-content-center align-items-center wrap gap-2 p-0 m-0"
+        <span className="d-flex flex-wrap justify-content-center align-items-center wrap gap-2 p-0 m-0"
           style={{ transform: `scale(${height})` }} >
           {renderedIconButtons}
         </span>

@@ -15,26 +15,45 @@ export const MyContext = createContext(null)
 
 
 function TheContext({ children }) {
-
-  //    1.-   MANAGEMENT OF FORM OBJECT - theContext.formObject   ******************************************************************
+  //    ******    MANAGEMENT  OF FORM:  FORM OBJECT, ARRAYBLOCKS, ARRAYCOLUMNS, ARRAYCOMPONENTS   **********************************
+  //    1.-   MANAGEMENT OF FORM OBJECT - theContext.formObject   *****************************************************************
   const [formObject, setFormObject] = useState(formJSON_prueba_01);
-  const [nameOfFormObject, setNameOfFormObject] = useState("");
-
+  const [arrayOfBlocks, setArrayOfBlocks] = useState(formJSON_prueba_01.blocks);
+  const [indexOfBlockInArray, setIndexOfBlockInArray] = useState(0);
   const [blockSelectObject, setBlockSelectObject] = useState({})
+  const [arrayOfRowsCompsObject, setArrayOfRowsCompsObject] = useState([]);
+  const [arrayOfComponentsObject, setArrayOfComponetsObject] = useState([]);
+  const [componentSelectObject, setComponentSelectObject] = useState({});
 
   const [JSONEingabenForm, setJSONEingabenForm] = useState("")   //  <== Eingaben ( vor String JSON zur JSON-Formulardaten)
   const [JSONAusgabenForm, setJSONAusgabenForm] = useState("")   //  <== Ausgaben (vor JSON-Formulardaten zur String JSON)
   const [toggleJSONEingaben, setToggleJSONEingaben] = useState(true)
+  const [toggleJSONAusgaben, setToggleJSONAusgaben] = useState(false);
+
+  //  Funtions of select Forms, Blocks and Components
+  // I.-  Dieses Funktion hat keine machen
+  const handleSubmitFormIni = (ev) => {
+    ev.preventDefault();
+    // const newValue = ev.target.value;
+    const newValue = ev.target;
+
+    // console.log("handleSubmitFormIni:  ", newValue);
+
+    // setFormObject(newValue);
+  }
+
+  // II.-  Dieses Funktion hat keine machen
+  const handleButtonSubmitFormDyn = () => {
+    setToggleJSONAusgaben(!toggleJSONAusgaben);
+  }
 
 
   //    2.-   MANAGEMENT OF STATE FORM - READ OR CREATE-MODIFY    ******************************************************************
   const [tooRead, setTooRead] = useState(true)
 
-
   //     ***************************    SELECTION VARIABLES   *********************************
-  const [optionState, setOptionState] = useState("read")
-  const [optionDesigner, setOptionDesigner] = useState("form")
-  const [optionLayout, setOptionLayout] = useState("read")
+  const OPTION_DESIGNER = { form: "Forms", block: "Blocks", component: "Components" };
+  const [optionDesigner, setOptionDesigner] = useState(OPTION_DESIGNER.form);
 
   //     ***************************    TOOGLE VARIABLES (READ, CREATE AND MODIFY)    *********
   const [toogleReadLeft, setToogleReadLeft] = useState(true)
@@ -43,7 +62,7 @@ function TheContext({ children }) {
 
   //////////////////////////////////////////////////////////////////////////////////////////////
   const [numRow, setNumRow] = useState(0)
-  const [numCol, setNumCol] = useState(1)
+  const [numCol, setNumCol] = useState(0)
 
   const [arrayOfRows, setArrayOfRows] = useState([<RowIni />])
 
@@ -230,9 +249,8 @@ function TheContext({ children }) {
   const [element, setElement] = useState("master")
 
   //  ****    Component objects
-  //  1.-  Component ini (Master Component) 
 
-  //  2.- Component Master ini
+  //  1.- Component Master ini
   const masterComponentIni = {
     "id_Element": "id_component_master",
     "title_Element": "Component Master",
@@ -295,7 +313,10 @@ function TheContext({ children }) {
     "widthImage": 0
   }
 
-
+  const newColComponentIni = {
+    "orderColInBlock": 0,
+    "components": []
+  }
   //  3.-  Component in the state "read"
   const [componentRead, setComponentRead] = useState(masterComponentIni)
 
@@ -313,6 +334,7 @@ function TheContext({ children }) {
 
   //  Rows of Components
   const masterRowCompsIni = {
+    "orderColInBlock": 0,
     "components": [masterComponentIni]
   }
   const [arrayRowsComps, setArrayRowsComps] = useState([masterRowCompsIni])
@@ -331,8 +353,6 @@ function TheContext({ children }) {
     ]
   }
 
-  const [arrayOfBlocks, setArrayOfBlocks] = useState([masterBlock])
-
   //  1.-  Block Read
   const [blockRead, setBlockRead] = useState(masterBlock)
 
@@ -346,7 +366,6 @@ function TheContext({ children }) {
   const [toogleViewVaccines, setViewVaccines] = useState(false)
   const [toogleAddRowVaccines, setToogleAddRowVaccines] = useState(false)
 
-
   //  Status Show (Read - "success" or Modify - "danger")
   const [option, setOption] = useState("Read")
   const [color, setColor] = useState("success")
@@ -358,29 +377,35 @@ function TheContext({ children }) {
   const exportData = {
     tooRead, setTooRead,
     formObject, setFormObject,
-    nameOfFormObject, setNameOfFormObject,
-
+    arrayOfBlocks, setArrayOfBlocks,
     blockSelectObject, setBlockSelectObject,
 
+    indexOfBlockInArray, setIndexOfBlockInArray,
+    arrayOfComponentsObject, setArrayOfComponetsObject,
+    
+    arrayOfRowsCompsObject, setArrayOfRowsCompsObject,
+    componentSelectObject, setComponentSelectObject,
+
     toogleReadLeft, setToogleReadLeft, toogleCreateLeft, setToogleCreateLeft, toogleModifyLeft, setToogleModifyLeft,
-    optionState, setOptionState, optionDesigner, setOptionDesigner, optionLayout, setOptionLayout,
+    optionDesigner, setOptionDesigner,
 
     JSONEingabenForm, setJSONEingabenForm,
     JSONAusgabenForm, setJSONAusgabenForm,
     toggleJSONEingaben, setToggleJSONEingaben,
+    toggleJSONAusgaben, setToggleJSONAusgaben,
+
+    handleButtonSubmitFormDyn, handleSubmitFormIni,
 
     //  Blocks
     masterBlock,
-    arrayOfBlocks, setArrayOfBlocks,
 
     blockRead, setBlockRead, blockCreate, setBlockCreate, blockModify, setBlockModify,
 
     //  Rows of Components
     masterRowCompsIni,
-    arrayRowsComps, setArrayRowsComps,
 
     //  Components
-    masterComponentIni,
+    newColComponentIni, masterComponentIni,
 
     objComponentShow, setObjComponentShow, objComponentLayout, setObjComponentLayout,
     componentRead, setComponentRead, componentCreate, setComponentCreate, componentModify, setComponentModify,

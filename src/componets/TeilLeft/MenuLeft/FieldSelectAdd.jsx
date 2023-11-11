@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { MyContext } from "../../../context/TheContext";
 
 function FieldSelectAdd({ title, type, value, fontSize, fontSizeButton, action, actionAddButton, actionClickAdd }) {
-  const theContext = useContext(MyContext);
+  const {tooRead} = useContext(MyContext);
 
   const renderOptions = (parValue) => {
     if (!Array.isArray(parValue)) {
@@ -62,9 +62,9 @@ function FieldSelectAdd({ title, type, value, fontSize, fontSizeButton, action, 
         {title}
       </span>
       {
-        theContext.tooRead ?
+        tooRead ?
           <select id="id_select_blocks" size="1" required disabled={false}
-            className="contSelect col-11 rounded-0 border border-secondary bg-white fw-bold p-1 my-1 mx-auto text-danger"
+            className="contSelect col-10 rounded-0 border border-secondary bg-white fw-bold my-1 mx-auto text-danger"
             onChange={action}
             style={{ color: "rgb(9, 9, 9)", fontSize: fontSize }} >
 
@@ -77,7 +77,7 @@ function FieldSelectAdd({ title, type, value, fontSize, fontSizeButton, action, 
           :
           <div className="container d-flex flex-column justify-content-center align-items-start m-0 p-0" >
             <div className="row container-fluid d-flex justify-content-between align-items-start m-0 p-0 gap-1" >
-              <div className="col-8 mx-auto p-0">
+              <div className="col-7 mx-auto p-0">
                 <input type="text" className="contInputText form-control ms-1 rounded-0 text-start" autoComplete="off" required={true}
                   placeholder={selectTypePlaceholder(type)} size={15}
                   onChange={actionAddButton} />

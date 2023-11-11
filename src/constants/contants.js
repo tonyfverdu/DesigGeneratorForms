@@ -178,7 +178,17 @@ export const GROUP_BUTTONS_SELECT_LEFT = {
   typeButton: "button",
   options: ["Read", "Modify"],
   colors: ["success", "danger"],
-  height: "2rem",
+  height: "1.8rem",
+}
+
+export const GROUP_BUTTONS_ACTIONS = {
+  preId: "actionButtons_",
+  role: "groupButtons",
+  arialLabel: "Radio toggle button group top",
+  typeButton: "button",
+  options: ["Read", "Modify"],
+  colors: ["success", "danger"],
+  height: "0.6rem"
 }
 
 

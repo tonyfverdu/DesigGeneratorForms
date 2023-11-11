@@ -44,7 +44,7 @@ function LabelElem_PB({
   const tooltipTitle = `Order: ${orderInBlock}       Position: X = ${position.colElem}  Y = ${position.rowElem}`;
 
   const renderListData = () => (
-    <ListDataElement TitleList="Component Data" fontSize="0.62rem" arrayOfLines={arrayOfList} />
+    <ListDataElement TitleList="Component Data" fontSize="0.6rem" arrayOfLines={arrayOfList} />
   );
 
   const renderLabel = () => (
@@ -54,7 +54,7 @@ function LabelElem_PB({
     >
       <label
         id={id_Element}
-        className="form-label labelOfForm d-flex flex-row justify-content-end align-items-center fw-bold me-2"
+        className="form-label labelOfForm d-flex flex-row justify-content-end align-items-center fw-bold p-0 me-2"
         style={{ color: colorElement, fontSize: fontSizeElement }}
         required={required}
         disabled={disabled}
@@ -68,9 +68,8 @@ function LabelElem_PB({
 
   return (
     <div
-      className={`container-fluid d-flex flex-column justify-content-start align-items-center m-0 p-0 ${
-        borderElement ? "border border-dark" : "border-0"
-      }`}
+      className={`container-fluid d-flex flex-column justify-content-start align-items-center m-0 p-0 ${borderElement ? "border border-dark" : "border-0"
+        }`}
       data-bs-toggle="tooltip"
       data-bs-html="false"
       data-bs-placement="bottom"
@@ -84,7 +83,7 @@ function LabelElem_PB({
       {toogleActiv ? renderListData() : renderLabel()}
     </div>
   );
-}
+};
 
 export default LabelElem_PB;
 

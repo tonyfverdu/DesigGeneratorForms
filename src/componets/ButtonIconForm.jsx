@@ -1,34 +1,96 @@
-import { useState, useEffect, useContext, useMemo, useCallback } from 'react';
-import { MyContext } from '../../../context/TheContext.jsx';
-import HeaderHead from './HeaderHead.jsx';
-import FieldText from './FieldText.jsx';
-import FieldData from './FieldData.jsx';
-import FieldTextArea from './FieldTextArea.jsx';
-import FieldSelect from './FieldSelect.jsx';
-import FieldSelectAdd from './FieldSelectAdd.jsx';
-import { TITLES_RCM_LEFT } from '../../../constants/contants.js';
+import { useContext, useState, useEffect, useMemo, useCallback } from 'react';
+import { MyContext } from '../context/TheContext.jsx';
+import ButtonX from './ButtonX.jsx';
+import DataFormMenu from './TeilLeft/MenuLeft/DataFormMenu.jsx';
+import HeaderHead from "./TeilLeft/MenuLeft/HeaderHead.jsx";
+import FieldText from './TeilLeft/MenuLeft/FieldText.jsx';
+import FieldData from './TeilLeft/MenuLeft/FieldData.jsx';
+import FieldTextArea from './TeilLeft/MenuLeft/FieldTextArea.jsx';
+import FieldSelect from './TeilLeft/MenuLeft/FieldSelect.jsx';
+import FieldSelectAdd from './TeilLeft/MenuLeft/FieldSelectAdd.jsx';
+import ActionButtons from './TeilLeft/MenuLeft/ActionButtons.jsx';
+import { TITLES_RCM_LEFT, GROUP_BUTTONS_ACTIONS } from '../constants/contants.js';
 
-function DataFormMenu({ setBlockSelect }) {
-  const { formObject, setFormObject, arrayOfBlocks, setArrayOfBlocks, blockSelectObject, setBlockSelectObject, 
-    indexOfBlockInArray, setIndexOfBlockInArray, masterBlock } = useContext(MyContext);
+import Popup from 'reactjs-popup';
+
+function ButtonIconForm({ iconComponent }) {
+  const { setBlockSelectObject } = useContext(MyContext);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const styleCircleCSS = {
+    backgroundColor: "rgba(0, 0, 0, 0.25)",
+    width: "auto",
+    height: "auto",
+    padding: "0.1rem",
+    hover: {
+      backgroundColor: "rgba(0, 0, 0, 0.5)",
+      transform: "scale(0.9)",
+      transformScale: "1.1"
+    },
+    backgroundImage: "../../assets/icons/eyeicon.svg"
+  };
+
+  return (
+    <Popup
+      trigger={
+        <button
+          type="button"
+          className="buttonIcon btn btn-outline-secondary d-flex justify-content-center align-items-center rounded-circle"
+          style={styleCircleCSS}
+        >
+          <span className="d-flex flex-row justify-content-center align-items-center p-1 m-1">
+            {iconComponent}
+          </span>
+        </button>
+      }
+      modal
+      nested
+    >
+      {(close) => (
+        <>
+          <div className="modalPopup">
+            <ButtonX toggleHeader={isModalOpen} setToggleHeader={close} />
+          </div>
+          <div className="content w-full">
+            {/* <DataFormMenu
+              formSelectLocal={formSelectLocal}
+              setFormSelectLocal={setFormSelectLocal}
+              setBlockSelect={theContext.setBlockSelectObject}
+            /> */}
+            <ShowIconFormMenu />
+          </div>
+          <div
+            className="w-full d-flex justify-content-end align-items-center mx-auto"
+            style={{ padding: "0.05rem", marginBottom: "0.2rem" }}
+          >
+            <ActionButtons {...GROUP_BUTTONS_ACTIONS} />
+          </div>
+        </>
+      )}
+    </Popup>
+  );
+}
+
+export default ButtonIconForm;
+
+const ShowIconFormMenu = () => {
+  const { formObject, setFormObject, arrayOfBlocks, setArrayOfBlocks, blockSelectObject, setBlockSelectObject, masterBlock } = useContext(MyContext);
+
+  // State variables of component
+  const [newArrayLocalBlocks, setNewArrayLocalBlocks] = useState(formObject.blocks);
+  const [indexBlockSelect, setIndexBlockSelect] = useState(0);
+  const [newBlock, setNewBlock] = useState({});
 
   const arrayValues = useMemo(() => ["YES", "NOT"], []);
 
-  // 1.-  State variables of form menu
-  const [newArrayLocalBlocks, setNewArrayLocalBlocks] = useState(formObject.blocks);
-  const [indexBlockSelect, setIndexBlockSelect] = useState(indexOfBlockInArray);
-  const [newBlock, setNewBlock] = useState({});
-
-  // 2.- UseEffects Hooks for form menu
+  //  UseEffects Hooks
   useEffect(() => {
     setNewBlock(masterBlock);
     setNewArrayLocalBlocks(formObject.blocks);
-    setIndexBlockSelect(indexOfBlockInArray);
+    setIndexBlockSelect(0);
   }, []);
 
   useEffect(() => {
-    setIndexOfBlockInArray(indexBlockSelect);
-    setBlockSelect(arrayOfBlocks[indexBlockSelect]);
     setBlockSelectObject(arrayOfBlocks[indexBlockSelect]);
   }, [indexBlockSelect]);
 
@@ -49,7 +111,6 @@ function DataFormMenu({ setBlockSelect }) {
     const newValue = ev.target.value;
 
     const newBlockSelectObject = formObject.blocks.find(block => block.title_Block === newValue);
-    setBlockSelect(newBlockSelectObject);
     setBlockSelectObject(newBlockSelectObject);
 
     const newIndexInArrayBlocks = formObject.blocks.findIndex(block => block.title_Block === newValue);
@@ -73,7 +134,7 @@ function DataFormMenu({ setBlockSelect }) {
   }, [newBlock]);
 
   //  Fields of the form
-  const headerHeadField = (
+  const headerHeadFormTitle = (
     <HeaderHead
       idHeading="headingForm"
       dataTarget="#collapseForm"
@@ -149,7 +210,7 @@ function DataFormMenu({ setBlockSelect }) {
     <div id="accordionForm" className="accordion container-fluid graycolor400 d-flex flex-column justify-content-center align-items-center p-1 mx-auto mb-1">
       <div className="accordion-item rounded-0 container-fluid w-auto mx-auto graycolor400 border-0 "
         style={{ marginBottom: "0.3rem" }} >
-        {headerHeadField}
+        {headerHeadFormTitle}
         <div id="collapseForm" className="accordion-collapse collapse ms-0" aria-labelledby="headingForm" data-bs-parent="#accordionForm">
           <div className="accordion-body p-0 mb-0">
             <div className="row d-flex justify-content-center align-items-center gap-1 m-1" >
@@ -193,41 +254,6 @@ function DataFormMenu({ setBlockSelect }) {
         </div>
       </div>
     </div>
+
   );
-}
-
-export default DataFormMenu;
-
-/*
-    El componente "DataFormMenu" es un componente funcional de React que muestra un "menú de formulario". 
-    
-    Aquí está en detalle lo que hace cada parte del componente:
-
-    1.- Importaciones: El componente importa varias dependencias de React, así como otros componentes y constantes que se utilizarán 
-                       más adelante en el código.
-
-    2.- Declaración del componente: El componente se declara como una función de JavaScript con el nombre "DataFormMenu". 
-                                    Recibe varios "props" que se utilizan para gestionar el estado y realizar acciones en el menú de formulario.
-
-    3.- Hooks de React: El componente utiliza hooks de React para gestionar el estado y realizar efectos secundarios. Utiliza "useState" para 
-                        definir variables de estado, como indexBlockSelect y newArrayBlocks. Utiliza useContext para acceder a un contexto de 
-                        React llamado MyContext. Utiliza useEffect para ejecutar acciones después de que el componente se haya renderizado o 
-                        cuando ciertos valores cambien.
-
-    4.- Funciones de manipulación de eventos: El componente define varias funciones de manipulación de eventos que se utilizan para actualizar 
-                                              el estado en respuesta a eventos del usuario, como cambios de valor en campos de entrada. 
-                                              Estas funciones actualizan el estado utilizando las funciones setFormSelect, setValueForm y otras.
-
-    5.- JSX de renderizado: El componente devuelve JSX que representa el menú de formulario. Utiliza varios componentes de React, como HeaderHead, 
-                            FieldText, FieldData, FieldSelect, FieldTextArea y FieldSelectAdd, para renderizar diferentes partes del menú de 
-                            formulario. Estos componentes reciben props que se utilizan para mostrar y actualizar los valores en el menú de 
-                            formulario.
-
-    6.- Efectos secundarios adicionales: El componente también tiene algunos efectos secundarios adicionales utilizando useEffect. 
-                                         Por ejemplo, actualiza el contexto theContext y agrega un nuevo bloque a través de las funciones 
-                                         theContext.setArrayOfBlocks y setNewArrayBlocks.
-
-
-    En resumen, este componente renderiza un menú de formulario y maneja la lógica para actualizar el estado del menú en respuesta a eventos 
-    del usuario.
-*/
+};

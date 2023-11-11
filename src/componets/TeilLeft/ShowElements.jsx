@@ -16,9 +16,9 @@ import RadioButtons_PB from '../elementsForms/RadioButtons_PB.jsx'
 import IconoElem_PB from '../elementsForms/IconoElem_PB.jsx'
 
 
-function ShowElements({ type_Element, valueComp }) {
-  console.log({ type_Element, valueComp });
-  const theContext = useContext(MyContext);
+function ShowElements({ valueComp }) {
+  const { setText, setNumber, setDate, setPhone, setEmail,
+    setTextArea, setSelect, setCheckbox, setIcon } = useContext(MyContext);
   const [elementOut, setElementOut] = useState(null);
 
   useEffect(() => {
@@ -26,241 +26,67 @@ function ShowElements({ type_Element, valueComp }) {
   }, [valueComp]);
 
   function selectElementShow(parComponent) {
-    if (parComponent) {
-      const elementMap = {
-        master: () => (
-          <MasterElem_PB
-            comp={parComponent}
-          />
-        ),
-        label: () => (
-          <LabelElem_PB
-            id_Element={parComponent.id_Element}
-            title_Element={parComponent.title_Element}
-            type_Element={type_Element}
-            label_Element={parComponent.label_Element}
-            orderInBlock={parComponent.orderInBlock}
-            required={parComponent.required}
-            disabled={parComponent.disabled}
-            response={parComponent.response}
-            placeholder={parComponent.placeholder}
-            size={parComponent.size}
-            position={parComponent.position}
-            width={parComponent.dimension.width}
-            borderElement={parComponent.borderElement}
-            colorElement={parComponent.colorElement}
-            fontSizeElement={parComponent.fontSizeElement}
+    const elementMap = {
+      master: () => <MasterElem_PB comp={parComponent} />,
+      label: () => <LabelElem_PB {...parComponent} />,
+      text: () => <TextElem_PB {...parComponent} setText={setText} />,
+      number: () => <NumberElem_PB {...parComponent} setNumber={setNumber} />,
+      date: () => <DateElem_PB {...parComponent} setDate={setDate} />,
+      phone: () => <PhoneElem_PB {...parComponent} setPhone={setPhone} />,
+      email: () => <EmailElem_PB {...parComponent} setEmail={setEmail} />,
+      textarea: () => <AreaTextElem_PB {...parComponent} setAreaText={setTextArea} />,
+      select: () => <SelectElement_PB {...parComponent} setSelect={setSelect} />,
+      checkbox: () => <CheckboxElem_PB {...parComponent} setCheckbox={setCheckbox} />,
+      radioButtons: () => <RadioButtons_PB {...parComponent} />,
+      icon: () => <IconoElem_PB {...parComponent} setIcon={setIcon} />,
+    };
 
-            // comp={parComponent}
-          />
-        ),
-        text: () => (
-          <TextElem_PB
-            id_Element={parComponent.id_Element}
-            orderInBlock={parComponent.orderInBlock}
-            labelElement={parComponent.labelElement}
-            required={parComponent.required}
-            disabled={parComponent.disabled}
-            response={parComponent.response}
-            placeholder={parComponent.placeholder}
-            size={parComponent.size}
-            position={parComponent.position}
-            borderElement={parComponent.borderElement}
-            colorElement={parComponent.colorElement}
-            fontSizeElement={parComponent.fontSizeElement}
-            setText={theContext.setText}
-          />
-        ),
-        number: () => (
-          <NumberElem_PB
-            id_Element={parComponent.id_Element}
-            orderInBlock={parComponent.orderInBlock}
-            labelElement={parComponent.labelElement}
-            required={parComponent.required}
-            disabled={parComponent.disabled}
-            response={parComponent.response}
-            placeholder={parComponent.placeholder}
-            size={parComponent.size}
-            position={parComponent.position}
-            borderElement={parComponent.borderElement}
-            colorElement={parComponent.colorElement}
-            fontSizeElement={parComponent.fontSizeElement}
-            setNumber={theContext.setNumber}
-          />
-        ),
-        date: () => (
-          <DateElem_PB
-            id_Element={parComponent.id_Element}
-            orderInBlock={parComponent.orderInBlock}
-            labelElement={parComponent.labelElement}
-            required={parComponent.required}
-            disabled={parComponent.disabled}
-            response={parComponent.response}
-            placeholder={parComponent.placeholder}
-            size={parComponent.size}
-            position={parComponent.position}
-            borderElement={parComponent.borderElement}
-            colorElement={parComponent.colorElement}
-            fontSizeElement={parComponent.fontSizeElement}
-            setDate={theContext.setDate}
-          />
-        ),
-        phone: () => (
-          <PhoneElem_PB
-            id_Element={parComponent.id_Element}
-            orderInBlock={parComponent.orderInBlock}
-            labelElement={parComponent.labelElement}
-            required={parComponent.required}
-            disabled={parComponent.disabled}
-            response={parComponent.response}
-            placeholder={parComponent.placeholder}
-            size={parComponent.size}
-            position={parComponent.position}
-            borderElement={parComponent.borderElement}
-            colorElement={parComponent.colorElement}
-            fontSizeElement={parComponent.fontSizeElement}
-            setPhone={theContext.setPhone}
-          />
-        ),
-        email: () => (
-          <EmailElem_PB
-            id_Element={parComponent.id_Element}
-            orderInBlock={parComponent.orderInBlock}
-            labelElement={parComponent.labelElement}
-            required={parComponent.required}
-            disabled={parComponent.disabled}
-            response={parComponent.response}
-            placeholder={parComponent.placeholder}
-            size={parComponent.size}
-            position={parComponent.position}
-            borderElement={parComponent.borderElement}
-            colorElement={parComponent.colorElement}
-            fontSizeElement={parComponent.fontSizeElement}
-            setEmail={theContext.setEmail}
-          />
-        ),
-        textarea: () => (
-          <AreaTextElem_PB
-            id_Element={parComponent.id_Element}
-            orderInBlock={parComponent.orderInBlock}
-            labelElement={parComponent.labelElement}
-            required={parComponent.required}
-            disabled={parComponent.disabled}
-            readonly={parComponent.readonly}
-            response={parComponent.response}
-            placeholder={parComponent.placeholder}
-            row={parComponent.row}
-            col={parComponent.col}
-            position={parComponent.position}
-            borderElement={parComponent.borderElement}
-            colorElement={parComponent.colorElement}
-            fontSizeElement={parComponent.fontSizeElement}
-            setAreaText={theContext.setTextArea}
-          />
-        ),
-        select: () => (
-          <SelectElement_PB
-            id_Element={parComponent.id_Element}
-            orderInBlock={parComponent.orderInBlock}
-            labelElement={parComponent.labelElement}
-            required={parComponent.required}
-            disabled={parComponent.disabled}
-            response={parComponent.response}
-            placeholder={parComponent.placeholder}
-            size={parComponent.size}
-            position={parComponent.position}
-            borderElement={parComponent.borderElement}
-            colorElement={parComponent.colorElement}
-            fontSizeElement={parComponent.fontSizeElement}
-            optionsValues={parComponent.optionsValues}
-            setSelect={theContext.setSelect}
-          />
-        ),
-        checkbox: () => (
-          <CheckboxElem_PB
-            id_Element={parComponent.id_Element}
-            orderInBlock={parComponent.orderInBlock}
-            labelElement={parComponent.labelElement}
-            required={parComponent.required}
-            disabled={parComponent.disabled}
-            checked={parComponent.checked}
-            response={parComponent.response}
-            position={parComponent.position}
-            borderElement={parComponent.borderElement}
-            colorElement={parComponent.colorElement}
-            fontSizeElement={parComponent.fontSizeElement}
-            setCheckbox={theContext.setCheckbox}
-          />
-        ),
-        radioButtons: () => (
-          <RadioButtons_PB
-            id_Element={parComponent.id_Element}
-            orderInBlock={parComponent.orderInBlock}
-            legend={parComponent.legend}
-            required={parComponent.required}
-            disabled={parComponent.disabled}
-            name={parComponent.name}
-            radioButtons={parComponent.radioButtons}
-            response={parComponent.response}
-            placeholder={parComponent.placeholder}
-            position={parComponent.position}
-          // setRadioButtons={parComponent.setComponent}
-          />
-        ),
-        icon: () => (
-          <IconoElem_PB
-            id_Element={parComponent.id_Element}
-            orderInBlock={parComponent.orderInBlock}
-            required={parComponent.required}
-            disabled={parComponent.disabled}
-            name={parComponent.name}
-            widthImage={parComponent.widthImage}
-            position={parComponent.position}
-            borderElement={parComponent.borderElement}
-            srcURLIcon={parComponent.srcURLIcon}
-            nameImage={parComponent.nameImage}
-            setIcon={theContext.setIcon}
-          />
-        ),
-      };
-
-      const setElement = elementMap[parComponent.type_Element];
-      if (setElement) {
-        setElementOut(setElement);
-      }
-    } else {
+    if (!parComponent) {
       throw new Error('Error: the argument of the function "selectElementShow" must be a string!!');
+    }
+
+    const setElement = elementMap[parComponent.type_Element];
+    if (setElement) {
+      setElementOut(setElement);
     }
   };
 
-
   return (
-    <div id="accordionShowComp" className="accordion container-fluid graycolor400 d-flex flex-column justify-content-center align-items-center p-1 mx-auto mb-1">
-      <div className="accordion-item rounded-0 container-fluid mx-auto graycolor400 border-0 " style={{ marginBottom: "0.3rem" }} >
-        <HeaderHead
-          idHeading="headingShowComp"
-          dataTarget="#collapseShowComp"
-          ariaControl="collapseShowComp"
-          fontSize="0.64rem"
-          title="Show Component: "
-          value={valueComp.type_Element}
-        />
+    <ShowComponent
+      valueComp={valueComp}
+      elementOut={elementOut}
+    />
+  );
+}
 
-        <div id="collapseShowComp" className="accordion-collapse collapse ms-0" aria-labelledby="headingShowComp" data-bs-parent="#accordionShowComp">
-          <div className="accordion-body p-0 mb-0">
-            <div className="row d-flex justify-content-center align-items-center gap-1 m-1" >
-              <div className="col d-flex flex-column justify-content-start align-items-start graycolor200 mx-auto"
-                style={{ padding: "0.2rem", margin: "0.2rem auto" }} >
-                <span className="m-0 border-2 border-danger" style={{ width: "100%", fontSize: "0.6rem" }}>
-                  {elementOut}
-                </span>
-              </div>
+export default ShowElements;
+
+const ShowComponent = ({ valueComp, elementOut }) => (
+  <div id="accordionShowComp" className="accordion container-fluid graycolor400 d-flex flex-column justify-content-center align-items-center p-1 mx-auto mb-1">
+    <div className="accordion-item rounded-0 container-fluid mx-auto graycolor400 border-0" style={{ marginBottom: "0.3rem" }}>
+      <HeaderHead
+        idHeading="headingShowComp"
+        dataTarget="#collapseShowComp"
+        ariaControl="collapseShowComp"
+        fontSize="0.64rem"
+        title="Show Component: "
+        value={valueComp.type_Element}
+      />
+
+      <div id="collapseShowComp" className="accordion-collapse collapse ms-0" aria-labelledby="headingShowComp" data-bs-parent="#accordionShowComp">
+        <div className="accordion-body p-0 mb-0">
+          <div className="row d-flex justify-content-center align-items-center gap-1 m-1">
+            <div className="col d-flex flex-column justify-content-start align-items-start graycolor200 mx-auto" style={{ padding: "0.2rem", margin: "0.2rem auto" }}>
+              <span className="m-0 border-2 border-danger" style={{ width: "100%", fontSize: "0.6rem" }}>
+                {elementOut}
+              </span>
             </div>
           </div>
         </div>
       </div>
     </div>
-  );
-}
+  </div>
+);
 
-export default ShowElements;
+
+

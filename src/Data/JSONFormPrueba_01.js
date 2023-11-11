@@ -10,7 +10,7 @@ const formJSON_prueba_01 = {
 
   "blocks": [
     {
-      "id_Block": "block_first_of_template",
+      "id_Block": "block_first_template",
       "ordenDisplay_Block": 0,
       "title_Block": "First Block",
       "label_Block": "FIRST BLOCK OF TEMPLATE",
@@ -143,7 +143,7 @@ const formJSON_prueba_01 = {
       ]
     },
     {
-      "id_Block": "block_second_of_template",
+      "id_Block": "block_second_template",
       "ordenDisplay_Block": 1,
       "title_Block": "Second Block",
       "label_Block": "SECOND BLOCK OF TEMPLATE",
@@ -155,7 +155,7 @@ const formJSON_prueba_01 = {
           "components": [
             {
               "id_Element": "component_first_of_block_2",
-              "title_Element": "Block 2 - Row 0: First Element 1 - Label",
+              "title_Element": "Block 2 - Row 0: First Element- Label",
               "type_Element": "label",
               "orderInBlock": 0,
               "label_Element": "",
@@ -211,17 +211,76 @@ const formJSON_prueba_01 = {
               "srcURLIcon": "",
               "nameImage": "",
               "widthImage": 0
-            }
+            },
+            {
+              "id_Element": "component_second_of_block_2",
+              "title_Element": "Block 2 - Row 0: Second Component - master",
+              "type_Element": "master",
+              "orderInBlock": 1,
+              "label_Element": "Element Master",
+              "required": true,
+              "disabled": false,
+              "response": [],
+              "placeholder": "Default",
+              "size": 0,
+              "position": {
+                "rowElem": 0,
+                "colElem": 0
+              },
+              "dimension": {
+                "width": 1,
+                "height": "2.4rem"
+              },
+              "valueComponent": undefined,
+              "setComponent": undefined,
+              "name": undefined,
+              "borderElement": true,
+              "colorElement": "black",
+              "fontSizeElement": "",
+
+              //  Area Text
+              "readonly": false,
+              "row": 0,
+              "col": 0,
+
+              //  Select
+              "optionValues": [],
+
+              //  Checkbox
+              "checked": false,
+
+              //  Radio Buttons
+              "legend": "",
+              "radioButtons": [
+                {
+                  "id_Element": "",
+                  "labelElement": "",
+                  "name": "",
+                  "required": true,
+                  "disabled": false,
+                  "checked": false,
+                  "response": [
+                    false
+                  ],
+                  "setRadioButton": undefined
+                }
+              ],
+
+              //  Icons - Images
+              "srcURLIcon": "",
+              "nameImage": "",
+              "widthImage": 0
+            },
           ]
         },
         {
           "orderColInBlock": 1,
           "components": [
             {
-              "id_Element": "component_second_of_block_2",
-              "title_Element": "Block 2 - Row 1: Second Element 2 - Label",
+              "id_Element": "component_third_of_block_2",
+              "title_Element": "Block 2 - Row 1: Third Element - Label",
               "type_Element": "label",
-              "orderInBlock": 1,
+              "orderInBlock": 2,
               "label_Element": "",
               "required": true,
               "disabled": false,

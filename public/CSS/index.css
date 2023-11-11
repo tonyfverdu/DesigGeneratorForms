@@ -5,7 +5,7 @@
 }
 
 .purple {
-  color: #6f42c1;
+  color: #47228b;
 }
 
 .pink {
@@ -21,7 +21,7 @@
 }
 
 .yellow {
-  color: #fd7e14;
+  color: #fde614;
 }
 
 .green {
@@ -140,6 +140,10 @@
 
 .colorRedDunkel {
   color: rgba(156, 2, 2, 0.9);
+}
+
+.colorBlueHell {
+  color: rgb(185, 253, 253);
 }
 
 .colorBlueDunkel {

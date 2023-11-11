@@ -33,13 +33,11 @@
   width: 100%;
   justify-content: center;
   align-items: center;
-  width: 1rem;
-  height: 1rem;
+  width: 0.88rem;
+  height: 0.88rem;
   margin: 0%;
-  padding: 0rem;
-  background-color: rgb(143, 58, 143);
-  border: 1px solid rgb(59, 9, 59);
-  border-radius: 50%;
+  padding: 0.1rem;
+  background-color: rgb(34, 117, 1);
   transition: all ease 0.2s;
 }
 .circleComp:hover, .circleComp:focus {
@@ -51,14 +49,14 @@
 
 .contLine {
   width: 100%;
-  height: 0.12rem;
+  height: 0.1rem;
   background-color: rgb(63, 63, 63);
   color: rgb(63, 63, 63);
 }
 
 .contLineComp {
   width: 100%;
-  height: 0.12rem;
+  height: 0.1rem;
   background-color: rgba(147, 6, 247, 0.9);
   color: rgb(59, 9, 59);
 }

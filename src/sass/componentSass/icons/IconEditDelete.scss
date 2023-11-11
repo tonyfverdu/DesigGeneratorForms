@@ -1,14 +1,11 @@
 @use '../../myvariables' as v;
-@use '../../layouts' as l;
-@use '../../designElement' as d;
 
 
 .contIconsEditDelete {
-  // width: 100%;
-  height: 1.2rem;
-  margin: 0%;
-  padding: 0%;
-
+  width: 1.6rem;
+  height: 2.4rem;
+  background: v.$gradientSlice2;
+  border: 1px solid v.$backgroundColorHellGray2;
 }
 
 .contIcon {
@@ -22,3 +19,4 @@
     background-color: v.$backgroundColorDunkelGray5;
   }
 }
+

@@ -1,31 +1,25 @@
-import TeilLeft from './componets/TeilLeft/TeilLeft';
+import TeilLeft from './componets/TeilLeft/TeilLeft.jsx';
 
-function OffCanvasMenuLeft({ formSelectLocal }) {
-  return (
-    <>
-      <div className="p-1 mt-4 mx-auto d-flex flex-column justify-content-center align-items-center" style={{ width: "19.9rem" }}>
-        <ButtonKlein2
-          type="button"
-          text="Designer Menu"
-          parW="8rem"
-          parH="2rem"
-          parFS="0.7rem"
-        />
+// const OffCanvasMenuLeft = ({ formSelectLocal }) => (
+const OffCanvasMenuLeft = () => (
+  <>
+    <div className="p-0 m-0 w-auto d-flex flex-column justify-content-center align-items-center">
+      <ButtonKlein2 type="button" text="Designer Menu" parW="6rem" parH="2rem" parFS="0.7rem" />
+    </div>
+    <div className="offcanvas offcanvas-start bg-dark p-0 m-0" tabIndex="-1" id="offcanvasMenuLeft" aria-labelledby="offcanvasMenuLabel">
+      <div className="offcanvas-header bg-white p-0 m-0">
+        <h5 id="offcanvasMenuLabel" className="offcanvas-title colorBlueDunkel text-center fw-bold fs-09 mx-auto py-1">
+          Designer Menu
+        </h5>
+        <button type="button" className="me-2 btn-close btn-close-dark text-danger fw-bolder" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
-      <div className="offcanvas offcanvas-start bg-dark p-1" tabIndex="-1" id="offcanvasMenuLeft" aria-labelledby="offcanvasMenuLabel">
-        <div className="offcanvas-header bg-white p-1">
-          <h5 id="offcanvasMenuLabel" className="offcanvas-title w-100 colorBlueDunkel text-center fw-bold fs-09 py-2">
-            Designer Menu
-          </h5>
-          <button type="button" className="me-2 btn-close btn-close-dark text-danger fw-bold" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div className="offcanvas-body" style={{ width: "19.9rem" }}>
-          <TeilLeft formSelectLocal={formSelectLocal} />
-        </div>
+      <div className="offcanvas-body p-0 m-0 mt-1">
+        {/* <TeilLeft formSelectLocal={formSelectLocal} /> */}
+        <TeilLeft />
       </div>
-    </>
-  );
-}
+    </div>
+  </>
+);
 
 export default OffCanvasMenuLeft;
 
@@ -39,7 +33,7 @@ const ButtonKlein2 = ({ type, text, parW, parH, parFS }) => {
   return (
     <button
       type={type}
-      className="w-auto btn btn-outline-dark border-3 fw-bold px-3"
+      className="w-auto btn btn-outline-dark border-3 fw-bold px-2"
       style={buttonStyle}
       data-bs-toggle="offcanvas"
       data-bs-target="#offcanvasMenuLeft"
