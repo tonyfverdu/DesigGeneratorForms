@@ -20,30 +20,37 @@ function MenuButtonsLeft({ preId, role, arialLabel, typeButton, options, colors,
   const handleBtnClick = (ev) => {
     setOption(ev.target.value);
   };
+
   const showRadioButtons = (parOptionsArray) => {
     if (!Array.isArray(parOptionsArray)) {
       throw new Error('The argument of the function "showRadioButtons" must be an array!!');
     }
 
-    return parOptionsArray.map((opt, index) => (
-      <div key={opt} className="mx-1">
-        <button
-          type={typeButton}
-          className={`btn btn-sm btn-outline-${colors[index]} text-white-emphasis fw-bolder border border-2 border-${colors[index]}`}
-          id={`${preId}_${index}`}
-          value={opt}
-          onClick={(ev) => handleBtnClick(ev)}
-          style={{ border: "1px solid red", width: "auto" }}
-        >
-          {opt}
-        </button>
-      </div>
-    ));
+    return parOptionsArray.map((opt, index) => {
+      const buttonClassName = `btn btn-sm btn-outline-${colors[index]} text-white-emphasis fw-bolder border border-2 border-${colors[index]}`;
+      const buttonId = `${preId}_${index}`;
+
+      return (
+        <div key={opt} className="mx-1">
+          <button
+            type={typeButton}
+            className={buttonClassName}
+            id={buttonId}
+            value={opt}
+            onClick={handleBtnClick}
+            style={{ border: "1px solid red", width: "auto" }}
+          >
+            {opt}
+          </button>
+        </div>
+      );
+    });
   };
+
   const radioButtons = showRadioButtons(options);
 
   return (
-    <div className="contGrpBtnSelect d-flex justify-content-between align-items-center gap-2 p-1 px-2 mx-auto">
+    <div className="contGrpBtnSelect d-flex justify-content-between align-items-center gap-2 p-1 mx-auto">
       <StatusOption
         fontSizeText="0.6rem"
         colorText="white"
@@ -55,7 +62,8 @@ function MenuButtonsLeft({ preId, role, arialLabel, typeButton, options, colors,
         className="btn-group btn-group-sm m-0 p-0"
         style={{ height: height }}
         role={role}
-        aria-label={arialLabel}>
+        aria-label={arialLabel}
+      >
         {radioButtons}
       </div>
     </div>

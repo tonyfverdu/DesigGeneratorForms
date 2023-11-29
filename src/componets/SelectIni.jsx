@@ -18,8 +18,6 @@ function SelectIni({ id_Element, labelElement, required, disabled = false, place
     ev.preventDefault();
     setValueSelect(ev.target.value);
 
-    console.log("handleOnChange:  ", ev.target.value);
-
     if(ev.target.value === "Form Disease Survey Template") {
       theContext.setFormObject(formJSON_prueba_01);
     }

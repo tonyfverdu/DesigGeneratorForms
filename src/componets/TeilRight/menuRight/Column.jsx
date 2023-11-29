@@ -6,20 +6,47 @@ import IconEditDelete from '../../icons/IconEditDelete.jsx';
 import '../../../sass/componentSass/TeilRight/Column.scss';
 
 
-function Column({ comp }) {
-  const { arrayColumns, setArrayColumns,  } = useContext(MyContext);
+function Column({ block, comp }) {
+  const { arrayColumns, setArrayColumns,
+    formObject, setFormObject,
+    arrayOfBlocks, setArrayOfBlocks,
+    blockSelectObject, setBlockSelectObject,
+
+    indexOfBlockInArray, setIndexOfBlockInArray,
+    arrayOfComponentsObject, setArrayOfComponetsObject,
+
+    arrayOfRowsCompsObject, setArrayOfRowsCompsObject,
+    componentSelectObject, setComponentSelectObject } = useContext(MyContext);
+
   const [toogleColBefore, setToogleColBefore] = useState(false);
   const [toogleColAfter, setToogleColAfter] = useState(false);
   const [isSpace, setIsSpace] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const [componentSelect, setComponentSelect] = useState({});  //  <<===   User-selected Component
 
+  const refElementDiv = useRef(null);
+
+  // useEffect(() => {
+  //   console.log('En UseEffect de Column, block: ', block);
+    
+  // }, [block])
+
   useEffect(() => {
+
     setComponentSelect(comp);
   }, [comp]);
-  
-  const refElementDiv = useRef(null);
+
+  // useEffect(() => {
+  //   console.log('En UseEffect, componentSelectObject: ', componentSelectObject);
+
+  // }, [componentSelectObject])
+
+  useEffect(() => {
+    if (!toogleColBefore && toogleColAfter) {
+      setArrayColumns(prevArrayColumns => [...prevArrayColumns, prevArrayColumns.length]);
+    }
+  }, [toogleColBefore, toogleColAfter]);
+
 
   const addNewCol = (parAfterBefore) => {
     if (!["after", "before"].includes(parAfterBefore)) {
@@ -29,9 +56,18 @@ function Column({ comp }) {
   };
 
   const handleComponent = (parComponent) => {
-    console.log('editComponent: ', parComponent);
+    console.log("entro en handleComponent de Column: parComponent: ", parComponent);
+    console.log("En handleComponent, block: ", block);
     setComponentSelect(parComponent);
+    setComponentSelectObject(parComponent);
     setIsModalOpen(!isModalOpen);
+
+    // const newArrayOfRowsCompsObject = [...arrayOfRowsCompsObject];
+    // const indexEstimate = newArrayOfRowsCompsObject.indexOf(parComponent);
+    // newArrayOfRowsCompsObject[indexEstimate] = parComponent;
+    // setArrayOfRowsCompsObject(newArrayOfRowsCompsObject);
+
+    // console.log('newArrayOfRowsCompsObject: ', newArrayOfRowsCompsObject);
   };
 
   const deleteComponent = (parRefElement) => {
@@ -41,14 +77,9 @@ function Column({ comp }) {
     }
   };
 
-  useEffect(() => {
-    if (!toogleColBefore && toogleColAfter) {
-      setArrayColumns(prevArrayColumns => [...prevArrayColumns, prevArrayColumns.length]);
-    }
-  }, [toogleColBefore, toogleColAfter]);
 
   return (
-    <div ref={refElementDiv} className="container-fluid d-flex flex-row justify-content-start align-items-start p-0 mx-2 border border-primary">
+    <div ref={refElementDiv} className="container-fluid d-flex flex-row justify-content-start align-items-start p-0 mx-2">
       {toogleColBefore && <Column comp={comp} />}
       <div className="d-flex flex-column justify-content-between align-items-center p-0 ms-1" style={{ height: "2.6rem" }}>
         <CircleButton isButton="before" addNewCol={addNewCol} parToogleCol={toogleColBefore} />
@@ -62,7 +93,9 @@ function Column({ comp }) {
         </button>
       </div>
       <div className="mx-1 p-0" >
-        {!isSpace ? (
+        {isSpace ? (
+          <WhiteSpace_PB />
+        ) : (
           <div className="d-flex flex-row justify-content-center align-items-center p-0 mx-auto">
             <MasterElem_PB
               comp={comp}
@@ -72,16 +105,15 @@ function Column({ comp }) {
               width={comp.dimension.width}
               disabled={comp.disabled}
             />
-            
+
             <IconEditDelete
               component={componentSelect}
+              block={blockSelectObject}
               handleComponent={handleComponent}
               deleteComponent={deleteComponent}
               refElementDiv={refElementDiv}
             />
           </div>
-        ) : (
-          <WhiteSpace_PB />
         )}
       </div>
       <CircleButton

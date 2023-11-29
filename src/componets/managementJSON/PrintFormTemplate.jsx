@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext} from 'react';
+import { useState, useEffect, useContext, useId} from 'react';
 import { MyContext } from '../../context/TheContext.jsx';
 import BlockMaster from '../TeilRight/menuRight/BlockMaster.jsx';
 import RowBlock from '../TeilRight/RowBlock.jsx';
@@ -12,51 +12,29 @@ import 'reactjs-popup/dist/index.css';
 function PrintFormTemplate() {
   const { formObject, setFormObject, setArrayOfBlocks, tooRead, setText } = useContext(MyContext);
   const { blocks, title_Form, id_Form } = formObject;
-  const [lengthOfArrayOfBlocks, setLengthOfArrayOfBlocks] = useState(0);
 
+  const [lengthOfArrayOfBlocks, setLengthOfArrayOfBlocks] = useState(0);
+  
   useEffect(() => {
     setArrayOfBlocks(formObject.blocks);
     setLengthOfArrayOfBlocks(formObject.blocks.length);
   }, [formObject]);
 
-  const renderRowBlock = (block, index) => {
-    const rowBlockProps = {
-      formInput: formObject,
-      count: index,
-      setLengthOfArrayOfBlocks,
-    };
-
-    const rowBlock = (
-      <div key={block.id_Block} className="col">
-        {!tooRead && (
-          <div className="container-fluid row d-flex flex-row justify-content-start align-items-center gx-0 shadow-sm graycolor200 p-1 mb-1">
-            <RowBlock {...rowBlockProps} />
-          </div>
-        )}
-        <div id={`accordionBlock_${index}`} className="accordion accordion-flush bg-secondary mx-auto mb-1">
-          <div className="accordion-item p-0 m-0">
-            <BlockMaster block={block} index={index} />
-          </div>
-        </div>
-      </div>
-    );
-
-    return rowBlock;
-  };
 
   const renderFormTitle = () => (
-    <header className="w-auto col-11">
-      <h5 className="col h5 fw-bolder p-2 text-sm-start text-capitalize colorBlueDunkel">
-        Form Title: <span className="fs-6 fw-bold text-graycolor300 mx-auto ms-1">{title_Form}</span>
+    <header className="w-auto">
+      <h5 className="col h4 fw-bolder px-1 py-2 text-sm-start text-capitalize colorBlueHell2">
+        Form Title: <span className="fs-09 fw-bold text-graycolor400 mx-auto ms-1">{title_Form}</span>
       </h5>
     </header>
   );
-
   const renderFormTitle_ID = () => {
-    const titleElement = (
+    const idLabelElement_PB = `idLabelElement_${useId()}`; // <<== useId();
+
+    const titleElementForm = (
       <div className="col-2 text-start m-0 p-0">
         <LabelElem_PB
-          id_Element={"id_LabelOfForm"}
+          id_Element={"idLabelElement_PB"}
           orderInBlock={0}
           required={true}
           disabled={true}
@@ -71,7 +49,7 @@ function PrintFormTemplate() {
         />
       </div>
     );
-    const idElement = (
+    const idElementForm = (
       <div className="col-2 offset-md-8">
         <TextElem_PB
           id_Element={"id_IdOfForm"}
@@ -94,22 +72,46 @@ function PrintFormTemplate() {
     );
 
     return (
-      <div className="container-fluid row d-flex flex-row justify-content-start align-items-center gx-0 shadow-sm graycolor500 p-1 mb-1">
-        {titleElement}
-        {idElement}
+      <div className="container-fluid row d-flex flex-row justify-content-start align-items-center gx-0 
+      shadow-sm graycolor500 p-1 mb-1">
+        {titleElementForm}
+        {idElementForm}
       </div>
     );
   };
+  const renderRowBlock = (block, index) => {
+    const rowBlockProps = {
+      formInput: formObject,
+      count: index,
+      setLengthOfArrayOfBlocks
+    };
 
+    const rowBlock = (
+      <div key={block.id_Block} className="col mb-2">
+        {!tooRead && (
+          <div className="container-fluid row d-flex justify-content-start align-items-center gx-0 shadow-sm graycolor200 p-1 mb-1">
+            <RowBlock {...rowBlockProps} />
+          </div>
+        )}
+        <div id={`accordionBlock_${index}`} className="accordion accordion-flush bg-secondary mx-auto mb-1">
+          <div className="accordion-item p-0 m-0">
+            <BlockMaster block={block} index={index} />
+          </div>
+        </div>
+      </div>
+    );
+
+    return rowBlock;
+  };
   const renderRowBlockContainer = () => {
     const rowBlockProps = {
       formInput: formObject,
       count: blocks.length,
-      setLengthOfArrayOfBlocks,
+      setLengthOfArrayOfBlocks
     };
 
     return (
-      <div className="container-fluid row d-flex flex-row justify-content-start align-items-center gx-0 
+      <div className="container-fluid row d-flex justify-content-start align-items-center gx-0 
       shadow-sm graycolor200 p-1 mb-1">
         <RowBlock {...rowBlockProps} />
       </div>
@@ -117,9 +119,9 @@ function PrintFormTemplate() {
   };
 
   return (
-    <form className="container-fluid rounded-0 bg-light">
-      <div className="container-fluid shadow-sm d-flex flex-column justify-content-start align-items-center p-0 mb-1 graycolor600">
-        <div className="container-fluid d-flex flex-row justify-content-between align-items-center">
+    <form className="container-fluid mx-auto bg-light">
+      <div className="container-fluid shadow-sm d-flex justify-content-start align-items-center p-0 mb-1 graycolor800">
+        <div className="container-fluid d-flex justify-content-between align-items-center">
           {renderFormTitle()}
           <div className='col-1'>
             <ButtonIconForm
@@ -133,7 +135,7 @@ function PrintFormTemplate() {
 
       {renderFormTitle_ID()}
 
-       <div className="container-fluid shadow-sm p-0 mb-2">
+       <div className="container-fluid shadow-sm p-0 m-0">
         {blocks.map(renderRowBlock)}
        {!tooRead && renderRowBlockContainer()}
       </div> 

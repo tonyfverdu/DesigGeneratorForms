@@ -8,13 +8,25 @@
   border: 1px solid v.$backgroundColorHellGray2;
 }
 
-.contIcon {
+.contIconEdit {
   padding: 1%;
   transition: all ease 0.20s;
 
   &:hover, &:focus {
     cursor: pointer;
     transform: scale(1.2) translateY(-6px);
+    border-radius: 50%;
+    background-color: v.$backgroundColorDunkelGray5;
+  }
+}
+
+.contIconDelete {
+  padding: 1%;
+  transition: all ease 0.20s;
+
+  &:hover, &:focus {
+    cursor: pointer;
+    transform: scale(1.2) translateY(6px);
     border-radius: 50%;
     background-color: v.$backgroundColorDunkelGray5;
   }

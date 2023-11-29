@@ -70,7 +70,6 @@ function FromJSONToForm() {
 
   //  III.-  Anzeige des erstellten Formulars, im valueOfForm haben wir das Formular anzueigen
   function handleJSONView() {
-    console.log('Formulario:  ', form)
     theContext.setJSONEingabenForm(JSON.stringify(form))
     theContext.setValueOfForm(form.id_Form)
     theContext.setToggleJSONEingaben(!theContext.toggleJSONEingaben)
@@ -79,7 +78,6 @@ function FromJSONToForm() {
   // VI.-  Funktion, das löscht die Daten
   function handleButtonDeleteFormDyn(ev) {
     setDeleteForm(!deleteForm)
-    console.log('deleteForm:  ', deleteForm)
   }
 
 

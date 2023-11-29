@@ -1,8 +1,10 @@
 import { useCallback } from 'react';
 
-function StatusOption({ fontSizeText, option, widthBand }) {
+
+function StatusOption({ fontSizeText, colorText, option, colorOption, widthBand }) {
   const textSpanStyle = {
     fontSize: fontSizeText,
+    color: colorText,
     width: widthBand
   };
 
@@ -15,7 +17,7 @@ function StatusOption({ fontSizeText, option, widthBand }) {
 
   return (
     <span className={optionClassName}>
-      <span className="text-center text-white fw-bold" style={textSpanStyle}>
+      <span className="text-center fw-bold" style={textSpanStyle}>
         {option}
       </span>
     </span>
@@ -23,6 +25,8 @@ function StatusOption({ fontSizeText, option, widthBand }) {
 }
 
 export default StatusOption;
+
+// <span className="text-center text-white fw-bold" style={textSpanStyle}>
 
 /*
     This code defines a React functional component called "StatusOption". 

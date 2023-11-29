@@ -20,10 +20,17 @@ function TheContext({ children }) {
   const [formObject, setFormObject] = useState(formJSON_prueba_01);
   const [arrayOfBlocks, setArrayOfBlocks] = useState(formJSON_prueba_01.blocks);
   const [indexOfBlockInArray, setIndexOfBlockInArray] = useState(0);
-  const [blockSelectObject, setBlockSelectObject] = useState({})
-  const [arrayOfRowsCompsObject, setArrayOfRowsCompsObject] = useState([]);
-  const [arrayOfComponentsObject, setArrayOfComponetsObject] = useState([]);
+  const [blockSelectObject, setBlockSelectObject] = useState({});
+
+  const [arrayOfColumnsOfBlock, setArrayColumnsOfBlock] = useState([]);
+  const [columnSelectObject, setColumnSelectObject] = useState({});
+  const [arrayOfComponentsByColumn, setArrayComponentsByColumn] = useState([]);
   const [componentSelectObject, setComponentSelectObject] = useState({});
+
+  // Quitar:
+  const [arrayOfRowsCompsObject, setArrayOfRowsCompsObject] = useState([]);  // <<== columns del block
+  const [arrayOfComponentsObject, setArrayOfComponetsObject] = useState([]);  // <<== Components del block
+  
 
   const [JSONEingabenForm, setJSONEingabenForm] = useState("")   //  <== Eingaben ( vor String JSON zur JSON-Formulardaten)
   const [JSONAusgabenForm, setJSONAusgabenForm] = useState("")   //  <== Ausgaben (vor JSON-Formulardaten zur String JSON)
@@ -382,10 +389,14 @@ function TheContext({ children }) {
 
     indexOfBlockInArray, setIndexOfBlockInArray,
     arrayOfComponentsObject, setArrayOfComponetsObject,
-    
-    arrayOfRowsCompsObject, setArrayOfRowsCompsObject,
+
+    arrayOfColumnsOfBlock, setArrayColumnsOfBlock,
+    columnSelectObject, setColumnSelectObject,
+    arrayOfComponentsByColumn, setArrayComponentsByColumn,
     componentSelectObject, setComponentSelectObject,
 
+    arrayOfRowsCompsObject, setArrayOfRowsCompsObject,
+    
     toogleReadLeft, setToogleReadLeft, toogleCreateLeft, setToogleCreateLeft, toogleModifyLeft, setToogleModifyLeft,
     optionDesigner, setOptionDesigner,
 

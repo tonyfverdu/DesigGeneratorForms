@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useCallback } from 'react';
+import { useState, useEffect, useContext, useCallback, useRef, Fragment } from 'react';
 import { MyContext } from '../../../context/TheContext.jsx';
 import LabelElem_PB from '../../elementsForms/LabelElem_PB.jsx';
 import Column from './Column.jsx';
@@ -19,14 +19,20 @@ import compByBlock from '../../../functions/compByBlock.js';
 import '../../../sass/componentSass/TeilRight/Row.scss'
 
 
-function BlockMaster({ form, block, index }) {
-  const { tooRead } = useContext(MyContext);
+function BlockMaster({ block, index }) {
+  const { arrayOfBlocks, setArrayOfBlocks, blockSelectObject, setBlockSelectObject, tooRead } = useContext(MyContext);
 
+  const [blockSelectObjectLocal, setBlockSelectObjectLocal] = useState({});
   const [columnsOfBlock, setColumnsOfBlock] = useState([])  //  <<=  Objetos columnas del bloque: block
-  const [arrayOfCompByColumn, setArrayOfCompByColumn] = useState([])
+  const [arrayOfColumnsLocal, setArrayOfColumnsLocal] = useState(arrayOfBlocks[0].columns);
+  const [arrayOfCompByColumn, setArrayOfCompByColumn] = useState([]);
+
+  //  USE REFERENCES:
+  const referenceColumnInBlock = useRef(arrayOfBlocks[0].columns);
 
   useEffect(() => {
-    // setBlockSelect(block);
+    setBlockSelectObjectLocal(block);
+    setBlockSelectObject(block);
 
     // const newBlockOfArray = arrayOfBlocks.filter(blockInArray => blockInArray.id_Block === block.id_Block);
     // setArrayOfBlocks([...arrayOfBlocks, ])
@@ -49,17 +55,23 @@ function BlockMaster({ form, block, index }) {
     // comp_Colum(columnsOfBlock)
     // console.log("compOfColumn:  ", compOfColumn)
 
-
+    // referenceColumnInBlock.current = block.columns[0]
   }, [block]);
 
+  useEffect(() => {
+    if (tooRead && !referenceColumnInBlock.current && referenceColumnInBlock.current !== null) {
+      referenceColumnInBlock.current.remove();
+    }
+  }, [referenceColumnInBlock.current]);
+
+  //  Esto no se que es
   function comp_Colum(parArrayColumn) {
-    console.log("parArrayColumn:  ", parArrayColumn)
     if (Array.isArray(parArrayColumn)) {
       setArrayOfCompByColumn(parArrayColumn.map((col, i) => {
         return col.components[i]
       }))
     } else {
-      console.log('Error:  The argument of the function "compOfColum" must be an array!!')
+      console.error('Error:  The argument of the function "compOfColum" must be an array!!')
       setArrayOfCompByColumn(null)
     }
   }
@@ -79,12 +91,12 @@ function BlockMaster({ form, block, index }) {
         <button className="accordion-button graycolor400 h6 fw-bold collapsed py-1 m-0" type="button" data-bs-toggle="collapse"
           data-bs-target={`#collapse_${index}`} aria-expanded="false" aria-controls={`collapse_${index}`}>
           <div className='row container-fluid d-flex flex-row justify-content-between align-items-center m-0 p-0'>
-            <span className="col-11 h6 fw-bold">{block.title_Block}</span>
+            <span className="col-11 h6 fw-bold">{blockSelectObjectLocal.title_Block}</span>
             <span className="col-1 d-flex flex-row justify-content-end align-items-center">
               <ButtonIcon2
                 styleCircleCSS={styleCircleCSS}
                 iconComponent={<FaEye />}
-                block={block}
+                block={blockSelectObjectLocal}
               />
             </span>
           </div>
@@ -96,12 +108,12 @@ function BlockMaster({ form, block, index }) {
           <div className="row shadow-sm graycolor500 p-0 m-0" >
             <div className="col-3">
               <LabelElem_PB
-                id_Element={block.id_Block}
+                id_Element={blockSelectObjectLocal.id_Block}
                 orderInBlock={index}
                 required={true}
                 disabled={false}
                 response={[""]}
-                placeholder={block.label_Block}
+                placeholder={blockSelectObjectLocal.label_Block}
                 size={28}
                 position={{ rowElem: 0, colElem: 0 }}
                 width={2}
@@ -117,33 +129,47 @@ function BlockMaster({ form, block, index }) {
             columnsOfBlock !== undefined
               ?
               columnsOfBlock.map((col, index) => {
-                return (
-                  <>
-                    {
-                      !tooRead &&
-
-                      <div key={index} className="row p-0 my-1 graycolor100 shadow-sm" >
+                if (!tooRead) {
+                  return (
+                    <>
+                      <div key={index} ref={referenceColumnInBlock} className="row p-0 my-1 graycolor100 shadow-sm">
                         <ColAddLine
-                          form={form}
                           block={block}
+                          setArrayColumnsLocal2={setArrayOfColumnsLocal}
+                          col={col}
                           numRow={index}
                         />
                       </div>
-                    }
 
-                    <div key={index} className="row p-1 mb-1 graycolor100 shadow-sm" >
-                      {col.components.map((comp, i) => {
-                        return (
-                          <div key={i} className={`col-${comp.dimension.width + ""} d-grip p-0 m-0`} style={{ width: "auto" }}>
-                            <Column
-                              comp={comp}
-                            />
-                          </div>
-                        )
-                      })
-                      }
-                    </div >
-                  </>
+                      <div key={index} className="row p-1 mb-1 graycolor100 shadow-sm" >
+                        {col.components.map((comp, i) => {
+                          return (
+                            <div key={i} className={`col-${comp.dimension.width + ""} d-grip p-0 m-0`} style={{ width: "auto" }}>
+                              <Column
+                                comp={comp}
+                              />
+                            </div>
+                          )
+                        })
+                        }
+                      </div >
+                    </>
+                  )
+                }
+
+                return (
+                  <div key={index} className="row p-1 mb-1 graycolor100 shadow-sm" >
+                    {col.components.map((comp, i) => {
+                      return (
+                        <div key={i} className={`col-${comp.dimension.width + ""} d-grip p-0 m-0`} style={{ width: "auto" }}>
+                          <Column
+                            comp={comp}
+                          />
+                        </div>
+                      )
+                    })
+                    }
+                  </div >
                 )
               })
               :
@@ -153,11 +179,12 @@ function BlockMaster({ form, block, index }) {
             !tooRead &&
 
             < div className="row p-0 my-1 graycolor100 shadow-sm" >
-              {/* <ColAddLine
-                form={form}
-                block={block}
+              <ColAddLine
+                block={blockSelectObjectLocal}
+                setArrayColumnsLocal2={setArrayOfColumnsLocal}
+                col={null}
                 numRow={columnsOfBlock.length}
-              /> */}
+              />
             </div>
           }
         </div >
@@ -172,6 +199,12 @@ function ButtonIcon2({ styleCircleCSS, iconComponent, block }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [infoBlock, setInfoBlock] = useState("");
 
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    setCount(count + 1);
+    console.log('block: ', block);
+  }, [iconComponent]);
+
   useEffect(() => {
     setInfoBlock(JSON.stringify(block, null, 2))
   }, [isModalOpen]);
@@ -184,50 +217,54 @@ function ButtonIcon2({ styleCircleCSS, iconComponent, block }) {
   const overlayStyle = { width: 'auto' };
 
   return (
-    <Popup
-      trigger={
-        <button
-          type="button"
-          className="buttonIcon btn btn-outline-secondary d-flex justify-content-center align-items-center rounded-circle"
-          style={styleCircleCSS}
-          onClick={handleButtonPopup}
-        >
-          <span className="d-flex flex-row justify-content-center align-items-center p-1 m-1">
-            {iconComponent}
-          </span>
-        </button>
-      }
-      open={isModalOpen}
-      position="left top center"
-      contentStyle={contentStyle}
-      overlayStyle={overlayStyle}
-    >
-      {close => (
-        <>
-          <div className="modalPopup">
-            <ButtonX
-              toggleHeader={isModalOpen}
-              setToggleHeader={close}
-            />
-          </div>
-          <div className='content mx-auto w-75'
-            style={{ marginBottom: "0.2rem" }}>
-            <InfoBlock
-              infoBlock={infoBlock}
-            />
-          </div>
-          <div className="d-flex justify-content-end align-items-center p-0 mx-auto w-full"
-            style={{ padding: "0.05rem", marginBottom: "0.2rem" }}>
-            <ActionButtons {...GROUP_BUTTONS_ACTIONS} />
-          </div>
-        </>
-      )
-      }
-    </Popup >
+    <>
+      <Popup
+        trigger={
+          <button
+            type="button"
+            className="buttonIcon btn btn-outline-secondary d-flex justify-content-center align-items-center rounded-circle"
+            style={styleCircleCSS}
+            onClick={handleButtonPopup}
+          >
+            <span className="d-flex flex-row justify-content-center align-items-center p-1 m-1">
+              {iconComponent}
+            </span>
+          </button>
+        }
+        open={isModalOpen}
+        position="left top center"
+        contentStyle={contentStyle}
+        overlayStyle={overlayStyle}
+      >
+        {close => (
+          <>
+            <div className="modalPopup">
+              <ButtonX
+                toggleHeader={isModalOpen}
+                setToggleHeader={close}
+              />
+            </div>
+            <div className='content mx-auto w-75'
+              style={{ marginBottom: "0.2rem" }}>
+              <InfoBlock
+                block={block}
+              />
+            </div>
+            <div className="d-flex justify-content-end align-items-center p-0 mx-auto w-full"
+              style={{ padding: "0.05rem", marginBottom: "0.2rem" }}>
+              <ActionButtons {...GROUP_BUTTONS_ACTIONS} />
+            </div>
+          </>
+        )
+        }
+      </Popup >
+      <p>count: {count}</p>
+
+    </>
   );
 }
 
-const InfoBlock = ({ infoBlock }) => {
+const InfoBlock = ({ block }) => {
   const { blockSelectObject, setBlockSelectObject, arrayOfBlocks, setArrayOfBlocks, tooRead } = useContext(MyContext);
 
   const [parChangeBlock, setParChangeBlock] = useState("");
@@ -239,13 +276,20 @@ const InfoBlock = ({ infoBlock }) => {
   const [compSelectObj, setCompSelectObj] = useState({}); // Initial value can be an empty object
 
   useEffect(() => {
-    setBlockSelectObject(JSON.parse(infoBlock));
+    // setBlockSelectObject(JSON.parse(infoBlock));
+    setBlockSelectObject(block);
 
-    const newArrayComp = compByBlock(JSON.parse(infoBlock));
+    const newArrayComp = compByBlock(block);
     setArrayOfComponents(newArrayComp);
-    setRowSelect(JSON.parse(infoBlock).columns[0])
-    setCompSelectObj(JSON.parse(infoBlock).columns[0].components[0]);
-  }, [infoBlock]);
+    setRowSelect(block.columns[0])
+    setCompSelectObj(block.columns[0].components[0]);
+
+    // const newArrayComp = compByBlock(JSON.parse(infoBlock));
+    // setArrayOfComponents(newArrayComp);
+    // setRowSelect(JSON.parse(infoBlock).columns[0])
+    // setCompSelectObj(JSON.parse(infoBlock).columns[0].components[0]);
+  }, [block]);
+  //   }, [infoBlock]);
 
   const handleChange = useCallback((ev, blockKey) => {
     ev.preventDefault();
@@ -264,6 +308,7 @@ const InfoBlock = ({ infoBlock }) => {
       return newArrayOfBlocks;
     })
   }, []);
+
   const handleRowSelect = useCallback((ev) => {
     ev.preventDefault();
     const rowValue = 'Row: ' + ev.target.value;
@@ -276,6 +321,7 @@ const InfoBlock = ({ infoBlock }) => {
       setRowSelect(newRowSelectObject);
     }
   }, [blockSelectObject.columns, setRowSelect]);
+
   const handleComponentSelect = useCallback((ev) => {
     ev.preventDefault();
     const newValue = ev.target.value;
@@ -399,9 +445,6 @@ const InfoBlock = ({ infoBlock }) => {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-// transform: "scaleY(.85)"
-
-//   <div className="container mx-auto w-75 h-50 d-flex justify-content-center align-items-center m-0 p-0"

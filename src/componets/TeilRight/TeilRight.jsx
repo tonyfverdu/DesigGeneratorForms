@@ -1,22 +1,22 @@
 import { useContext } from 'react';
 import { MyContext } from '../../context/TheContext.jsx';
 import HeaderTitleRight from './menuRight/HeaderTitleRight.jsx';
-import PrintFormTemplate from '../managementJSON/PrintFormTemplate';
+import PrintFormTemplate from '../managementJSON/PrintFormTemplate.jsx';
 import ButtonSelectOptions from '../ButtonSelectOptions.jsx';
 
 const TeilRight = () => {
   const { toggleJSONAusgaben } = useContext(MyContext);
 
   return (
-    <section className="container-fluid mx-2 mt-1 p-0 graycolor100">
-      <div className="row container-fluid contTopRight">
+    <section className="container-fluid mx-auto me-2 p-0 graycolor100">
+      <div className="row container-fluid mx-auto p-0 contTopRight">
         <div className="col">
           <HeaderTitleRight />
         </div>
       </div>
 
       {toggleJSONAusgaben && (
-        <form className="container-fluid rounded-0 m-1 p-0 bg-light">
+        <div className="container-fluid rounded-0 m-auto mt-2 p-0 bg-light">
           <PrintFormTemplate />
           <div className="row justify-content-center mx-4 p-1">
             <ButtonSelectOptions
@@ -28,7 +28,7 @@ const TeilRight = () => {
               colors={["btn-outline-danger", "btn-outline-warning", "btn-outline-success"]}
             />
           </div>
-        </form>
+        </div>
       )}
     </section>
   );

@@ -14,7 +14,7 @@ import { MyContext } from '../../../context/TheContext';
  * @return {JSX.Element} the rendered action buttons component
  */
 function ActionButtons({ preId, role, arialLabel, typeButton, options, colors, height }) {
-  const { option, setOption, setColor, setTooRead } = useContext(MyContext);
+  const { option, setOption, setColor, setTooRead, tooRead } = useContext(MyContext);
   const [optionSelect, setOptionSelect] = useState("");
 
   useEffect(() => {
@@ -24,8 +24,9 @@ function ActionButtons({ preId, role, arialLabel, typeButton, options, colors, h
       setOptionSelect(isRead);
       setTooRead(isRead);
     };
-    updateContext();
-  }, [option]);
+
+    return updateContext();
+  }, [option, tooRead]);
 
   const handleBtnClick = (ev) => {
     setOption(ev.target.value);

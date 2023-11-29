@@ -5,7 +5,7 @@ import { BsXSquareFill } from 'react-icons/bs';
  *
  * @return {JSX.Element} The rendered button component.
  */
-const ButtonX = ({toggleHeader, setToggleHeader}) => {
+const ButtonX = ({ toggleHeader, setToggleHeader }) => {
   const toggleHeaderHandler = () => setToggleHeader(!toggleHeader);
 
   return (
@@ -17,7 +17,9 @@ const ButtonX = ({toggleHeader, setToggleHeader}) => {
         value={toggleHeader}
         onClick={toggleHeaderHandler}
       >
-        <BsXSquareFill />
+        <div className="d-flex justify-content-center align-items-center m-0 p-0">
+          <BsXSquareFill style={{ backgroundColor: "white", color: "red", padding: "0%", margin: "0%", borderRadius: "50%" }} />
+        </div>
       </button>
     </div>
   );
